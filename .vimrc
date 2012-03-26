@@ -10,11 +10,11 @@ call vundle#rc()
 Bundle 'gmarik/vundle'
 "-------------------------
 "------- set plugins -------
-Bundle 'Shougo/vimproc'
+"Bundle 'Shougo/vimproc'
 Bundle 'Shougo/unite.vim'
 Bundle 'Shougo/vimshell'
 Bundle 'Shougo/neocomplcache'
-Bundle 'quickrun.vim'
+Bundle 'thinca/vim-quickrun'
 Bundle 'mitechie/pyflakes-pathogen'
 Bundle 'nathanaelkane/vim-indent-guides'
 Bundle 'trailing-whitespace'
@@ -68,11 +68,12 @@ set history=100
 "---------
 "
 colorscheme anotherdark
+set transparency=50
 set title
 set number
 
-set guifont=inconsolata:14
-set guifontwide=ヒラギノ角ゴ\ StdN\ W8:h13
+set guifont=inconsolata:h14
+set guifontwide=ヒラギノ角ゴ\ StdN\ W8:h11
 
 nmap + :set transparency+=5<CR>
 nmap - :set transparency-=5<CR>
@@ -86,7 +87,7 @@ highlight Comment ctermfg=LightGreen
 
 set wildmenu
 
-set textwidth=80
+set textwidth=90
 set colorcolumn=80
 set wrap
 
@@ -149,3 +150,31 @@ let g:indent_guides_enable_on_vim_startup=1
 let g:indent_guides_guide_size=1
 let g:indent_guides_start_level=2 
 let g:indent_guides_color_change_percent=20
+
+" Unite.vim
+
+""" unite.vim
+" 入力モードで開始する
+" let g:unite_enable_start_insert=1
+" バッファ一覧
+nnoremap <silent> ,ub :<C-u>Unite buffer<CR>
+" ファイル一覧
+nnoremap <silent> ,uf :<C-u>UniteWithBufferDir -buffer-name=files file<CR>
+" レジスタ一覧
+nnoremap <silent> ,ur :<C-u>Unite -buffer-name=register register<CR>
+" 最近使用したファイル一覧
+nnoremap <silent> ,um :<C-u>Unite file_mru<CR>
+" 常用セット
+nnoremap <silent> ,uu :<C-u>Unite buffer file_mru<CR>
+" 全部乗せ
+nnoremap <silent> ,ua :<C-u>UniteWithBufferDir -buffer-name=files buffer file_mru bookmark file<CR>
+
+" ウィンドウを分割して開く
+au FileType unite nnoremap <silent> <buffer> <expr> <C-j> unite#do_action('split')
+au FileType unite inoremap <silent> <buffer> <expr> <C-j> unite#do_action('split')
+" ウィンドウを縦に分割して開く
+au FileType unite nnoremap <silent> <buffer> <expr> <C-l> unite#do_action('vsplit')
+au FileType unite inoremap <silent> <buffer> <expr> <C-l> unite#do_action('vsplit')
+" ESCキーを2回押すと終了する
+au FileType unite nnoremap <silent> <buffer> <ESC><ESC> q
+au FileType unite inoremap <silent> <buffer> <ESC><ESC> <ESC>q
