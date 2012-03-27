@@ -1,4 +1,4 @@
-"
+﻿"
 " Vundle's settings
 "
 "--- common settings ----
@@ -12,11 +12,12 @@ Bundle 'gmarik/vundle'
 "------- set plugins -------
 "Bundle 'Shougo/vimproc'
 Bundle 'Shougo/unite.vim'
-Bundle 'Shougo/vimshell'
+"Bundle 'Shougo/vimshell'
 Bundle 'Shougo/neocomplcache'
 Bundle 'thinca/vim-quickrun'
 Bundle 'mitechie/pyflakes-pathogen'
 Bundle 'nathanaelkane/vim-indent-guides'
+Bundle 'mattn/zencoding-vim'
 Bundle 'trailing-whitespace'
 Bundle 'The-NERD-tree'
 Bundle 'reinh/vim-makegreen'
@@ -24,10 +25,10 @@ Bundle 'h1mesuke/unite-outline'
 
 filetype plugin indent on
 
-"
-" common settings
-"
-"
+"-------------------"
+"  common settings  "
+"-------------------"
+set encoding=utf-8
 set clipboard=unnamed,autoselect
 
 set vb t_vb=
@@ -36,25 +37,13 @@ set directory=~/vimswap
 
 set paste
 
+set nobackup
+
+
 "" clipboard use in OS
 "set clipboard+=unnamed
 
-" set PEP8 Style
-set autoindent
-set smarttab
-set cindent
-
 set foldlevel=99
-"___________
-" indent
-"---------
-"
-set tabstop=4
-set softtabstop=4
-set shiftwidth=4
-set expandtab
-
-
 
 "-----
 " search settings
@@ -68,7 +57,7 @@ set history=100
 "---------
 "
 colorscheme anotherdark
-set transparency=50
+" set transparency=50
 set title
 set number
 
@@ -94,14 +83,30 @@ set wrap
 highlight ZenkakuSpace cterm=underline ctermfg=lightblue guibg=darkgray
 match ZenkakuSpace /　/
 
+"___________
+" indent
+"---------
+"
+set tabstop=4
+set softtabstop=4
+set shiftwidth=4
+set expandtab
 
-"" from  expart Python
+
+"" Python
+" set PEP8 Style
+set autoindent
+set smarttab
+set cindent
+
 set incsearch
 set ignorecase
 set ruler
 set wildmenu
 set commentstring=\ #\ %s
 set foldlevel=0
+autocmd FileType python setl smartindent cinwords=if,elif,else,for,while,try,except,finally,def,class
+
 
 "-------------
 " plugin
