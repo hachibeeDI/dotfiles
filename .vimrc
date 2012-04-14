@@ -1,4 +1,4 @@
-﻿"
+"
 " Vundle's settings
 "
 "--- common settings ----
@@ -12,12 +12,11 @@ Bundle 'gmarik/vundle'
 "------- set plugins -------
 "Bundle 'Shougo/vimproc'
 Bundle 'Shougo/unite.vim'
-"Bundle 'Shougo/vimshell'
+Bundle 'Shougo/vimshell'
 Bundle 'Shougo/neocomplcache'
 Bundle 'thinca/vim-quickrun'
 Bundle 'mitechie/pyflakes-pathogen'
 Bundle 'nathanaelkane/vim-indent-guides'
-Bundle 'mattn/zencoding-vim'
 Bundle 'trailing-whitespace'
 Bundle 'The-NERD-tree'
 Bundle 'reinh/vim-makegreen'
@@ -25,10 +24,10 @@ Bundle 'h1mesuke/unite-outline'
 
 filetype plugin indent on
 
-"-------------------"
-"  common settings  "
-"-------------------"
-set encoding=utf-8
+"
+" common settings
+"
+"
 set clipboard=unnamed,autoselect
 
 set vb t_vb=
@@ -37,13 +36,33 @@ set directory=~/vimswap
 
 set paste
 
-set nobackup
+" enable hjkl on INSERT-MODE
+imap <C-j><Down>
+imap <C-k><Up>
+imap <C-l><Right>
+imap <C-h><Left>
 
 
 "" clipboard use in OS
 "set clipboard+=unnamed
 
+" set PEP8 Style
+set autoindent
+set smarttab
+set cindent
+
 set foldlevel=99
+
+"___________
+" indent
+"---------
+"
+set tabstop=4
+set softtabstop=4
+set shiftwidth=4
+set expandtab
+
+
 
 "-----
 " search settings
@@ -56,16 +75,18 @@ set history=100
 " display settings
 "---------
 "
-colorscheme anotherdark
-" set transparency=50
+"colorscheme anotherdark
+colorscheme solarized
+set background=dark
+"set transparency=50
 set title
 set number
 
 set guifont=inconsolata:h14
-set guifontwide=ヒラギノ角ゴ\ StdN\ W8:h11
+set guifontwide=Osaka-Mono:h12
 
-nmap + :set transparency+=5<CR>
-nmap - :set transparency-=5<CR>
+"nmap + :set transparency+=5<CR>
+"nmap - :set transparency-=5<CR>
 
 set showcmd
 set laststatus=2
@@ -83,30 +104,14 @@ set wrap
 highlight ZenkakuSpace cterm=underline ctermfg=lightblue guibg=darkgray
 match ZenkakuSpace /　/
 
-"___________
-" indent
-"---------
-"
-set tabstop=4
-set softtabstop=4
-set shiftwidth=4
-set expandtab
 
-
-"" Python
-" set PEP8 Style
-set autoindent
-set smarttab
-set cindent
-
+"" from  expart Python
 set incsearch
 set ignorecase
 set ruler
 set wildmenu
 set commentstring=\ #\ %s
 set foldlevel=0
-autocmd FileType python setl smartindent cinwords=if,elif,else,for,while,try,except,finally,def,class
-
 
 "-------------
 " plugin
