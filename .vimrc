@@ -1,50 +1,40 @@
-"
-" Vundle's settings
-"
-"--- common settings ----
 set nocompatible
 filetype off
 
-set rtp+=~/.vim/bundle/vundle/
-call vundle#rc()
-Bundle 'gmarik/vundle'
-"-------------------------
+if has('vim_starting')
+    set runtimepath+=~/.vim/neobundle.vim
+    
+    call neobundle#rc(expand('~/.vim/.bundle'))
+endif
+
 "------- set plugins -------
-"Bundle 'Shougo/vimproc'
-Bundle 'Shougo/unite.vim'
-Bundle 'Shougo/vimshell'
-Bundle 'Shougo/neocomplcache'
-Bundle 'thinca/vim-quickrun'
-Bundle 'mitechie/pyflakes-pathogen'
-Bundle 'nathanaelkane/vim-indent-guides'
-Bundle 'trailing-whitespace'
-Bundle 'The-NERD-tree'
-Bundle 'reinh/vim-makegreen'
-Bundle 'h1mesuke/unite-outline'
+NeoBundle 'git://github.com/Shougo/neocomplcache.git'
+NeoBundle 'Shougo/vimproc'
+NeoBundle 'Shougo/neobundle.vim'
+NeoBundle 'Shougo/vimfiler'
+NeoBundle 'Shougo/neocomplcache-clang_complete'
+NeoBundle 'Shougo/vimshell'
+NeoBundle 'Shougo/unite.vim'
+NeoBundle 'thinca/vim-quickrun'
+NeoBundle 'tpope/vim-fugitive'
+"TDD plugin for vim
+NeoBundle 'reinh/vim-makegreen'
+"syntax hightlight for python, with pyflak
+NeoBundle 'mitechie/pyflakes-pathogen'
 
 filetype plugin indent on
-
+filetype indent on
 "
 " common settings
 "
 "
 set clipboard=unnamed,autoselect
-
+syntax on
 set vb t_vb=
 
 set directory=~/vimswap
 
 set paste
-
-" enable hjkl on INSERT-MODE
-imap <C-j><Down>
-imap <C-k><Up>
-imap <C-l><Right>
-imap <C-h><Left>
-
-
-"" clipboard use in OS
-"set clipboard+=unnamed
 
 " set PEP8 Style
 set autoindent
@@ -62,48 +52,28 @@ set softtabstop=4
 set shiftwidth=4
 set expandtab
 
-
-
-"-----
-" search settings
-"------
-"
-set history=100
-
-
 "--------
 " display settings
 "---------
 "
 "colorscheme anotherdark
-colorscheme solarized
+"colorscheme solarized
 set background=dark
 "set transparency=50
 set title
 set number
 
-set guifont=inconsolata:h14
+set guifont=inconsolata:h15
 set guifontwide=Osaka-Mono:h12
-
-"nmap + :set transparency+=5<CR>
-"nmap - :set transparency-=5<CR>
 
 set showcmd
 set laststatus=2
-
-syntax on
-set hlsearch
-highlight Comment ctermfg=LightGreen
-
-set wildmenu
-
 set textwidth=90
 set colorcolumn=80
 set wrap
 
 highlight ZenkakuSpace cterm=underline ctermfg=lightblue guibg=darkgray
 match ZenkakuSpace /　/
-
 
 "" from  expart Python
 set incsearch
@@ -146,13 +116,28 @@ inoremap <expr><BS> neocomplcache#smart_close_popup() . "\<C-h>"
 inoremap <expr><C-y> neocomplcache#close_popup()
 inoremap <expr><C-e> neocomplcache#cancel_popup()
 
+" Enable heavy omni-comlete
+let g:NeoComplCache_EnableSkipCompletion=1
+
+" for neocomplcache-clang_complete
+" use neocomplcache & clang_complete
+let g:neocomplcache_force_overwrite_completefunc=1
+" add clang_complete option
+let g:clang_complete_auto=1
+
+" for c/c++
+let g:neocomplcache_include_patterns = {'c':'^\s#\s*include','cpp':'^\s#\s*include'}
+let g:neocomplcache_include_suffixes = {'c':'.h','cpp':'.h'}
+
 "Define dictonaru
 let g:neocomplcache_dictionary_filetype_lists={
 \'default':'',
 \'java':$HOME.'/.vim/dict/java.dict',
 \'javascript':$HOME.'/.vim/dict/javascript.dict',
 \'python':$HOME.'/.vim/dict/python.dict',
-\'vim':$HOME.'/.vim/dict/vim.dict'
+\'vim':$HOME.'/.vim/dict/vim.dict',
+\'vimshell':$HOME.'/.vim/dict/vimshell.dict',
+\'cpp':$HOME.'/.vim/dict/c-cpp.dict'
 \}
 
 
@@ -161,11 +146,11 @@ let g:indent_guides_guide_size=1
 let g:indent_guides_start_level=2 
 let g:indent_guides_color_change_percent=20
 
-" Unite.vim
+" ---------Unite.vim---------
 
 """ unite.vim
 " 入力モードで開始する
-" let g:unite_enable_start_insert=1
+let g:unite_enable_start_insert=1
 " バッファ一覧
 nnoremap <silent> ,ub :<C-u>Unite buffer<CR>
 " ファイル一覧
