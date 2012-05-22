@@ -147,7 +147,7 @@ let g:neocomplcache_dictionary_filetype_lists={
 \'python':$HOME.'/.vim/dict/python.dict',
 \'vim':$HOME.'/.vim/dict/vim.dict',
 \'vimshell':$HOME.'/.vim/dict/vimshell.dict',
-\'cpp':$HOME.'/.vim/dict/c-cpp.dict'
+\'cpp':$HOME.'/.vim/dict/cpp.dict'
 \}
 
 
