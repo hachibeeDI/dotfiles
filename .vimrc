@@ -21,6 +21,7 @@ NeoBundle 'tpope/vim-fugitive'
 NeoBundle 'reinh/vim-makegreen'
 "syntax hightlight for python, with pyflak
 NeoBundle 'mitechie/pyflakes-pathogen'
+NeoBundle 'vim-scripts/java_getset.vim'
 
 filetype plugin indent on
 filetype indent on
@@ -82,6 +83,15 @@ set ruler
 set wildmenu
 set commentstring=\ #\ %s
 set foldlevel=0
+
+"" Java
+let java_highlight_all=1
+let java_space_errors=1
+let java_highlight_function=1
+"4debug highlight
+let java_highlight_debug=1
+
+
 
 "-------------
 " plugin
