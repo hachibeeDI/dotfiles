@@ -10,17 +10,32 @@ export LANG=ja_JP.UTF-8
 
 
 # alias settings
-#alias ls='ls --color=auto'
-alias ls="ls -G"
+alias ls='ls --color=auto -FA'
 alias ll='ls -ltr'
+alias less='--long-prompt --quit-if-one-screen' # --Raw-CONTROL-CHARS
+alias cp='--interactive'
+alias mv='--interactive'
+alias rm='--interactive=once'
+
 
 # editer
-export EDITOR=/usr/local/bin/vim
+export EDITOR=vim
 
 ### Command Completement
 # Default Completement
 autoload -U compinit
-compinit
+compinit -u
+
+zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'
+zstyle ':completion:*' use-cache true
+zstyle ':completion:*:default' menu select=1
+
+## Enable appoint color on name
+autoload -Uz colors
+colors
+
+## call version check function
+autoload -Uz is-at-least
 
 ### Set shell options
 setopt no_beep
@@ -37,11 +52,20 @@ setopt auto_cd
 setopt NO_hup
 setopt ignore_eof
 
-limit coredumpsize 0
+# permission settings
+umask 022
+
+# Enable appoint on reserved-word in PROMPT
+# ex: $UID $HOME
+setopt prompt_subst
+
+# mm?
+# limit coredumpsize 0
 
 
 # if there too many Completementes
 export LISTMAX=0
+
 
 
 # history settings
@@ -49,13 +73,20 @@ HISTFILE=~/.histfile
 HISTSIZE=10000
 SAVEHIST=10000
 
-setopt hist_ignore_dups
+# disable to save hist, if it's on RootUser
+if [ $UID = 0 ]; then
+    unset HISTFILE
+    SAVEHIST = 0
+fi
+
+setopt share_history
+setopt hist_ignore_all_dups # if there are overlaps on histfile, delete the old one
+setopt hist_ignore_dups # disable to save histfile, if its overlaps on just before
 setopt hist_no_store
 setopt hist_reduce_blanks
+setopt share_history
 # when use zsh on multiwindow, add on history file
 setopt append_history
-
-unsetopt share_history
 
 
 # use '#' as comment on commandloine
@@ -78,7 +109,8 @@ bindkey "^h" backward-kill-word
 ## pythonbrew
 source $HOME/.pythonbrew/etc/bashrc
 
-#prompt setting
+# ================================================#
+# -------- prompt setting ------------
 case ${UID} in
 0)
     PROMPT="%B%{[31m%}%/#%{[m%}%b "
@@ -96,6 +128,30 @@ case ${UID} in
     ;;
 esac
 
+
+# --------- show vcs's branch --------------------
+# :=> %s:vcs's name, %b: branch's name, %a: action name
+autoload -Uz vcs_info
+# autoload -Uz add_zsh_hook -> precmdみたいな機能を実現させる感じ？ これ使うと関数に名前を付けられる 
+
+zstyle ':vcs_info:*' formats '[%b]' #'(%s)-[%b]'
+zstyle ':vcs_info:*' actionformats '[%b|%a]' #'(%s)-[%b|%a]'
+if is-at-least 4.3.7; then
+    zstyle ':vcs_info:git:*' check-for-changes true
+    zstyle ':vcs_info:git:*' stagedstr "sted"
+    zstyle ':vcs_info:git:*' unstagedstr "unst"
+    zstyle ':vcs_info:git:*' formats '[%b] ~ %c / %u'
+    zstyle ':vcs_info:git:*' actionformats '[%b|%a] ~ %c / %u'
+fi
+
+precmd () {
+    psvar=()
+    LANG=en_US.UTF-8 vcs_info
+    psvar[1]=$vcs_info_msg_0_
+    }
+RPROMPT="%1(v|%F{green}%1v%f|)"
+
+# ----------------------------------------------------#
 
 #####################
 # change Color LS
@@ -129,12 +185,12 @@ bindkey -v
 
 # move hjkl
 zmodload zsh/complist
-bindkey -M menuselect 'h' vi-backward-char
-bindkey -M menuselect 'j' vi-down-line-or-history
-bindkey -M menuselect 'k' vi-up-line-or-history
-bindkey -M menuselect 'l' vi-forward-char
+bindkey -M menuselect '^h' vi-backward-char
+bindkey -M menuselect '^j' vi-down-line-or-history
+bindkey -M menuselect '^k' vi-up-line-or-history
+bindkey -M menuselect '^l' vi-forward-char
 
-#
+# =====================================================#
 # Set vi mode status bar
 #
 
@@ -242,6 +298,8 @@ makemodal vi-replace           REPLACE
 makemodal vi-cmd-mode          NORMAL
 
 unfunction makemodal
+
+# ========================================================#
 
 # google search
 function google() {

@@ -2,7 +2,7 @@
 " FILE: vimproc.vim
 " AUTHOR:  Shougo Matsushita <Shougo.Matsu@gmail.com> (Modified)
 "          Yukihiro Nakadaira <yukihiro.nakadaira at gmail.com> (Original)
-" Last Modified: 24 Apr 2012.
+" Last Modified: 03 May 2012.
 " License: MIT license  {{{
 "     Permission is hereby granted, free of charge, to any person obtaining
 "     a copy of this software and associated documentation files (the
@@ -74,11 +74,24 @@ let g:vimproc_dll_path = substitute(
       \ vimproc#util#iconv(g:vimproc_dll_path,
       \ &encoding, vimproc#util#termencoding()), '\\', '/', 'g')
 
-if !filereadable(g:vimproc_dll_path)
+if !filereadable(g:vimproc_dll_path)"{{{
+  function! vimproc#get_last_status()
+    return v:shell_error
+  endfunction
+
+  function! vimproc#get_last_errmsg()
+    return ''
+  endfunction
+
+  function! vimproc#system(...)
+    return call('system', a:000)
+  endfunction
+
   echoerr printf('vimproc''s DLL: "%s" is not found.
         \ Please read :help vimproc and make it.', g:vimproc_dll_path)
+
   finish
-endif
+endif"}}}
 
 function! vimproc#version()"{{{
   return str2nr(printf('%2d%02d', 7, 0))
@@ -432,7 +445,8 @@ function! vimproc#get_last_status()"{{{
   return s:last_status
 endfunction"}}}
 function! vimproc#get_last_errmsg()"{{{
-  return vimproc#util#iconv(s:last_errmsg, vimproc#util#stderrencoding(), &encoding)
+  return vimproc#util#iconv(s:last_errmsg,
+        \ vimproc#util#stderrencoding(), &encoding)
 endfunction"}}}
 
 function! vimproc#fopen(path, flags, ...)"{{{
@@ -538,6 +552,7 @@ function! s:plineopen(npipe, commands, is_pty)"{{{
           \ 2 : npipe
 
     if a:is_pty && (cnt == 0 || cnt == len(a:commands)-1)
+          \ && !vimproc#util#is_windows()
       " Use pty_open().
       let pipe = s:vp_pty_open(pty_npipe, winwidth(0)-5, winheight(0),
             \ hstdin, hstdout, hstderr, args)
@@ -1274,8 +1289,8 @@ endfunction"}}}
 
 function! s:vp_pty_open(npipe, width, height, hstdin, hstdout, hstderr, argv)
   let [pid; fdlist] = s:libcall('vp_pty_open',
-          \ [a:npipe, a:width, a:height,
-          \  a:hstdin, a:hstdout, a:hstderr, len(a:argv)] + a:argv)
+        \ [a:npipe, a:width, a:height,
+        \  a:hstdin, a:hstdout, a:hstderr, len(a:argv)] + a:argv)
   return [pid] + fdlist
 endfunction
 
