@@ -33,7 +33,7 @@ set clipboard=unnamed,autoselect
 syntax on
 set vb t_vb=
 
-set directory=~/vimswap
+set directory=~/.vimswap
 
 set paste
 
@@ -68,13 +68,17 @@ set guifont=inconsolata:h15
 set guifontwide=Osaka-Mono:h12
 
 set showcmd
-set laststatus=2
 set textwidth=90
 set colorcolumn=80
 set wrap
 
-highlight ZenkakuSpace cterm=underline ctermfg=lightblue guibg=darkgray
+highlight link ZenkakuSpace Error
 match ZenkakuSpace /　/
+
+set laststatus=2
+set statusline=[%L]\ %t\ %y%{'['.(&fenc!=''?&fenc:&enc).':'.&ff.']'}%r%m%=%c:%l/%L
+
+set smartcase
 
 "" from  expart Python
 set incsearch
@@ -94,7 +98,7 @@ let java_highlight_debug=1
 
 
 "-------------
-" plugin
+" plugin settings
 "---------------
 "
 
