@@ -10,13 +10,24 @@ export LANG=ja_JP.UTF-8
 
 
 # alias settings
-alias ls='ls --color=auto -FA'
+case "${OSTYPE}" in
+# Mac OS X
+freebsd*|darwin*)
+    alias ls='ls -G -w'
+    ;;
+
+# Linux
+Linux*|cygwin*)
+    alias ls='ls --color=auto -AF'
+    ;;
+esac
+
 alias ll='ls -ltr'
+alias la='ls -a'
 alias less='--long-prompt --quit-if-one-screen' # --Raw-CONTROL-CHARS
 alias cp='--interactive'
 alias mv='--interactive'
 alias rm='--interactive=once'
-
 
 # editer
 export EDITOR=vim
@@ -323,4 +334,3 @@ zle reset-prompt
 }
 zle -N cdup
 bindkey '\^' cdup
-
