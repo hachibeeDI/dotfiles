@@ -24,13 +24,16 @@ esac
 
 alias ll='ls -ltr'
 alias la='ls -a'
-alias less='--long-prompt --quit-if-one-screen' # --Raw-CONTROL-CHARS
-alias cp='--interactive'
-alias mv='--interactive'
-alias rm='--interactive=once'
+alias less='less --long-prompt --quit-if-one-screen' # --Raw-CONTROL-CHARS
+alias cp='cp --interactive'
+alias mv='mv --interactive'
+alias rm='rm --interactive=once'
 
 # editer
 export EDITOR=vim
+
+# disable make less-hist-file
+export LESSHISTFILE=-
 
 ### Command Completement
 # Default Completement
