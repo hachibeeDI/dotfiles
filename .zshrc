@@ -117,10 +117,10 @@ bindkey '^U' backward-kill-line
 # Ctrl-h  delete fullword
 bindkey "^h" backward-kill-word
 
-# auto ls after cd
+# auto ls-command after cd
 # function chpwd() { ls }
 
-## pythonbrew
+## pythonbrew "bashrcとなっているが、問題なし
 source $HOME/.pythonbrew/etc/bashrc
 
 # ================================================#
