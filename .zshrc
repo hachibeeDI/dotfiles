@@ -123,6 +123,7 @@ bindkey "^h" backward-kill-word
 ## pythonbrew "bashrcとなっているが、問題なし
 source $HOME/.pythonbrew/etc/bashrc
 
+
 # ================================================#
 # -------- prompt setting ------------
 case ${UID} in

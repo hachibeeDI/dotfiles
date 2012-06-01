@@ -44,6 +44,9 @@ set cindent "clang style indent
 
 set foldlevel=99
 
+set foldmethod=syntax
+
+
 "___________
 " indent
 "---------
