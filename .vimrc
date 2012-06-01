@@ -40,7 +40,7 @@ set paste
 " set PEP8 Style
 set autoindent
 set smarttab
-set cindent
+set cindent "clang style indent
 
 set foldlevel=99
 
@@ -75,10 +75,14 @@ set wrap
 highlight link ZenkakuSpace Error
 match ZenkakuSpace /　/
 
+
 set laststatus=2
-set statusline=[%L]\ %t\ %y%{'['.(&fenc!=''?&fenc:&enc).':'.&ff.']'}%r%m%=%c:%l/%L
+"set statusline=[%L]\ %t\ %y%{'['.(&fenc!=''?&fenc:&enc).':'.&ff.']'}%r%m%=%c:%l/%L
+set statusline=%F%m%r%h%w\ [FORMAT=%{&ff}]\ [TYPE=%Y]\ [ASCII=\%03.3b]\ [HEX=\%02.2B]\ [POS=%04l,%04v][%p%%]\ [LEN=%L]
+"let &statusline = ''
 
 set smartcase
+
 
 "" from  expart Python
 set incsearch
@@ -96,6 +100,18 @@ let java_space_errors=1
 let java_highlight_function=1
 "4debug highlight
 let java_highlight_debug=1
+
+
+" ------ Key Mapping --------------
+" nomal mode
+nnoremap q: <NOP> "disable command
+nmap n nzz
+
+" insert mode
+inoremap <C-a> <Home>
+inoremap <C-e> <End>
+inoremap <C-f> <Right>
+inoremap <C-b> <Left>
 
 
 "-------------
