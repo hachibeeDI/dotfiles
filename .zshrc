@@ -13,21 +13,21 @@ export LANG=ja_JP.UTF-8
 case "${OSTYPE}" in
 # Mac OS X
 freebsd*|darwin*)
-    alias ls='ls -G -w'
+    alias ls='ls -GA -w'
     ;;
 
 # Linux
-Linux*|cygwin*)
+linux*|cygwin*)
     alias ls='ls --color=auto -AF'
+    alias rm='rm --interactive=once'
+    alias cp='cp --interactive'
+    alias mv='mv --interactive'
     ;;
 esac
 
 alias ll='ls -ltr'
 alias la='ls -a'
 alias less='less --long-prompt --quit-if-one-screen' # --Raw-CONTROL-CHARS
-alias cp='cp --interactive'
-alias mv='mv --interactive'
-alias rm='rm --interactive=once'
 
 # editer
 export EDITOR=vim
