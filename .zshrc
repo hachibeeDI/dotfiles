@@ -27,7 +27,7 @@ esac
 
 alias ll='ls -ltr'
 alias la='ls -a'
-alias less='less --long-prompt --quit-if-one-screen' # --Raw-CONTROL-CHARS
+# alias less='less --long-prompt --quit-if-one-screen' # --Raw-CONTROL-CHARS
 
 # editer
 export EDITOR=vim

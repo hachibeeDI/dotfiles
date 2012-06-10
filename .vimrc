@@ -8,7 +8,7 @@ if has('vim_starting')
 endif
 
 "------- set plugins -------
-NeoBundle 'git://github.com/Shougo/neocomplcache.git'
+NeoBundle 'Shougo/neocomplcache'
 NeoBundle 'Shougo/vimproc'
 NeoBundle 'Shougo/neobundle.vim'
 NeoBundle 'Shougo/vimfiler'
@@ -81,7 +81,7 @@ match ZenkakuSpace /　/
 
 set laststatus=2
 "set statusline=[%L]\ %t\ %y%{'['.(&fenc!=''?&fenc:&enc).':'.&ff.']'}%r%m%=%c:%l/%L
-set statusline=%F%m%r%h%w\ [FORMAT=%{&ff}]\ [TYPE=%Y]\ [ASCII=\%03.3b]\ [HEX=\%02.2B]\ [POS=%04l,%04v][%p%%]\ [LEN=%L]
+set statusline=%F%m%r%h%w\ [Linefeed=%{&ff}]\ [TYPE=%Y]\ [ASCII=\%03.3b]\ [HEX=\%02.2B]\ [LEN=%L]
 "let &statusline = ''
 
 set smartcase
