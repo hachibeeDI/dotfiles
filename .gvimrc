@@ -19,3 +19,8 @@ if has('gui_macvim')
     map <silent> gw :macaction selectNextWindow:
     map <silent> gW :macaction selectPreviousWindow:
 endif
+
+" add register text on OS's clip boald
+set guioptions+=a
+
+set clipboard=unnamed, autoselect

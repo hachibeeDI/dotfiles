@@ -29,7 +29,6 @@ filetype indent on
 " common settings
 "
 "
-set clipboard=unnamed,autoselect
 syntax on
 set vb t_vb=
 
