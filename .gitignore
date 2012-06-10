@@ -48,3 +48,5 @@ nosetests.xml
 
 # Mr Developer(?)
 .mr.developer.cfg
+
+.vim/.bundle/*
