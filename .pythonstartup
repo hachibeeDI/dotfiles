@@ -3,10 +3,10 @@
 import sys
 import os
 import readline
-import rlcomleter
+import rlcompleter2
 import atexit
 
-# タブ補完
+# tab auto-complete
 readline.parse_and_bind('tab: complete')
 # historyfile
 histfile = os.path.join(os.environ['HOME'], '.pythonhistory')
@@ -15,4 +15,4 @@ try:
 except IOError:
     pass
 atexit.register(readline.write_history_file, histfile)
-del os, histfile, readline, rlcompleter, atexit
+del os, histfile, readline, rlcompleter2, atexit
