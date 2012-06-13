@@ -27,9 +27,11 @@ esac
 
 alias ll='ls -ltr'
 alias la='ls -a'
-# alias less='less --long-prompt --quit-if-one-screen' # --Raw-CONTROL-CHARS
-alias g='git'
 alias -g lgrep='| grep'
+
+# -------- git alias --------
+alias g='git'
+alias gst='git status -sb'
 
 # editer
 export EDITOR=vim
@@ -338,7 +340,7 @@ stck: $LBUFFER"
     zle push-line-or-edit
 }
 zle -N show_buffer_stack
-bindkey "^[q" show_buffer_stack
+bindkey "^[q" show_buffer_stack # ^[ = ESC ?
 
 # ^ => cd ..
 function cdup() {
@@ -347,7 +349,7 @@ cd ..
 zle reset-prompt
 }
 zle -N cdup
-bindkey '\^' cdup
+bindkey '^\[' cdup #Ctrl+[ でcd .. のはず。なぜか^単体でも戻ってしまう？ Ctcl+Vを押してから^を押せば入力可能
 
 # -------------
 #  source auto-fu.zsh(plugin)
