@@ -74,6 +74,8 @@ set textwidth=90
 set colorcolumn=80
 set wrap
 
+set showtabline=2
+
 highlight link ZenkakuSpace Error
 match ZenkakuSpace /　/
 

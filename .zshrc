@@ -13,11 +13,13 @@ export LANG=ja_JP.UTF-8
 case "${OSTYPE}" in
 # Mac OS X
 freebsd*|darwin*)
+    alias mvim='mvim --remote-tab-silent'
     alias ls='ls -GA -w'
     ;;
 
 # Linux
 linux*|cygwin*)
+    alias gvim='gvim --remote-tab-silent'
     alias ls='ls --color=auto -AF'
     alias rm='rm --interactive=once'
     alias cp='cp --interactive'
@@ -28,10 +30,13 @@ esac
 alias ll='ls -ltr'
 alias la='ls -a'
 alias -g lgrep='| grep'
+alias -g lxargs='| xargs'
 
 # -------- git alias --------
 alias g='git'
 alias gst='git status -sb'
+alias gamend='git commit --amend -C HEAD --date='
+
 
 # editer
 export EDITOR=vim
