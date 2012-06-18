@@ -1,3 +1,4 @@
+﻿
 #################################################
 #
 # Initial setup file for only interactive zsh
@@ -38,8 +39,11 @@ esac
 
 alias ll='ls -ltr'
 alias la='ls -a'
+# --- global alias ---
 alias -g lgrep='| grep'
 alias -g lxargs='| xargs'
+alias -g lawk='| awk'
+alias -g lsed='| sed'
 
 # -------- git alias --------
 alias g='git'
@@ -365,7 +369,7 @@ bindkey '^\[' cdup #Ctrl+[ でcd .. のはず。なぜか^単体でも戻って�
 
 # -------------
 #  source auto-fu.zsh(plugin)
-#  ----------------------------------------------------
+#  ---------------------------------------------------
 if [ -f ~/.zsh/auto-fu.zsh ]; then
     source ~/.zsh/auto-fu.zsh
     function zle-line-init () {
@@ -374,6 +378,4 @@ if [ -f ~/.zsh/auto-fu.zsh ]; then
     zle -N zle-line-init
     zstyle ':completion:*' completer _oldlist _complete
 if
-
-
 
