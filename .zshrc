@@ -5,9 +5,12 @@
 #
 ##################################################
 
+# ====== PATH =======
 # lang
 export LANG=ja_JP.UTF-8
 
+# editer
+export EDITOR=vim
 
 # alias settings
 case "${OSTYPE}" in
@@ -15,6 +18,12 @@ case "${OSTYPE}" in
 freebsd*|darwin*)
     alias mvim='mvim --remote-tab-silent'
     alias ls='ls -GA -w'
+
+    # set MacVim-kaoriya on default editor
+    export EDITOR=/Applications/MacVim.app/Contents/MacOS/Vim
+    alias vi='env LANG=ja_JP.UTF-8 /Applications/MacVim.app/Contents/MacOS/Vim "$@"'
+    alias vim='env LANG=ja_JP.UTF-8 /Applications/MacVim.app/Contents/MacOS/Vim "$@"'
+
     ;;
 
 # Linux
@@ -38,8 +47,6 @@ alias gst='git status -sb'
 alias gamend='git commit --amend -C HEAD --date='
 
 
-# editer
-export EDITOR=vim
 
 # disable make less-hist-file
 export LESSHISTFILE=-
