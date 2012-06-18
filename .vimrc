@@ -3,7 +3,7 @@ filetype off
 
 if has('vim_starting')
     set runtimepath+=~/.vim/neobundle.vim
-    
+    set runtimepath+=~/.vim/.bundle
     call neobundle#rc(expand('~/.vim/.bundle'))
 endif
 
@@ -21,6 +21,7 @@ NeoBundle 'tpope/vim-fugitive'
 NeoBundle 'reinh/vim-makegreen'
 "syntax hightlight for python, with pyflak
 NeoBundle 'mitechie/pyflakes-pathogen'
+
 NeoBundle 'vim-scripts/java_getset.vim'
 
 filetype plugin indent on
