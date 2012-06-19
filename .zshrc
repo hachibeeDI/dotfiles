@@ -155,7 +155,7 @@ case ${UID} in
         PROMPT="%{${fg[cyan]}%}$(echo ${HOST%%.*} | tr '[a-z]' '[A-Z]') ${PROMPT}"
     ;;
 *)
-    PROMPT="%{${fg[cyan]}%}[%~]%{${reset_color}%} "
+    PROMPT="%{${fg[cyan]}%}[%n@%m]%{${reset_color}%} "
     PROMPT2="%{[31m%}%_%%%{^[[m%} "
     SPROMPT="%{[31m%}%r is correct? [n,y,a,e]:%{[m%} "
     [ -n "${REMOTEHOST}${SSH_CONNECTION}" ] && 
@@ -184,7 +184,7 @@ precmd () {
     LANG=en_US.UTF-8 vcs_info
     psvar[1]=$vcs_info_msg_0_
     }
-RPROMPT="%1(v|%F{green}%1v%f|)"
+RPROMPT="%1(v|%F{green}%1v%f|) %{${fg[cyan]}%}[%~]%{${reset_color}%}" 
 
 # ----------------------------------------------------#
 
