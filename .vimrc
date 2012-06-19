@@ -23,6 +23,8 @@ NeoBundle 'reinh/vim-makegreen'
 NeoBundle 'mitechie/pyflakes-pathogen'
 
 NeoBundle 'vim-scripts/java_getset.vim'
+" VimClojure on bitbucket
+NeoBundle 'VimClojure'
 
 filetype plugin indent on
 filetype indent on
@@ -124,12 +126,16 @@ inoremap <C-b> <Left>
 "---------------
 "
 
+" disable autoComplPop
+let g:acp_enableAtStartup = 0
 
 "" neocomplcache
 let g:neocomplcache_enable_at_startup = 1   " enabled when start vim 
+let g:neocomplcache_enable_smart_case = 1
 let g:neocomplcache_max_list = 30
 let g:neocomplcache_auto_completion_start_length = 2
-let g:neocomplcache_enable_smart_case = 1
+" set minimum syntax keyword length
+let g:neocomplcache_min_syntax_length = 3
 "" like AutoComplPop
 let g:neocomplcache_enable_auto_select = 1
 "" search with camel case like Eclipse
