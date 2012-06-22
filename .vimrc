@@ -23,8 +23,8 @@ NeoBundle 'reinh/vim-makegreen'
 NeoBundle 'mitechie/pyflakes-pathogen'
 
 NeoBundle 'vim-scripts/java_getset.vim'
-" VimClojure on bitbucket
-NeoBundle 'VimClojure'
+" enable use slim on vim
+NeoBundle 'slimv.vim'
 
 filetype plugin indent on
 filetype indent on
@@ -221,4 +221,10 @@ noremap <C-q> :VimFiler -buffer-name=explorer -split -winwidth=45 -toggle -no-qu
 "autocmd! FileType vimfiler call g:my_vimfiler_settings()
 "function! g:my_vimfiler_settings()
 "    nmap <buffer><expr><Cr> vimfiler#smart_cursor_map
+
+
+" ----- slimv.vim --------
+if has('mac')
+    let g:slimv_swank_clojure = '!osascript -e "tell app \"iTerm\"" -e "tell the first terminal" -e "set mysession to current session" -e "launch session \"Default Session\"" -e "tell the last session" -e "exec command \"/bin/bash\"" -e "write text \"cd $(pwd)\"" -e "write text \"lein swank\"" -e "end tell" -e "select mysession" -e "end tell" -e "end tell"'
+endif
 
