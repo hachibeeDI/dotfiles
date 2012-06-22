@@ -6,3 +6,10 @@ export VIRTUALENV_USE_DISTRIBUTE=true
 
 # use pip, only in virtualenv enviroments
 export PIP_REQUIRE_VIRTUALENV=true
+
+case "${OSTYPE}" in
+darwin*)
+    export JAVA_OPTS="-Dswank.encoding=utf-8-unix"
+;;
+esac
+
