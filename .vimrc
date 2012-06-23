@@ -2,9 +2,9 @@ set nocompatible
 filetype off
 
 if has('vim_starting')
-    set runtimepath+=~/.vim/neobundle.vim
+    set runtimepath+=~/.vim/neobundle.vim/
     set runtimepath+=~/.vim/.bundle
-    call neobundle#rc(expand('~/.vim/.bundle'))
+    call neobundle#rc(expand('~/.vim/.bundle/'))
 endif
 
 "------- set plugins -------
@@ -35,7 +35,10 @@ filetype indent on
 syntax on
 set vb t_vb=
 
-set directory=~/.vimswap
+set directory=~/.vim/tmp/vimswap
+set backupdir=~/.vim/tmp/bak
+set viminfo+=n~/.vim/tmp/viminfo
+
 
 set paste
 
