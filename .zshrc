@@ -86,6 +86,10 @@ setopt auto_cd
 setopt NO_hup
 setopt ignore_eof
 
+# stack cd history
+setopt auto_pushd
+setopt pushd_ignore_dups
+
 # permission settings
 umask 022
 
