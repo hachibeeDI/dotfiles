@@ -71,6 +71,10 @@ colors
 ## call version check function
 autoload -Uz is-at-least
 
+## Enable zmv command
+autoload zmv
+alias zmv='noglob zmv'  # no need singlequote
+
 ### Set shell options
 setopt no_beep
 

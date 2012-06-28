@@ -219,6 +219,7 @@ au FileType unite inoremap <silent> <buffer> <expr> <C-l> unite#do_action('vspli
 au FileType unite nnoremap <silent> <buffer> <ESC><ESC> q
 au FileType unite inoremap <silent> <buffer> <ESC><ESC> <ESC>q
 
+
 " ------------- VimFiler ------------------"
 noremap <C-q> :VimFiler -buffer-name=explorer -split -winwidth=45 -toggle -no-quit<Cr>
 "autocmd! FileType vimfiler call g:my_vimfiler_settings()
