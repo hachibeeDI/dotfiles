@@ -34,6 +34,7 @@ linux*|cygwin*)
     alias rm='rm --interactive=once'
     alias cp='cp --interactive'
     alias mv='mv --interactive'
+    alias ap='aptitude'
     ;;
 esac
 
