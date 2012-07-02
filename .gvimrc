@@ -11,13 +11,13 @@ inoremap <down> <C-o>:call <SID>relative_tranparency(-5)<Cr>
 nnoremap <Esc><Esc> :<C-u>let &transparency = g:transparency<Cr><C-l>
 
 colorscheme solarized
+set showtabline=2  " タブを常に表示
+set imdisable      " IMを無効化
+map <silent> gw :macaction selectNextWindow:
+map <silent> gW :macaction selectPreviousWindow:
 
 if has('mac')
-    set showtabline=2  " タブを常に表示
-    set imdisable      " IMを無効化
     set transparency=5 " 透明度を指定
-    map <silent> gw :macaction selectNextWindow:
-    map <silent> gW :macaction selectPreviousWindow:
     set guifont=Osaka-Mono:h16
 elseif has('win32')
     set guifont=Osaka-Mono:h16
