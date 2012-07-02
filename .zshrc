@@ -1,5 +1,4 @@
-﻿
-#################################################
+﻿####################################################
 #
 # Initial setup file for only interactive zsh
 # This file is read after .zshenv fie is read.
@@ -269,4 +268,18 @@ if [ -f ~/.zsh/auto-fu.zsh ]; then
     zle -N zle-line-init
     zstyle ':completion:*' completer _oldlist _complete
 if
+
+# --------
+# complete sheet
+# ------------------
+compdef _sheets sheet
+function _sheets {
+    local -a cmds
+    _files -W ~/.sheets/ -P '~/.sheets/'
+
+    cmds=('list' 'edit' 'copy')
+    _describe -t commands "subcommand" cmds
+
+    return 1;
+}
 
