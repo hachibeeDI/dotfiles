@@ -10,7 +10,7 @@ inoremap <down> <C-o>:call <SID>relative_tranparency(-5)<Cr>
 "reset-trancparency
 nnoremap <Esc><Esc> :<C-u>let &transparency = g:transparency<Cr><C-l>
 
-colorscheme zenburn
+colorscheme solarized
 
 if has('mac')
     set showtabline=2  " タブを常に表示
