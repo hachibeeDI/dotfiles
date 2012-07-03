@@ -78,8 +78,8 @@ set background=dark
 set title
 set number
 
-set guifont=inconsolata:h16
-set guifontwide=Osaka-Mono:h15
+"set guifont=inconsolata:h16
+"set guifontwide=Osaka-Mono:h15
 
 set showcmd
 set textwidth=90
