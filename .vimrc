@@ -40,7 +40,7 @@ set backupdir=~/.vim/tmp/bak
 set viminfo+=n~/.vim/tmp/viminfo
 
 
-set paste
+"set paste
 
 " set PEP8 Style
 set autoindent
