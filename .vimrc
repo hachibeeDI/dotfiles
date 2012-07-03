@@ -17,6 +17,7 @@ NeoBundle 'Shougo/vimshell'
 NeoBundle 'Shougo/unite.vim'
 NeoBundle 'thinca/vim-quickrun'
 NeoBundle 'tpope/vim-fugitive'
+NeoBundle 'mileszs/ack.vim'
 "TDD plugin for vim
 NeoBundle 'reinh/vim-makegreen'
 "syntax hightlight for python, with pyflak
@@ -25,6 +26,7 @@ NeoBundle 'mitechie/pyflakes-pathogen'
 NeoBundle 'vim-scripts/java_getset.vim'
 " enable use slim on vim
 NeoBundle 'slimv.vim'
+
 
 filetype plugin indent on
 filetype indent on
@@ -241,5 +243,13 @@ noremap <C-q> :VimFiler -buffer-name=explorer -split -winwidth=45 -toggle -no-qu
 " ----- slimv.vim --------
 if has('mac')
     let g:slimv_swank_clojure = '!osascript -e "tell app \"iTerm\"" -e "tell the first terminal" -e "set mysession to current session" -e "launch session \"Default Session\"" -e "tell the last session" -e "exec command \"/bin/bash\"" -e "write text \"cd $(pwd)\"" -e "write text \"lein swank\"" -e "end tell" -e "select mysession" -e "end tell" -e "end tell"'
+endif
+
+"--- ack.vim ---
+"for debian /ubuntu
+if has('win32')
+elseif has('mac')
+else
+    let g:ackprg="ack-grep -H --nocolor --nogroup --column"
 endif
 
