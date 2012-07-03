@@ -28,19 +28,17 @@ NeoBundle 'slimv.vim'
 
 filetype plugin indent on
 filetype indent on
+
 "
 " common settings
 "
 "
-syntax on
 set vb t_vb=
 
 set directory=~/.vim/tmp/vimswap
 set backupdir=~/.vim/tmp/bak
 set viminfo+=n~/.vim/tmp/viminfo
 
-
-"set paste
 
 " set PEP8 Style
 set autoindent
@@ -51,6 +49,12 @@ set foldlevel=99
 
 set foldmethod=syntax
 
+" Syntax setting
+" ---------------
+syntax on
+
+" VB.NET
+autocmd BufRead, BufNewFile *.vb setlocal filetype=vbnet
 
 "___________
 " indent
@@ -219,6 +223,13 @@ au FileType unite inoremap <silent> <buffer> <expr> <C-l> unite#do_action('vspli
 au FileType unite nnoremap <silent> <buffer> <ESC><ESC> q
 au FileType unite inoremap <silent> <buffer> <ESC><ESC> <ESC>q
 
+"---- netrw(default filer) ----
+" set treeview
+let g:netrw_liststyle = 3
+" push 'v' open a pane on right side
+let g:netrw_altv = 1
+" push 'o' open a pane on under
+let g:netrw_alto = 1
 
 " ------------- VimFiler ------------------"
 noremap <C-q> :VimFiler -buffer-name=explorer -split -winwidth=45 -toggle -no-quit<Cr>
