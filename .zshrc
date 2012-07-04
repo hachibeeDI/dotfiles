@@ -13,6 +13,11 @@ export LANG=ja_JP.UTF-8
 export EDITOR=vim
 
 # alias settings
+
+# common
+alias grep='grep --color=auto --linie-number'
+alias ssh='TERM=xterm-265color ssh'
+
 case "${OSTYPE}" in
 # Mac OS X
 freebsd*|darwin*)
