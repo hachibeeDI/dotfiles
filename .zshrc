@@ -54,10 +54,11 @@ alias -g lsed='| sed'
 alias g='git'
 alias ga='git add'
 alias gcm='git commit'
+alias gbr='git branch -a'
 alias gdif='git diff'
 alias gst='git status -sb'
 alias gamend='git commit --amend -C HEAD --date='
-alias gg='git grep -H --heading --break'
+alias ggre='git grep -H --heading --break'
 
 
 # disable make less-hist-file
