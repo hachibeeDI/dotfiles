@@ -1,4 +1,4 @@
-﻿####################################################
+﻿#################################################
 #
 # Initial setup file for only interactive zsh
 # This file is read after .zshenv fie is read.
@@ -15,7 +15,7 @@ export EDITOR=vim
 # alias settings
 
 # common
-alias grep='grep --color=auto --linie-number'
+alias grep='grep --color=auto --line-number'
 alias ssh='TERM=xterm-265color ssh'
 
 case "${OSTYPE}" in
@@ -33,6 +33,8 @@ freebsd*|darwin*)
 
 # Linux
 linux*|cygwin*)
+    # open current directory on explorer
+    alias open='explorer.exe "$(cygpath -wa `pwd`)"'
     alias gvim='gvim --remote-tab-silent'
     alias ls='ls --color=auto -AF'
     alias rm='rm --interactive=once'
