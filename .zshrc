@@ -280,7 +280,7 @@ if [ -f ~/.zsh/auto-fu.zsh ]; then
     }
     zle -N zle-line-init
     zstyle ':completion:*' completer _oldlist _complete
-if
+fi
 
 # --------
 # complete sheet
