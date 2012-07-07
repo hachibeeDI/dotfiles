@@ -1,0 +1,9 @@
+#compdef _dotfilecmd dotfile
+
+# compFunction for move dotfiles on Dropbox
+
+function _dotfilecmd {
+    _files -W ~/Dropbox/dotfiles/ && return 0;
+    return 1;
+}
+

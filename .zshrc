@@ -65,17 +65,20 @@ alias ggre='git grep -H --heading --break'
 # disable make less-hist-file
 export LESSHISTFILE=-
 
-### Command Completement
+### Command Completemente
+
+# setting completion's function path
+fpath=(~/.zsh/functions/Completion ${fpath})
+autoload -U ~/.zsh/functions/Completion/*(:t)
+
 # Default Completement
 autoload -U compinit
 compinit -u
 
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'
+zstyle ':Completion:*' list-colors ${(s.:.)LS_COLORS}
 zstyle ':completion:*' use-cache true
 zstyle ':completion:*:default' menu select=1
-
-# setting completion's function path
-fpath=(~/.zsh/functions/Completion /usr/local/share/zsh/site-functions ${fpath})
 
 ## Enable appoint color on name
 autoload -Uz colors
@@ -86,7 +89,7 @@ autoload -Uz is-at-least
 
 ## Enable zmv command
 autoload zmv
-alias zmv='noglob zmv'  # no need singlequote
+alias zmv='noglob zmv'
 
 ### Set shell options
 setopt no_beep
@@ -239,6 +242,18 @@ esac
 # Like Emacs
 bindkey -e
 
+# move dotfiles in Dropbox
+# <<<
+function dotfile {
+    if [ $# != 0 ]; then # 引数が存在するならば
+        cd ~/Dropbox/dotfiles/$1
+    else
+        cd ~/Dropbox/dotfiles
+    fi
+}
+# >>>
+
+
 # google search
 function google() {
   local str opt
@@ -253,6 +268,7 @@ function google() {
   w3m http://www.google.co.jp/$opt
 }
 
+#<<<
 show_buffer_stack(){
     POSTDISPLAY="
 stck: $LBUFFER"
@@ -260,6 +276,7 @@ stck: $LBUFFER"
 }
 zle -N show_buffer_stack
 bindkey "^[q" show_buffer_stack # ^[ = ESC ?
+#>>>
 
 # ^ => cd ..
 function cdup() {
@@ -268,7 +285,7 @@ cd ..
 zle reset-prompt
 }
 zle -N cdup
-bindkey '^\[' cdup #Ctrl+[ でcd .. のはず。なぜか^単体でも戻ってしまう？ Ctcl+Vを押してから^を押せば入力可能/
+bindkey '^\[' cdup 
 
 # -------------
 #  source auto-fu.zsh(plugin)
@@ -295,4 +312,5 @@ function _sheets {
 
     return 1;
 }
+
 
