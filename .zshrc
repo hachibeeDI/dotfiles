@@ -1,9 +1,9 @@
-﻿#################################################
-#
+# =======================================================
+# 
 # Initial setup file for only interactive zsh
-# This file is read after .zshenv fie is read.
+# This file is read after .zshenv file is read.
 #
-##################################################
+# =======================================================
 
 # ====== PATH =======
 # lang
