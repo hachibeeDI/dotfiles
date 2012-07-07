@@ -1,4 +1,4 @@
-#compdef _dotfilecmd dotfile
+#compdef dotfile
 
 # compFunction for move dotfiles on Dropbox
 
