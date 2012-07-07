@@ -28,7 +28,6 @@ freebsd*|darwin*)
     export EDITOR=/Applications/MacVim.app/Contents/MacOS/Vim
     alias vi='env LANG=ja_JP.UTF-8 /Applications/MacVim.app/Contents/MacOS/Vim "$@"'
     alias vim='env LANG=ja_JP.UTF-8 /Applications/MacVim.app/Contents/MacOS/Vim "$@"'
-
     ;;
 
 # Linux
@@ -74,6 +73,9 @@ compinit -u
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'
 zstyle ':completion:*' use-cache true
 zstyle ':completion:*:default' menu select=1
+
+# setting completion's function path
+fpath=(~/.zsh/functions/Completion /usr/local/share/zsh/site-functions ${fpath})
 
 ## Enable appoint color on name
 autoload -Uz colors
