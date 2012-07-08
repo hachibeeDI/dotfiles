@@ -1,3 +1,5 @@
+# vim:set fdm=marker fmr=<<<,>>>:
+
 # =======================================================
 # 
 # Initial setup file for only interactive zsh
@@ -12,12 +14,13 @@ export LANG=ja_JP.UTF-8
 # editer
 export EDITOR=vim
 
-# alias settings
+# alias settings<<<
 
-# common
+# common <<<
 alias grep='grep --color=auto --line-number'
 alias ssh='TERM=xterm-265color ssh'
 
+# ostype
 case "${OSTYPE}" in
 # Mac OS X
 freebsd*|darwin*)
@@ -45,13 +48,17 @@ esac
 
 alias ll='ls -ltr'
 alias la='ls -a'
-# --- global alias ---
+
+#>>>
+
+# --- global alias ---<<<
 alias -g lgrep='| grep'
 alias -g lxargs='| xargs'
 alias -g lawk='| awk'
 alias -g lsed='| sed'
+#>>>
 
-# -------- git alias --------
+# -------- git alias -------<<<
 alias g='git'
 alias ga='git add'
 alias gcm='git commit'
@@ -61,15 +68,18 @@ alias gst='git status -sb'
 alias gamend='git commit --amend -C HEAD --date='
 alias ggre='git grep -H --heading --break'
 
+#>>>
+#>>>
 
 # disable make less-hist-file
 export LESSHISTFILE=-
 
-### Command Completemente
+### Command Completemente<<<
 
-# setting completion's function path
+# setting completion's function path<<<
 fpath=(~/.zsh/functions/Completion ${fpath})
 autoload -U ~/.zsh/functions/Completion/*(:t)
+#>>>
 
 # Default Completement
 autoload -U compinit
@@ -83,6 +93,7 @@ zstyle ':completion:*:default' menu select=1
 # via cdd format
 zstyle ':completion:*:descriptions' format '%F{yellow}Completing %B%d%b%f'
 
+###>>>
 
 ## Enable appoint color on name
 autoload -Uz colors
@@ -95,7 +106,7 @@ autoload -Uz is-at-least
 autoload zmv
 alias zmv='noglob zmv'
 
-### Set shell options
+### Set shell options<<<
 setopt no_beep
 
 setopt auto_menu
@@ -109,10 +120,10 @@ setopt print_eight_bit
 setopt auto_cd
 setopt NO_hup
 setopt ignore_eof
+# use '#' as comment on commandloine
+setopt interactive_comments
 
-# stack cd history
-setopt auto_pushd
-setopt pushd_ignore_dups
+#>>>
 
 # permission settings
 umask 022
@@ -124,13 +135,11 @@ setopt prompt_subst
 # mm?
 # limit coredumpsize 0
 
-
 # if there too many Completementes
 export LISTMAX=0
 
 
-
-# history settings
+# history settings<<<
 HISTFILE=~/.histfile
 HISTSIZE=10000
 SAVEHIST=10000
@@ -149,14 +158,15 @@ setopt hist_reduce_blanks
 setopt share_history
 # when use zsh on multiwindow, add on history file
 setopt append_history
+# stack cd history
+setopt auto_pushd
+setopt pushd_ignore_dups
 
+#>>>
 
-# use '#' as comment on commandloine
-setopt interactive_comments
 
 # spell checks on commandline
 # setopt corrent
-
 
 # Ctrl-u  "delete" like windows
 bindkey '^U' backward-kill-line
@@ -173,7 +183,7 @@ source $HOME/.pythonbrew/etc/bashrc
 
 
 # ================================================#
-# -------- prompt setting ------------
+# -------- prompt setting ------------<<<
 case ${UID} in
 0) # root
     PROMPT="%B%{${fg[red]}%}%/#%{${reset_color}%}%b "
@@ -214,10 +224,10 @@ precmd () {
     }
 RPROMPT="%1(v|%F{green}%1v%f|) %{${fg[cyan]}%}[%~]%{${reset_color}%}" 
 
-# ----------------------------------------------------#
+# ------------------------------------>>>
 
 #####################
-# change Color LS
+# change Color LS<<<
 ####################
 
 case "${TERM}" in
@@ -235,9 +245,10 @@ cons25)
     ;;
 esac
 
+####>>>
 
 ######
-# key binds setting
+# key binds setting <<<
 #######
 ### Binding key ###
 # Like vim
@@ -246,9 +257,10 @@ esac
 # Like Emacs
 bindkey -e
 
-# move dotfiles in Dropbox
-# <<<
-function dotfile {
+#>>>
+
+# move dotfiles in Dropbox<<<
+function dotf {
     if [ $# != 0 ]; then # 引数が存在するならば
         cd ~/Dropbox/dotfiles/$1
     else
@@ -257,14 +269,15 @@ function dotfile {
 }
 # >>>
 
-# use cdd script
+# use cdd script<<<
 . ~/.zsh/functions/cdd
 
 chpwd() {
     _cdd_chpwd
 }
+#>>>
 
-# google search
+# google search<<<
 function google() {
   local str opt
   if [ $# != 0 ]; then
@@ -277,8 +290,9 @@ function google() {
   fi
   w3m http://www.google.co.jp/$opt
 }
+#>>>
 
-#<<<
+#show buffer stack<<<
 show_buffer_stack(){
     POSTDISPLAY="
 stck: $LBUFFER"
@@ -288,7 +302,7 @@ zle -N show_buffer_stack
 bindkey "^[q" show_buffer_stack # ^[ = ESC ?
 #>>>
 
-# ^ => cd ..
+# ^ => cd ..<<<
 function cdup() {
 echo
 cd ..
@@ -296,10 +310,11 @@ zle reset-prompt
 }
 zle -N cdup
 bindkey '^\[' cdup 
-
+#>>>
+#
 # -------------
-#  source auto-fu.zsh(plugin)
-#  ---------------------------------------------------
+#  source auto-fu.zsh(plugin)<<<
+
 if [ -f ~/.zsh/auto-fu.zsh ]; then
     source ~/.zsh/auto-fu.zsh
     function zle-line-init () {
@@ -308,9 +323,10 @@ if [ -f ~/.zsh/auto-fu.zsh ]; then
     zle -N zle-line-init
     zstyle ':completion:*' completer _oldlist _complete
 fi
+#---->>>
 
 # --------
-# complete sheet
+# complete sheet<<<
 # ------------------
 compdef _sheets sheet
 function _sheets {
@@ -322,5 +338,5 @@ function _sheets {
 
     return 1;
 }
-
+#>>>
 
