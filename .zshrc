@@ -78,7 +78,11 @@ compinit -u
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'
 zstyle ':Completion:*' list-colors ${(s.:.)LS_COLORS}
 zstyle ':completion:*' use-cache true
+zstyle ':completion:*' group-name ''
 zstyle ':completion:*:default' menu select=1
+# via cdd format
+zstyle ':completion:*:descriptions' format '%F{yellow}Completing %B%d%b%f'
+
 
 ## Enable appoint color on name
 autoload -Uz colors
@@ -253,6 +257,12 @@ function dotfile {
 }
 # >>>
 
+# use cdd script
+. ~/.zsh/functions/cdd
+
+chpwd() {
+    _cdd_chpwd
+}
 
 # google search
 function google() {
