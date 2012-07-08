@@ -56,7 +56,7 @@ set foldmethod=syntax
 syntax on
 
 " VB.NET
-autocmd BufRead, BufNewFile *.vb setlocal filetype=vbnet
+autocmd BufNewFile, BufRead *.vb setlocal filetype=vbnet
 
 "___________
 " indent
