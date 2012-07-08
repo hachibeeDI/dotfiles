@@ -131,12 +131,12 @@ inoremap <C-b> <Left>
 
 " ---- Load Templetes ---- <<<
 " ゆくゆくはtempletefile.vimみたいなものを検討
-autocmd BufNewFile *.java Or $VIM/templates/javasrc.java
-autocmd BufNewFile *.h Or $VIM/templates/header.h
-autocmd BufNewFile *.c Or $VIM/templates/csrc.c
-"autocmd BufNewFile *.cpp Or $VIM/templates/
-autocmd BufNewFile *.cs Or $VIM/templates/csharp.cs
-autocmd BufNewFile *.py Or $VIM/templates/python.py
+autocmd BufNewFile *.java 0r ~/.vim/templates/javasrc.java
+autocmd BufNewFile *.h 0r ~/.vim/templates/header.h
+autocmd BufNewFile *.c 0r ~/.vim/templates/csrc.c
+"autocmd BufNewFile *.cpp 0r ~/.vim/templates/
+autocmd BufNewFile *.cs 0r ~/.vim/templates/csharp.cs
+autocmd BufNewFile *.py 0r ~/.vim/templates/python.py
 ">>>
 
 "-------------
