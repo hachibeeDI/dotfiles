@@ -129,6 +129,15 @@ inoremap <C-e> <End>
 inoremap <C-f> <Right>
 inoremap <C-b> <Left>
 
+" ---- Load Templetes ---- <<<
+" ゆくゆくはtempletefile.vimみたいなものを検討
+autocmd BufNewFile *.java Or $VIM/templates/javasrc.java
+autocmd BufNewFile *.h Or $VIM/templates/header.h
+autocmd BufNewFile *.c Or $VIM/templates/csrc.c
+"autocmd BufNewFile *.cpp Or $VIM/templates/
+autocmd BufNewFile *.cs Or $VIM/templates/csharp.cs
+autocmd BufNewFile *.py Or $VIM/templates/python.py
+">>>
 
 "-------------
 " plugin settings
