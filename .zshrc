@@ -340,3 +340,7 @@ function _sheets {
 }
 #>>>
 
+# utils<<<
+mkcd() {mkdir -p "$@" && cd "$*[-1]"}
+#>>>
+
