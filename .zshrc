@@ -19,6 +19,8 @@ export EDITOR=vim
 # common <<<
 alias grep='grep --color=auto --line-number'
 alias ssh='TERM=xterm-265color ssh'
+# use vim --nopluginmode as pager
+alias vless='/usr/share/vim/vim73/macros/less.sh'
 
 # ostype
 case "${OSTYPE}" in
