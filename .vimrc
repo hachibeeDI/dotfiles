@@ -26,7 +26,7 @@ NeoBundle 'mitechie/pyflakes-pathogen'
 NeoBundle 'vim-scripts/java_getset.vim'
 " enable use slim on vim
 NeoBundle 'slimv.vim'
-
+NeoBundle 'mattn/sonictemplate-vim'
 
 filetype plugin indent on
 filetype indent on
@@ -131,12 +131,12 @@ inoremap <C-b> <Left>
 
 " ---- Load Templetes ---- <<<
 " ゆくゆくはtempletefile.vimみたいなものを検討
-autocmd BufNewFile *.java 0r ~/.vim/templates/javasrc.java
-autocmd BufNewFile *.h 0r ~/.vim/templates/header.h
-autocmd BufNewFile *.c 0r ~/.vim/templates/csrc.c
-"autocmd BufNewFile *.cpp 0r ~/.vim/templates/
-autocmd BufNewFile *.cs 0r ~/.vim/templates/csharp.cs
-autocmd BufNewFile *.py 0r ~/.vim/templates/python.py
+"autocmd BufNewFile *.java 0r ~/.vim/templates/javasrc.java
+"autocmd BufNewFile *.h 0r ~/.vim/templates/header.h
+"autocmd BufNewFile *.c 0r ~/.vim/templates/csrc.c
+""autocmd BufNewFile *.cpp 0r ~/.vim/templates/
+"autocmd BufNewFile *.cs 0r ~/.vim/templates/csharp.cs
+"autocmd BufNewFile *.py 0r ~/.vim/templates/python.py
 ">>>
 
 "-------------
