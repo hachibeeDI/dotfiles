@@ -40,7 +40,8 @@ set vb t_vb=
 set directory=~/.vim/tmp/vimswap
 set backupdir=~/.vim/tmp/bak
 set viminfo+=n~/.vim/tmp/viminfo
-
+" set fold line on {{{, }}}
+set foldmethod=marker
 
 " set PEP8 Style
 set autoindent
@@ -93,8 +94,8 @@ match ZenkakuSpace /　/
 
 
 set laststatus=2
-"set statusline=[%L]\ %t\ %y%{'['.(&fenc!=''?&fenc:&enc).':'.&ff.']'}%r%m%=%c:%l/%L
-set statusline=%F%m%r%h%w\ [Linefeed=%{&ff}]\ [TYPE=%Y]\ [ASCII=\%03.3b]\ [HEX=\%02.2B]\ [LEN=%L]
+set statusline=%F%m%r%h%w\ [%L]\ %y%{'['.(&fenc!=''?&fenc:&enc).':'.&ff.']'}%r%m%=%c:%l/%L
+"set statusline=%F%m%r%h%w\ [ff=%{&ff}]\ [enc=%c]\ [Filetype=%Y]\ [ASCII=\%03.3b]\ [HEX=\%02.2B]\ [LEN=%L]
 "let &statusline = ''
 
 set smartcase
@@ -254,11 +255,13 @@ if has('mac')
     let g:slimv_swank_clojure = '!osascript -e "tell app \"iTerm\"" -e "tell the first terminal" -e "set mysession to current session" -e "launch session \"Default Session\"" -e "tell the last session" -e "exec command \"/bin/bash\"" -e "write text \"cd $(pwd)\"" -e "write text \"lein swank\"" -e "end tell" -e "select mysession" -e "end tell" -e "end tell"'
 endif
 
-"--- ack.vim ---
+"--- ack.vim proc ---  {{{
+"そろそろ限界…今後はOSごとに別ファイルでやったほうがよいかも
 "for debian /ubuntu
 if has('win32')
+    let g:vimproc_dll_path = $HOME."/vimfiles/autoload/proc.dll"
 elseif has('mac')
 else
     let g:ackprg="ack-grep -H --nocolor --nogroup --column"
 endif
-
+"}}}
