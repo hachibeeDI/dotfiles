@@ -54,10 +54,11 @@ alias la='ls -a'
 #>>>
 
 # --- global alias ---<<<
-alias -g lgrep='| grep'
-alias -g lxargs='| xargs'
-alias -g lawk='| awk'
-alias -g lsed='| sed'
+alias -g @g='| grep'
+alias -g @x='| xargs'
+alias -g @a='| awk'
+alias -g @s='| sed'
+alias -g @l='| vless'
 #>>>
 
 # -------- git alias -------<<<
