@@ -1,26 +1,21 @@
-/* vim:<% eval: printf("ts=%s:sw=%s:sts=%s:tw=%s:%s", &ts, &sw, &sts, &tw, &expandtab ? "et" : "noet") %>: */
 /* 
- * <%filename%> -
+ * {{_name_}}
  *
- * Written By: <%author%> <<%email%>>
- * Last Change: .
+ * Written By: OGURA_Daiki
  *
  */
 
-namespace <%filename_noext%> {
+namespace {{_expr_:getcwd()}}{
     using System;
-    using System.Drawing;
     using System.Windows.Forms;
 
-    class Program {
-        public static void Main() {
-            Application.Run( new Form1() );
+    class {{_name_}} 
+    {
+        public {{_name_}}({{_cursor_}})
+        {
+
         }
+
     }
 
-    class Form1 : Form {
-        public Form1() {
-          this.Text = "Hello";
-        }
-    }
 }
