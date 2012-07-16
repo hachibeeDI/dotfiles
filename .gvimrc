@@ -10,6 +10,7 @@ inoremap <down> <C-o>:call <SID>relative_tranparency(-5)<Cr>
 "reset-trancparency
 nnoremap <Esc><Esc> :<C-u>let &transparency = g:transparency<Cr><C-l>
 
+" commonsettings{{{
 colorscheme solarized
 set showtabline=2  " タブを常に表示
 set imdisable      " IMを無効化
@@ -26,5 +27,8 @@ endif
 " add register text on OS's clip boald
 set guioptions+=a
 
-set clipboard=unnamed
-set clipboard+=autoselect
+set clipboard=unnamed,autoselect
+set antialias
+set imdisable
+"}}}
+

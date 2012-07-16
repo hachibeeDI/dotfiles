@@ -2,17 +2,18 @@ set nocompatible
 filetype off
 
 if has('vim_starting')
-    set runtimepath+=~/.vim/neobundle.vim/
+    set runtimepath+=~/.vim/neobundle.vim
     set runtimepath+=~/.vim/.bundle
     call neobundle#rc(expand('~/.vim/.bundle/'))
 endif
 
 "------- set plugins -------
 NeoBundle 'Shougo/neocomplcache'
+NeoBundle 'Shougo/neocomplcache-snippets-complete'
 NeoBundle 'Shougo/vimproc'
 NeoBundle 'Shougo/neobundle.vim'
 NeoBundle 'Shougo/vimfiler'
-NeoBundle 'Shougo/neocomplcache-clang_complete'
+NeoBundle 'Shougo/neocomplcache-clang'
 NeoBundle 'Shougo/vimshell'
 NeoBundle 'Shougo/unite.vim'
 NeoBundle 'thinca/vim-quickrun'
@@ -40,9 +41,10 @@ set vb t_vb=
 set directory=~/.vim/tmp/vimswap
 set backupdir=~/.vim/tmp/bak
 set viminfo+=n~/.vim/tmp/viminfo
+
 " set fold line on {{{, }}}
 set foldmethod=marker
-
+set linespace=3
 " set PEP8 Style
 set autoindent
 set smarttab
@@ -145,13 +147,13 @@ inoremap <C-b> <Left>
 "---------------
 "
 
+" -- neocomplcache{{{
 " disable autoComplPop
 let g:acp_enableAtStartup = 0
 
-"" neocomplcache
 let g:neocomplcache_enable_at_startup = 1   " enabled when start vim 
 let g:neocomplcache_enable_smart_case = 1
-let g:neocomplcache_max_list = 30
+let g:neocomplcache_max_list = 1000
 let g:neocomplcache_auto_completion_start_length = 2
 " set minimum syntax keyword length
 let g:neocomplcache_min_syntax_length = 3
@@ -180,16 +182,14 @@ inoremap <expr><C-e> neocomplcache#cancel_popup()
 " Enable heavy omni-comlete
 let g:NeoComplCache_EnableSkipCompletion=1
 
-" for neocomplcache-clang_complete
-" use neocomplcache & clang_complete
-let g:neocomplcache_force_overwrite_completefunc=1
-" add clang_complete option
-let g:clang_complete_auto=1
-
-" for c/c++
+" for c/c++{{{
 let g:neocomplcache_include_patterns = {'c':'^\s#\s*include','cpp':'^\s#\s*include'}
 let g:neocomplcache_include_suffixes = {'c':'.h','cpp':'.h'}
-
+" neocomplcache-clang clan_copleteのがええかも
+let g:neocomplcache_clang_use_library=1
+let g:neocomplcache_clang_library_path='/usr/bin'
+" let g:neocomplcache_clang_user_options =
+"}}}
 "Define dictonaru
 let g:neocomplcache_dictionary_filetype_lists={
 \'default':'',
@@ -201,6 +201,7 @@ let g:neocomplcache_dictionary_filetype_lists={
 \'cpp':$HOME.'/.vim/dict/cpp.dict'
 \}
 
+"}}}
 
 let g:indent_guides_enable_on_vim_startup=1
 let g:indent_guides_guide_size=1
@@ -255,6 +256,13 @@ if has('mac')
     let g:slimv_swank_clojure = '!osascript -e "tell app \"iTerm\"" -e "tell the first terminal" -e "set mysession to current session" -e "launch session \"Default Session\"" -e "tell the last session" -e "exec command \"/bin/bash\"" -e "write text \"cd $(pwd)\"" -e "write text \"lein swank\"" -e "end tell" -e "select mysession" -e "end tell" -e "end tell"'
 endif
 
+" ------- sonictemplate.vim -----{{{
+let g:sonictemplate_vim_template_dir = [
+\ '$HOME/.vim/templates'
+\]
+
+"}}}
+
 "--- ack.vim proc ---  {{{
 "そろそろ限界…今後はOSごとに別ファイルでやったほうがよいかも
 "for debian /ubuntu
@@ -265,3 +273,4 @@ else
     let g:ackprg="ack-grep -H --nocolor --nogroup --column"
 endif
 "}}}
+
