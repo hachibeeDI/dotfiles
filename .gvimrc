@@ -12,6 +12,12 @@ nnoremap <Esc><Esc> :<C-u>let &transparency = g:transparency<Cr><C-l>
 
 " commonsettings{{{
 colorscheme solarized
+
+if has('multi_byte_ime')
+    highlight Cursor guifg=NONE guibg=Green
+    highlight CursorIM guifg=NONE guibg=Purple
+endif
+
 set showtabline=2  " タブを常に表示
 set imdisable      " IMを無効化
 map <silent> gw :macaction selectNextWindow:

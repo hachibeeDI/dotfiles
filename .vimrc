@@ -45,6 +45,9 @@ set viminfo+=n~/.vim/tmp/viminfo
 " set fold line on {{{, }}}
 set foldmethod=marker
 set linespace=3
+" Tabや行末のスペースを表示させる
+set listchars=tab:^\ ,trail:~
+
 " set PEP8 Style
 set autoindent
 set smarttab
