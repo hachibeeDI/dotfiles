@@ -1,0 +1,6 @@
+# Enable option C++11
+-std=c++11 # old -std=c++0x
+# and point standerd library
+-stdlib=libc++
+
+
