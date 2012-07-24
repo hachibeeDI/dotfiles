@@ -1,0 +1,9 @@
+# delete target-file from history of all{{{
+git filter-branch --index-filter 'git rm --cached --ignore-unmatch target-file' HEAD
+
+# dir case
+git filter-branch --index-filter 'git rm -r --cached --ignore-unmatch dir' HEAD
+
+# and git push mainrepository on --force option
+# if you have other branch, have to delete the branch too. }}}
+
