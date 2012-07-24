@@ -19,6 +19,14 @@ NeoBundle 'Shougo/unite.vim'
 NeoBundle 'thinca/vim-quickrun'
 NeoBundle 'tpope/vim-fugitive'
 NeoBundle 'mileszs/ack.vim'
+NeoBundle 'scrooloose/syntastic'
+
+NeoBundle 'vim-scripts/indentAnything'
+NeoBundle 'pangloss/vim-javascript'
+NeoBundle 'mattn/zencoding-vim'
+NeoBundle 'css_color.vim'
+NeoBundle 'tpope/vim-surround'
+
 "TDD plugin for vim
 NeoBundle 'reinh/vim-makegreen'
 "syntax hightlight for python, with pyflak
@@ -27,6 +35,7 @@ NeoBundle 'mitechie/pyflakes-pathogen'
 NeoBundle 'vim-scripts/java_getset.vim'
 " enable use slim on vim
 NeoBundle 'slimv.vim'
+NeoBundle 'kchmck/vim-coffee-script'
 NeoBundle 'mattn/sonictemplate-vim'
 
 filetype plugin indent on
@@ -88,7 +97,7 @@ set number
 "set guifontwide=Osaka-Mono:h15
 
 set showcmd
-set textwidth=90
+set textwidth=0
 set colorcolumn=80
 set wrap
 
@@ -185,8 +194,17 @@ inoremap <expr><C-e> neocomplcache#cancel_popup()
 " Enable heavy omni-comlete
 let g:NeoComplCache_EnableSkipCompletion=1
 
+let g:neocomplcache_include_paths = {
+            \ 'c' : '.,/usr/include',
+            \ 'cpp': '.,/usr/include/c++,/usr/include',
+            \ }
+
+let g:neocomplcache_include_patterns = {
+            \ 'c':'^\s#\s*include',
+            \ 'cpp':'^\s#\s*include',
+            \ }
+
 " for c/c++{{{
-let g:neocomplcache_include_patterns = {'c':'^\s#\s*include','cpp':'^\s#\s*include'}
 let g:neocomplcache_include_suffixes = {'c':'.h','cpp':'.h'}
 " neocomplcache-clang clan_copleteのがええかも
 let g:neocomplcache_clang_use_library=1
@@ -238,6 +256,18 @@ au FileType unite inoremap <silent> <buffer> <expr> <C-l> unite#do_action('vspli
 " ESCキーを2回押すと終了する
 au FileType unite nnoremap <silent> <buffer> <ESC><ESC> q
 au FileType unite inoremap <silent> <buffer> <ESC><ESC> <ESC>q
+
+" --- quickrun -----{{{
+let g:quickrun_config.cpp = {
+    \ 'command' : 'clang++',
+    \ 'cmdopt' : '-std=c++11 -stdlib=libc++',
+    \ }
+
+let g:quickrun_config._ = {
+            \ 'outputter' : 'quickfix',
+            \ 'split' : 'rightbelow 10sp',
+            \ }
+"  }}}
 
 "---- netrw(default filer) ----
 " set treeview

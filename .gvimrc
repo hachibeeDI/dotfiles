@@ -33,7 +33,7 @@ endif
 " add register text on OS's clip boald
 set guioptions+=a
 
-set clipboard=unnamed,autoselect
+"set clipboard=unnamed,autoselect
 set antialias
 set imdisable
 "}}}
