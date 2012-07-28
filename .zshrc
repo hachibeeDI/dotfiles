@@ -7,12 +7,19 @@
 #
 # =======================================================
 
-# ====== PATH =======
+# ====== PATH ======={{{
 # lang
 export LANG=ja_JP.UTF-8
+# locale
+export LC_CTYPE=ja_JP.UTF-8
 
 # editer
 export EDITOR=vim
+
+# node.js-npm
+export NODE_PATH=/usr/local/lib/node_modules/
+
+#}}}
 
 # alias settings<<<
 
