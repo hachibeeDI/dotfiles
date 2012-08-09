@@ -31,6 +31,7 @@ NeoBundle 'tpope/vim-surround'
 NeoBundle 'reinh/vim-makegreen'
 "syntax hightlight for python, with pyflak
 NeoBundle 'mitechie/pyflakes-pathogen'
+NeoBundle 'vim-scripts/pythoncomplete'
 
 NeoBundle 'vim-scripts/java_getset.vim'
 " enable use slim on vim

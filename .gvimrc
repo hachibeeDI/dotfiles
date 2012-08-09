@@ -1,15 +1,4 @@
 
-" transparency->more
-nnoremap <up> :<C-u>call <SID>relative_tranparency(5)<Cr>
-inoremap <up> <C-o>:call <SID>relative_tranparency(5)<Cr>
-
-" transparency->less
-nnoremap <down> :<C-u>call <SID>relative_tranparency(-5)<Cr>
-inoremap <down> <C-o>:call <SID>relative_tranparency(-5)<Cr>
-
-"reset-trancparency
-nnoremap <Esc><Esc> :<C-u>let &transparency = g:transparency<Cr><C-l>
-
 " commonsettings{{{
 colorscheme solarized
 
@@ -35,6 +24,6 @@ set guioptions+=a
 
 "set clipboard=unnamed,autoselect
 set antialias
-set imdisable
 "}}}
 
+" vim:ft=vim:fdm=marker:fen:
