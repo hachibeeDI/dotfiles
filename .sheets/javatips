@@ -1,0 +1,4 @@
+# switch JavaVM-versions
+# http://blog.liris.org/2009/11/virtualboxubuntu-910mac.html
+
+    $ sudo update-alternatives --config java
