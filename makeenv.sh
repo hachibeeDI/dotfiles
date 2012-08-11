@@ -1,7 +1,7 @@
 #!/bin/sh
 #動作テストしてないよてへぺろ☆
-path=${pwd}
-echo ${pwd}
+path=`pwd`
+echo "$path"
 
 mkdir ~/dotfilebackup
 
@@ -24,9 +24,10 @@ ln -s "$path"/.zshenv ~/.zshenv
 ln -s "$path"/.zshrc ~/.zshrc
 ln -s "$path"/.pythonstartup ~/.pythonstartup
 ln -s "$path"/.tmux.conf ~/.tmux.conf
-ln -s "$path"/.gitconfig ~/.gitconfig
 ln -s "$path"/.gitignore ~/.gitignore
 ln -s "$path"/.sheets ~/.sheets
+touch ~/.gitconfig
+cat "$path"/git_globalconfig >> ~/.gitconfig
 
 ln -s "path"/.vim ~/.vim
 #ln -s "$path"/.vim/syntax ~/.vim/syntax

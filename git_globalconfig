@@ -1,0 +1,40 @@
+[user]
+    name = Daiki
+    email = 8hachibee125@gmail.com
+[color]
+    status = auto
+    diff = auto
+    branch = auto
+    interactive = auto
+    grep = auto
+[core]
+    editor = vim
+    excludesfile = ~/.gitignore
+    autocrlf = input # auto convert crlf
+[alias]
+    # common
+    st = status
+    sh = show
+    ft = fetch
+    ad = add
+    cm = commit
+
+    # branch
+    br = branch
+    ba = branch -a
+    bmd = branch --merged
+    bnm = branch --no-merged
+
+    #diff
+    dm = diff master
+    dw = diff --color-words
+    dca = diff --cached
+    d1 = diff HEAD~
+    d2 = diff HEAD~~
+    d3 = diff HEAD~~~
+    d4 = diff HEAD~~~~
+    d5 = diff HEAD~~~~~
+
+    gr = grep
+    grn = grep -n
+
