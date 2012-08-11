@@ -1,7 +1,7 @@
-# vim:set fdm=marker fmr=<<<,>>>:
+# vim:fdm=marker fmr=<<<,>>>:
 
 # =======================================================
-# 
+#
 # Initial setup file for only interactive zsh
 # This file is read after .zshenv file is read.
 #
@@ -25,7 +25,7 @@ export NODE_PATH=/usr/local/lib/node_modules/
 
 # common <<<
 alias grep='grep --color=auto --line-number'
-alias ssh='TERM=xterm-265color ssh'
+#alias ssh='TERM=xterm-265color ssh'
 # use vim --nopluginmode as pager
 alias vless='/usr/share/vim/vim73/macros/less.sh'
 
@@ -132,6 +132,12 @@ setopt NO_hup
 setopt ignore_eof
 # use '#' as comment on commandloine
 setopt interactive_comments
+# コマンド実行後は右プロンプトを消す
+setopt transient_rprompt
+# コマンドの終了コードが0以外の場合に表示
+# setopt print_exit_value
+# 該当するブレース{}展開が存在しない場合、ascii順にソートして展開する
+setopt brace_ccl
 
 #>>>
 
@@ -189,28 +195,32 @@ bindkey "^h" backward-kill-word
 # function chpwd() { ls }
 
 ## pythonbrew "bashrcとなっているが、問題なし
-source $HOME/.pythonbrew/etc/bashrc
-
+if [ -d ~/.pythonbrew ]; then
+    source $HOME/.pythonbrew/etc/bashrc
+fi
 
 # ================================================#
 # -------- prompt setting ------------<<<
-case ${UID} in
-0) # root
-    PROMPT="%B%{${fg[red]}%}%/#%{${reset_color}%}%b "
-    PROMPT2="%B%{${fg[red]}%}%_#%{${reset_color}%}%b "
-    SPROMPT="%B%{${fg[red]}%}%r is correct? [n,y,a,e]:%{${reset_color}%}%b "
-    [ -n "${REMOTEHOST}${SSH_CONNECTION}" ] && 
-        PROMPT="%{${fg[cyan]}%}$(echo ${HOST%%.*} | tr '[a-z]' '[A-Z]') ${PROMPT}"
-    ;;
-*)
-    PROMPT="%{${fg[cyan]}%}[%n@%m]%{${reset_color}%} "
-    PROMPT2="%{[31m%}%_%%%{^[[m%} "
-    SPROMPT="%{[31m%}%r is correct? [n,y,a,e]:%{[m%} "
-    [ -n "${REMOTEHOST}${SSH_CONNECTION}" ] && 
-        PROMPT="%{[37m%}${HOST%%.*} ${PROMPT}"
-    ;;
-esac
-
+nom_prom () {
+    local cmd_result=$'%0(?||%18(?||%{\e[31m%}%{_%}))%{\e[m%}'
+    case ${UID} in
+    0) # root
+        PROMPT="%B%{${fg[red]}%}%/#%{${reset_color}%}%b "
+        PROMPT2="%B%{${fg[red]}%}%_#%{${reset_color}%}%b "
+        SPROMPT="%B%{${fg[red]}%}%r is correct? [n,y,a,e]:%{${reset_color}%}%b "
+        [ -n "${REMOTEHOST}${SSH_CONNECTION}" ] &&
+            PROMPT="%{${fg[cyan]}%}$(echo ${HOST%%.*} | tr '[a-z]' '[A-Z]') ${PROMPT}"
+        ;;
+    *)
+        PROMPT="%{${fg[cyan]}%}[%n@%m]%{${reset_color}%}$cmd_result "
+        PROMPT2="%{${fg[red]}%}%_> %{${reset_color}%}"
+        SPROMPT="%{[31m%}%r is correct? [n,y,a,e]:%{[m%} "
+        [ -n "${REMOTEHOST}${SSH_CONNECTION}" ] && 
+            PROMPT="%{[37m%}${HOST%%.*} ${PROMPT}"
+        ;;
+    esac
+}
+nom_prom
 
 # --------- show vcs's branch --------------------
 # :=> %s:vcs's name, %b: branch's name, %a: action name
