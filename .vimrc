@@ -1,3 +1,6 @@
+" vim:ft=vim:fdm=marker:fen:
+" vim:fileencoding=utf-8
+
 set nocompatible
 filetype off
 
@@ -7,7 +10,7 @@ if has('vim_starting')
     call neobundle#rc(expand('~/.vim/.bundle/'))
 endif
 
-"------- set plugins -------
+"------- set plugins ------- {{{
 NeoBundle 'Shougo/neocomplcache'
 NeoBundle 'Shougo/neocomplcache-snippets-complete'
 NeoBundle 'Shougo/vimproc'
@@ -41,6 +44,7 @@ NeoBundle 'mattn/sonictemplate-vim'
 
 filetype plugin indent on
 filetype indent on
+"}}}
 
 "
 " common settings
@@ -48,31 +52,54 @@ filetype indent on
 "
 set vb t_vb=
 
-set directory=~/.vim/tmp/vimswap
-set backupdir=~/.vim/tmp/bak
-set viminfo+=n~/.vim/tmp/viminfo
+set directory=~/.vimcache/vimswap
+set backupdir=~/.vimcache/bak
+set viminfo+=n~/.vimcache/viminfo
+
+" settings for infer encoding and formats
+set encoding=utf-8 "WindowsだとCygwin以外で問題でるかも? でも使わないので問題なし
+set fileencodings=utf-8,iso-2022-jp,cp932,sjis,euc-jp,default,latin
+set fileformats=unix,dos,mac
 
 " set fold line on {{{, }}}
 set foldmethod=marker
 set linespace=3
 " Tabや行末のスペースを表示させる
+set list
 set listchars=tab:^\ ,trail:~
+
+set pastetoggle=<F10>
+
 
 " set PEP8 Style
 set autoindent
-set smarttab
 set cindent "clang style indent
+set indentkeys-=0# " do not break indent on#
+set incsearch
+set ignorecase
+set ruler
+set wildmenu
+set commentstring=\ #\ %s
+set foldlevel=0
+
+set smartcase
+set smarttab
+set autoread
 
 set foldlevel=99
 
 set foldmethod=syntax
 
-" Syntax setting
+set splitbelow
+set splitright
+
+" Syntax setting {{{
 " ---------------
 syntax on
 
 " VB.NET
 autocmd BufNewFile, BufRead *.vb setlocal filetype=vbnet
+"}}}
 
 "___________
 " indent
@@ -98,6 +125,7 @@ set number
 "set guifontwide=Osaka-Mono:h15
 
 set showcmd
+" disable auto textwraping
 set textwidth=0
 set colorcolumn=80
 set wrap
@@ -107,22 +135,19 @@ set showtabline=2
 highlight link ZenkakuSpace Error
 match ZenkakuSpace /　/
 
-
+" StatusLine{{{
 set laststatus=2
 set statusline=%F%m%r%h%w\ [%L]\ %y%{'['.(&fenc!=''?&fenc:&enc).':'.&ff.']'}%r%m%=%c:%l/%L
-"set statusline=%F%m%r%h%w\ [ff=%{&ff}]\ [enc=%c]\ [Filetype=%Y]\ [ASCII=\%03.3b]\ [HEX=\%02.2B]\ [LEN=%L]
-"let &statusline = ''
 
-set smartcase
+" set another color on statusline by IME-mode
+" https://sites.google.com/site/fudist/Home/vim-nihongo-ban/vim-color#color-ime
+augroup insertHook
+    autocmd!
+    autocmd InsertEnter * highlight StatusLine guifg=#ccdc90 guibg=#2E4340
+    autocmd InsertLeave * highlight StatusLine guifg=#2E4340 guibg=#ccdc90
+augroup END
 
-
-"" from  expart Python
-set incsearch
-set ignorecase
-set ruler
-set wildmenu
-set commentstring=\ #\ %s
-set foldlevel=0
+" }}}
 
 
 " ----- Syntax Settings -----------
@@ -259,15 +284,22 @@ au FileType unite nnoremap <silent> <buffer> <ESC><ESC> q
 au FileType unite inoremap <silent> <buffer> <ESC><ESC> <ESC>q
 
 " --- quickrun -----{{{
-let g:quickrun_config.cpp = {
-    \ 'command' : 'clang++',
-    \ 'cmdopt' : '-std=c++11 -stdlib=libc++',
-    \ }
+" url:http://d.hatena.ne.jp/osyo-manga/20111014/1318586711
 
-let g:quickrun_config._ = {
+if !exists("g:quickrun_config")
+    let g:quickrun_config={}
+endif
+
+" default
+let g:quickrun_config["_"] = {
             \ 'outputter' : 'quickfix',
             \ 'split' : 'rightbelow 10sp',
             \ }
+
+let g:quickrun_config["cpp"] = {
+    \ 'command' : 'clang++',
+    \ 'cmdopt' : '-std=c++11 -stdlib=libc++',
+    \ }
 "  }}}
 
 "---- netrw(default filer) ----
@@ -303,7 +335,9 @@ let g:sonictemplate_vim_template_dir = [
 if has('win32')
     let g:vimproc_dll_path = $HOME."/vimfiles/autoload/proc.dll"
 elseif has('mac')
+    let g:vimproc_dll_path = $HOME."/.vim/autoload/vimproc_mac.so"
 else
+    let g:vimproc_dll_path = $HOME."/.vim/autoload/vimproc_unix.so"
     let g:ackprg="ack-grep -H --nocolor --nogroup --column"
 endif
 "}}}
