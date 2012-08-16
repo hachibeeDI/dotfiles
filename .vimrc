@@ -24,7 +24,7 @@ NeoBundle 'tpope/vim-fugitive'
 NeoBundle 'mileszs/ack.vim'
 NeoBundle 'scrooloose/syntastic'
 
-NeoBundle 'vim-scripts/indentAnything'
+NeoBundle 'git://github.com/vim-scripts/IndentAnything.git'
 NeoBundle 'pangloss/vim-javascript'
 NeoBundle 'mattn/zencoding-vim'
 NeoBundle 'css_color.vim'
@@ -41,6 +41,10 @@ NeoBundle 'vim-scripts/java_getset.vim'
 NeoBundle 'slimv.vim'
 NeoBundle 'kchmck/vim-coffee-script'
 NeoBundle 'mattn/sonictemplate-vim'
+NeoBundle 'Lokaltog/vim-powerline'
+
+NeoBundle 'mattn/gist-vim'
+NeoBundle 'mattn/webapi-vim'
 
 filetype plugin indent on
 filetype indent on
