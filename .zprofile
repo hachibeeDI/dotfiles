@@ -9,3 +9,18 @@ export PIP_REQUIRE_VIRTUALENV=true
 
 export JAVA_OPTS="-Dswank.encoding=utf-8-unix"
 
+# colored less
+# source-highlight入れてないとエラー出そうだけどまーいっか
+export LESS='-R'
+case "${OSTYPE}" in
+freebsd*|darwin*)
+    export LESSOPEN='| /opt/local/bin/src-hilite-lesspipe.sh %s'
+    ;;
+linux*)
+    export LESSOPEN='| /usr/share/source-highlight/src-hilite-lesspipe.sh %s'
+    ;; 
+cygwin*)
+    export LESSOPEN='| /bin/src-hilite-lesspipe.sh %s'
+    ;;
+esac
+
