@@ -56,6 +56,9 @@ filetype indent on
 "
 set vb t_vb=
 
+" have to set, before setting colorscheme-command
+set t_Co=256
+
 set directory=~/.vimcache/vimswap
 set backupdir=~/.vimcache/bak
 set viminfo+=n~/.vimcache/viminfo
@@ -70,7 +73,8 @@ set foldmethod=marker
 set linespace=3
 " Tabや行末のスペースを表示させる
 set list
-set listchars=tab:^\ ,trail:~
+set listchars=tab:>-,trail:~,eol:.,extends:>,precedes:<,nbsp:%
+" tab:>-,trail:~,extends:》,precedes:《,nbsp:% 
 
 set pastetoggle=<F10>
 
@@ -85,14 +89,13 @@ set ruler
 set wildmenu
 set commentstring=\ #\ %s
 set foldlevel=0
+set foldlevel=99
+set foldmethod=syntax
 
+set scrolloff=999
 set smartcase
 set smarttab
 set autoread
-
-set foldlevel=99
-
-set foldmethod=syntax
 
 set splitbelow
 set splitright
@@ -118,9 +121,12 @@ set expandtab
 " display settings
 "---------
 "
-"colorscheme anotherdark
-"colorscheme solarized
+"syntax enable
 set background=dark
+colorscheme solarized
+let g:solarized_termcolors=256
+
+"colorscheme zenburn
 "set transparency=50
 set title
 set number
@@ -256,7 +262,7 @@ let g:neocomplcache_dictionary_filetype_lists={
 
 let g:indent_guides_enable_on_vim_startup=1
 let g:indent_guides_guide_size=1
-let g:indent_guides_start_level=2 
+let g:indent_guides_start_level=2
 let g:indent_guides_color_change_percent=20
 
 " ---------Unite.vim---------
@@ -333,7 +339,7 @@ let g:sonictemplate_vim_template_dir = [
 
 "}}}
 
-"--- ack.vim proc ---  {{{
+"--- ack.vim procとか ---  {{{
 "そろそろ限界…今後はOSごとに別ファイルでやったほうがよいかも
 "for debian /ubuntu
 if has('win32')
