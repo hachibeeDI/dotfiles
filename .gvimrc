@@ -9,6 +9,8 @@ endif
 
 set showtabline=2  " タブを常に表示
 set imdisable      " IMを無効化
+set linespace=4
+
 map <silent> gw :macaction selectNextWindow:
 map <silent> gW :macaction selectPreviousWindow:
 

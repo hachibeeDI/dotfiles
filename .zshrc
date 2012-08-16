@@ -17,8 +17,9 @@ export LC_CTYPE=ja_JP.UTF-8
 export EDITOR=vim
 
 # node.js-npm
-export NODE_PATH=/usr/local/lib/node_modules/
-
+if [ -d /usr/local/lib/node_modules ]; then
+    export NODE_PATH=/usr/local/lib/node_modules/
+fi
 #}}}
 
 # alias settings<<<
@@ -329,12 +330,12 @@ cd ..
 zle reset-prompt
 }
 zle -N cdup
-bindkey '^\[' cdup 
+bindkey '^\[' cdup
 #>>>
 #
 # -------------
 #  source auto-fu.zsh(plugin)<<<
-#   
+#
 #   if [ -f ~/.zsh/auto-fu.zsh ]; then
 #       source ~/.zsh/auto-fu.zsh
 #       function zle-line-init () {
@@ -362,5 +363,6 @@ function _sheets {
 
 # utils<<<
 mkcd() {mkdir -p "$@" && cd "$*[-1]"}
+mktmp() {mkdir `date +"%Y%m%d_%H%M%S"`}
 #>>>
 
