@@ -1,6 +1,8 @@
 [user]
     name = Daiki
     email = 8hachibee125@gmail.com
+[include]
+    path = .gitconfig.local
 [color]
     status = auto
     diff = auto
@@ -11,6 +13,8 @@
     editor = vim
     excludesfile = ~/.gitignore
     autocrlf = input # auto convert crlf
+[grep]
+    lineNumber = true
 [alias]
     # common
     st = status
@@ -37,4 +41,8 @@
 
     gr = grep
     grn = grep -n
+
+    info = config --list
+    hist = log --pretty=format:\"%C(yellow)%h %C(White)%ad | %C(White)%s%d %C(Red)[%an]\" --graph --date=short
+    chspace = diff --check
 
