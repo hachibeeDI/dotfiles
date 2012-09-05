@@ -97,7 +97,7 @@ autoload -U compinit
 compinit -u
 
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'
-zstyle ':Completion:*' list-colors ${(s.:.)LS_COLORS}
+zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
 zstyle ':completion:*' use-cache true
 zstyle ':completion:*' group-name ''
 zstyle ':completion:*:default' menu select=1
@@ -135,6 +135,8 @@ setopt ignore_eof
 setopt interactive_comments
 # コマンド実行後は右プロンプトを消す
 setopt transient_rprompt
+# 右プロンプトがかぶったら消す(デフォルトONじゃね感)
+setopt promptcr
 # コマンドの終了コードが0以外の場合に表示
 # setopt print_exit_value
 # 該当するブレース{}展開が存在しない場合、ascii順にソートして展開する
@@ -203,20 +205,20 @@ fi
 # ================================================#
 # -------- prompt setting ------------<<<
 nom_prom () {
-    local cmd_result=$'%0(?||%18(?||%{\e[31m%}%{_%}))%{\e[m%}'
+    local cmd_result="%(?. .%F{red}_ %f)"
     case ${UID} in
     0) # root
-        PROMPT="%B%{${fg[red]}%}%/#%{${reset_color}%}%b "
+        PROMPT="%B%{${fg[red]}%}%/#%{${reset_color}%}%b$cmd_result"
         PROMPT2="%B%{${fg[red]}%}%_#%{${reset_color}%}%b "
-        SPROMPT="%B%{${fg[red]}%}%r is correct? [n,y,a,e]:%{${reset_color}%}%b "
+        SPROMPT="%{${fg[yellow]}%}correct: %R ->  %r [n,y,a,e]? %{${reset_color}%}"
         [ -n "${REMOTEHOST}${SSH_CONNECTION}" ] &&
             PROMPT="%{${fg[cyan]}%}$(echo ${HOST%%.*} | tr '[a-z]' '[A-Z]') ${PROMPT}"
         ;;
     *)
-        PROMPT="%{${fg[cyan]}%}[%n@%m]%{${reset_color}%}$cmd_result "
+        PROMPT="%{${fg[cyan]}%}[%n@%m]%{${reset_color}%}$cmd_result"
         PROMPT2="%{${fg[red]}%}%_> %{${reset_color}%}"
-        SPROMPT="%{[31m%}%r is correct? [n,y,a,e]:%{[m%} "
-        [ -n "${REMOTEHOST}${SSH_CONNECTION}" ] && 
+        SPROMPT="%{${fg[yellow]}%}correct: %R ->  %r [n,y,a,e]? %{${reset_color}%}"
+        [ -n "${REMOTEHOST}${SSH_CONNECTION}" ] &&
             PROMPT="%{[37m%}${HOST%%.*} ${PROMPT}"
         ;;
     esac
@@ -226,24 +228,30 @@ nom_prom
 # --------- show vcs's branch --------------------
 # :=> %s:vcs's name, %b: branch's name, %a: action name
 autoload -Uz vcs_info
-# autoload -Uz add_zsh_hook -> precmdみたいな機能を実現させる感じ？ これ使うと関数に名前を付けられる 
+# autoload -Uz add_zsh_hook -> precmdみたいな機能を実現させる感じ？ これ使うと関数に名前を付けられる
 
-zstyle ':vcs_info:*' formats '[%b]' #'(%s)-[%b]'
+zstyle ':vcs_info:*' formats '[%b]' #_default_ '(%s)-[%b]'
 zstyle ':vcs_info:*' actionformats '[%b|%a]' #'(%s)-[%b|%a]'
 if is-at-least 4.3.7; then
+    local br_name="%F{yellow}%b%f"
+    local stgd="%F{green}%c%f"
+    local unst="%F{red}%u%f"
     zstyle ':vcs_info:git:*' check-for-changes true
-    zstyle ':vcs_info:git:*' stagedstr "sted"
-    zstyle ':vcs_info:git:*' unstagedstr "unst"
-    zstyle ':vcs_info:git:*' formats '[%b] ~ %c / %u'
-    zstyle ':vcs_info:git:*' actionformats '[%b|%a] ~ %c / %u'
+    zstyle ':vcs_info:git:*' stagedstr '+'
+    zstyle ':vcs_info:git:*' unstagedstr '-'
+    zstyle ':vcs_info:git:*' formats "($br_name) [$stgd/$unst]"
+    zstyle ':vcs_info:git:*' actionformats "[$br_name|%F{red}%a%f] [$stgd/$unst]"
 fi
 
+#psvarの中身は%1vとかの形で参照できる
 precmd () {
     psvar=()
     LANG=en_US.UTF-8 vcs_info
     psvar[1]=$vcs_info_msg_0_
     }
-RPROMPT="%1(v|%F{green}%1v%f|) %{${fg[cyan]}%}[%~]%{${reset_color}%}" 
+
+# %1vとして指定すると、カラー指定が反映されなくなるので直接参照
+RPROMPT='%F{cyan}[%~]%f %1(v|$psvar[1]|)'
 
 # ------------------------------------>>>
 
