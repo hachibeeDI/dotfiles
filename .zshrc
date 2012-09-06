@@ -67,6 +67,8 @@ alias -g @x='| xargs'
 alias -g @a='| awk'
 alias -g @s='| sed'
 alias -g @l='| vless'
+alias -g @h='| head'
+alias -g @t='| tail'
 #>>>
 
 # -------- git alias -------<<<
