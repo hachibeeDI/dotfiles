@@ -17,6 +17,8 @@ map <silent> gW :macaction selectPreviousWindow:
 if has('mac')
     set transparency=5 " 透明度を指定
     set guifont=Osaka-Mono:h16
+    set background=dark
+    colorscheme solarized
 
 elseif has('win32')
     set guifont=Osaka-Mono:h16
