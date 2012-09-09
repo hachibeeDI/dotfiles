@@ -7,27 +7,8 @@
 #
 # =======================================================
 
-# ====== PATH ======={{{
-# lang
-export LANG=ja_JP.UTF-8
-# locale
-export LC_CTYPE=ja_JP.UTF-8
-
-# editer
-export EDITOR=vim
-
-# node.js-npm
-if [ -d /usr/local/lib/node_modules ]; then
-    export NODE_PATH=/usr/local/lib/node_modules/
-fi
-#}}}
-
 # load alias
 source ~/.zsh/.zrc.alias
-
-
-# disable make less-hist-file
-export LESSHISTFILE=-
 
 ### Command Completemente<<<
 
@@ -140,11 +121,6 @@ bindkey "^h" backward-kill-word
 
 # auto ls-command after cd
 # function chpwd() { ls }
-
-## pythonbrew "bashrcとなっているが、問題なし
-if [ -d ~/.pythonbrew ]; then
-    source $HOME/.pythonbrew/etc/bashrc
-fi
 
 # ================================================#
 # -------- prompt setting ------------<<<
