@@ -122,7 +122,7 @@ set expandtab
 "---------
 "
 "syntax enable
-set background=dark
+set background=light
 colorscheme solarized
 let g:solarized_termcolors=256
 
@@ -145,17 +145,10 @@ set showtabline=2
 highlight link ZenkakuSpace Error
 match ZenkakuSpace /　/
 
-" StatusLine{{{
-set laststatus=2
-set statusline=%F%m%r%h%w\ [%L]\ %y%{'['.(&fenc!=''?&fenc:&enc).':'.&ff.']'}%r%m%=%c:%l/%L
+"" StatusLine{{{
+"set laststatus=2
+"set statusline=%F%m%r%h%w\ [%L]\ %y%{'['.(&fenc!=''?&fenc:&enc).':'.&ff.']'}%r%m%=%c:%l/%L
 
-" set another color on statusline by IME-mode
-" https://sites.google.com/site/fudist/Home/vim-nihongo-ban/vim-color#color-ime
-augroup insertHook
-    autocmd!
-    autocmd InsertEnter * highlight StatusLine guifg=#ccdc90 guibg=#2E4340
-    autocmd InsertLeave * highlight StatusLine guifg=#2E4340 guibg=#ccdc90
-augroup END
 
 " }}}
 
@@ -169,16 +162,38 @@ let java_highlight_function=1
 let java_highlight_debug=1
 
 
-" ------ Key Mapping --------------
-" nomal mode
-nnoremap q: <NOP> "disable command
-nmap n nzz
+" ======== Key Mapping ======== {{{
+" ---- nomal mode ----{{{
+"<NPA> means to unset command on keymap
+nnoremap q: <NOP>
+nnoremap ; :
+nnoremap <Backspace> :%s/
 
-" insert mode
+"move cursor
+nmap 1 ^
+nmap 9 $
+
+"}}}
+
+" ---- insert mode ---- {{{
+"emacs like key-bind in insert mode
 inoremap <C-a> <Home>
 inoremap <C-e> <End>
 inoremap <C-f> <Right>
 inoremap <C-b> <Left>
+inoremap <C-p> <Up>
+inoremap <C-n> <Down>
+inoremap <C-h> <Backspace>
+inoremap <C-d> <Del>
+inoremap <C-k> <C-d>D
+inoremap <C-u> <C-o>d0
+inoremap <C-y> <C-o>P
+
+"command mode
+inoremap <Backspace> <C-o>:
+inoremap $ <C-o>:%s/
+"}}}
+"}}}
 
 " ---- Load Templetes ---- <<<
 " ゆくゆくはtempletefile.vimみたいなものを検討
@@ -223,7 +238,6 @@ inoremap <expr><CR> pumvisible() ? neocomplcache#close_popup() : "\<CR>"
 inoremap <expr><TAB> pumvisible() ? "\<C-n>" : "\<TAB>"
 "" <C-h>, <BS>: close popup and delete backword char.
 inoremap <expr><C-h> neocomplcache#smart_close_popup() . "\<C-h>"
-inoremap <expr><BS> neocomplcache#smart_close_popup() . "\<C-h>"
 inoremap <expr><C-y> neocomplcache#close_popup()
 inoremap <expr><C-e> neocomplcache#cancel_popup()
 
