@@ -5,15 +5,21 @@ set nocompatible
 filetype off
 
 if has('vim_starting')
-    set runtimepath+=~/.vim/neobundle.vim
-    set runtimepath+=~/.vim/.bundle
-    call neobundle#rc(expand('~/.vim/.bundle/'))
+    set runtimepath+=~/.vim/.bundle/neobundle.vim
 endif
+call neobundle#rc(expand('~/.vim/.bundle/'))
 
 "------- set plugins ------- {{{
+NeoBundle 'Shougo/vimproc', {
+    \ 'build' : {
+    \   'windows' : 'echo "X<"',
+    \   'cygwin' : 'make -f make_cygwin.mak',
+    \   'mac' : 'make -f make_mac.mak',
+    \   'unix' : 'make -f make_unix.mak',
+    \    },
+    \}
 NeoBundle 'Shougo/neocomplcache'
 NeoBundle 'Shougo/neocomplcache-snippets-complete'
-NeoBundle 'Shougo/vimproc'
 NeoBundle 'Shougo/neobundle.vim'
 NeoBundle 'Shougo/vimfiler'
 NeoBundle 'Shougo/neocomplcache-clang'
@@ -122,7 +128,7 @@ set expandtab
 "---------
 "
 "syntax enable
-set background=light
+set background=dark
 colorscheme solarized
 let g:solarized_termcolors=256
 
@@ -191,7 +197,6 @@ inoremap <C-y> <C-o>P
 
 "command mode
 inoremap <Backspace> <C-o>:
-inoremap $ <C-o>:%s/
 "}}}
 "}}}
 
