@@ -23,6 +23,10 @@ if [ -d /usr/local/lib/node_modules ]; then
     export NODE_PATH=/usr/local/lib/node_modules/
 fi
 
+if [ -d /usr/local/share/npm/bin ]; then
+    export PATH=/usr/local/share/npm/bin:$PATH
+fi
+
 ## pythonbrew "bashrcとなっているが、問題なし
 if [ -d ~/.pythonbrew ]; then
     source $HOME/.pythonbrew/etc/bashrc
@@ -54,7 +58,8 @@ export JAVA_OPTS="-Dswank.encoding=utf-8-unix"
 export LESS='-R'
 case "${OSTYPE}" in
 freebsd*|darwin*)
-    export LESSOPEN='| /opt/local/bin/src-hilite-lesspipe.sh %s'
+# homebrew
+    export LESSOPEN='| /usr/local/bin/src-hilite-lesspipe.sh %s'
     ;;
 linux*)
     export LESSOPEN='| /usr/share/source-highlight/src-hilite-lesspipe.sh %s'
