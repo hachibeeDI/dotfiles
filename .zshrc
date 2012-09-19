@@ -7,7 +7,8 @@
 #
 # =======================================================
 
-# default autoloads
+# ===== default autoloads =====
+# U option is disable to open alias, in loading functions.
 # Default Completement
 autoload -U compinit
 compinit -u
