@@ -110,6 +110,7 @@ set autoread
 
 set splitbelow
 set splitright
+set previewheight=30
 
 " Syntax setting {{{
 " ---------------
@@ -141,9 +142,6 @@ let g:solarized_termcolors=256
 "set transparency=50
 set title
 set number
-
-"set guifont=inconsolata:h16
-"set guifontwide=Osaka-Mono:h15
 
 set showcmd
 " disable auto textwraping
@@ -201,7 +199,7 @@ inoremap <C-u> <C-o>d0
 inoremap <C-y> <C-o>P
 
 "command mode
-inoremap <Backspace> <C-o>:
+"inoremap <Backspace> <C-o>:
 "}}}
 "}}}
 
@@ -346,6 +344,20 @@ let g:quickrun_config["cpp"] = {
     \ }
 "  }}}
 
+" =============================================================
+" --- Syntastic --- : {{{
+
+" active_filetypes -> 自動でチェックして欲しいファイル・タイプ
+" passive_filetypes -> :SyntasticCheck で手動で呼び出すファイル
+let g:syntastic_mode_map = {'mode': 'active',
+    \ 'active_filetypes': [],
+    \ 'passive_filetypes': ['html']
+    \ }
+" エラーがあったら、自動的にQuickfixが立ち上がる
+let g:syntastic_auto_loc_list = 1
+
+"}}}
+
 "---- netrw(default filer) ----
 " set treeview
 let g:netrw_liststyle = 3
@@ -372,6 +384,12 @@ let g:sonictemplate_vim_template_dir = [
 \]
 
 "}}}
+
+" ----- hatena-vim ----
+let g:hatena_user='hachibeechan'
+
+" ------ power line ----
+let g:Powerline_symbols = 'fancy'
 
 "--- ack.vim procとか ---  {{{
 "そろそろ限界…今後はOSごとに別ファイルでやったほうがよいかも
