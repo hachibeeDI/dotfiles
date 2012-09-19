@@ -4,6 +4,26 @@
 #
 # ===========================================================
 
+# ====================== OS TYPE ============================
+
+# colored less
+export LESS='-R'
+case "${OSTYPE}" in
+freebsd*|darwin*)
+# homebrew
+    export LESSOPEN='| /usr/local/bin/src-hilite-lesspipe.sh %s'
+
+    # use coreutils from $homebrew that supply gnu style common commands.
+    export PATH="$(brew --prefix coreutils)/libexec/gnubin:$PATH"
+    ;;
+linux*)
+    export LESSOPEN='| /usr/share/source-highlight/src-hilite-lesspipe.sh %s'
+    ;;
+cygwin*)
+    export LESSOPEN='| /bin/src-hilite-lesspipe.sh %s'
+    ;;
+esac
+
 # ====== common PATH ======={{{
 # lang
 export LANG=ja_JP.UTF-8
@@ -27,20 +47,19 @@ if [ -d /usr/local/share/npm/bin ]; then
     export PATH=/usr/local/share/npm/bin:$PATH
 fi
 
-## pythonbrew "bashrcとなっているが、問題なし
-if [ -d ~/.pythonbrew ]; then
-    source $HOME/.pythonbrew/etc/bashrc
+if [ -d /usr/local/share/python ]; then
+    # use package installed by pip
+    export PATH="$PATH:/usr/local/share/python"
 fi
-
 
 #read PATH for python _and python's tool
 export PYTHONSTARTUP=~/.pythonstartup
 
-#http://toggtc.hatenablog.com/entry/2012/02/06/023807  setting for distribute instead of setuptuools
-export VIRTUALENV_USE_DISTRIBUTE=true
-
-# use pip, only in virtualenv enviroments
-export PIP_REQUIRE_VIRTUALENV=true
+##http://toggtc.hatenablog.com/entry/2012/02/06/023807  setting for distribute instead of setuptuools
+#export VIRTUALENV_USE_DISTRIBUTE=true
+#
+## use pip, only in virtualenv enviroments
+#export PIP_REQUIRE_VIRTUALENV=true
 
 # Mac & Linux Only Javahome
 JAVA_HOME=/Library/Java/Home
@@ -53,19 +72,4 @@ export JAVA_HOME
 
 export JAVA_OPTS="-Dswank.encoding=utf-8-unix"
 
-# ================= colored less =======================
-# source-highlight入れてないとエラー出そうだけどまーいっか
-export LESS='-R'
-case "${OSTYPE}" in
-freebsd*|darwin*)
-# homebrew
-    export LESSOPEN='| /usr/local/bin/src-hilite-lesspipe.sh %s'
-    ;;
-linux*)
-    export LESSOPEN='| /usr/share/source-highlight/src-hilite-lesspipe.sh %s'
-    ;;
-cygwin*)
-    export LESSOPEN='| /bin/src-hilite-lesspipe.sh %s'
-    ;;
-esac
 
