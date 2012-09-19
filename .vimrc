@@ -1,4 +1,3 @@
-" vim:ft=vim:fdm=marker:fen:
 " vim:fileencoding=utf-8
 
 set nocompatible
@@ -41,6 +40,7 @@ NeoBundle 'reinh/vim-makegreen'
 "syntax hightlight for python, with pyflak
 NeoBundle 'mitechie/pyflakes-pathogen'
 NeoBundle 'vim-scripts/pythoncomplete'
+NeoBundle 'lambdalisue/vim-django-support'
 
 NeoBundle 'vim-scripts/java_getset.vim'
 " enable use slim on vim
@@ -51,6 +51,7 @@ NeoBundle 'Lokaltog/vim-powerline'
 
 NeoBundle 'mattn/gist-vim'
 NeoBundle 'mattn/webapi-vim'
+NeoBundle 'motemen/hatena-vim'
 
 filetype plugin indent on
 filetype indent on
@@ -75,11 +76,15 @@ set fileencodings=utf-8,iso-2022-jp,cp932,sjis,euc-jp,default,latin
 set fileformats=unix,dos,mac
 
 " set fold line on {{{, }}}
+set foldenable
 set foldmethod=marker
+set foldmarker={{{,}}}
+set foldcolumn=3
+
 set linespace=3
 " Tabや行末のスペースを表示させる
-set list
-set listchars=tab:>-,trail:~,eol:.,extends:>,precedes:<,nbsp:%
+"set list
+"set listchars=tab:>-,trail:~,eol:.,extends:>,precedes:<,nbsp:%
 " tab:>-,trail:~,extends:》,precedes:《,nbsp:% 
 
 set pastetoggle=<F10>
