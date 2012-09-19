@@ -220,7 +220,8 @@ inoremap <Backspace> <C-o>:
 "---------------
 "
 
-" -- neocomplcache{{{
+" =======================================================
+" ------------ neocomplcache -----------------: {{{
 " disable autoComplPop
 let g:acp_enableAtStartup = 0
 
@@ -235,14 +236,11 @@ let g:neocomplcache_enable_auto_select = 1
 "" search with camel case like Eclipse
 let g:neocomplcache_enable_camel_case_completion = 1
 let g:neocomplcache_enable_underbar_completion = 1
-"imap <C-k> <Plug>(neocomplcache_snippets_expand)
-"smap <C-k> <Plug>(neocomplcache_snippets_expand)
-inoremap <expr><C-g> neocomplcache#undo_completion()
-inoremap <expr><C-l> neocomplcache#complete_common_string()
-"" SuperTab like snippets behavior.
-"imap <expr><TAB> neocomplcache#sources#snippets_complete#expandable() ? "\<Plug>(neocomplcache_snippets_expand)" : pumvisible() ? "\<C-n>" : "\<TAB>"
-"" <CR>: close popup and save indent.
-"inoremap <expr><CR> neocomplcache#smart_close_popup() . (&indentexpr != '' ? "\<C-f>\<CR>X\<BS>":"\<CR>")
+" Skip Heavy complete
+let g:NeoComplCache_EnableSkipCompletion=1
+let g:NeoComplCache_SkipCompletionTime = '0.5'
+let g:NeoComplCache_SkipInputTime = '0.1'
+
 inoremap <expr><CR> pumvisible() ? neocomplcache#close_popup() : "\<CR>"
 "" <TAB>: completion.
 inoremap <expr><TAB> pumvisible() ? "\<C-n>" : "\<TAB>"
@@ -251,44 +249,56 @@ inoremap <expr><C-h> neocomplcache#smart_close_popup() . "\<C-h>"
 inoremap <expr><C-y> neocomplcache#close_popup()
 inoremap <expr><C-e> neocomplcache#cancel_popup()
 
-" Enable heavy omni-comlete
-let g:NeoComplCache_EnableSkipCompletion=1
+" FileType毎のOmni補完を設定
+autocmd FileType python     setlocal omnifunc=pythoncomplete#Complete
+autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
+autocmd FileType html       setlocal omnifunc=htmlcomplete#CompleteTags
+autocmd FileType css        setlocal omnifunc=csscomplete#CompleteCSS
+autocmd FileType xml        setlocal omnifunc=xmlcomplete#CompleteTags
+autocmd FileType php        setlocal omnifunc=phpcomplete#CompletePHP
+autocmd FileType c          setlocal omnifunc=ccomplete#Complete
+autocmd FileType ruby       setlocal omnifunc=rubycomplete#Complete
 
+" ファイルを探す際、この値を末尾に追加してあるファイルも探す
+let g:neocomplcache_include_suffixes = {'c':'.h','cpp':'.h'}
+
+" when define include, complete path for include header
 let g:neocomplcache_include_paths = {
             \ 'c' : '.,/usr/include',
             \ 'cpp': '.,/usr/include/c++,/usr/include',
-            \ }
+        \ }
 
 let g:neocomplcache_include_patterns = {
             \ 'c':'^\s#\s*include',
             \ 'cpp':'^\s#\s*include',
-            \ }
+        \ }
 
-" for c/c++{{{
-let g:neocomplcache_include_suffixes = {'c':'.h','cpp':'.h'}
-" neocomplcache-clang clan_copleteのがええかも
-let g:neocomplcache_clang_use_library=1
-let g:neocomplcache_clang_library_path='/usr/bin'
-" let g:neocomplcache_clang_user_options =
-"}}}
 "Define dictonaru
 let g:neocomplcache_dictionary_filetype_lists={
-\'default':'',
-\'java':$HOME.'/.vim/dict/java.dict',
-\'javascript':$HOME.'/.vim/dict/javascript.dict',
-\'python':$HOME.'/.vim/dict/python.dict',
-\'vim':$HOME.'/.vim/dict/vim.dict',
-\'vimshell':$HOME.'/.vim/dict/vimshell.dict',
-\'cpp':$HOME.'/.vim/dict/cpp.dict'
-\}
+        \ 'default':'',
+        \ 'java':$HOME.'/.vim/dict/java.dict',
+        \ 'javascript':$HOME.'/.vim/dict/javascript.dict',
+        \ 'python':$HOME.'/.vim/dict/python.dict',
+        \ 'vim':$HOME.'/.vim/dict/vim.dict',
+        \ 'vimshell':$HOME.'/.vim/dict/vimshell.dict',
+        \ 'cpp':$HOME.'/.vim/dict/cpp.dict'
+    \}
+
+"============================================================
+" ---- neocomplcache-snippets-complete : {{{
+let g:neocomplcache_snippets_dir = '~/.vim/snippets'
+imap <C-k> <Plug>(neocomplcache_snippets_expand)
+smap <C-k> <Plug>(neocomplcache_snippets_expand)
+"}}}
 
 "}}}
 
+" vim-indentguides ------------{{{
 let g:indent_guides_enable_on_vim_startup=1
 let g:indent_guides_guide_size=1
 let g:indent_guides_start_level=2
 let g:indent_guides_color_change_percent=20
-
+"}}}
 " ---------Unite.vim---------
 
 """ unite.vim
