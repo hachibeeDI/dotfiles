@@ -219,5 +219,24 @@ function _sheets {
 # utils<<<
 mkcd() {mkdir -p "$@" && cd "$*[-1]"}
 mktmp() {mkdir `date +"%Y%m%d_%H%M%S"`}
+gst() {
+    git status -sb | head -n 1
+    git status -sb | sed '1d' | grep --line-number '^'
+}
+gsta() {
+    local targfile;
+    targfile=`git status -sb |grep -v "^#" | awk '{print$1="";print}' |grep -v "^$" | awk "NR==$1" | sed "s/\s//g"`
+    git add $targfile
+}
+gstd() {
+    local targfile;
+    targfile=`git status -sb |grep -v "^#" | awk '{print$1="";print}' |grep -v "^$" | awk "NR==$1" | sed "s/\s//g"`
+    git diff -- $targfile
+}
+gstv() {
+    local targfile;
+    targfile=`git status -sb |grep -v "^#" | awk '{print$1="";print}' |grep -v "^$" | awk "NR==$1" | sed "s/\s//g"`
+    vim $targfile
+}
 #>>>
 
