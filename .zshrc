@@ -231,7 +231,7 @@ gsta() {
 gstd() {
     local targfile;
     targfile=`git status -sb |grep -v "^#" | awk '{print$1="";print}' |grep -v "^$" | awk "NR==$1" | sed "s/\s//g"`
-    git diff -- $targfile
+    git diff --color -- $targfile
 }
 gstv() {
     local targfile;
