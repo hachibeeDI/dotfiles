@@ -4,7 +4,10 @@
 
 # common <<<
 # Mac ユーザはhomebrewかportsからcoreutilsを導入しなければならない
-alias grep='grep --color=auto --line-number'
+alias grep='grep --color=auto'
+
+alias diff='colordiff'
+
 #alias ssh='TERM=xterm-265color ssh'
 # use vim --nopluginmode as pager
 alias vless='/usr/share/vim/vim73/macros/less.sh'
@@ -34,8 +37,9 @@ linux*)
     ;;
 
 cygwin*)
+    alias ap='apt-cyg -u'
     alias open='explorer.exe "$(cygpath -wa `pwd`)"'
-    alias gvim='cyg-wrapper.sh "/cygdrive/c/vim73-kaoriya-win32/gvim.exe" --binary-opt=-c,--cmd,-T,--servername,--remote-send,--remote-expr --fork=1'
+    alias gvim='cyg-wrapper.sh "/cygdrive/c/vim/gvim.exe" --binary-opt=-c,--cmd,-T,--servername,--remote-send,--remote-expr --fork=1'
    ;;
 
 esac
@@ -63,7 +67,7 @@ alias gcm='git commit'
 alias gcmm='git commit -m'
 alias gbr='git branch -a'
 alias gdif='git diff'
-alias gst='git status -sb'
+# alias gst='git status -sb'
 alias gamend='git commit --amend -C HEAD --date='
 alias ggre='git grep -H --heading --break'
 
