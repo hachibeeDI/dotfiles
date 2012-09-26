@@ -4,6 +4,33 @@
 #
 # ===========================================================
 
+#　PATH設定用の便利な記法
+### -U : 重複したパスは登録しない
+#typeset -U path
+### (N-/): 存在しないディレクトリは登録しない。
+###    パス(...): ...という条件にマッチするパスのみ残す。
+###            N: NULL_GLOBオプションを設定。
+###               globがマッチしなかったり存在しないパスを無視する。
+###            -: シンボリックリンク先のパスを評価。
+###            /: ディレクトリのみ残す。
+#path=(# システム用
+#      /bin(N-/)
+#      # 自分用
+#      $HOME/local/bin(N-/)
+#      # Debian GNU/Linux用
+#      /var/lib/gems/*/bin(N-/)
+#      # MacPorts用
+#      /opt/local/bin(N-/)
+#      # Solaris用
+#      /opt/csw/bin(N-/)
+#      /usr/sfw/bin(N-/)
+#      # Cygwin用
+#      /cygdrive/c/meadow/bin(N-/)
+#      # システム用
+#      /usr/local/bin(N-/)
+#      /usr/bin(N-/)
+#      /usr/games(N-/)) = true
+#
 # ====================== OS TYPE ============================
 
 # colored less
