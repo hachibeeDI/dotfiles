@@ -28,8 +28,9 @@ ln -s "$path"/.gitignore ~/.gitignore
 ln -s "$path"/.sheets ~/.sheets
 touch ~/.gitconfig
 cat "$path"/git_globalconfig >> ~/.gitconfig
+touch ~/.gitconfig.local
 
-ln -s "path"/.vim ~/.vim
+ln -s "$path"/.vim ~/.vim
 #ln -s "$path"/.vim/syntax ~/.vim/syntax
 #ln -s "$path"/.vim/neobundle.vim ~/.vim/neobundle.vim
 #ln -s "$path"/.vim/colors ~/.vim/colors
