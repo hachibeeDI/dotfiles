@@ -22,7 +22,7 @@
 
      + .tmux.conf
 
-     + .tmux.d
+     + .tmux.d/
 
  - sheets
 
@@ -39,6 +39,7 @@
 
 ## How to use
 
-$ git@github.com:hachibeeDI/dotfiles.git
+$ git clone git@github.com:hachibeeDI/dotfiles.git
+
 $ ./dotfiles/makeenv.sh
 
