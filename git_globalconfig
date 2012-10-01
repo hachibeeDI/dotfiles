@@ -2,6 +2,7 @@
     name = Daiki
     email = 8hachibee125@gmail.com
 [include]
+    # ex-> github token ...
     path = .gitconfig.local
 [color]
     status = auto
@@ -12,7 +13,7 @@
 [core]
     editor = vim
     excludesfile = ~/.gitignore
-    autocrlf = input # auto convert crlf
+    pager = less
 [grep]
     lineNumber = true
 [alias]
@@ -22,6 +23,7 @@
     ft = fetch
     ad = add
     cm = commit
+    co = checkout
 
     # branch
     br = branch
@@ -31,7 +33,7 @@
 
     #diff
     dm = diff master
-    dw = diff --color-words
+    dw = diff --color
     dca = diff --cached
     d1 = diff HEAD~
     d2 = diff HEAD~~
@@ -40,7 +42,7 @@
     d5 = diff HEAD~~~~~
 
     #http://qiita.com/items/3fcd60e063f26e90321d
-    gr = grep -H --heading --break
+    gr = grep -HI --color --heading --break
     grn = grep -n
 
     info = config --list
