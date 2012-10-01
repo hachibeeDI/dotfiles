@@ -7,7 +7,7 @@ mkdir ~/dotfilebackup
 
 for i in { .vim .vimrc .gvimrc .zshenv .zsh .zprofile .pythonstartup .tmux.conf .gitconfig .gitignore };
 do
-        mv ~/"$i" ~/dotfilebackup/"$i".org
+    [ -e "$i" ] && mv ~/"$i" ~/dotfilebackup/"$i".org
 done
 
 echo "move orig-files to ~/dotfilebackup/*"
