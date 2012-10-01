@@ -20,6 +20,11 @@ autoload zmv
 alias zmv='noglob zmv'
 ## call version check function
 autoload -Uz is-at-least
+# zsh editor
+autoload zed
+# prediction Completion
+autoload predict-on
+# predict-off
 
 # load alias
 source ~/.zsh/.zrc.alias
@@ -119,6 +124,21 @@ bindkey '^U' backward-kill-line
 
 # Ctrl-h  delete fullword
 bindkey "^h" backward-kill-word
+
+# http://d.hatena.ne.jp/parasporospa/20061130
+# http://d.hatena.ne.jp/tkng/20100712/1278896396
+# エラーメッセージ本文出力に色付け{{{
+e_normal=`echo -e "¥033[0;30m"`
+e_RED=`echo -e "¥033[1;31m"`
+e_BLUE=`echo -e "¥033[1;36m"`
+
+function make() {
+    LANG=C command make "$@" 2>&1 | sed -e "s@[Ee]rror:.*@$e_RED&$e_normal@g" -e "s@cannot\sfind.*@$e_RED&$e_normal@g" -e "s@[Ww]arning:.*@$e_BLUE&$e_normal@g"
+}
+function cwaf() {
+    LANG=C command ./waf "$@" 2>&1 | sed -e "s@[Ee]rror:.*@$e_RED&$e_normal@g" -e "s@cannot\sfind.*@$e_RED&$e_normal@g" -e "s@[Ww]arning:.*@$e_BLUE&$e_normal@g"
+}
+#}}}
 
 # auto ls-command after cd
 # function chpwd() { ls }
