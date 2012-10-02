@@ -37,7 +37,7 @@ NeoBundle 'tpope/vim-surround'
 
 "TDD plugin for vim
 NeoBundle 'reinh/vim-makegreen'
-"syntax hightlight for python, with pyflak
+"syntax hightlight for python, with pyflake
 NeoBundle 'mitechie/pyflakes-pathogen'
 NeoBundle 'vim-scripts/pythoncomplete'
 NeoBundle 'lambdalisue/vim-django-support'
@@ -46,6 +46,8 @@ NeoBundle 'vim-scripts/java_getset.vim'
 " enable use slim on vim
 NeoBundle 'slimv.vim'
 NeoBundle 'kchmck/vim-coffee-script'
+NeoBundle 'scala.vim'
+
 NeoBundle 'mattn/sonictemplate-vim'
 NeoBundle 'Lokaltog/vim-powerline'
 
@@ -76,10 +78,10 @@ set fileencodings=utf-8,iso-2022-jp,cp932,sjis,euc-jp,default,latin
 set fileformats=unix,dos,mac
 
 " set fold line on {{{, }}}
-set foldenable
 set foldmethod=marker
-set foldmarker={{{,}}}
-set foldcolumn=3
+"set foldenable
+"set foldmarker={{{,}}}
+"set foldcolumn=3
 
 set linespace=3
 " Tabや行末のスペースを表示させる
@@ -117,7 +119,9 @@ set previewheight=30
 syntax on
 
 " VB.NET
-autocmd BufNewFile, BufRead *.vb setlocal filetype=vbnet
+autocmd BufRead,BufNewFile *.vb setlocal filetype=vbnet
+" Scala
+autocmd BufRead,BufNewFile *.scala set filetype=scala
 "}}}
 
 "___________
