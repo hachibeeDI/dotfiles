@@ -33,7 +33,10 @@ source ~/.zsh/themes/hachibee.zsh-theme
 
 ### Command Completemente<<<
 # setting completion's function path<<<
-fpath=(~/.zsh/functions/Completion ${fpath})
+fpath=(~/.zsh/functions/Completion $fpath)
+if [ -d /usr/local/share/zsh-completions ]; then
+    fpath=(/usr/local/share/zsh-completions $fpath)
+fi
 autoload -U ~/.zsh/functions/Completion/*(:t)
 #>>>
 
@@ -246,11 +249,13 @@ gst() {
 gsta() {
     local targfile;
     targfile=`git status -sb |grep -v "^#" | awk '{print$1="";print}' |grep -v "^$" | awk "NR==$1" | sed "s/\s//g"`
+    echo "add $targfile"
     git add $targfile
 }
 gstd() {
     local targfile;
     targfile=`git status -sb |grep -v "^#" | awk '{print$1="";print}' |grep -v "^$" | awk "NR==$1" | sed "s/\s//g"`
+    echo "show diff $targfile"
     git diff --color -- $targfile
 }
 gstv() {
