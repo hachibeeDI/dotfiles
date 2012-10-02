@@ -1,6 +1,5 @@
 
 " commonsettings{{{
-colorscheme solarized
 set clipboard=
 set showtabline=2  " タブを常に表示
 "set imdisable      " IMを無効化
@@ -9,6 +8,7 @@ map <silent> gw :macaction selectNextWindow:
 map <silent> gW :macaction selectPreviousWindow:
 
 if has('mac')
+    colorscheme solarized
     set transparency=5 " 透明度を指定
     set guifont=RictyDiscord-Regular-Powerline:h20
     set background=dark
@@ -16,6 +16,10 @@ if has('mac')
 elseif has('win32')
     set shell='C:/cygwin/bin/zsh.exe'
     set guifont=Osaka-Mono:h16
+    set guioptions-=m
+elseif has('win64')
+    colorscheme desert
+    set shell='C:/cygwin/bin/zsh.exe'
     set guioptions-=m
 endif
 
