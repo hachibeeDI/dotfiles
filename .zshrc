@@ -31,6 +31,9 @@ source ~/.zsh/.zrc.alias
 # load prompt
 source ~/.zsh/themes/hachibee.zsh-theme
 
+# ZLS_COLORSの意味って？ とりあえずみんな設定してるくさいからおれもする
+export ZLS_COLORS=$LS_COLORS
+
 ### Command Completemente<<<
 # setting completion's function path<<<
 fpath=(~/.zsh/functions/Completion $fpath)
@@ -62,6 +65,9 @@ setopt noautoremoveslash
 setopt magic_equal_subst
 setopt print_eight_bit
 setopt auto_cd
+# stack cd history
+setopt auto_pushd
+setopt pushd_ignore_dups
 setopt NO_hup
 setopt ignore_eof
 # use '#' as comment on commandloine
@@ -109,11 +115,15 @@ setopt hist_ignore_dups # disable to save histfile, if its overlaps on just befo
 setopt hist_no_store
 setopt hist_reduce_blanks
 setopt share_history
-# when use zsh on multiwindow, add on history file
+# when use zsh on multiwindow, add on a history file
 setopt append_history
-# stack cd history
-setopt auto_pushd
-setopt pushd_ignore_dups
+
+# --- 入力済みの文字列にマッチしたコマンドのヒストリを表示させる ---
+autoload history-search-end
+zle -N history-beginning-search-backward-end history-search-end
+zle -N history-beginning-search-forward-end history-search-end
+bindkey "^P" history-beginning-search-backward-end
+bindkey "^N" history-beginning-search-forward-end
 
 #>>>
 
