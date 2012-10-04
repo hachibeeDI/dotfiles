@@ -5,4 +5,7 @@
 #
 # =============================
 
+if [ -f ~/.dir_colors ]; then
+    eval `dircolors ~/.dir_colors -b`
+fi
 
