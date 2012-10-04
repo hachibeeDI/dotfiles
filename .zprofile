@@ -33,8 +33,10 @@
 #
 # ====================== OS TYPE ============================
 
-# colored less
-export LESS='-R'
+# http://www.pochinet.org/linux2L003.htm
+# -Xと--quit-if-one-screenの組み合わせで、一画面に収まる時はcatのような動きになる
+export LESS='-gj10X --quit-if-one-screen --RAW-CONTROL-CHARS'
+
 case "${OSTYPE}" in
 freebsd*|darwin*)
 # homebrew
@@ -59,6 +61,9 @@ export LC_CTYPE=ja_JP.UTF-8
 
 # editer
 export EDITOR=vim
+
+#
+export PAGER=less
 
 # disable make less-hist-file
 export LESSHISTFILE=-
