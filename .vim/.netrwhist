@@ -1,6 +1,0 @@
-let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =4
-let g:netrw_dirhist_1='/Users/8hachibee125/Dropbox'
-let g:netrw_dirhist_2='/Users/8hachibee125/Dropbox/dotfiles'
-let g:netrw_dirhist_3='/Users/8hachibee125/Dropbox/dotfiles/.zsh'
-let g:netrw_dirhist_4='/Users/8hachibee125/Dropbox/dotfiles/.zsh/themes'

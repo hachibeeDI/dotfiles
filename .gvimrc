@@ -14,6 +14,7 @@ if has('mac')
     set background=dark
 
 elseif has('win32')
+    colorscheme desert
     set shell='C:/cygwin/bin/zsh.exe'
     set guifont=Osaka-Mono:h16
     set guioptions-=m
