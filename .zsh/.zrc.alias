@@ -3,7 +3,9 @@
 # alias settings<<<
 
 # common <<<
-# Mac ユーザはhomebrewかportsからcoreutilsを導入しなければならない
+# オプションの設定はGNUコマンドが前提となっている
+# なのでMac ユーザはhomebrewかportsからcoreutilsを導入すること
+
 alias grep='grep --color=auto'
 
 alias diff='colordiff'
