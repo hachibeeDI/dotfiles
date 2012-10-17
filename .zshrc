@@ -264,23 +264,29 @@ function _sheets {
 # utils<<<
 mkcd() {mkdir -p "$@" && cd "$*[-1]"}
 mktmp() {mkdir `date +"%Y%m%d_%H%M%S"`}
+
+gs() {
+    git status -sb
+}
+
 gst() {
     git status -sb | head -n 1
     git status -sb | sed '1d' | grep --line-number '^'
 }
-gsta() {
+
+gsa() {
     local targfile;
     targfile=`git status -sb |grep -v "^#" | awk '{print$1="";print}' |grep -v "^$" | awk "NR==$1" | sed "s/\s//g"`
     echo "add $targfile"
     git add $targfile
 }
-gstd() {
+gsd() {
     local targfile;
     targfile=`git status -sb |grep -v "^#" | awk '{print$1="";print}' |grep -v "^$" | awk "NR==$1" | sed "s/\s//g"`
     echo "show diff $targfile"
     git diff --color -- $targfile
 }
-gstv() {
+gsv() {
     local targfile;
     targfile=`git status -sb |grep -v "^#" | awk '{print$1="";print}' |grep -v "^$" | awk "NR==$1" | sed "s/\s//g"`
     vim $targfile
