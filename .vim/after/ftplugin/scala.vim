@@ -1,4 +1,4 @@
-if exists('b:did_ftplugin')
+if exists('b:did_ftplugin_scala')
     finish
 endif
 let b:did_ftplugin_scala = 1
