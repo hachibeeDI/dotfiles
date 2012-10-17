@@ -29,6 +29,8 @@ NeoBundle 'tpope/vim-fugitive'
 NeoBundle 'mileszs/ack.vim'
 NeoBundle 'scrooloose/syntastic'
 
+NeoBundle 'altercation/vim-colors-solarized'
+
 NeoBundle 'git://github.com/vim-scripts/IndentAnything.git'
 NeoBundle 'pangloss/vim-javascript'
 NeoBundle 'mattn/zencoding-vim'
@@ -54,6 +56,11 @@ NeoBundle 'Lokaltog/vim-powerline'
 NeoBundle 'mattn/gist-vim'
 NeoBundle 'mattn/webapi-vim'
 NeoBundle 'motemen/hatena-vim'
+
+NeoBundle 'osyo-manga/shabadou.vim'
+"watchdogs is required vimproc, quickrun, shabadou
+NeoBundle 'osyo-manga/vim-watchdogs'
+
 
 filetype plugin indent on
 filetype indent on
@@ -121,7 +128,7 @@ syntax on
 " VB.NET
 autocmd BufRead,BufNewFile *.vb setlocal filetype=vbnet
 " Scala
-autocmd BufRead,BufNewFile *.scala set filetype=scala
+autocmd BufRead,BufNewFile *.scala setlocal filetype=scala
 "}}}
 
 "___________
@@ -347,6 +354,14 @@ let g:quickrun_config["cpp"] = {
     \ 'cmdopt' : '-std=c++11 -stdlib=libc++',
     \ }
 "  }}}
+
+" ===============================================================
+" < " http://d.hatena.ne.jp/osyo-manga/20120924/1348473304
+" < " ---- vim-watchdog --- : {{{
+
+" call watchdogs#setup(g:quickrun_config)
+
+" }}}
 
 " =============================================================
 " --- Syntastic --- : {{{
