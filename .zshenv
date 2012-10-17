@@ -1,11 +1,9 @@
 # =============================
 #
-# Loaded when wake up the shell that is called by UID.
-# set the settings is always enalble, even if shellscript(?)
+# ログインシェル、インタラクティブシェル、
+# そしてシェルスクリプトを実行するコマンドとしてzshが
+# 呼ばれた時に読み込まれるファイル
 #
 # =============================
 
-if [ -f ~/.dir_colors ]; then
-    eval `dircolors ~/.dir_colors -b`
-fi
 
