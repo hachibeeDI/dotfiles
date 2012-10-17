@@ -34,6 +34,11 @@ source ~/.zsh/themes/hachibee.zsh-theme
 # ZLS_COLORSの意味って？ とりあえずみんな設定してるくさいからおれもする
 export ZLS_COLORS=$LS_COLORS
 
+# homeに自分で定義したLSCOLORがあれば、それで上書きする
+if [ -f ~/.dir_colors ]; then
+    eval `dircolors ~/.dir_colors -b`
+fi
+
 ### Command Completemente<<<
 # setting completion's function path<<<
 fpath=(~/.zsh/functions/Completion $fpath)
@@ -50,6 +55,7 @@ zstyle ':completion:*' group-name ''
 zstyle ':completion:*:default' menu select=1
 # via cdd format
 zstyle ':completion:*:descriptions' format '%F{yellow}Completing %B%d%b%f'
+zstyle ':completion:*' list-separator '-->'
 
 ###>>>
 
@@ -81,6 +87,12 @@ setopt promptcr
 # 該当するブレース{}展開が存在しない場合、ascii順にソートして展開する
 setopt brace_ccl
 setopt complete_aliases
+# ファイル名の補完時、ディレクトリにマッチしたら/を付与
+setopt mark_dirs
+# カッコの対応なども補完
+setopt auto_param_keys
+# ファイル名一覧を順次表示
+setopt always_last_prompt
 
 #>>>
 
