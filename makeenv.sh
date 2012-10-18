@@ -26,8 +26,8 @@ ln -s "$path"/.pythonstartup ~/.pythonstartup
 ln -s "$path"/.tmux.conf ~/.tmux.conf
 ln -s "$path"/.gitignore ~/.gitignore
 ln -s "$path"/.sheets ~/.sheets
-touch ~/.gitconfig
-cat "$path"/git_globalconfig >> ~/.gitconfig
+
+ln -s "$path"/git_globalconfig ~/.gitconfig
 touch ~/.gitconfig.local
 
 ln -s "$path"/.vim ~/.vim
