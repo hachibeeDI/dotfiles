@@ -47,6 +47,8 @@ NeoBundle 'lambdalisue/vim-django-support'
 NeoBundle 'vim-scripts/java_getset.vim'
 " enable use slim on vim
 NeoBundle 'slimv.vim'
+" カッコいい言語のカッコをレインボーにする
+NeoBundle 'kien/rainbow_parentheses.vim'
 NeoBundle 'kchmck/vim-coffee-script'
 NeoBundle 'scala.vim'
 
@@ -121,14 +123,23 @@ set splitbelow
 set splitright
 set previewheight=30
 
+" FileType
 " Syntax setting {{{
 " ---------------
 syntax on
 
-" VB.NET
-autocmd BufRead,BufNewFile *.vb setlocal filetype=vbnet
-" Scala
-autocmd BufRead,BufNewFile *.scala setlocal filetype=scala
+augroup MyAutoCmdFileType
+    autocmd! MyAutoCmdFileType
+    " VB.NET
+    autocmd BufRead,BufNewFile *.vb setlocal filetype=vbnet
+    " Scala
+    autocmd BufRead,BufNewFile *.scala setlocal filetype=scala
+
+    autocmd FileType scheme :RainbowParenthesesToggle
+    autocmd FileType clojure :RainbowParenthesesToggle
+    autocmd FileType lisp :RainbowParenthesesToggle
+    
+augroup END
 "}}}
 
 "___________
@@ -313,6 +324,11 @@ let g:indent_guides_color_change_percent=20
 """ unite.vim
 " 入力モードで開始する
 let g:unite_enable_start_insert=1
+" 開くときの横幅
+let g:unite_winwidth=40
+" 縦幅
+let g:unite_winheight=50
+
 " バッファ一覧
 nnoremap <silent> ,ub :<C-u>Unite buffer<CR>
 " ファイル一覧
@@ -409,6 +425,10 @@ let g:hatena_user='hachibeechan'
 
 " ------ power line ----
 let g:Powerline_symbols = 'fancy'
+
+" ------ RainbowParentTheses
+let g:rbpt_max = 7
+let g:rbpt_loadcmd_toggle = 0
 
 "--- ack.vim procとか ---  {{{
 "そろそろ限界…今後はOSごとに別ファイルでやったほうがよいかも
