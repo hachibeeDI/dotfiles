@@ -14,6 +14,7 @@
     editor = vim
     excludesfile = ~/.gitignore
     pager = less
+    autocrlf = false
 [grep]
     lineNumber = true
 [alias]
