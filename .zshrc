@@ -265,8 +265,9 @@ function _sheets {
 mkcd() {mkdir -p "$@" && cd "$*[-1]"}
 mktmp() {mkdir `date +"%Y%m%d_%H%M%S"`}
 
+# arrange a littele: http://qiita.com/items/1f01aa09ccf148542f21
 gs() {
-    git status -sb
+    git status -sb && git stash list
 }
 
 gst() {
