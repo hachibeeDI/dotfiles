@@ -35,7 +35,7 @@
 
 # http://www.pochinet.org/linux2L003.htm
 # -Xと--quit-if-one-screenの組み合わせで、一画面に収まる時はcatのような動きになる
-export LESS='-gj10X --quit-if-one-screen --RAW-CONTROL-CHARS'
+export LESS='-gj10 --no-init --quit-if-one-screen --RAW-CONTROL-CHARS'
 
 case "${OSTYPE}" in
 freebsd*|darwin*)
