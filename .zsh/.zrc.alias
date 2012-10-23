@@ -1,4 +1,4 @@
-# vim:fdm=marker fmr=<<<,>>>:
+# vim:set filetype=zsh fdm=marker fmr=<<<,>>>:
 
 # alias settings<<<
 
@@ -76,5 +76,4 @@ alias ggre='git grep -H --heading --break'
 
 #>>>
 #>>>
-
 
