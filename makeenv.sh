@@ -5,7 +5,7 @@ echo "$path"
 
 mkdir ~/dotfilebackup
 
-for i in { .vim .vimrc .gvimrc .zshenv .zsh .zprofile .pythonstartup .tmux.conf .gitconfig .gitignore };
+for i in { .vim .vimrc .gvimrc .zshenv .zsh .zprofile .pythonstartup .tmux.conf .gitconfig .gitignore .ctags };
 do
     [[ -s "$i" ]] && mv ~/"$i" ~/dotfilebackup/"$i".org
 done
