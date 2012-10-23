@@ -18,7 +18,7 @@ NeoBundle 'Shougo/vimproc', {
     \    },
     \}
 NeoBundle 'Shougo/neocomplcache'
-NeoBundle 'Shougo/neocomplcache-snippets-complete'
+NeoBundle 'Shougo/neosnippet'
 NeoBundle 'Shougo/neobundle.vim'
 NeoBundle 'Shougo/vimfiler'
 NeoBundle 'Shougo/neocomplcache-clang'
@@ -385,7 +385,7 @@ let g:quickrun_config["cpp"] = {
 " < " http://d.hatena.ne.jp/osyo-manga/20120924/1348473304
 " < " ---- vim-watchdog --- : {{{
 
-" call watchdogs#setup(g:quickrun_config)
+call watchdogs#setup(g:quickrun_config)
 
 " }}}
 
