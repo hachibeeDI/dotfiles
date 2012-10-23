@@ -50,7 +50,10 @@ NeoBundle 'slimv.vim'
 " カッコいい言語のカッコをレインボーにする
 NeoBundle 'kien/rainbow_parentheses.vim'
 NeoBundle 'kchmck/vim-coffee-script'
+NeoBundle 'yuroyoro/vim-scala'
 NeoBundle 'scala.vim'
+" Play2のテンプレートとかのシンタックス
+NeoBundle 'gre/play2vim'
 
 NeoBundle 'mattn/sonictemplate-vim'
 NeoBundle 'Lokaltog/vim-powerline'
@@ -97,6 +100,11 @@ set linespace=3
 "set list
 "set listchars=tab:>-,trail:~,eol:.,extends:>,precedes:<,nbsp:%
 " tab:>-,trail:~,extends:》,precedes:《,nbsp:% 
+
+" enable modeline
+set modeline
+" number of readble lines
+set modelines=5
 
 set pastetoggle=<F10>
 
@@ -294,6 +302,7 @@ let g:neocomplcache_include_patterns = {
         \ }
 
 "Define dictonaru
+"scalaの設定は @yuroyoro 氏のプラギンのを拝借
 let g:neocomplcache_dictionary_filetype_lists={
         \ 'default':'',
         \ 'java':$HOME.'/.vim/dict/java.dict',
@@ -301,7 +310,8 @@ let g:neocomplcache_dictionary_filetype_lists={
         \ 'python':$HOME.'/.vim/dict/python.dict',
         \ 'vim':$HOME.'/.vim/dict/vim.dict',
         \ 'vimshell':$HOME.'/.vim/dict/vimshell.dict',
-        \ 'cpp':$HOME.'/.vim/dict/cpp.dict'
+        \ 'cpp':$HOME.'/.vim/dict/cpp.dict',
+        \ 'scala':$HOME.'/.vim/.bundle/vim-scala/dict/scala.dict'
     \}
 
 "============================================================
