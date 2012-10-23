@@ -1,4 +1,4 @@
-# vim:fdm=marker fmr=<<<,>>>:
+# vim: set fdm=marker fmr=<<<,>>> :
 
 # =======================================================
 #
@@ -9,9 +9,7 @@
 
 # ===== default autoloads =====
 # U option is disable to open alias, in loading functions.
-# Default Completement
-autoload -U compinit
-compinit -u
+
 ## Enable appoint color on name
 autoload -Uz colors
 colors
@@ -31,13 +29,27 @@ source ~/.zsh/.zrc.alias
 # load prompt
 source ~/.zsh/themes/hachibee.zsh-theme
 
-# ZLS_COLORSの意味って？ とりあえずみんな設定してるくさいからおれもする
-export ZLS_COLORS=$LS_COLORS
-
 # homeに自分で定義したLSCOLORがあれば、それで上書きする
 if [ -f ~/.dir_colors ]; then
     eval `dircolors ~/.dir_colors -b`
+else
+    source ~/.zsh/themes/lscolors.defult
 fi
+
+# OS ごとのfunction, プラグイン, fpathの読み込み <<<
+case "${OSTYPE}" in
+freebsd*|darwin*)
+source ~/.zsh/.zrc.mac
+    ;;
+linux*)
+source ~/.zsh/.zrc.linux
+    ;;
+cygwin*)
+source ~/.zsh/.zrc.cyg
+   ;;
+esac
+# ---- >>>
+
 
 ### Command Completemente<<<
 # setting completion's function path<<<
@@ -46,7 +58,16 @@ if [ -d /usr/local/share/zsh-completions ]; then
     fpath=(/usr/local/share/zsh-completions $fpath)
 fi
 autoload -U ~/.zsh/functions/Completion/*(:t)
+
+# Default Completement
+# fpathの変更はcompinitを実行する前に行わないと意味がないので注意！
+autoload -U compinit
+compinit -u
+
 #>>>
+
+# ZLS_COLORSの意味って？ とりあえずみんな設定してるくさいからおれもする
+export ZLS_COLORS=$LS_COLORS
 
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'
 zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
@@ -245,6 +266,15 @@ bindkey '^\[' cdup
 #       zstyle ':completion:*' completer _oldlist _complete
 #   fi
 #---->>>
+
+# --------
+# auto jump <<<
+# ------------------
+alias j="autojump"
+
+#読み込み部分は各OSごとのアレ部分
+
+#>>>
 
 # --------
 # complete sheet<<<
