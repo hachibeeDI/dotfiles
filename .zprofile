@@ -4,6 +4,8 @@
 #
 # ===========================================================
 
+# pathの設定は、スクリプト実行時のためにもzshenvに書くべき？
+#{{{
 #　PATH設定用の便利な記法
 ### -U : 重複したパスは登録しない
 #typeset -U path
@@ -13,24 +15,10 @@
 ###               globがマッチしなかったり存在しないパスを無視する。
 ###            -: シンボリックリンク先のパスを評価。
 ###            /: ディレクトリのみ残す。
-#path=(# システム用
-#      /bin(N-/)
-#      # 自分用
-#      $HOME/local/bin(N-/)
-#      # Debian GNU/Linux用
-#      /var/lib/gems/*/bin(N-/)
-#      # MacPorts用
-#      /opt/local/bin(N-/)
-#      # Solaris用
-#      /opt/csw/bin(N-/)
-#      /usr/sfw/bin(N-/)
-#      # Cygwin用
-#      /cygdrive/c/meadow/bin(N-/)
-#      # システム用
-#      /usr/local/bin(N-/)
-#      /usr/bin(N-/)
-#      /usr/games(N-/)) = true
 #
+
+#}}}
+
 # ====================== OS TYPE ============================
 
 # http://www.pochinet.org/linux2L003.htm
@@ -40,19 +28,32 @@ export LESS='-gj10 --no-init --quit-if-one-screen --RAW-CONTROL-CHARS'
 case "${OSTYPE}" in
 freebsd*|darwin*)
 # homebrew
-    export LESSOPEN='| /usr/local/bin/src-hilite-lesspipe.sh %s'
-    export ANDROID_SDK_ROOT="/usr/local/Cellar/android-sdk/r20.0.3"
+    source ~/.zsh/.zenv.mac
+    #export LESSOPEN='| /usr/local/bin/src-hilite-lesspipe.sh %s'
+    #export ANDROID_SDK_ROOT="/usr/local/Cellar/android-sdk/r20.0.3"
 
     # use coreutils from $homebrew that supply gnu style common commands.
-    export PATH="$(brew --prefix coreutils)/libexec/gnubin:$PATH"
+    #export PATH="$(brew --prefix coreutils)/libexec/gnubin:$PATH"
     ;;
 linux*)
+    #ディストリごとの分岐とか考えたい（debian-fedoraとか、あとarchはくせがあるらしい）
+    source ~/.zsh/.zenv.linux
     export LESSOPEN='| /usr/share/source-highlight/src-hilite-lesspipe.sh %s'
     ;;
 cygwin*)
-    export LESSOPEN='| /bin/src-hilite-lesspipe.sh %s'
+    source ~/.zsh/.zenv.cyg
+    #export LESSOPEN='| /bin/src-hilite-lesspipe.sh %s'
     ;;
 esac
+
+#これはただの補完用なのでzshrcの方がいいかも......
+## -x: export SUDO_PATHも一緒に行う。
+## -T: SUDO_PATHとsudo_pathを連動する。
+typeset -xT SUDO_PATH sudo_path
+## 重複したパスを登録しない。
+typeset -U sudo_path
+sudo_path=({,/usr/pkg,/usr/local,/usr}/sbin(N-/))
+
 
 # ====== common PATH ======={{{
 # lang

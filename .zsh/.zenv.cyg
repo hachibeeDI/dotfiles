@@ -1,0 +1,30 @@
+# vim:set filetype=zsh fdm=marker :
+
+echo 'setting up environment variables as Windows-specific ... ...'
+
+# -U : 重複したパスは登録しない
+typeset -U path
+# cygwin(apt-cyg)用の優先順位
+path=(
+    # aptのPythonは26なので、自分で入れたバイナリを優先させる
+    /cygdrive/c/Python27(N-/)
+    /cygdrive/c/Python27/Scripts(N-/)
+    #gitはmsys優先
+    $GIT_HOME/(N-/)
+    $GIT_HOME/cmd(N-/)
+    # apt-cyg は/usr/binの中に入る
+    /usr/bin(N-/)
+    /usr/local/bin(N-/)
+    /bin(N-/)
+    #binの中身はmsys優先にするとスペースとかパスとかでだるいことになるのでここ。問題出たら修正
+    $GIT_HOME/bin(N-/)
+    # 自分のスクリプトとか、自分でビルドしたやつとか
+    $HOME/bin(N-/)
+
+    #その他、gitとかはwindowsの環境変数設定のアレでやる……
+    $PATH
+    )
+
+export LESSOPEN='| /bin/src-hilite-lesspipe.sh %s'
+
+echo 'done'

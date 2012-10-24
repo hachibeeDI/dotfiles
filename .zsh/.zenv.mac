@@ -1,0 +1,45 @@
+# vim:set filetype=zsh fdm=marker
+#
+echo 'setting up environment variables as MacOSX ... ...'
+
+export BREW_PATH = `brew --prefix`
+
+# -U : 重複したパスは登録しない
+typeset -U path
+# homebrewとcoreutils優先の設定
+path=(
+    # 標準のツールとかもhomebrewで導入したのを優先させる
+    /usr/local/bin(N-/)
+    #デフォルトのコマンドをGNUコマンドで
+    $(brew --prefix coreutils)/libexec/gnubin(N-/)
+    /usr/bin(N-/)
+    /bin(N-/)
+    #sbin
+    /usr/local/sbin(N-/)
+    /usr/sbin(N-/)
+    /sbin(N-/)
+    # 自分のスクリプトとか、自分でビルドしたやつとか
+    $HOME/bin(N-/)
+    # MacOS規定のPATHを全てこちらで上書きにする？
+    # $PATH
+    )
+
+# set MacVim-kaoriya on default editor
+export EDITOR=/Applications/MacVim.app/Contents/MacOS/Vim
+
+export LESSOPEN='| /usr/local/bin/src-hilite-lesspipe.sh %s'
+export ANDROID_SDK_ROOT="/usr/local/Cellar/android-sdk/r20.0.3"
+
+##homebrew
+#export HOMEBREW_USE_CLANG =
+#export HOMEBREW_USE_GCC =
+#export HOMEBREW_USE_LLVM =
+##ビルド時のmakeジョブ数
+#export HOMEBREW_MAKE_JOBS =
+##パッケージインストール時に詳細を表示
+#export HOMEBREW_VERBOSE = 1
+##ソースのダウンロード時に詳細を表示
+#export HOMEBREW_USE_CLANG = 1
+
+echo 'done'
+
