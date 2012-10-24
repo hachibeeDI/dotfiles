@@ -2,6 +2,9 @@
 
 echo 'setting up environment variables as Windows-specific ... ...'
 
+#これやんないとcygwinが勝手にパーミッションを777にしたり共有属性ついたりして切れそうになる
+export CYGWIN='nodosfilewarning binmode nontsec nosmbntsec'
+
 # -U : 重複したパスは登録しない
 typeset -U path
 # cygwin(apt-cyg)用の優先順位
