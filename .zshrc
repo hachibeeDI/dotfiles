@@ -52,26 +52,27 @@ esac
 
 
 ### Command Completemente<<<
-# setting completion's function path<<<
-fpath=(~/.zsh/functions/Completion $fpath)
-if [ -d /usr/local/share/zsh-completions ]; then
-    fpath=(/usr/local/share/zsh-completions $fpath)
-fi
-autoload -U ~/.zsh/functions/Completion/*(:t)
-
 # Default Completement
 # fpathの変更はcompinitを実行する前に行わないと意味がないので注意！
-autoload -U compinit
-compinit -u
+autoload -U compinit; compinit
 
 #>>>
 
 # ZLS_COLORSの意味って？ とりあえずみんな設定してるくさいからおれもする
 export ZLS_COLORS=$LS_COLORS
 
-zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'
+## sudo時にはsudo用のパスも使う。
+zstyle ':completion:sudo:*' environ PATH="$SUDO_PATH:$PATH"
+
+#補完候補がないときは、より曖昧検索パワーを高める
+### r:|[._-]=*: 「.」「_」「-」の前にワイルドカード「*」があるものとして補完する。
+zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}  r:|[._-]=*'
 zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
 zstyle ':completion:*' use-cache true
+
+# 詳細な情報を使う。
+zstyle ':completion:*' verbose yes
+# 補完リストをグループ分けする
 zstyle ':completion:*' group-name ''
 zstyle ':completion:*:default' menu select=1
 # via cdd format

@@ -19,6 +19,29 @@
 
 #}}}
 
+# fpath設定
+#fpath=(`brew --prefix`/share/zsh/functions(N) `brew --prefix`/share/zsh/site-functions(N) $fpath)
+
+# setting completion's function path<<<
+fpath=(
+        #自作
+        $HOME/.zsh/functions/Completion(N-/)
+
+        #zsh-completions
+        /usr/local/share/zsh-completions(N-/)
+        /usr/local/share/zsh-completions/src(N-/)
+
+        #homebrew
+        /usr/local/share/zsh/functions(N-/)
+
+        #cygwin
+        /usr/share/zsh/4.3.12/functions(N-/)
+        $HOME/.autojump/functions(N-/)
+
+        $fpath
+        )
+#autoload -U ~/.zsh/functions/Completion/*(:t)
+
 # ====================== OS TYPE ============================
 
 # http://www.pochinet.org/linux2L003.htm

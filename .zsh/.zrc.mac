@@ -6,7 +6,6 @@ echo "load MacOSX's private settings ... ..."
 alias j="autojump"
 if [ -f `brew --prefix`/etc/autojump ]; then
     source `brew --prefix`/etc/autojump
-    fpath=(`brew --prefix`/share/zsh/functions(N) `brew --prefix`/share/zsh/site-functions(N) $fpath)
 fi
 
 echo "done."
