@@ -148,6 +148,8 @@ setopt hist_ignore_all_dups # if there are overlaps on histfile, delete the old 
 setopt hist_ignore_dups # disable to save histfile, if its overlaps on just before
 setopt hist_no_store
 setopt hist_reduce_blanks
+## 補完時にヒストリを自動的に展開する。
+setopt hist_expand
 setopt share_history
 # when use zsh on multiwindow, add on a history file
 setopt append_history
@@ -161,6 +163,15 @@ bindkey "^N" history-beginning-search-forward-end
 
 #>>>
 
+#クラックされた時に気がつける（かも) #{{{
+## 全てのユーザのログイン・ログアウトを監視する。
+watch="all"
+## ログイン時にはすぐに表示する。
+log
+#}}}
+
+## 実行したプロセスの消費時間が3秒以上かかったら自動的に消費時間の統計情報を表示する。
+REPORTTIME=3
 
 # spell checks on commandline
 # setopt corrent
@@ -168,24 +179,23 @@ bindkey "^N" history-beginning-search-forward-end
 # Ctrl-u  "delete" like windows
 bindkey '^U' backward-kill-line
 
+## Ctrl-h  delete fullword
+#bindkey "^h" backward-kill-word
 
-# Ctrl-h  delete fullword
-bindkey "^h" backward-kill-word
-
-# http://d.hatena.ne.jp/parasporospa/20061130
-# http://d.hatena.ne.jp/tkng/20100712/1278896396
-# エラーメッセージ本文出力に色付け{{{
-e_normal=`echo -e "¥033[0;30m"`
-e_RED=`echo -e "¥033[1;31m"`
-e_BLUE=`echo -e "¥033[1;36m"`
-
-function make() {
-    LANG=C command make "$@" 2>&1 | sed -e "s@[Ee]rror:.*@$e_RED&$e_normal@g" -e "s@cannot\sfind.*@$e_RED&$e_normal@g" -e "s@[Ww]arning:.*@$e_BLUE&$e_normal@g"
-}
-function cwaf() {
-    LANG=C command ./waf "$@" 2>&1 | sed -e "s@[Ee]rror:.*@$e_RED&$e_normal@g" -e "s@cannot\sfind.*@$e_RED&$e_normal@g" -e "s@[Ww]arning:.*@$e_BLUE&$e_normal@g"
-}
-#}}}
+## http://d.hatena.ne.jp/parasporospa/20061130
+## http://d.hatena.ne.jp/tkng/20100712/1278896396
+## エラーメッセージ本文出力に色付け{{{
+#e_normal=`echo -e "¥033[0;30m"`
+#e_RED=`echo -e "¥033[1;31m"`
+#e_BLUE=`echo -e "¥033[1;36m"`
+#
+#function make() {
+#    LANG=C command make "$@" 2>&1 | sed -e "s@[Ee]rror:.*@$e_RED&$e_normal@g" -e "s@cannot\sfind.*@$e_RED&$e_normal@g" -e "s@[Ww]arning:.*@$e_BLUE&$e_normal@g"
+#}
+#function cwaf() {
+#    LANG=C command ./waf "$@" 2>&1 | sed -e "s@[Ee]rror:.*@$e_RED&$e_normal@g" -e "s@cannot\sfind.*@$e_RED&$e_normal@g" -e "s@[Ww]arning:.*@$e_BLUE&$e_normal@g"
+#}
+##}}}
 
 # auto ls-command after cd
 # function chpwd() { ls }
