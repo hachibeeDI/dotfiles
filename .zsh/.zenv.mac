@@ -28,7 +28,13 @@ path=(
 # set MacVim-kaoriya on default editor
 export EDITOR=/Applications/MacVim.app/Contents/MacOS/Vim
 
-export LESSOPEN='| /usr/local/bin/src-hilite-lesspipe.sh %s'
+# 自分で作ったlesspipeがあればそっち。なければsource-highlight付属のlesspipeを使う。
+if [[ -f $HOME/bin/src-hilite-lesspipe.sh ]]; then
+    export LESSOPEN='| $HOME/bin/src-hilite-lesspipe.sh %s'
+else
+    export LESSOPEN='| /usr/local/bin/src-hilite-lesspipe.sh %s'
+fi
+
 export ANDROID_SDK_ROOT="/usr/local/Cellar/android-sdk/r20.0.3"
 
 ##homebrew
