@@ -52,11 +52,6 @@ case "${OSTYPE}" in
 freebsd*|darwin*)
 # homebrew
     source ~/.zsh/.zenv.mac
-    #export LESSOPEN='| /usr/local/bin/src-hilite-lesspipe.sh %s'
-    #export ANDROID_SDK_ROOT="/usr/local/Cellar/android-sdk/r20.0.3"
-
-    # use coreutils from $homebrew that supply gnu style common commands.
-    #export PATH="$(brew --prefix coreutils)/libexec/gnubin:$PATH"
     ;;
 linux*)
     #ディストリごとの分岐とか考えたい（debian-fedoraとか、あとarchはくせがあるらしい）
