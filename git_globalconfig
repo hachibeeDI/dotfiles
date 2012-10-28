@@ -1,5 +1,5 @@
 [user]
-    name = Daiki
+    name = OGURA_Daiki
     email = 8hachibee125@gmail.com
 [include]
     # ex-> github token ...
@@ -34,7 +34,7 @@
 
     #diff
     dm = diff master
-    dw = diff --color
+    dw = diff --color-words
     dca = diff --cached
     d1 = diff HEAD~
     d2 = diff HEAD~~

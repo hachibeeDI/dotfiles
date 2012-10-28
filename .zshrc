@@ -31,6 +31,7 @@ source ~/.zsh/themes/hachibee.zsh-theme
 
 # homeに自分で定義したLSCOLORがあれば、それで上書きする
 if [ -f ~/.dir_colors ]; then
+    echo 'use local .dir_colors'
     eval `dircolors ~/.dir_colors -b`
 else
     source ~/.zsh/themes/lscolors.defult
