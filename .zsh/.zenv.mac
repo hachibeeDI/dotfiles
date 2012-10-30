@@ -36,6 +36,10 @@ else
 fi
 
 export ANDROID_SDK_ROOT="/usr/local/Cellar/android-sdk/r20.0.3"
+# Cのリンク時のオプション. -Lはライブラリのパス. cairo用
+export LDFLAGS="-L/usr/local/opt/cairo/lib"
+# Cのプリプロセッサフラグ. cairo用 
+export CPPFLAGS="-I/usr/local/opt/cairo/include"
 
 ##homebrew
 #export HOMEBREW_USE_CLANG =
