@@ -1,6 +1,6 @@
 
 " commonsettings{{{
-set clipboard=
+set clipboard=unnamed,autoselect
 set showtabline=2  " タブを常に表示
 "set imdisable      " IMを無効化
 
@@ -27,7 +27,6 @@ endif
 " add register text on OS's clip boald
 set guioptions+=a
 
-"set clipboard=unnamed,autoselect
 set antialias
 "}}}
 
