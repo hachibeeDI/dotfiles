@@ -24,7 +24,6 @@ NeoBundle 'Shougo/vimfiler'
 NeoBundle 'Shougo/neocomplcache-clang'
 NeoBundle 'Shougo/vimshell'
 
-NeoBundle 'thinca/vim-quickrun'
 NeoBundle 'tpope/vim-fugitive'
 NeoBundle 'mileszs/ack.vim'
 "@Deprecated
@@ -33,6 +32,11 @@ NeoBundle 'scrooloose/syntastic'
 "Unite
 NeoBundle 'Shougo/unite.vim'
 NeoBundle 'h1mesuke/unite-outline'
+
+" compile and exec the code and pop result on Quickfix-window
+NeoBundle 'thinca/vim-quickrun'
+" get and read referece on vim
+NeoBundle 'thinca/vim-ref'
 
 NeoBundle 'altercation/vim-colors-solarized'
 
