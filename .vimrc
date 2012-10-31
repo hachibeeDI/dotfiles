@@ -272,6 +272,7 @@ let g:neocomplcache_min_syntax_length = 3
 let g:neocomplcache_enable_auto_select = 1
 "" search with camel case like Eclipse
 let g:neocomplcache_enable_camel_case_completion = 1
+" アンダーバーを区切りとした曖昧検索
 let g:neocomplcache_enable_underbar_completion = 1
 " Skip Heavy complete
 let g:NeoComplCache_EnableSkipCompletion=1
@@ -287,14 +288,17 @@ inoremap <expr><C-y> neocomplcache#close_popup()
 inoremap <expr><C-e> neocomplcache#cancel_popup()
 
 " FileType毎のOmni補完を設定
-autocmd FileType python     setlocal omnifunc=pythoncomplete#Complete
-autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
-autocmd FileType html       setlocal omnifunc=htmlcomplete#CompleteTags
-autocmd FileType css        setlocal omnifunc=csscomplete#CompleteCSS
-autocmd FileType xml        setlocal omnifunc=xmlcomplete#CompleteTags
-autocmd FileType php        setlocal omnifunc=phpcomplete#CompletePHP
-autocmd FileType c          setlocal omnifunc=ccomplete#Complete
-autocmd FileType ruby       setlocal omnifunc=rubycomplete#Complete
+augroup SetOmniCompletionSetting
+    autocmd!
+    autocmd FileType python     setlocal omnifunc=pythoncomplete#Complete
+    autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
+    autocmd FileType html       setlocal omnifunc=htmlcomplete#CompleteTags
+    autocmd FileType css        setlocal omnifunc=csscomplete#CompleteCSS
+    autocmd FileType xml        setlocal omnifunc=xmlcomplete#CompleteTags
+    autocmd FileType php        setlocal omnifunc=phpcomplete#CompletePHP
+    autocmd FileType c          setlocal omnifunc=ccomplete#Complete
+    autocmd FileType ruby       setlocal omnifunc=rubycomplete#Complete
+augroup END
 
 " ファイルを探す際、この値を末尾に追加してあるファイルも探す
 let g:neocomplcache_include_suffixes = {'c':'.h','cpp':'.h'}
@@ -323,6 +327,24 @@ let g:neocomplcache_dictionary_filetype_lists={
         \ 'scala':$HOME.'/.vim/.bundle/vim-scala/dict/scala.dict'
     \}
 
+""タグ補完
+""タグファイルの場所
+"augroup SetTagsFile
+"  autocmd!
+"  autocmd FileType php set tags=$HOME/.vim/tags/php.tags
+"augroup END
+
+"zencoding連携
+let g:use_zen_complete_tag = 1
+
+""キャッシュディレクトリの場所を指定
+""Macはramdiskを作る予定
+"if has('macunix')
+"    let g:neocomplcache_temporary_dir = '/Volumes/RamDisk/.neocon'
+"else
+"    let g:neocomplcache_temporary_dir = '/tmp/.neocon'
+"endif
+"
 "============================================================
 " ---- neosnippet : {{{
 
