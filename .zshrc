@@ -180,8 +180,6 @@ REPORTTIME=3
 # Ctrl-u  "delete" like windows
 bindkey '^U' backward-kill-line
 
-## Ctrl-h  delete fullword
-#bindkey "^h" backward-kill-word
 
 ## http://d.hatena.ne.jp/parasporospa/20061130
 ## http://d.hatena.ne.jp/tkng/20100712/1278896396
@@ -253,7 +251,9 @@ stck: $LBUFFER"
     zle push-line-or-edit
 }
 zle -N show_buffer_stack
-bindkey "^[q" show_buffer_stack # ^[ = ESC ?
+# ^[ = ESC
+bindkey "q" show_buffer_stack
+
 #>>>
 
 # ^ => cd ..<<<
@@ -263,9 +263,12 @@ function cdup() {
     zle reset-prompt
 }
 zle -N cdup
-bindkey '^\[' cdup
+# delete
+bindkey '[3~' cdup
+
 #>>>
-#
+
+
 # -------------
 #  source auto-fu.zsh(plugin)<<<
 #
@@ -332,6 +335,7 @@ gsd() {
 gsv() {
     local targfile;
     targfile=`git status -sb |grep -v "^#" | awk '{print$1="";print}' |grep -v "^$" | awk "NR==$1" | sed "s/\s//g"`
+    echo "edit $targfile"
     vim $targfile
 }
 #>>>
