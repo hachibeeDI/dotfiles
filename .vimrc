@@ -324,10 +324,24 @@ let g:neocomplcache_dictionary_filetype_lists={
     \}
 
 "============================================================
-" ---- neocomplcache-snippets-complete : {{{
-let g:neocomplcache_snippets_dir = '~/.vim/snippets'
-imap <C-k> <Plug>(neocomplcache_snippets_expand)
-smap <C-k> <Plug>(neocomplcache_snippets_expand)
+" ---- neosnippet : {{{
+
+" tell neosnippet about my snippets
+let g:neosnippet#snippets_directory = '~/.vim/snippets'
+" plugin key-mappings.
+imap <C-k> <Plug>(neosnippet_expand_or_jump)
+smap <C-k> <Plug>(neosnippet_expand_or_jump)
+xmap <C-k> <Plug>(neosnippet_expand_target)
+
+"" SuperTab Like snippets behavior
+"imap <expr><TAB> neosnippet#expandable() ? "\<Plug>(neosnippet_expand_or_jump)" :pumvisible() ? "\<C-n>" : "\<TAB>"
+"smap <expr><TAB> neosnippet#expandable() ? "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
+
+" for snippet_complete marker
+if has ('conceal')
+    set conceallevel=2 concealcursor=i
+endif
+
 "}}}
 
 "}}}
@@ -423,6 +437,7 @@ let g:netrw_alto = 1
 " ------------- VimFiler ------------------"
 "<C-u>は、Vimによって挿入される範囲指定を削除するためのもの
 "<CR>はキャリッジ・リターンを表すリテラルシーケンス
+"そして:VimFilerExplorerでいんじゃね感
 nnoremap <silent> ,vf :<C-u>VimFiler -buffer-name=explorer -split -winwidth=35 -toggle -no-quit<CR>
 "autocmd! FileType vimfiler call g:my_vimfiler_settings()
 "function! g:my_vimfiler_settings()
