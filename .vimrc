@@ -23,11 +23,16 @@ NeoBundle 'Shougo/neobundle.vim'
 NeoBundle 'Shougo/vimfiler'
 NeoBundle 'Shougo/neocomplcache-clang'
 NeoBundle 'Shougo/vimshell'
-NeoBundle 'Shougo/unite.vim'
+
 NeoBundle 'thinca/vim-quickrun'
 NeoBundle 'tpope/vim-fugitive'
 NeoBundle 'mileszs/ack.vim'
+"@Deprecated
 NeoBundle 'scrooloose/syntastic'
+
+"Unite
+NeoBundle 'Shougo/unite.vim'
+NeoBundle 'h1mesuke/unite-outline'
 
 NeoBundle 'altercation/vim-colors-solarized'
 
