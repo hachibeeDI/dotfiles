@@ -421,7 +421,9 @@ let g:netrw_altv = 1
 let g:netrw_alto = 1
 
 " ------------- VimFiler ------------------"
-noremap <C-q> :VimFiler -buffer-name=explorer -split -winwidth=45 -toggle -no-quit<Cr>
+"<C-u>は、Vimによって挿入される範囲指定を削除するためのもの
+"<CR>はキャリッジ・リターンを表すリテラルシーケンス
+nnoremap <silent> ,vf :<C-u>VimFiler -buffer-name=explorer -split -winwidth=35 -toggle -no-quit<CR>
 "autocmd! FileType vimfiler call g:my_vimfiler_settings()
 "function! g:my_vimfiler_settings()
 "    nmap <buffer><expr><Cr> vimfiler#smart_cursor_map
