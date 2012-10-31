@@ -352,8 +352,10 @@ let g:indent_guides_guide_size=1
 let g:indent_guides_start_level=2
 let g:indent_guides_color_change_percent=20
 "}}}
-" ---------Unite.vim---------
 
+"TODO UniteとVimfilerのdataは、Ramdiskを使うようにしよう
+" via: http://www.karakaram.com/vimfiler
+" ---------Unite.vim--------- {{{
 """ unite.vim
 " 入力モードで開始する
 let g:unite_enable_start_insert=1
@@ -384,6 +386,34 @@ au FileType unite inoremap <silent> <buffer> <expr> <C-l> unite#do_action('vspli
 " ESCキーを2回押すと終了する
 au FileType unite nnoremap <silent> <buffer> <ESC><ESC> q
 au FileType unite inoremap <silent> <buffer> <ESC><ESC> <ESC>q
+
+"}}}
+
+" ------------- VimFiler ------------------"{{{
+
+""---- netrw(default filer) ----
+"" set treeview
+"let g:netrw_liststyle = 3
+"" push 'v' open a pane on right side
+"let g:netrw_altv = 1
+"" push 'o' open a pane on under
+"let g:netrw_alto = 1
+
+" use Vimfiler as default instead of netrw
+let g:vimfiler_as_default_explorer =  1
+
+" 起動時セーフモードのonoff
+let g:vimfiler_safe_mode_by_default = 1
+
+"<C-u>は、Vimによって挿入される範囲指定を削除するためのもの
+"<CR>はキャリッジ・リターンを表すリテラルシーケンス
+"そして:VimFilerExplorerでいんじゃね感
+nnoremap <silent> ,vf :<C-u>VimFiler -buffer-name=explorer -split -winwidth=35 -toggle -no-quit<CR>
+"autocmd! FileType vimfiler call g:my_vimfiler_settings()
+"function! g:my_vimfiler_settings()
+"    nmap <buffer><expr><Cr> vimfiler#smart_cursor_map
+
+"}}}
 
 " --- quickrun -----{{{
 " url:http://d.hatena.ne.jp/osyo-manga/20111014/1318586711
@@ -425,24 +455,6 @@ let g:syntastic_mode_map = {'mode': 'active',
 let g:syntastic_auto_loc_list = 1
 
 "}}}
-
-"---- netrw(default filer) ----
-" set treeview
-let g:netrw_liststyle = 3
-" push 'v' open a pane on right side
-let g:netrw_altv = 1
-" push 'o' open a pane on under
-let g:netrw_alto = 1
-
-" ------------- VimFiler ------------------"
-"<C-u>は、Vimによって挿入される範囲指定を削除するためのもの
-"<CR>はキャリッジ・リターンを表すリテラルシーケンス
-"そして:VimFilerExplorerでいんじゃね感
-nnoremap <silent> ,vf :<C-u>VimFiler -buffer-name=explorer -split -winwidth=35 -toggle -no-quit<CR>
-"autocmd! FileType vimfiler call g:my_vimfiler_settings()
-"function! g:my_vimfiler_settings()
-"    nmap <buffer><expr><Cr> vimfiler#smart_cursor_map
-
 
 " ----- slimv.vim --------
 if has('mac')
