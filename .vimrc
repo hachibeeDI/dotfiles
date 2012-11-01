@@ -237,6 +237,10 @@ inoremap <C-k> <C-d>D
 inoremap <C-u> <C-o>d0
 inoremap <C-y> <C-o>P
 
+if has('path_extra')
+    set tags+=.tags;
+endif
+
 "command mode
 "inoremap <Backspace> <C-o>:
 "}}}
@@ -301,7 +305,7 @@ augroup SetOmniCompletionSetting
 augroup END
 
 " ファイルを探す際、この値を末尾に追加してあるファイルも探す
-let g:neocomplcache_include_suffixes = {'c':'.h','cpp':'.h'}
+let g:neocomplcache_include_suffixes = {'c' : '.h','cpp' : '.h'}
 
 " when define include, complete path for include header
 let g:neocomplcache_include_paths = {
@@ -337,14 +341,14 @@ let g:neocomplcache_dictionary_filetype_lists={
 "zencoding連携
 let g:use_zen_complete_tag = 1
 
-""キャッシュディレクトリの場所を指定
-""Macはramdiskを作る予定
-"if has('macunix')
-"    let g:neocomplcache_temporary_dir = '/Volumes/RamDisk/.neocon'
+"キャッシュディレクトリの場所を指定
+"Macはramdiskを作る予定
+if has('macunix')
+    let g:neocomplcache_temporary_dir = '/Volumes/.RamDisk/.neocon'
 "else
 "    let g:neocomplcache_temporary_dir = '/tmp/.neocon'
-"endif
-"
+endif
+
 "============================================================
 " ---- neosnippet : {{{
 
