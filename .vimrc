@@ -145,20 +145,6 @@ set previewheight=30
 " ---------------
 syntax on
 
-augroup MyAutoCmdFileType
-    autocmd! MyAutoCmdFileType
-    " VB.NET
-    autocmd BufRead,BufNewFile *.vb setlocal filetype=vbnet
-    " Scala
-    autocmd BufRead,BufNewFile *.scala setlocal filetype=scala
-    " markdown
-    autocmd BufRead,BufNewFile *.md setlocal filetype=markdown
-
-    autocmd FileType scheme :RainbowParenthesesToggle
-    autocmd FileType clojure :RainbowParenthesesToggle
-    autocmd FileType lisp :RainbowParenthesesToggle
-    
-augroup END
 "}}}
 
 "___________
@@ -201,16 +187,6 @@ match ZenkakuSpace /　/
 
 
 " }}}
-
-
-" ----- Syntax Settings -----------
-"" Java
-let java_highlight_all=1
-let java_space_errors=1
-let java_highlight_function=1
-"4debug highlight
-let java_highlight_debug=1
-
 
 " ======== Key Mapping ======== {{{
 " ---- nomal mode ----{{{
@@ -261,7 +237,6 @@ endif
 "-------------
 " plugin settings
 "---------------
-"
 
 " =======================================================
 " ------------ neocomplcache -----------------: {{{
