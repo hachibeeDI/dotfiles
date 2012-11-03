@@ -1,6 +1,5 @@
 
 " commonsettings{{{
-set clipboard=unnamed,autoselect
 set showtabline=2  " タブを常に表示
 "set imdisable      " IMを無効化
 
@@ -15,11 +14,13 @@ if has('mac')
 
 elseif has('win32')
     colorscheme desert
+    set clipboard=unnamed,autoselect
     set shell='C:/cygwin/bin/zsh.exe'
     set guifont=Osaka-Mono:h16
     set guioptions-=m
 elseif has('win64')
     colorscheme desert
+    set clipboard=unnamed,autoselect
     set shell='C:/cygwin/bin/zsh.exe'
     set guioptions-=m
 endif
