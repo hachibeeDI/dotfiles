@@ -151,6 +151,8 @@ augroup MyAutoCmdFileType
     autocmd BufRead,BufNewFile *.vb setlocal filetype=vbnet
     " Scala
     autocmd BufRead,BufNewFile *.scala setlocal filetype=scala
+    " markdown
+    autocmd BufRead,BufNewFile *.md setlocal filetype=markdown
 
     autocmd FileType scheme :RainbowParenthesesToggle
     autocmd FileType clojure :RainbowParenthesesToggle
