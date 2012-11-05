@@ -1,12 +1,14 @@
-# vim: set filetype=zsh :
+# vim:set filetype=zsh :
 
 #
 echo "load MacOSX's private settings ... ..."
 
 alias j="autojump"
-if [ -f `brew --prefix`/etc/autojump ]; then
-    source `brew --prefix`/etc/autojump
-fi
+#if [ -f `brew --prefix`/etc/autojump.sh ]; then
+#    source `brew --prefix`/etc/autojump
+#fi
+
+[[ -f `brew --prefix`/etc/autojump.sh ]] && . `brew --prefix`/etc/autojump.sh
 
 echo "done."
 
