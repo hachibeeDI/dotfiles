@@ -59,6 +59,7 @@ NeoBundle 'slimv.vim'
 " カッコいい言語のカッコをレインボーにする
 NeoBundle 'kien/rainbow_parentheses.vim'
 NeoBundle 'kchmck/vim-coffee-script'
+NeoBundle 'groenewege/vim-less'
 NeoBundle 'yuroyoro/vim-scala'
 NeoBundle 'scala.vim'
 " Play2のテンプレートとかのシンタックス
@@ -387,8 +388,8 @@ au FileType unite inoremap <silent> <buffer> <expr> <C-j> unite#do_action('split
 au FileType unite nnoremap <silent> <buffer> <expr> <C-l> unite#do_action('vsplit')
 au FileType unite inoremap <silent> <buffer> <expr> <C-l> unite#do_action('vsplit')
 " ESCキーを2回押すと終了する
-au FileType unite nnoremap <silent> <buffer> <ESC><ESC> q
-au FileType unite inoremap <silent> <buffer> <ESC><ESC> <ESC>q
+au FileType unite nnoremap <silent> <buffer> <esc><esc> <esc>:q<CR>
+au FileType unite inoremap <silent> <buffer> <esc><esc> <esc>:q<CR>
 
 "}}}
 
