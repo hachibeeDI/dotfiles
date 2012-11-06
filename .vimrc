@@ -32,12 +32,15 @@ NeoBundle 'scrooloose/syntastic'
 "Unite
 NeoBundle 'Shougo/unite.vim'
 NeoBundle 'h1mesuke/unite-outline'
+NeoBundle 'ujihisa/unite-colorscheme'
+NeoBundle 'ujihisa/unite-font'
 
 " compile and exec the code and pop result on Quickfix-window
 NeoBundle 'thinca/vim-quickrun'
 " get and read referece on vim
 NeoBundle 'thinca/vim-ref'
 
+NeoBundle 'Color-Sampler-Pack'
 NeoBundle 'altercation/vim-colors-solarized'
 
 NeoBundle 'git://github.com/vim-scripts/IndentAnything.git'
