@@ -199,10 +199,6 @@ nnoremap q: <NOP>
 nnoremap ; :
 nnoremap <Backspace> :%s/
 
-"move cursor
-nmap 1 ^
-nmap 9 $
-
 "}}}
 
 " ---- insert mode ---- {{{
