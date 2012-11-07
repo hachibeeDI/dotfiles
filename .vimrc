@@ -34,6 +34,7 @@ NeoBundle 'Shougo/unite.vim'
 NeoBundle 'h1mesuke/unite-outline'
 NeoBundle 'ujihisa/unite-colorscheme'
 NeoBundle 'ujihisa/unite-font'
+NeoBundle 'osyo-manga/unite-quickfix'
 
 " compile and exec the code and pop result on Quickfix-window
 NeoBundle 'thinca/vim-quickrun'
@@ -425,10 +426,21 @@ if !exists("g:quickrun_config")
     let g:quickrun_config={}
 endif
 
-" default
+" default via http://d.hatena.ne.jp/osyo-manga/20120919/1348054752
 let g:quickrun_config["_"] = {
-            \ 'outputter' : 'quickfix',
-            \ 'split' : 'rightbelow 10sp',
+            \ "hook/close_unite_quickfix/enable_hook_loaded" : 1,
+            \ "hook/unite_quickfix/enable_failure" : 1,
+            \ "hook/close_quickfix/enable_exit" : 1,
+            \ "hook/close_quickfix/enable_success" : 1,
+            \ "hook/close_buffer/enable_failure" : 1,
+            \ "hook/close_buffer/enable_empty_data" : 1,
+            \ "outputter" : "multi:buffer:quickfix",
+            \ "hook/shabadoubi_touch_henshin/enable" : 1,
+            \ "hook/shabadoubi_touch_henshin/wait" : 20,
+            \ "outputter/buffer/split" : ":botright 8sp",
+            \ "runner" : "vimproc",
+            \ "runner/vimproc/updatetime" : 40,
+            \
             \ }
 
 let g:quickrun_config["cpp"] = {
@@ -487,9 +499,9 @@ let g:rbpt_loadcmd_toggle = 0
 if has('win32')
     let g:vimproc_dll_path = $HOME."/vimfiles/autoload/proc.dll"
 elseif has('mac')
-    let g:vimproc_dll_path = $HOME."/.vim/autoload/vimproc_mac.so"
+    let g:vimproc_dll_path = $HOME."/.vim/.bundle/vimproc/autoload/vimproc_mac.so"
 else
-    let g:vimproc_dll_path = $HOME."/.vim/autoload/vimproc_unix.so"
+    let g:vimproc_dll_path = $HOME."/.vim/.bundle/vimproc/autoload/vimproc_unix.so"
     let g:ackprg="ack-grep -H --nocolor --nogroup --column"
 endif
 "}}}
