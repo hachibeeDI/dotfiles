@@ -1,4 +1,3 @@
-
 " commonsettings{{{
 set showtabline=2  " タブを常に表示
 "set imdisable      " IMを無効化
@@ -15,13 +14,16 @@ if has('mac')
 elseif has('win32')
     colorscheme desert
     set clipboard=unnamed,autoselect
-    set shell='C:/cygwin/bin/zsh.exe'
-    set guifont=Osaka-Mono:h16
+    "set shell='C:/cygwin/bin/zsh.exe'
+    set guifont=Source_Code_Pro:h11
+    set guifontwide=Migu_1M:h11
     set guioptions-=m
 elseif has('win64')
     colorscheme desert
     set clipboard=unnamed,autoselect
-    set shell='C:/cygwin/bin/zsh.exe'
+    "set shell='C:/cygwin/bin/zsh.exe'
+    set guifont=Source_Code_Pro:h11
+    set guifontwide=Migu_1M:h11
     set guioptions-=m
 endif
 
