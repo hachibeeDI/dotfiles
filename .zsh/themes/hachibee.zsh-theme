@@ -1,19 +1,22 @@
-# vim:setfiletype=zsh :
+# vim:set filetype=zsh :
 
 # -------- prompt setting ------------{{{
 nom_prom () {
-    local cmd_result="%(?. .%F{red}_ %f)"
+    local result_ok=$'\n''%F{cyan}CURRENT_DIR %F{green}===___ %F{cyan}[%~]'$'\n%F{cyan} ╹_╹✖  %F{red}:: %f'
+    local result_ng=$'\n''%F{cyan}CURRENT_DIR %F{red}===___ %F{cyan}[%~]'$'\n%F{cyan} Ծ‸Ծ✖  %F{red}||%f '
+
+    local uname_mname='%F{cyan}[%n@%m]%f'
     case ${UID} in
     # root
     0)
-        PROMPT="%B%{${fg[red]}%}%/#%{${reset_color}%}%b$cmd_result"
+        PROMPT="%F{red}root__%f %(?|${result_ok}|${result_ng})"
         PROMPT2="%B%{${fg[red]}%}%_#%{${reset_color}%}%b "
         SPROMPT="%{${fg[yellow]}%}correct: %R ->  %r [n,y,a,e]? %{${reset_color}%}"
         [ -n "${REMOTEHOST}${SSH_CONNECTION}" ] &&
             PROMPT="%{${fg[cyan]}%}$(echo ${HOST%%.*} | tr '[a-z]' '[A-Z]') ${PROMPT}"
         ;;
     *)
-        PROMPT="%{${fg[cyan]}%}[%n@%m]%{${reset_color}%}$cmd_result"
+        PROMPT="%(?|${result_ok}|${result_ng})"
         PROMPT2="%{${fg[red]}%}%_> %{${reset_color}%}"
         SPROMPT="%{${fg[yellow]}%}correct: %R ->  %r [n,y,a,e]? %{${reset_color}%}"
         [ -n "${REMOTEHOST}${SSH_CONNECTION}" ] &&
@@ -51,7 +54,7 @@ precmd () {
 
 # %1vとして指定すると、カラー指定が反映されなくなるので直接参照
 # [%~] == current dir, psvar[1] == vcs_info
-RPROMPT='%F{cyan}[%~]%f %1(v|$psvar[1]|)'
+RPROMPT='%1(v|$psvar[1]|)'
 
 
 # vim:set foldmethod=marker :
