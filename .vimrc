@@ -200,6 +200,7 @@ nnoremap q: <NOP>
 nnoremap ; :
 nnoremap <Backspace> :%s/
 
+nnoremap Y y$
 "}}}
 
 " ---- insert mode ---- {{{
