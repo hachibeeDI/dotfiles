@@ -321,9 +321,11 @@ let g:neocomplcache_dictionary_filetype_lists={
 let g:use_zen_complete_tag = 1
 
 "キャッシュディレクトリの場所を指定
-"Macはramdiskを作る予定
+"Linuxはどうしよう
 if has('macunix')
-    let g:neocomplcache_temporary_dir = '/Volumes/.RamDisk/.neocon'
+    let g:neocomplcache_temporary_dir = '/Volumes/RamDisk/.neocon'
+    let g:unite_data_directory = '/Volumes/RamDisk/.unite'
+    let g:vimfiler_data_directory = '/Volumes/RamDisk/.vimfiler'
 "else
 "    let g:neocomplcache_temporary_dir = '/tmp/.neocon'
 endif
