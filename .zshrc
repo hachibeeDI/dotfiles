@@ -62,6 +62,18 @@ autoload -U compinit; compinit
 # ZLS_COLORSの意味って？ とりあえずみんな設定してるくさいからおれもする
 export ZLS_COLORS=$LS_COLORS
 
+# 補完方法の設定 指定した順番に実行
+### _oldlist 前回の補完結果を再利用する。
+### _complete: fpath補完
+### _expand: globや変数の展開を行う
+### _match: globを展開しないで候補の一覧から補完する。
+### _history: ヒストリのコマンドも補完候補とする。
+### _ignored: 補完候補にださないと指定したものも補完候補とする。
+### _approximate: 似ている補完候補も補完候補とする。
+### _prefix: カーソル以降を無視してカーソル位置までで補完する。
+zstyle ':completion:*' completer \
+    _oldlist _complete _expand _match _history _ignored _approximate _prefix
+
 ## sudo時にはsudo用のパスも使う。
 zstyle ':completion:sudo:*' environ PATH="$SUDO_PATH:$PATH"
 
@@ -75,8 +87,8 @@ zstyle ':completion:*' use-cache true
 zstyle ':completion:*' verbose yes
 # 補完リストをグループ分けする
 zstyle ':completion:*' group-name ''
-zstyle ':completion:*:default' menu select=1
-# via cdd format
+zstyle ':completion:*:default' menu select=2
+# via cdd formaat
 zstyle ':completion:*:descriptions' format '%F{yellow}Completing %B%d%b%f'
 zstyle ':completion:*' list-separator '-->'
 
@@ -99,10 +111,12 @@ setopt auto_pushd
 setopt pushd_ignore_dups
 setopt NO_hup
 setopt ignore_eof
+# 明確に.指定なしで.から始まるファイル名を補完
+setopt globdots
 # use '#' as comment on commandloine
 setopt interactive_comments
 # コマンド実行後は右プロンプトを消す
-setopt transient_rprompt
+#setopt transient_rprompt
 # 右プロンプトがかぶったら消す(デフォルトONじゃね感)
 setopt promptcr
 # コマンドの終了コードが0以外の場合に表示
@@ -114,6 +128,8 @@ setopt complete_aliases
 setopt mark_dirs
 # カッコの対応なども補完
 setopt auto_param_keys
+# correct slash of a end of name of dir
+setopt auto_param_slash
 # ファイル名一覧を順次表示
 setopt always_last_prompt
 
