@@ -25,6 +25,9 @@ path=(
     # $PATH
     )
 
+MANPATH="$(brew --prefix coreutils)/libexec/gnuman:$MANPATH"
+export MANPATH
+
 # set MacVim-kaoriya on default editor
 export EDITOR=/Applications/MacVim.app/Contents/MacOS/Vim
 
@@ -35,7 +38,7 @@ else
     export LESSOPEN='| /usr/local/bin/src-hilite-lesspipe.sh %s'
 fi
 
-export ANDROID_SDK_ROOT="/usr/local/Cellar/android-sdk/r20.0.3"
+export ANDROID_SDK_ROOT="/usr/local/Cellar/android-sdk/r21"
 # Cのリンク時のオプション. -Lはライブラリのパス. cairo用
 export LDFLAGS="-L/usr/local/opt/cairo/lib"
 # Cのプリプロセッサフラグ. cairo用 
