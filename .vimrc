@@ -579,3 +579,12 @@ else
 endif
 "}}}
 
+" ------ TweetVim {{{
+let g:tweetvim_async_post = 1
+nnoremap <UP> <Plug>(tweetvim_action_page_next)
+nnoremap <Down> <Plug>(tweetvim_action_page_previous)
+
+nnoremap <silent> ,tv :<C-u>TweetVimHomeTimeline<CR>
+nnoremap <silent> ,tp :<C-u>TweetVimSay<CR>
+" }}}
+
