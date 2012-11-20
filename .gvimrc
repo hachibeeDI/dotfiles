@@ -12,7 +12,9 @@ if has('mac')
     colorscheme solarized
     set transparency=5 " 透明度を指定
     set guifont=RictyDiscord-Regular-Powerline:h20
+    set guifontwide=RictyDiscord-Regular-Powerline:h20
     set background=dark
+    set guioptions=C
 
 elseif has('win32')
     colorscheme desert
@@ -21,7 +23,7 @@ elseif has('win32')
     set guifont=Source_Code_Pro:h11
     set guifontwide=Migu_1M:h11
 
-    " windows-kaoriya only
+    " kaoriya only?
     set guioptions=C
 elseif has('win64')
     colorscheme desert
@@ -30,7 +32,7 @@ elseif has('win64')
     set guifont=Source_Code_Pro:h11
     set guifontwide=Migu_1M:h11
 
-    " windows-kaoriya only
+    " kaoriya only?
     set guioptions=C
 endif
 
