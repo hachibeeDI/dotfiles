@@ -6,7 +6,7 @@ map <silent> gw :macaction selectNextWindow:
 map <silent> gW :macaction selectPreviousWindow:
 
 nnoremap + :set transparency+=5<CR>
-nnoremap - :set transparency-=5<CR
+nnoremap - :set transparency-=5<CR>
 
 if has('mac')
     colorscheme solarized
