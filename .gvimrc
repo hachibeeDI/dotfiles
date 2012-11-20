@@ -5,6 +5,9 @@ set showtabline=2  " タブを常に表示
 map <silent> gw :macaction selectNextWindow:
 map <silent> gW :macaction selectPreviousWindow:
 
+nnoremap + :set transparency+=5<CR>
+nnoremap - :set transparency-=5<CR
+
 if has('mac')
     colorscheme solarized
     set transparency=5 " 透明度を指定
