@@ -84,6 +84,16 @@ NeoBundle 'osyo-manga/shabadou.vim'
 "watchdogs is required vimproc, quickrun, shabadou
 NeoBundle 'osyo-manga/vim-watchdogs'
 
+NeoBundle 'basyura/TweetVim'
+    \ , { 'depends' :
+    \       [ 'basyura/bitly.vim'
+    \       , 'basyura/twibill.vim'
+    \       , 'mattn/webapi-vim'
+    \       , 'tyru/open-browser.vim'
+    \       , 'Shougo/unite.vim'
+    \       , 'h1mesuke/unite-outline'
+    \       ]
+    \   }
 
 filetype plugin indent on
 filetype indent on
