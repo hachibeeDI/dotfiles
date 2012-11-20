@@ -68,6 +68,10 @@ NeoBundle 'yuroyoro/vim-scala'
 NeoBundle 'scala.vim'
 " Play2のテンプレートとかのシンタックス
 NeoBundle 'gre/play2vim'
+NeoBundle 'SQLUtilities'
+    \ , {'depends' :
+    \       ['Align.vim']
+    \   }
 
 NeoBundle 'mattn/sonictemplate-vim'
 NeoBundle 'Lokaltog/vim-powerline'
