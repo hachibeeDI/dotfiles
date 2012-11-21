@@ -250,6 +250,32 @@ endif
 "autocmd BufNewFile *.py 0r ~/.vim/templates/python.py
 ">>>
 
+" ---------
+"  Scripts
+"  ======================={{{
+
+" move current directory on the above of file is editing.
+" via: <http://vim-users.jp/2009/09/hack69/> {{{
+command! -nargs=? -complete=dir -bang CD  call s:ChangeCurrentDir('<args>', '<bang>') 
+function! s:ChangeCurrentDir(directory, bang)
+    if a:directory == ''
+        lcd %:p:h
+    else
+        execute 'lcd' . a:directory
+    endif
+
+    if a:bang == ''
+        pwd
+    endif
+endfunction
+
+" Change current directory.
+nnoremap <silent> <Space>cd :<C-u>CD<CR>
+" }}}
+"
+" ============= }}}
+
+
 "-------------
 " plugin settings
 "---------------
