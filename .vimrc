@@ -70,7 +70,7 @@ NeoBundle 'scala.vim'
 NeoBundle 'gre/play2vim'
 NeoBundle 'SQLUtilities'
     \ , {'depends' :
-    \       ['Align.vim']
+    \       ['vim-scripts/Align']
     \   }
 
 NeoBundle 'mattn/sonictemplate-vim'
