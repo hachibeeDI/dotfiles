@@ -70,7 +70,7 @@ NeoBundle 'scala.vim'
 NeoBundle 'gre/play2vim'
 NeoBundle 'SQLUtilities'
     \ , {'depends' :
-    \       ['Align.vim']
+    \       ['vim-scripts/Align']
     \   }
 
 NeoBundle 'mattn/sonictemplate-vim'
@@ -125,9 +125,8 @@ set foldmethod=marker
 
 set linespace=3
 " Tabや行末のスペースを表示させる
-"set list
-"set listchars=tab:>-,trail:~,eol:.,extends:>,precedes:<,nbsp:%
-" tab:>-,trail:~,extends:》,precedes:《,nbsp:% 
+set list
+set listchars=tab:>-,trail:~
 
 " enable modeline
 set modeline
@@ -515,7 +514,10 @@ function! g:my_preexec(cmdline, context)
   return a:cmdline
 endfunction
 
-nnoremap <silent> ,vp :VimShellPop<CR>
+nnoremap <silent> ,vp :<C-u>VimShellPop<CR>
+nnoremap <silent> ,cvp :<C-u>VimShellPop %:p:h<CR>
+nnoremap <silent> ,cvs :<C-u>VimShell %:p:h<CR>
+
 " }}}
 
 " --- quickrun -----{{{
