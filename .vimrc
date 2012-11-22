@@ -125,9 +125,8 @@ set foldmethod=marker
 
 set linespace=3
 " Tabや行末のスペースを表示させる
-"set list
-"set listchars=tab:>-,trail:~,eol:.,extends:>,precedes:<,nbsp:%
-" tab:>-,trail:~,extends:》,precedes:《,nbsp:% 
+set list
+set listchars=tab:>-,trail:~
 
 " enable modeline
 set modeline
