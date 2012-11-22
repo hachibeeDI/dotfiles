@@ -515,7 +515,10 @@ function! g:my_preexec(cmdline, context)
   return a:cmdline
 endfunction
 
-nnoremap <silent> ,vp :VimShellPop<CR>
+nnoremap <silent> ,vp :<C-u>VimShellPop<CR>
+nnoremap <silent> ,cvp :<C-u>VimShellPop %:p:h<CR>
+nnoremap <silent> ,cvs :<C-u>VimShell %:p:h<CR>
+
 " }}}
 
 " --- quickrun -----{{{
