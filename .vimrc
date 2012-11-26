@@ -128,6 +128,8 @@ set linespace=3
 set list
 set listchars=tab:>-,trail:~
 
+set cursorline
+
 " enable modeline
 set modeline
 " number of readble lines
