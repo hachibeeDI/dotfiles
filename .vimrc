@@ -24,6 +24,9 @@ NeoBundle 'Shougo/vimfiler'
 NeoBundle 'Shougo/neocomplcache-clang'
 NeoBundle 'Shougo/vimshell'
 
+" snipets for neosnippet's dirctory
+NeoBundle 'honza/snipmate-snippets'
+
 NeoBundle 'tpope/vim-fugitive'
 NeoBundle 'mileszs/ack.vim'
 "@Deprecated
@@ -373,7 +376,8 @@ endif
 " ---- neosnippet : {{{
 
 " tell neosnippet about my snippets
-let g:neosnippet#snippets_directory = '~/.vim/snippets'
+let g:neosnippet#snippets_directory = '~/.vim/snippets,~/.vim/.bundle/snipmate-snippets/snippets'
+
 " plugin key-mappings.
 imap <C-k> <Plug>(neosnippet_expand_or_jump)
 smap <C-k> <Plug>(neosnippet_expand_or_jump)
@@ -449,7 +453,7 @@ au FileType unite inoremap <silent> <buffer> <esc><esc> <esc>:q<CR>
 let g:vimfiler_as_default_explorer =  1
 
 " 起動時セーフモードのonoff
-let g:vimfiler_safe_mode_by_default = 1
+let g:vimfiler_safe_mode_by_default = 0
 
 "<C-u>は、Vimによって挿入される範囲指定を削除するためのもの
 "<CR>はキャリッジ・リターンを表すリテラルシーケンス
