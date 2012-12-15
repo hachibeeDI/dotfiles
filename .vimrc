@@ -260,7 +260,7 @@ endif
 
 " move current directory on the above of file is editing.
 " via: <http://vim-users.jp/2009/09/hack69/> {{{
-command! -nargs=? -complete=dir -bang CD  call s:ChangeCurrentDir('<args>', '<bang>') 
+command! -nargs=? -complete=dir -bang CD  call s:ChangeCurrentDir('<args>', '<bang>')
 function! s:ChangeCurrentDir(directory, bang)
     if a:directory == ''
         lcd %:p:h
@@ -276,6 +276,23 @@ endfunction
 " Change current directory.
 nnoremap <silent> <Space>cd :<C-u>CD<CR>
 " }}}
+
+" TODO あとでnohlとかいろいろfunction
+command! DeleteWhite :%s/\s*$//g
+
+
+" 指定したエンコードでファイルを開き直すためのエイリアス
+" TODO: Windows用にutf16も
+command! Cp932 edit ++enc=cp932
+command! Eucjp edit ++enc=euc-jp
+command! Iso2022jp edit ++enc=iso-2022-jp
+command! Utf8 edit ++enc=utf-8
+command! Jis Iso2022jp
+command! Sjis Cp932
+
+
+"
+"
 "
 " ============= }}}
 
