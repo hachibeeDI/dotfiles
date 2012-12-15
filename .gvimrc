@@ -11,8 +11,8 @@ nnoremap - :set transparency-=5<CR>
 if has('mac')
     colorscheme solarized
     set transparency=5 " 透明度を指定
-    set guifont=RictyDiscord-Regular-Powerline:h20
-    set guifontwide=RictyDiscord-Regular-Powerline:h20
+    set guifont=RictyDiscord-Regular-Powerline:h28
+    "set guifontwide=RictyDiscord-Regular-Powerline:h20
     set background=dark
     set guioptions=C
 
