@@ -1,4 +1,4 @@
-# vim: set fdm=marker fmr=<<<,>>> :
+# vim: set fdm=marker :
 
 # =======================================================
 #
@@ -297,6 +297,11 @@ bindkey '[3~' cdup
 #       zstyle ':completion:*' completer _oldlist _complete
 #   fi
 #---->>>
+
+# -- zsh syntax highlight ----{{{
+source ~/.zsh/modules/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+
+# }}}
 
 # --------
 # auto jump <<<
