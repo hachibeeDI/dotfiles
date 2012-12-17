@@ -8,56 +8,60 @@ endif
 
 syn case ignore
 
-syn keyword vbStatement AddHandler AddressOf Alias And
-syn keyword vbStatement AndAlso  Ansi As Assembly
-syn keyword vbStatement Auto ByRef
-syn keyword vbStatement ByVal Call Case Catch
-syn keyword vbStatement Class Const Continue Custom
-syn keyword vbStatement Declare Default
-syn keyword vbStatement Delegate Dim DirectCast Do
-syn keyword vbStatement Each Else ElseIf
-syn keyword vbStatement End Enum Erase Error
-syn keyword vbStatement Event Exit False Finally
-syn keyword vbStatement For Friend Function Get
-syn keyword vbStatement GoSub GoTo Handles
-syn keyword vbStatement If Implements Imports In
-syn keyword vbStatement Inherits Interface Is IsNot
-syn keyword vbStatement Let Lib Like
-syn keyword vbStatement Loop Me Mod Module
-syn keyword vbStatement MustInherit MustOverride MyBase MyClass
-syn keyword vbStatement Namespace New Next Not
-syn keyword vbStatement Nothing NotInheritable NotOverridable
-syn keyword vbStatement Of On Option Optional Or
-syn keyword vbStatement OrElse Overloads Overridable Overrides
-syn keyword vbStatement ParamArray Preserve Private Property
-syn keyword vbStatement Protected Public RaiseEvent ReadOnly
-syn keyword vbStatement ReDim RemoveHandler Resume
-syn keyword vbStatement Return Select Set Shadows
-syn keyword vbStatement Shared Static
-syn keyword vbStatement Step Stop Structure
-syn keyword vbStatement Sub SyncLock Then Throw
-syn keyword vbStatement To True Try TypeOf
-syn keyword vbStatement Unicode Until Using Variant When
-syn keyword vbStatement While With WithEvents WriteOnly
-syn keyword vbStatement Xor
+syn keyword vbStatement Auto Ansi Assembly Declare Lib
+syn keyword vbStatement Const Continue Custom
+syn keyword vbStatement Default
+syn keyword vbStatement Dim As DirectCast
+syn keyword vbStatement Event Error
+syn keyword vbStatement RaiseEvent
+syn keyword vbStatement Step Stop
+syn keyword vbStatement SyncLock
+syn keyword vbStatement TypeOf
+syn keyword vbStatement Unicode Variant When
 
 syn keyword vbTypes Boolean Byte Char Date Decimal Double
 syn keyword vbTypes Integer Long Object Short Single String
 syn keyword vbTypes UInteger ULong UShort SByte
+syn keyword vbTypes List Dictionary IEnumerable IObservable
 
-syn match vbOperator "[()+.,\-/*=&]"
+syn match vbOperator "[()+\-/*=&]"
 syn match vbOperator "[<>]=\="
 syn match vbOperator "<>"
 syn match vbOperator "\s\+_$"
-syn keyword vbOperator ByVal ByRef AddressOf GetType
-syn keyword vbFunction CBool CByte CChar CDate CDbl CDec CInt
-syn keyword vbFunction Clng CObj CSByte CShort CSng CStr
-syn keyword vbFunction CUInt CULng CUShort
-syn keyword vbFunction CType DirectCast GetType
+" {{{
+syn keyword vbStorage Delegate Namespace
+syn keyword vbTypeDef Class Interface
+syn match vbTypeDefEnd "End \(Class\|Interface\)$"
 
-syn keyword vbConst True False Nothing
+syn keyword vbStructure Structure Enum Module
+syn match vbStructureEnd "End \(Structure\|Enum\|Module\)$"
 
-syn keyword vbSpecial Me MyBase MyClass
+syn keyword vbRepeat For Each Return While Next To
+syn keyword vbConditional If Then Else ElseIf "Select Case" Case
+syn match vbConditionalEnd "End \(If\|Select\)$"
+
+syn keyword vbModifier Inherits Implements MustInherit MustOverride Const Overrides Overridable Overloads Readonly WriteOnly Shared NotInheritable NotOverridable Shadows
+syn keyword vbFunction Sub Function
+syn match vbFunction "End \(Function\|Sub\)$"
+
+syn keyword vbScopeDecl Private Protected Public Friend Using
+
+syn keyword vbSpecial MyBase MyClass Of Call
+syn keyword vbSugar With AddHandler AddressOf Alias WithEvents RemoveHandler Handles
+syn match vbDefAnonymous "New \(With$\|With {$\)"
+
+syn keyword vbProperty Property Get Set
+syn match vbPropertyEnd "^\s*End \(Get\|Set\|Property\)$"
+
+syn keyword vbKeyword ByVal ByRef GetType ParamArray On Option Optional Exit
+syn keyword vbException Try Catch Finally Throw
+syn keyword vbOperator New And Or AndAlso OrElse Is Not IsNot Like Mod
+syn keyword vbBoolean True False
+syn match vbDelimiter "\(,\|\.\|:\|{\|}\)"
+syn keyword vbDeprecated Do Until Loop Goto Redim GoSub Resume Erase Preserve
+"}}}
+
+syn keyword vbConst Me Nothing
 
 syn keyword vbTodo contained TODO
 
@@ -87,38 +91,68 @@ syn match vbPreCondit "^#End ExternalSource$"
 
 syn region vbPreCondit start="^#Const\s" end="$"
 
-syn region vbLineNumber	start="^\d" end="\s"
+syn region vbLineNumber  start="^\d" end="\s"
 
 syn match vbTypeSpecifier "[a-zA-Z0-9][\$%&!#]"ms=s+1
+
+
+"" xml literals {{{
+"syn match vbXmlTag "<[a-zA-Z]\_[^>]*/>" contains=vbXmlQuote,vbXmlEscape,vbXmlString
+"syn region vbXmlString start="\"" end="\"" contained
+"syn match vbXmlStart "<[a-zA-Z]\_[^>]*>" contained contains=vbXmlQuote,vbXmlEscape,vbXmlString
+"syn region vbXml start="<\([a-zA-Z]\_[^>]*\_[^/]\|[a-zA-Z]\)>" matchgroup=vbXmlStart end="</\_[^>]\+>" contains=vbXmlEscape,vbXmlQuote,vbXml,vbXmlStart,vbXmlComment
+"syn region vbXmlEscape matchgroup=vbXmlEscapeSpecial start="<%=" matchgroup=vbXmlEscapeSpecial end="%>" contained contains=TOP
+"syn match vbXmlQuote "&[^;]\+;" contained
+"syn match vbXmlComment "<!--\_[^>]*-->" contained
+"" }}}
 
 " Define the default highlighting.
 " For version 5.7 and earlier: only when not done already
 " For version 5.8 and later: only when an item doesn't have highlighting yet
-if version >= 508 || !exists("did_vb_syntax_inits")
-  if version < 508
-    let did_vb_syntax_inits = 1
-    command -nargs=+ HiLink hi link <args>
-  else
-    command -nargs=+ HiLink hi def link <args>
-  endif
+if version >= 508 || !exists("did_vbnet_syntax_inits")
+    let did_vbnet_syntax_inits = 1
 
-  HiLink vbLineNumber Comment
-  HiLink vbNumber Number
-  HiLink vbConst Constant
-  HiLink vbError Error
-  HiLink vbStatement Statement
-  HiLink vbString String
-  HiLink vbComment Comment
-  HiLink vbTodo Todo
-  HiLink vbFunction Identifier
-  HiLink vbMethods PreProc
-  HiLink vbPreCondit PreCondit
-  HiLink vbSpecial Special
-  HiLink vbTypeSpecifier Type
-  HiLink vbTypes Type
-  HiLink vbOperator Operator
+    hi link vbLineNumber Comment
+    hi link vbNumber Number
+    hi link vbConst Constant
+    hi link vbRepeat Repeat
+    hi link vbConditional Conditional
+    hi link vbConditionalEnd Conditional
+    hi link vbKeyword Keyword
+    hi link vbStorage StorageClass
+    hi link vbModifier vbStorage
+    hi link vbScopeDecl vbStorage
+    hi link vbTypeDef TypeDef
+    hi link vbTypeDefEnd TypeDef
+    hi link vbStructure Structure
+    hi link vbStructureEnd Structure
+    hi link vbError Error
+    hi link vbStatement Statement
+    hi link vbString String
+    hi link vbComment Comment
+    hi link vbTodo Todo
+    hi link vbFunction Function
+    hi link vbMethods PreProc
+    hi link vbPreCondit PreCondit
+    hi link vbSpecial Special
+    hi link vbSugar vbSpecial
+    hi link vbDefAnonymous vbSpecial
+    hi link vbProperty vbSugar
+    hi link vbPropertyEnd vbSugar
+    hi link vbTypeSpecifier Type
+    hi link vbTypes Type
+    hi link vbOperator Operator
+    hi link vbDelimiter Delimiter
+    hi link vbDeprecated Error
 
-  delcommand HiLink
+"    hi link vbXml String
+"    hi link vbXmlTag Include
+"    hi link vbXmlString String
+"    hi link vbXmlStart Include
+"    hi link vbXmlEscape Normal
+"    hi link vbXmlEscapeSpecial Special
+"    hi link vbXmlQuote Special
+"    hi link vbXmlComment Comment
 endif
 
 let b:match_words = '\<Namespace\>:\<End Namespace\>'
