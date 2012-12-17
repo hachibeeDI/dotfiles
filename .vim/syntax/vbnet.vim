@@ -1,5 +1,8 @@
 " Vim syntax file
-" Modified from the default syntax/vb.vim
+" Language   : VisualBasic.NET
+" Maintainers: OGURA Daiki
+" Last Change: 2012 12 17
+
 if version < 600
   syntax clear
 elseif exists("b:current_syntax")
@@ -8,169 +11,154 @@ endif
 
 syn case ignore
 
-syn keyword vbStatement Auto Ansi Assembly Declare Lib
-syn keyword vbStatement Const Continue Custom
-syn keyword vbStatement Default
-syn keyword vbStatement Dim As DirectCast
-syn keyword vbStatement Event Error
-syn keyword vbStatement RaiseEvent
-syn keyword vbStatement Step Stop
-syn keyword vbStatement SyncLock
-syn keyword vbStatement TypeOf
-syn keyword vbStatement Unicode Variant When
+syn keyword vbnetStatement Auto Ansi Assembly Declare Lib
+syn keyword vbnetStatement Const Continue Custom
+syn keyword vbnetStatement Dim As DirectCast
+syn keyword vbnetStatement Event Error
+syn keyword vbnetStatement RaiseEvent
+syn keyword vbnetStatement Step Stop
+syn keyword vbnetStatement SyncLock
+syn keyword vbnetStatement TypeOf
+syn keyword vbnetStatement Unicode Variant When
 
-syn keyword vbTypes Boolean Byte Char Date Decimal Double
-syn keyword vbTypes Integer Long Object Short Single String
-syn keyword vbTypes UInteger ULong UShort SByte
-syn keyword vbTypes List Dictionary IEnumerable IObservable
+syn keyword vbnetTypes Boolean Byte Char Date Decimal Double
+syn keyword vbnetTypes Integer Long Object Short Single String
+syn keyword vbnetTypes UInteger ULong UShort SByte
+syn keyword vbnetTypes List Dictionary IEnumerable IObservable Func Action
 
-syn match vbOperator "[()+\-/*=&]"
-syn match vbOperator "[<>]=\="
-syn match vbOperator "<>"
-syn match vbOperator "\s\+_$"
+syn match vbnetOperator "[()+\-/*=&]"
+syn match vbnetOperator "[<>]=\="
+syn match vbnetOperator "<>"
+syn match vbnetOperator "\s\+_$"
 " {{{
-syn keyword vbStorage Delegate Namespace
-syn keyword vbTypeDef Class Interface
-syn match vbTypeDefEnd "End \(Class\|Interface\)$"
+syn keyword vbnetStorage Delegate Namespace
+syn keyword vbnetTypeDef Class Interface
+syn match vbnetTypeDefEnd "End \(Class\|Interface\)$"
 
-syn keyword vbStructure Structure Enum Module
-syn match vbStructureEnd "End \(Structure\|Enum\|Module\)$"
+syn keyword vbnetStructure Structure Enum Module
+syn match vbnetStructureEnd "End \(Structure\|Enum\|Module\)$"
 
-syn keyword vbRepeat For Each Return While Next To
-syn keyword vbConditional If Then Else ElseIf "Select Case" Case
-syn match vbConditionalEnd "End \(If\|Select\)$"
+syn keyword vbnetRepeat For Each Return While Next To
+syn keyword vbnetConditional If Then Else ElseIf Case
+syn match vbnetConditionalEnd "End \(If\|Select\)$"
 
-syn keyword vbModifier Inherits Implements MustInherit MustOverride Const Overrides Overridable Overloads Readonly WriteOnly Shared NotInheritable NotOverridable Shadows
-syn keyword vbFunction Sub Function
-syn match vbFunction "End \(Function\|Sub\)$"
+syn keyword vbnetModifier Inherits Implements MustInherit MustOverride Const Overrides Overridable Overloads Readonly WriteOnly Shared NotInheritable NotOverridable Shadows
+syn keyword vbnetFunction Sub Function
+syn match vbnetFunction "End \(Function\|Sub\)$"
 
-syn keyword vbScopeDecl Private Protected Public Friend Using
+syn region vbnetAttribute start="^\s*<[a-zA-Z]" end=")>\s_$" contains=vbnetString
 
-syn keyword vbSpecial MyBase MyClass Of Call
-syn keyword vbSugar With AddHandler AddressOf Alias WithEvents RemoveHandler Handles
-syn match vbDefAnonymous "New \(With$\|With {$\)"
+syn keyword vbnetScopeDecl Private Protected Public Friend Using
 
-syn keyword vbProperty Property Get Set
-syn match vbPropertyEnd "^\s*End \(Get\|Set\|Property\)$"
+syn keyword vbnetSpecial Of Call
+syn keyword vbnetSugar With AddHandler AddressOf Alias WithEvents RemoveHandler Handles From
+syn match vbnetDefAnonymous "New \(With$\|With {$\)"
 
-syn keyword vbKeyword ByVal ByRef GetType ParamArray On Option Optional Exit
-syn keyword vbException Try Catch Finally Throw
-syn keyword vbOperator New And Or AndAlso OrElse Is Not IsNot Like Mod
-syn keyword vbBoolean True False
-syn match vbDelimiter "\(,\|\.\|:\|{\|}\)"
-syn keyword vbDeprecated Do Until Loop Goto Redim GoSub Resume Erase Preserve
+syn keyword vbnetProperty Property Get Set
+syn match vbnetPropertyEnd "^\s*End \(Get\|Set\|Property\)$"
+
+syn keyword vbnetKeyword ByVal ByRef GetType ParamArray On Option Optional Exit Imports
+syn keyword vbnetException Try Catch Finally Throw
+syn keyword vbnetOperator New And Or AndAlso OrElse Is Not IsNot Like Mod
+syn keyword vbnetBoolean True False
+syn match vbnetDelimiter "\(,\|\.\|:\|{\|}\|\s_$\)"
+syn keyword vbnetDeprecated Do Until Loop Goto Redim GoSub Resume Erase Preserve
 "}}}
 
-syn keyword vbConst Me Nothing
+syn keyword vbnetConst MyBase MyClass Me Nothing
 
-syn keyword vbTodo contained TODO
+syn keyword vbnetTodo contained TODO
 
 "integer number, or floating point number without a dot.
-syn match vbNumber "\<\d\+\>"
+syn match vbnetNumber "\<\d\+\>"
 "floating point number, with dot
-syn match vbNumber "\<\d\+\.\d*\>"
+syn match vbnetNumber "\<\d\+\.\d*\>"
 "floating point number, starting with a dot
-syn match vbNumber "\.\d\+\>"
+syn match vbnetNumber "\.\d\+\>"
 
 " String and Character contstants
-syn region vbString start=+"+ end=+"+
+syn region vbnetString start=+"+ end=+"+
 
-syn region vbComment start="\<REM\>" end="$" contains=vbTodo
-syn region vbComment start="'" end="$" contains=vbTodo
+syn region vbnetComment start="\<REM\>" end="$" contains=vbnetTodo
+syn region vbnetComment start="'" end="$" contains=vbnetTodo
 
-syn region vbPreCondit start="^#If\s" end="Then$"
-syn region vbPreCondit start="^#ElseIf\s" end="Then$"
-syn match vbPreCondit "^#Else$"
-syn match vbPreCondit "^#End If$"
+syn region vbnetPreCondit start="^#If\s" end="Then$"
+syn region vbnetPreCondit start="^#ElseIf\s" end="Then$"
+syn match vbnetPreCondit "^#Else$"
+syn match vbnetPreCondit "^#End If$"
 
-syn region vbPreCondit start="^#Region\s\+\"" end="\"$"
-syn match vbPreCondit "^#End Region$"
+syn region vbnetPreCondit start="^#Region\s\+\"" end="\"$"
+syn match vbnetPreCondit "^#End Region$"
 
-syn region vbPreCondit start="^#ExternalSource(" end=")$"
-syn match vbPreCondit "^#End ExternalSource$"
+syn region vbnetPreCondit start="^#ExternalSource(" end=")$"
+syn match vbnetPreCondit "^#End ExternalSource$"
 
-syn region vbPreCondit start="^#Const\s" end="$"
+syn region vbnetPreCondit start="^#Const\s" end="$"
 
-syn region vbLineNumber  start="^\d" end="\s"
+syn region vbnetLineNumber  start="^\d" end="\s"
 
-syn match vbTypeSpecifier "[a-zA-Z0-9][\$%&!#]"ms=s+1
+syn match vbnetTypeSpecifier "[a-zA-Z0-9][\$%&!#]"ms=s+1
 
 
 "" xml literals {{{
-"syn match vbXmlTag "<[a-zA-Z]\_[^>]*/>" contains=vbXmlQuote,vbXmlEscape,vbXmlString
-"syn region vbXmlString start="\"" end="\"" contained
-"syn match vbXmlStart "<[a-zA-Z]\_[^>]*>" contained contains=vbXmlQuote,vbXmlEscape,vbXmlString
-"syn region vbXml start="<\([a-zA-Z]\_[^>]*\_[^/]\|[a-zA-Z]\)>" matchgroup=vbXmlStart end="</\_[^>]\+>" contains=vbXmlEscape,vbXmlQuote,vbXml,vbXmlStart,vbXmlComment
-"syn region vbXmlEscape matchgroup=vbXmlEscapeSpecial start="<%=" matchgroup=vbXmlEscapeSpecial end="%>" contained contains=TOP
-"syn match vbXmlQuote "&[^;]\+;" contained
-"syn match vbXmlComment "<!--\_[^>]*-->" contained
+"syn match vbnetXmlTag "<[a-zA-Z]\_[^>]*/>" contains=vbnetXmlQuote,vbnetXmlEscape,vbnetXmlString
+"syn region vbnetXmlString start="\"" end="\"" contained
+"syn match vbnetXmlStart "<[a-zA-Z]\_[^>]*>" contained contains=vbnetXmlQuote,vbnetXmlEscape,vbnetXmlString
+"syn region vbnetXml start="<\([a-zA-Z]\_[^>]*\_[^/]\|[a-zA-Z]\)>" matchgroup=vbnetXmlStart end="</\_[^>]\+>" contains=vbnetXmlEscape,vbnetXmlQuote,vbnetXml,vbnetXmlStart,vbnetXmlComment
+"syn region vbnetXmlEscape matchgroup=vbnetXmlEscapeSpecial start="<%=" matchgroup=vbnetXmlEscapeSpecial end="%>" contained contains=TOP
+"syn match vbnetXmlQuote "&[^;]\+;" contained
+"syn match vbnetXmlComment "<!--\_[^>]*-->" contained
 "" }}}
 
 " Define the default highlighting.
 " For version 5.7 and earlier: only when not done already
 " For version 5.8 and later: only when an item doesn't have highlighting yet
-if version >= 508 || !exists("did_vbnet_syntax_inits")
+if version >= 508 || !exists("did_vbnet")
     let did_vbnet_syntax_inits = 1
 
-    hi link vbLineNumber Comment
-    hi link vbNumber Number
-    hi link vbConst Constant
-    hi link vbRepeat Repeat
-    hi link vbConditional Conditional
-    hi link vbConditionalEnd Conditional
-    hi link vbKeyword Keyword
-    hi link vbStorage StorageClass
-    hi link vbModifier vbStorage
-    hi link vbScopeDecl vbStorage
-    hi link vbTypeDef TypeDef
-    hi link vbTypeDefEnd TypeDef
-    hi link vbStructure Structure
-    hi link vbStructureEnd Structure
-    hi link vbError Error
-    hi link vbStatement Statement
-    hi link vbString String
-    hi link vbComment Comment
-    hi link vbTodo Todo
-    hi link vbFunction Function
-    hi link vbMethods PreProc
-    hi link vbPreCondit PreCondit
-    hi link vbSpecial Special
-    hi link vbSugar vbSpecial
-    hi link vbDefAnonymous vbSpecial
-    hi link vbProperty vbSugar
-    hi link vbPropertyEnd vbSugar
-    hi link vbTypeSpecifier Type
-    hi link vbTypes Type
-    hi link vbOperator Operator
-    hi link vbDelimiter Delimiter
-    hi link vbDeprecated Error
+    hi link vbnetLineNumber Comment
+    hi link vbnetNumber Number
+    hi link vbnetConst Constant
+    hi link vbnetRepeat Repeat
+    hi link vbnetConditional Conditional
+    hi link vbnetConditionalEnd Conditional
+    hi link vbnetKeyword Keyword
+    hi link vbnetAttribute PreProc
+    hi link vbnetStorage StorageClass
+    hi link vbnetModifier vbnetStorage
+    hi link vbnetScopeDecl vbnetStorage
+    hi link vbnetTypeDef TypeDef
+    hi link vbnetTypeDefEnd TypeDef
+    hi link vbnetStructure Structure
+    hi link vbnetStructureEnd Structure
+    hi link vbnetError Error
+    hi link vbnetStatement Statement
+    hi link vbnetString String
+    hi link vbnetComment Comment
+    hi link vbnetTodo Todo
+    hi link vbnetFunction Function
+    hi link vbnetMethods PreProc
+    hi link vbnetPreCondit PreCondit
+    hi link vbnetSpecial Special
+    hi link vbnetSugar vbnetSpecial
+    hi link vbnetDefAnonymous vbnetSpecial
+    hi link vbnetProperty vbnetSugar
+    hi link vbnetPropertyEnd vbnetSugar
+    hi link vbnetTypeSpecifier Type
+    hi link vbnetTypes Type
+    hi link vbnetOperator Operator
+    hi link vbnetDelimiter Delimiter
+    hi link vbnetDeprecated Error
 
-"    hi link vbXml String
-"    hi link vbXmlTag Include
-"    hi link vbXmlString String
-"    hi link vbXmlStart Include
-"    hi link vbXmlEscape Normal
-"    hi link vbXmlEscapeSpecial Special
-"    hi link vbXmlQuote Special
-"    hi link vbXmlComment Comment
+"    hi link vbnetXml String
+"    hi link vbnetXmlTag Include
+"    hi link vbnetXmlString String
+"    hi link vbnetXmlStart Include
+"    hi link vbnetXmlEscape Normal
+"    hi link vbnetXmlEscapeSpecial Special
+"    hi link vbnetXmlQuote Special
+"    hi link vbnetXmlComment Comment
 endif
 
-let b:match_words = '\<Namespace\>:\<End Namespace\>'
-      \ . ',\<Module\>:\<End Module\>'
-      \ . ',\<Class\>:\<End Class\>'
-      \ . ',\<Property\>:\<End Property\>'
-      \ . ',\<Enum\>:\<End Enum\>'
-      \ . ',\<Function\>:\<End Function\>'
-      \ . ',\<Sub\>:\<End Sub\>'
-      \ . ',\<Get\>:\<End Get\>'
-      \ . ',\<Set\>:\<End Set\>'
-      \ . ',\<Do\>:\<Loop\>'
-      \ . ',\<For\>:\<Next\>'
-      \ . ',\<While\>:\<End While\>'
-      \ . ',\<Select\>:\<End Select\>'
-      \ . ',\<Using\>:\<End Using\>'
-      \ . ',\<With\>:\<End With\>'
-      \ . ',\<SyncLock\>:\<End SyncLock\>'
-      \ . ',\<Try\>:\<End Try\>'
-      \ . ',\<If\>:\<End If\>'
 let b:current_syntax = "vbnet"
+
