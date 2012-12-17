@@ -117,7 +117,7 @@ set viminfo+=n~/.vimcache/viminfo
 
 " settings for infer encoding and formats
 set encoding=utf-8 "WindowsだとCygwin以外で問題でるかも? でも使わないので問題なし
-set fileencodings=utf-8,iso-2022-jp,cp932,sjis,euc-jp,default,latin
+set fileencodings=ucs-bom,utf-8,euc-jp,iso-2022-jp,cp932,utf-16,utf-16le
 set fileformats=unix,dos,mac
 
 " set fold line on {{{, }}}
