@@ -209,6 +209,8 @@ match ZenkakuSpace /　/
 "set laststatus=2
 "set statusline=%F%m%r%h%w\ [%L]\ %y%{'['.(&fenc!=''?&fenc:&enc).':'.&ff.']'}%r%m%=%c:%l/%L
 
+" ignore white space, show match lines,
+set diffopt=iwhite,filler
 
 " }}}
 
