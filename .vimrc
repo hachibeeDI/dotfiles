@@ -51,9 +51,9 @@ NeoBundle 'git://github.com/vim-scripts/IndentAnything.git'
 " === Language surpport === {{{
 " -- Python {{{
 " search invailed code with pyflakes
-NeoBundle 'kevinw/pyflakes-vim'
-NeoBundle 'davidhalter/jedi-vim'
-NeoBundle 'lambdalisue/vim-django-support'
+NeoBundleLazy 'kevinw/pyflakes-vim'
+NeoBundleLazy 'davidhalter/jedi-vim'
+NeoBundleLazy 'lambdalisue/vim-django-support'
 " }}}
 " -- JavaScript {{{
 NeoBundle 'pangloss/vim-javascript'
@@ -117,7 +117,14 @@ NeoBundle 'basyura/TweetVim'
     \   }
 
 filetype plugin indent on
-filetype indent on
+
+" Installation check.
+if neobundle#exists_not_installed_bundles()
+  echomsg 'Not installed bundles : ' .
+        \ string(neobundle#get_not_installed_bundle_names())
+  echomsg 'Please execute ":NeoBundleInstall" command.'
+  "finish
+endif
 "}}}
 
 "

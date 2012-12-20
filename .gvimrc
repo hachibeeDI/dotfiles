@@ -2,6 +2,11 @@
 set showtabline=2  " タブを常に表示
 "set imdisable      " IMを無効化
 
+NeoBundleSource 'Color-Sampler-Pack'
+NeoBundleSource 'altercation/vim-colors-solarized'
+NeoBundleSource 'ujihisa/unite-colorscheme'
+NeoBundleSource 'ujihisa/unite-font'
+
 map <silent> gw :macaction selectNextWindow:
 map <silent> gW :macaction selectPreviousWindow:
 
