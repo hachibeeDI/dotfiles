@@ -35,8 +35,6 @@ NeoBundle 'scrooloose/syntastic'
 "Unite
 NeoBundle 'Shougo/unite.vim'
 NeoBundle 'h1mesuke/unite-outline'
-NeoBundle 'ujihisa/unite-colorscheme'
-NeoBundle 'ujihisa/unite-font'
 NeoBundle 'osyo-manga/unite-quickfix'
 
 " compile and exec the code and pop result on Quickfix-window
@@ -44,38 +42,57 @@ NeoBundle 'thinca/vim-quickrun'
 " get and read referece on vim
 NeoBundle 'thinca/vim-ref'
 
-NeoBundle 'Color-Sampler-Pack'
-NeoBundle 'altercation/vim-colors-solarized'
-
-NeoBundle 'git://github.com/vim-scripts/IndentAnything.git'
-NeoBundle 'pangloss/vim-javascript'
-NeoBundle 'mattn/zencoding-vim'
-NeoBundle 'css_color.vim'
 NeoBundle 'tpope/vim-surround'
 
 "TDD plugin for vim
 NeoBundle 'reinh/vim-makegreen'
-"syntax hightlight for python, with pyflake
-"NeoBundle 'mitechie/pyflakes-pathogen'
+
+NeoBundle 'git://github.com/vim-scripts/IndentAnything.git'
+" === Language surpport === {{{
+" -- Python {{{
+" search invailed code with pyflakes
 NeoBundle 'kevinw/pyflakes-vim'
 NeoBundle 'davidhalter/jedi-vim'
 NeoBundle 'lambdalisue/vim-django-support'
-
-NeoBundle 'vim-scripts/java_getset.vim'
-" enable use slim on vim
+" }}}
+" -- JavaScript {{{
+NeoBundle 'pangloss/vim-javascript'
+" coffee
+NeoBundle 'kchmck/vim-coffee-script'
+" }}}
+" -- Scala {{{
+NeoBundle 'yuroyoro/vim-scala'
+" Play2のテンプレートとかのシンタックス
+NeoBundle 'gre/play2vim'
+" }}}
+" -- Lisp {{{
+" enable use slime on vim
 NeoBundle 'slimv.vim'
 " カッコいい言語のカッコをレインボーにする
 NeoBundle 'kien/rainbow_parentheses.vim'
-NeoBundle 'kchmck/vim-coffee-script'
+"}}}
+" -- Java {{{
+NeoBundle 'vim-scripts/java_getset.vim'
+
+" }}}
+" -- markup and style {{{
+NeoBundle 'mattn/zencoding-vim'
+NeoBundle 'css_color.vim'
 NeoBundle 'groenewege/vim-less'
-NeoBundle 'yuroyoro/vim-scala'
-NeoBundle 'scala.vim'
-" Play2のテンプレートとかのシンタックス
-NeoBundle 'gre/play2vim'
+" }}}
+" === }}}
 NeoBundle 'SQLUtilities'
     \ , {'depends' :
     \       ['vim-scripts/Align']
     \   }
+
+" == 4GVim {{{
+NeoBundle 'Color-Sampler-Pack'
+NeoBundle 'altercation/vim-colors-solarized'
+
+NeoBundle 'ujihisa/unite-colorscheme'
+NeoBundle 'ujihisa/unite-font'
+" }}}
 
 NeoBundle 'mattn/sonictemplate-vim'
 NeoBundle 'Lokaltog/vim-powerline'
