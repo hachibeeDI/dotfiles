@@ -56,8 +56,9 @@ NeoBundle 'tpope/vim-surround'
 "TDD plugin for vim
 NeoBundle 'reinh/vim-makegreen'
 "syntax hightlight for python, with pyflake
-NeoBundle 'mitechie/pyflakes-pathogen'
-NeoBundle 'vim-scripts/pythoncomplete'
+"NeoBundle 'mitechie/pyflakes-pathogen'
+NeoBundle 'kevinw/pyflakes-vim'
+NeoBundle 'davidhalter/jedi-vim'
 NeoBundle 'lambdalisue/vim-django-support'
 
 NeoBundle 'vim-scripts/java_getset.vim'
