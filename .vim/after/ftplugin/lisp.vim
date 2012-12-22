@@ -3,5 +3,8 @@ if exists('b:did_ftplugin_lisp')
 endif
 let b:did_ftplugin_lisp = 1
 
+
+NeoBundleSource rainbow_parentheses.vim
+
 autocmd FileType lisp :RainbowParenthesesToggle
 

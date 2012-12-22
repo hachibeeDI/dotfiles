@@ -3,5 +3,9 @@ if exists('b:did_ftplugin_clojure')
 endif
 let b:did_ftplugin_clojure = 1
 
-autocmd FileType clojure :RainbowParenthesesToggle
+
+NeoBundleSource rainbow_parentheses.vim
+NeoBundleSource slimv.vim
+
+RainbowParenthesesToggle
 

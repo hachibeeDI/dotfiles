@@ -9,3 +9,7 @@ setlocal shiftwidth=2
 
 "setlocal tags+=/Volumes/.RamDisk/tags/scala/scala.tags,/Volumes/.RamDisk/tags/scala/play20.tags
 
+
+NeoBundleSource vim-scala
+NeoBundleSource play2vim
+
