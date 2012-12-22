@@ -21,8 +21,6 @@ NeoBundle 'Shougo/neocomplcache'
 NeoBundle 'Shougo/neosnippet'
 NeoBundle 'Shougo/neobundle.vim'
 NeoBundle 'Shougo/vimfiler'
-NeoBundle 'Shougo/neocomplcache-clang'
-NeoBundle 'Shougo/vimshell'
 
 " snipets for neosnippet's dirctory
 NeoBundle 'honza/snipmate-snippets'
@@ -55,24 +53,30 @@ NeoBundleLazy 'kevinw/pyflakes-vim'
 NeoBundleLazy 'davidhalter/jedi-vim'
 NeoBundleLazy 'lambdalisue/vim-django-support'
 " }}}
+" -- C++ {{{
+" clang
+" C++11's syntax
+NeoBundleLazy 'vim-jp/cpp-vim'
+NeoBundleLazy 'Rip-Rip/clang_complete'
+" }}}
 " -- JavaScript {{{
-NeoBundle 'pangloss/vim-javascript'
+NeoBundleLazy 'pangloss/vim-javascript'
 " coffee
-NeoBundle 'kchmck/vim-coffee-script'
+NeoBundleLazy 'kchmck/vim-coffee-script'
 " }}}
 " -- Scala {{{
-NeoBundle 'yuroyoro/vim-scala'
+NeoBundleLazy 'yuroyoro/vim-scala'
 " Play2のテンプレートとかのシンタックス
-NeoBundle 'gre/play2vim'
+NeoBundleLazy 'gre/play2vim'
 " }}}
 " -- Lisp {{{
 " enable use slime on vim
-NeoBundle 'slimv.vim'
+" ここらへんおかしいのでアレ
+NeoBundleLazy 'slimv.vim'
 " カッコいい言語のカッコをレインボーにする
-NeoBundle 'kien/rainbow_parentheses.vim'
+NeoBundleLazy 'kien/rainbow_parentheses.vim'
 "}}}
 " -- Java {{{
-NeoBundle 'vim-scripts/java_getset.vim'
 
 " }}}
 " -- markup and style {{{
@@ -81,17 +85,17 @@ NeoBundle 'css_color.vim'
 NeoBundle 'groenewege/vim-less'
 " }}}
 " === }}}
-NeoBundle 'SQLUtilities'
+NeoBundleLazy 'SQLUtilities'
     \ , {'depends' :
     \       ['vim-scripts/Align']
     \   }
 
 " == 4GVim {{{
-NeoBundle 'Color-Sampler-Pack'
-NeoBundle 'altercation/vim-colors-solarized'
-
-NeoBundle 'ujihisa/unite-colorscheme'
-NeoBundle 'ujihisa/unite-font'
+NeoBundleLazy 'Shougo/vimshell'
+NeoBundleLazy 'Color-Sampler-Pack'
+NeoBundleLazy 'altercation/vim-colors-solarized'
+NeoBundleLazy 'ujihisa/unite-colorscheme'
+NeoBundleLazy 'ujihisa/unite-font'
 " }}}
 
 NeoBundle 'mattn/sonictemplate-vim'
@@ -361,7 +365,8 @@ inoremap <expr><C-e> neocomplcache#cancel_popup()
 " FileType毎のOmni補完を設定
 augroup SetOmniCompletionSetting
     autocmd!
-    autocmd FileType python     setlocal omnifunc=pythoncomplete#Complete
+" Jediと競合するのでいらない
+"    autocmd FileType python     setlocal omnifunc=pythoncomplete#Complete
     autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
     autocmd FileType html       setlocal omnifunc=htmlcomplete#CompleteTags
     autocmd FileType css        setlocal omnifunc=csscomplete#CompleteCSS
@@ -371,19 +376,32 @@ augroup SetOmniCompletionSetting
     autocmd FileType ruby       setlocal omnifunc=rubycomplete#Complete
 augroup END
 
-" ファイルを探す際、この値を末尾に追加してあるファイルも探す
-let g:neocomplcache_include_suffixes = {'c' : '.h','cpp' : '.h'}
+" Enable heavy omni completion, which require computational power and may stall the vim.
+if !exists('g:neocomplcache_omni_patterns')
+  let g:neocomplcache_omni_patterns = {}
+endif
+let g:neocomplcache_omni_patterns.ruby = '[^. *\t]\.\w*\|\h\w*::'
+"autocmd FileType ruby setlocal omnifunc=rubycomplete#Complete
+let g:neocomplcache_omni_patterns.php = '[^. \t]->\h\w*\|\h\w*::'
+let g:neocomplcache_omni_patterns.c = '\%(\.\|->\)\h\w*'
+let g:neocomplcache_omni_patterns.cpp = '\h\w*\%(\.\|->\)\h\w*\|\h\w*::'
 
-" when define include, complete path for include header
-let g:neocomplcache_include_paths = {
-            \ 'c' : '.,/usr/include',
-            \ 'cpp': '.,/usr/include/c++,/usr/include',
-        \ }
+" clang {{{
+" via - http://d.hatena.ne.jp/osyo-manga/20120911/1347354707
+" neocomplcache 側の設定
+let g:neocomplcache_force_overwrite_completefunc=1
 
-let g:neocomplcache_include_patterns = {
-            \ 'c':'^\s#\s*include',
-            \ 'cpp':'^\s#\s*include',
-        \ }
+if !exists("g:neocomplcache_force_omni_patterns")
+    let g:neocomplcache_force_omni_patterns = {}
+endif
+
+" omnifunc が呼び出される場合の正規表現パターンを設定しておく
+let g:neocomplcache_force_omni_patterns.cpp = '[^.[:digit:] *\t]\%(\.\|->\)\|::'
+
+" clang_complete 側の設定
+" clang_complete の自動呼び出しは必ず切っておく
+let g:clang_complete_auto=0
+" }}}
 
 "Define dictonaru
 "scalaの設定は @yuroyoro 氏のプラギンのを拝借
@@ -397,6 +415,7 @@ let g:neocomplcache_dictionary_filetype_lists={
         \ 'cpp':$HOME.'/.vim/dict/cpp.dict',
         \ 'scala':$HOME.'/.vim/.bundle/vim-scala/dict/scala.dict'
     \}
+
 
 ""タグ補完
 ""タグファイルの場所
@@ -449,7 +468,6 @@ let g:indent_guides_start_level=2
 let g:indent_guides_color_change_percent=20
 "}}}
 
-"TODO UniteとVimfilerのdataは、Ramdiskを使うようにしよう
 " via: http://www.karakaram.com/vimfiler
 " ---------Unite.vim--------- {{{
 """ unite.vim
@@ -499,7 +517,7 @@ au FileType unite inoremap <silent> <buffer> <esc><esc> <esc>:q<CR>
 let g:vimfiler_as_default_explorer =  1
 
 " 起動時セーフモードのonoff
-let g:vimfiler_safe_mode_by_default = 0
+let g:vimfiler_safe_mode_by_default = 1
 
 "<C-u>は、Vimによって挿入される範囲指定を削除するためのもの
 "<CR>はキャリッジ・リターンを表すリテラルシーケンス
@@ -508,67 +526,8 @@ nnoremap <silent> ,vf :<C-u>VimFiler -buffer-name=explorer -split -winwidth=35 -
 "autocmd! FileType vimfiler call g:my_vimfiler_settings()
 "function! g:my_vimfiler_settings()
 "    nmap <buffer><expr><Cr> vimfiler#smart_cursor_map
-
 "}}}
 
-"
-"--- VimShell ----------------{{{
-" This go along with vimshell doc's sample.
-" My purpose of using VimShell is lessen stress of Windows and its terrible terminal-emulator!
-
-if has('win32') || has('win64') 
-  " Display user name on Windows.
-  let g:vimshell_prompt = $USERNAME."% "
-else
-  " Display user name on Linux.
-  let g:vimshell_prompt = $USER."% "
-
-  call vimshell#set_execute_file('bmp,jpg,png,gif', 'gexe eog')
-  call vimshell#set_execute_file('mp3,m4a,ogg', 'gexe amarok')
-  let g:vimshell_execute_file_list['zip'] = 'zipinfo'
-  call vimshell#set_execute_file('tgz,gz', 'gzcat')
-  call vimshell#set_execute_file('tbz,bz2', 'bzcat')
-endif
-
-let g:vimshell_user_prompt = 'fnamemodify(getcwd(),":~")'
-" let g:vimshell_right_prompt = 'vimshell#vcs#info("(%s)-[%b]", "(%s)-[%b|%a]")'
-
-autocmd FileType vimshell
-\ call vimshell#altercmd#define('g', 'git')
-\| call vimshell#altercmd#define('i', 'iexe')
-\| call vimshell#altercmd#define('l', 'll')
-\| call vimshell#altercmd#define('ll', 'ls -l')
-\| call vimshell#hook#set('chpwd', ['g:my_chpwd'])
-\| call vimshell#hook#set('emptycmd', ['g:my_emptycmd'])
-\| call vimshell#hook#set('preprompt', ['g:my_preprompt'])
-\| call vimshell#hook#set('preexec', ['g:my_preexec'])
-
-function! g:my_chpwd(args, context)
-  call vimshell#execute('echo "===================== to be continued ==================>>"')
-endfunction
-function! g:my_emptycmd(cmdline, context)
-  call vimshell#execute('echo "emptycmd"')
-  return a:cmdline
-endfunction
-function! g:my_preprompt(args, context)
-  call vimshell#execute('echo "ズキュゥゥゥウウンッ！！ <-----------------------------------------------"')
-endfunction
-function! g:my_preexec(cmdline, context)
-  call vimshell#execute('echo "preexec"')
-
-  let l:args = vimproc#parser#split_args(a:cmdline)
-  if len(l:args) > 0 && l:args[0] ==# 'diff'
-    call vimshell#set_syntax('diff')
-  endif
-
-  return a:cmdline
-endfunction
-
-nnoremap <silent> ,vp :<C-u>VimShellPop<CR>
-nnoremap <silent> ,cvp :<C-u>VimShellPop %:p:h<CR>
-nnoremap <silent> ,cvs :<C-u>VimShell %:p:h<CR>
-
-" }}}
 
 " --- quickrun -----{{{
 " url:http://d.hatena.ne.jp/osyo-manga/20111014/1318586711
@@ -641,7 +600,25 @@ let g:hatena_user='hachibeechan'
 let g:Powerline_symbols = 'fancy'
 
 " ------ RainbowParentTheses
-let g:rbpt_max = 7
+let g:rbpt_colorpairs = [
+    \ ['brown',       'RoyalBlue3'],
+    \ ['Darkblue',    'SeaGreen3'],
+    \ ['darkgray',    'DarkOrchid3'],
+    \ ['darkgreen',   'firebrick3'],
+    \ ['darkcyan',    'RoyalBlue3'],
+    \ ['darkred',     'SeaGreen3'],
+    \ ['darkmagenta', 'DarkOrchid3'],
+    \ ['brown',       'firebrick3'],
+    \ ['gray',        'RoyalBlue3'],
+    \ ['black',       'SeaGreen3'],
+    \ ['darkmagenta', 'DarkOrchid3'],
+    \ ['Darkblue',    'firebrick3'],
+    \ ['darkgreen',   'RoyalBlue3'],
+    \ ['darkcyan',    'SeaGreen3'],
+    \ ['darkred',     'DarkOrchid3'],
+    \ ['red',         'firebrick3'],
+    \ ]
+let g:rbpt_max = 15
 let g:rbpt_loadcmd_toggle = 0
 
 "--- ack.vim procとか ---  {{{
