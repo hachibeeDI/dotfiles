@@ -13,6 +13,7 @@ syn case ignore
 
 syn keyword vbnetStatement Auto Ansi Assembly Declare Lib
 syn keyword vbnetStatement Const Continue Custom
+syn keyword vbnetStatement Default
 syn keyword vbnetStatement Dim As DirectCast
 syn keyword vbnetStatement Event Error
 syn keyword vbnetStatement RaiseEvent
@@ -40,13 +41,12 @@ syn match vbnetStructureEnd "End \(Structure\|Enum\|Module\)$"
 
 syn keyword vbnetRepeat For Each Return While Next To
 syn keyword vbnetConditional If Then Else ElseIf Case
+syn match vbnetConditional "^\s+Select Case"
 syn match vbnetConditionalEnd "End \(If\|Select\)$"
 
 syn keyword vbnetModifier Inherits Implements MustInherit MustOverride Const Overrides Overridable Overloads Readonly WriteOnly Shared NotInheritable NotOverridable Shadows
 syn keyword vbnetFunction Sub Function
-syn match vbnetFunction "End \(Function\|Sub\)$"
-
-syn region vbnetAttribute start="^\s*<[a-zA-Z]" end=")>\s_$" contains=vbnetString
+syn match vbnetFunction "End \(Function\|Sub\)"
 
 syn keyword vbnetScopeDecl Private Protected Public Friend Using
 
@@ -59,10 +59,11 @@ syn match vbnetPropertyEnd "^\s*End \(Get\|Set\|Property\)$"
 
 syn keyword vbnetKeyword ByVal ByRef GetType ParamArray On Option Optional Exit Imports
 syn keyword vbnetException Try Catch Finally Throw
+syn match vbnetException "End Try"
 syn keyword vbnetOperator New And Or AndAlso OrElse Is Not IsNot Like Mod
 syn keyword vbnetBoolean True False
 syn match vbnetDelimiter "\(,\|\.\|:\|{\|}\|\s_$\)"
-syn keyword vbnetDeprecated Do Until Loop Goto Redim GoSub Resume Erase Preserve
+syn keyword vbnetDeprecated Do Until Loop Goto Redim GoSub Resume Erase Preserve IIF
 "}}}
 
 syn keyword vbnetConst MyBase MyClass Me Nothing
@@ -95,12 +96,12 @@ syn match vbnetPreCondit "^#End ExternalSource$"
 
 syn region vbnetPreCondit start="^#Const\s" end="$"
 
-syn region vbnetLineNumber  start="^\d" end="\s"
+syn region vbnetLineNumber start="^\d" end="\s"
 
 syn match vbnetTypeSpecifier "[a-zA-Z0-9][\$%&!#]"ms=s+1
 
 
-"" xml literals {{{
+" xml literals {{{
 "syn match vbnetXmlTag "<[a-zA-Z]\_[^>]*/>" contains=vbnetXmlQuote,vbnetXmlEscape,vbnetXmlString
 "syn region vbnetXmlString start="\"" end="\"" contained
 "syn match vbnetXmlStart "<[a-zA-Z]\_[^>]*>" contained contains=vbnetXmlQuote,vbnetXmlEscape,vbnetXmlString
@@ -109,6 +110,9 @@ syn match vbnetTypeSpecifier "[a-zA-Z0-9][\$%&!#]"ms=s+1
 "syn match vbnetXmlQuote "&[^;]\+;" contained
 "syn match vbnetXmlComment "<!--\_[^>]*-->" contained
 "" }}}
+
+
+syn region vbnetAttribute start="^\s*<[a-zA-Z]" end=">" contains=vbnetString
 
 " Define the default highlighting.
 " For version 5.7 and earlier: only when not done already
@@ -119,10 +123,12 @@ if version >= 508 || !exists("did_vbnet")
     hi link vbnetLineNumber Comment
     hi link vbnetNumber Number
     hi link vbnetConst Constant
+    hi link vbnetBoolean Boolean
     hi link vbnetRepeat Repeat
     hi link vbnetConditional Conditional
     hi link vbnetConditionalEnd Conditional
     hi link vbnetKeyword Keyword
+    hi link vbnetException Exception
     hi link vbnetAttribute PreProc
     hi link vbnetStorage StorageClass
     hi link vbnetModifier vbnetStorage
@@ -160,5 +166,23 @@ if version >= 508 || !exists("did_vbnet")
 "    hi link vbnetXmlComment Comment
 endif
 
-let b:current_syntax = "vbnet"
+let b:match_words = '\<Namespace\>:\<End Namespace\>'
+      \ . ',\<Module\>:\<End Module\>'
+      \ . ',\<Class\>:\<End Class\>'
+      \ . ',\<Property\>:\<End Property\>'
+      \ . ',\<Enum\>:\<End Enum\>'
+      \ . ',\<Function\>:\<End Function\>'
+      \ . ',\<Sub\>:\<End Sub\>'
+      \ . ',\<Get\>:\<End Get\>'
+      \ . ',\<Set\>:\<End Set\>'
+      \ . ',\<Do\>:\<Loop\>'
+      \ . ',\<For\>:\<Next\>'
+      \ . ',\<While\>:\<End While\>'
+      \ . ',\<Select\>:\<End Select\>'
+      \ . ',\<Using\>:\<End Using\>'
+      \ . ',\<With\>:\<End With\>'
+      \ . ',\<SyncLock\>:\<End SyncLock\>'
+      \ . ',\<Try\>:\<End Try\>'
+      \ . ',\<If\>:\<End If\>'
 
+let b:current_syntax = "vbnet"
