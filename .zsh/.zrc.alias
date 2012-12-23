@@ -19,7 +19,7 @@ alias ls='ls --color=auto -AF'
 alias rm='rm --interactive=once'
 alias cp='cp --interactive'
 alias mv='mv --interactive'
- 
+
 # ====================== OS specific ===========================
 case "${OSTYPE}" in
 freebsd*|darwin*)

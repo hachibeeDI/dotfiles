@@ -46,6 +46,7 @@ NeoBundle 'tpope/vim-surround'
 NeoBundle 'reinh/vim-makegreen'
 
 NeoBundle 'git://github.com/vim-scripts/IndentAnything.git'
+NeoBundleLazy 'nathanaelkane/vim-indent-guides'
 " === Language surpport === {{{
 " -- Python {{{
 " search invailed code with pyflakes
@@ -72,7 +73,8 @@ NeoBundleLazy 'gre/play2vim'
 " -- Lisp {{{
 " enable use slime on vim
 " ここらへんおかしいのでアレ
-NeoBundleLazy 'slimv.vim'
+"NeoBundleLazy 'slimv.vim' なぜか最新版が入らないのでbitbucketからとってくる
+NeoBundleLazy 'https://bitbucket.org/kovisoft/slimv'
 " カッコいい言語のカッコをレインボーにする
 NeoBundleLazy 'kien/rainbow_parentheses.vim'
 "}}}
@@ -313,20 +315,16 @@ command! DeleteWhite :%s/\s*$//g
 
 
 " 指定したエンコードでファイルを開き直すためのエイリアス
-" TODO: Windows用にutf16も
-command! Cp932 edit ++enc=cp932
-command! Eucjp edit ++enc=euc-jp
-command! Iso2022jp edit ++enc=iso-2022-jp
 command! Utf8 edit ++enc=utf-8
-command! Jis Iso2022jp
+command! Cp932 edit ++enc=cp932
 command! Sjis Cp932
-
-
-"
-"
+command! Utf16b edit ++enc=utf-16
+command! Utf16l edit ++enc=utf-16le
+command! Iso2022jp edit ++enc=iso-2022-jp
+command! Jis Iso2022jp
+command! Eucjp edit ++enc=euc-jp
 "
 " ============= }}}
-
 
 "-------------
 " plugin settings
@@ -459,6 +457,9 @@ endif
 
 "}}}
 
+
+
+
 "}}}
 
 " vim-indentguides ------------{{{
@@ -504,20 +505,21 @@ au FileType unite inoremap <silent> <buffer> <esc><esc> <esc>:q<CR>
 "}}}
 
 " ------------- VimFiler ------------------"{{{
-
-""---- netrw(default filer) ----
-"" set treeview
-"let g:netrw_liststyle = 3
-"" push 'v' open a pane on right side
-"let g:netrw_altv = 1
-"" push 'o' open a pane on under
-"let g:netrw_alto = 1
-
 " use Vimfiler as default instead of netrw
 let g:vimfiler_as_default_explorer =  1
-
-" 起動時セーフモードのonoff
+" Enable file operation commands.
 let g:vimfiler_safe_mode_by_default = 1
+" Edit file by tabedit.
+let g:vimfiler_edit_action = 'tabopen'
+" Like Textmate icons.
+let g:vimfiler_tree_leaf_icon = ' '
+let g:vimfiler_tree_opened_icon = '▾'
+let g:vimfiler_tree_closed_icon = '▸'
+let g:vimfiler_file_icon = '-'
+let g:vimfiler_marked_file_icon = '*'
+" Use trashbox.
+" Windows only and require latest vimproc.
+"let g:unite_kind_file_use_trashbox = 1
 
 "<C-u>は、Vimによって挿入される範囲指定を削除するためのもの
 "<CR>はキャリッジ・リターンを表すリテラルシーケンス
