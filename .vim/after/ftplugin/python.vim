@@ -6,4 +6,5 @@ let b:did_ftplugin_python = 1
 NeoBundleSource pyflakes-vim
 NeoBundleSource jedi-vim
 NeoBundleSource vim-django-support
+NeoBundleSource vim-indent-guides
 
