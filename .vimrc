@@ -625,7 +625,7 @@ let g:rbpt_loadcmd_toggle = 0
 "そろそろ限界…今後はOSごとに別ファイルでやったほうがよいかも
 "for debian /ubuntu
 if has('win32')
-    let g:vimproc_dll_path = $HOME."/vimfiles/autoload/proc.dll"
+    let g:vimproc_dll_path = $HOME."/vimfiles/autoload/vimproc_win32.dll"
 elseif has('mac')
     let g:vimproc_dll_path = $HOME."/.vim/.bundle/vimproc/autoload/vimproc_mac.so"
 else
@@ -642,4 +642,3 @@ nnoremap <Down> <Plug>(tweetvim_action_page_previous)
 nnoremap <silent> ,tv :<C-u>TweetVimHomeTimeline<CR>
 nnoremap <silent> ,tp :<C-u>TweetVimSay<CR>
 " }}}
-
