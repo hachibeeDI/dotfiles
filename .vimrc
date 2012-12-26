@@ -135,7 +135,8 @@ endif
 " common settings
 "
 "
-set vb t_vb=
+set visualbell t_vb=
+set virtualedit block
 
 " have to set, before setting colorscheme-command
 set t_Co=256
