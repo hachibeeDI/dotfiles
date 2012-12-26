@@ -637,6 +637,10 @@ endif
 
 " ------ TweetVim {{{
 let g:tweetvim_async_post = 1
+g:tweetvim_tweet_per_page = 20
+g:tweetvim_cache_size = 30
+"g:tweetvim_footer = ''
+g:tweetvim_say_insert_account = 1
 nnoremap <UP> <Plug>(tweetvim_action_page_next)
 nnoremap <Down> <Plug>(tweetvim_action_page_previous)
 
