@@ -109,9 +109,13 @@ NeoBundle 'mattn/gist-vim'
 NeoBundle 'mattn/webapi-vim'
 NeoBundle 'motemen/hatena-vim'
 
-NeoBundle 'osyo-manga/shabadou.vim'
-"watchdogs is required vimproc, quickrun, shabadou
 NeoBundle 'osyo-manga/vim-watchdogs'
+    \ , { 'depends' :
+    \       [ 'Shougo/vimproc'
+    \       , 'thinca/vim-quickrun'
+    \       , 'osyo-manga/shabadou.vim'
+    \       ]
+    \   }
 
 NeoBundle 'basyura/TweetVim'
     \ , { 'depends' :
@@ -673,5 +677,6 @@ nnoremap <UP> <Plug>(tweetvim_action_page_next)
 nnoremap <Down> <Plug>(tweetvim_action_page_previous)
 
 nnoremap <silent> ,tv :<C-u>TweetVimHomeTimeline<CR>
+nnoremap <silent> ,tm :<C-u>TweetVimMentions<CR>
 nnoremap <silent> ,tp :<C-u>TweetVimSay<CR>
 " }}}
