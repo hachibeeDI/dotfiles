@@ -315,6 +315,17 @@ function! s:DeleteTrailingSpaces()
     nohl
 endfunction
 
+command! TabExpand call s:Tab2Space()
+function! s:Tab2Space()
+    "ts=tabの見た目上の幅, softtabstop=expandtab::enableのときにTabを押した時に挿入される空白の量
+    let l:ts_value = &tabstop
+    let l:tmp_space = ' '
+    for i in range(0, ts_value)
+        let l:tmp_space = tmp_space.' '
+    endfor
+    execute '%s/\t/'.tmp_space.'/g'
+endfunction
+
 " 指定したエンコードでファイルを開き直すためのエイリアス
 " TODO: Windows用にutf16も
 command! Cp932 edit ++enc=cp932
@@ -324,9 +335,6 @@ command! Utf8 edit ++enc=utf-8
 command! Jis Iso2022jp
 command! Sjis Cp932
 
-
-"
-"
 "
 " ============= }}}
 
