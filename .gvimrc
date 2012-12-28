@@ -14,32 +14,26 @@ map <silent> gW :macaction selectPreviousWindow:
 nnoremap + :set transparency+=5<CR>
 nnoremap - :set transparency-=5<CR>
 
+"set clipboard=unnamed
+set guioptions=C
+
 if has('mac')
     colorscheme solarized
     set transparency=5 " 透明度を指定
     set guifont=RictyDiscord-Regular-Powerline:h28
     "set guifontwide=RictyDiscord-Regular-Powerline:h20
     set background=dark
-    set guioptions=C
 
 elseif has('win32')
     colorscheme desert
-    set clipboard=unnamed,autoselect
     "set shell='C:/cygwin/bin/zsh.exe'
     set guifont=Source_Code_Pro:h11
     set guifontwide=Migu_1M:h11
 
-    " kaoriya only?
-    set guioptions=C
 elseif has('win64')
     colorscheme desert
-    set clipboard=unnamed,autoselect
-    "set shell='C:/cygwin/bin/zsh.exe'
     set guifont=Source_Code_Pro:h11
     set guifontwide=Migu_1M:h11
-
-    " kaoriya only?
-    set guioptions=C
 endif
 
 " add register text on OS's clip boald
@@ -104,7 +98,6 @@ endfunction
 nnoremap <silent> ,vp :<C-u>VimShellPop<CR>
 nnoremap <silent> ,cvp :<C-u>VimShellPop %:p:h<CR>
 nnoremap <silent> ,cvs :<C-u>VimShell %:p:h<CR>
-
 " }}}
 
 
@@ -129,4 +122,4 @@ if filereadable(g:save_window_file)
 endif
 
 
-"vim:ft=vim:fdm=marker:fen:
+" vim:ft=vim:fdm=marker:
