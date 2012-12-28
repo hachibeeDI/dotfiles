@@ -318,12 +318,17 @@ nnoremap <silent> <Space>cd :<C-u>CD<CR>
 
 command! DeleteWhite call s:DeleteTrailingSpaces()
 function! s:DeleteTrailingSpaces()
+    let l:l = line('.')
+    let l:c = col('.')
     %s/\s*$//g
     nohl
+    call cursor(l, c)
 endfunction
 
 command! TabExpand call s:Tab2Space()
 function! s:Tab2Space()
+    let l:l = line('.')
+    let l:c = col('.')
     "ts=tabの見た目上の幅, softtabstop=expandtab::enableのときにTabを押した時に挿入される空白の量
     let l:ts_value = &tabstop
     let l:tmp_space = ' '
@@ -331,6 +336,8 @@ function! s:Tab2Space()
         let l:tmp_space = tmp_space.' '
     endfor
     execute '%s/\t/'.tmp_space.'/g'
+    nohl
+    call cursor(l, c)
 endfunction
 
 " 指定したエンコードでファイルを開き直すためのエイリアス
