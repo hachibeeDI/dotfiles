@@ -41,6 +41,8 @@ NeoBundle 'thinca/vim-quickrun'
 NeoBundle 'thinca/vim-ref'
 
 NeoBundle 'tpope/vim-surround'
+" undo history visualizer
+NeoBundle 'sjl/gundo.vim'
 
 "TDD plugin for vim
 NeoBundle 'reinh/vim-makegreen'
@@ -153,12 +155,10 @@ set fileformats=unix,dos,mac
 
 " set fold line on {{{, }}}
 set foldmethod=marker
-"set foldenable
+set foldenable
 "set foldmarker={{{,}}}
 "set foldcolumn=3
 
-set linespace=3
-" Tabや行末のスペースを表示させる
 set list
 set listchars=tab:>-,trail:~
 
@@ -170,7 +170,6 @@ set modeline
 set modelines=5
 
 set pastetoggle=<F10>
-
 
 " set PEP8 Style
 set autoindent
