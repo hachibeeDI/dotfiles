@@ -135,11 +135,15 @@ if neobundle#exists_not_installed_bundles()
 endif
 "}}}
 
+"Bram氏の提供する設定例をインクルードしない。Kaoriya版用
+let g:no_vimrc_example = 1
+
 "
 " common settings
 "
 "
-set vb t_vb=
+set visualbell t_vb=
+set virtualedit=block
 
 " have to set, before setting colorscheme-command
 set t_Co=256
@@ -247,10 +251,14 @@ set diffopt=iwhite,filler
 " ---- nomal mode ----{{{
 "<NPA> means to unset command on keymap
 nnoremap q: <NOP>
+":はコマンドモードへの移行、;はfind時に次の該当単語へジャンプする
 nnoremap ; :
+nnoremap : ;
 nnoremap <Backspace> :%s/
 
 nnoremap Y y$
+" xで削除した文字はblack holeに行ってもらう
+nnoremap x "_x
 "}}}
 
 " ---- insert mode ---- {{{
@@ -309,9 +317,29 @@ endfunction
 nnoremap <silent> <Space>cd :<C-u>CD<CR>
 " }}}
 
-" TODO あとでnohlとかいろいろfunction
-command! DeleteWhite :%s/\s*$//g
+command! DeleteWhite call s:DeleteTrailingSpaces()
+function! s:DeleteTrailingSpaces()
+    let l:l = line('.')
+    let l:c = col('.')
+    %s/\s*$//g
+    nohl
+    call cursor(l, c)
+endfunction
 
+command! TabExpand call s:Tab2Space()
+function! s:Tab2Space()
+    let l:l = line('.')
+    let l:c = col('.')
+    "ts=tabの見た目上の幅, softtabstop=expandtab::enableのときにTabを押した時に挿入される空白の量
+    let l:ts_value = &tabstop
+    let l:tmp_space = ' '
+    for i in range(0, ts_value)
+        let l:tmp_space = tmp_space.' '
+    endfor
+    execute '%s/\t/'.tmp_space.'/g'
+    nohl
+    call cursor(l, c)
+endfunction
 
 " 指定したエンコードでファイルを開き直すためのエイリアス
 command! Utf8 edit ++enc=utf-8
@@ -626,7 +654,7 @@ let g:rbpt_loadcmd_toggle = 0
 "そろそろ限界…今後はOSごとに別ファイルでやったほうがよいかも
 "for debian /ubuntu
 if has('win32')
-    let g:vimproc_dll_path = $HOME."/vimfiles/autoload/proc.dll"
+    let g:vimproc_dll_path = $HOME."/vimfiles/autoload/vimproc_win32.dll"
 elseif has('mac')
     let g:vimproc_dll_path = $HOME."/.vim/.bundle/vimproc/autoload/vimproc_mac.so"
 else
@@ -637,10 +665,13 @@ endif
 
 " ------ TweetVim {{{
 let g:tweetvim_async_post = 1
+let g:tweetvim_tweet_per_page = 20
+let g:tweetvim_cache_size = 30
+"let g:tweetvim_footer = ''
+let g:tweetvim_say_insert_account = 1
 nnoremap <UP> <Plug>(tweetvim_action_page_next)
 nnoremap <Down> <Plug>(tweetvim_action_page_previous)
 
 nnoremap <silent> ,tv :<C-u>TweetVimHomeTimeline<CR>
 nnoremap <silent> ,tp :<C-u>TweetVimSay<CR>
 " }}}
-
