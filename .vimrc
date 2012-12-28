@@ -250,7 +250,9 @@ set diffopt=iwhite,filler
 " ---- nomal mode ----{{{
 "<NPA> means to unset command on keymap
 nnoremap q: <NOP>
+":はコマンドモードへの移行、;はfind時に次の該当単語へジャンプする
 nnoremap ; :
+nnoremap : ;
 nnoremap <Backspace> :%s/
 
 nnoremap Y y$
