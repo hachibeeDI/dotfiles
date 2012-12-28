@@ -131,6 +131,9 @@ if neobundle#exists_not_installed_bundles()
 endif
 "}}}
 
+"Bram氏の提供する設定例をインクルードしない。Kaoriya版用
+let g:no_vimrc_example = 1
+
 "
 " common settings
 "
