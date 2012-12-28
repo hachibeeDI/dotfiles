@@ -254,6 +254,8 @@ nnoremap ; :
 nnoremap <Backspace> :%s/
 
 nnoremap Y y$
+" xで削除した文字はblack holeに行ってもらう
+nnoremap x "_x
 "}}}
 
 " ---- insert mode ---- {{{
