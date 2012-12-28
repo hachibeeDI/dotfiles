@@ -337,7 +337,7 @@ gs() {
 }
 
 gst() {
-    git status -sb | head -n 1
+    git status -sb | head -n 1 && git stash list
     git status -sb | sed '1d' | grep --line-number '^'
 }
 
