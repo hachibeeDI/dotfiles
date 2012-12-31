@@ -187,10 +187,8 @@ set incsearch
 set ignorecase
 set ruler
 set wildmenu
-set commentstring=\ #\ %s
 set foldlevel=0
-set foldlevel=99
-set foldmethod=syntax
+set foldlevel=2
 
 set scrolloff=999
 set smartcase
@@ -268,16 +266,14 @@ nnoremap x "_x
 " ---- insert mode ---- {{{
 "emacs like key-bind in insert mode
 inoremap <C-a> <Home>
-inoremap <C-e> <End>
+"inoremap <C-e> <End>
+inoremap <C-e> <C-o>$<CR>
 inoremap <C-f> <Right>
 inoremap <C-b> <Left>
 inoremap <C-p> <Up>
 inoremap <C-n> <Down>
 inoremap <C-h> <Backspace>
 inoremap <C-d> <Del>
-inoremap <C-k> <C-d>D
-inoremap <C-u> <C-o>d0
-inoremap <C-y> <C-o>P
 
 if has('path_extra')
     set tags+=.tags;
@@ -669,7 +665,9 @@ endif
 
 " ------ TweetVim {{{
 let g:tweetvim_async_post = 1
-let g:tweetvim_tweet_per_page = 20
+let g:tweetvim_display_time = 1
+let g:tweetvim_include_rts = 1
+let g:tweetvim_tweet_per_page = 50
 let g:tweetvim_cache_size = 30
 "let g:tweetvim_footer = ''
 let g:tweetvim_say_insert_account = 1
