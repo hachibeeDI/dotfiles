@@ -187,7 +187,6 @@ set incsearch
 set ignorecase
 set ruler
 set wildmenu
-set foldlevel=0
 set foldlevel=2
 
 set scrolloff=999
@@ -362,7 +361,7 @@ command! Eucjp edit ++enc=euc-jp
 " disable autoComplPop
 let g:acp_enableAtStartup = 0
 
-let g:neocomplcache_enable_at_startup = 1   " enabled when start vim 
+let g:neocomplcache_enable_at_startup = 1   " enabled when start vim
 let g:neocomplcache_enable_smart_case = 1
 let g:neocomplcache_max_list = 1000
 let g:neocomplcache_auto_completion_start_length = 2
