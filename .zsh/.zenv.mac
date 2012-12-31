@@ -38,7 +38,7 @@ else
     export LESSOPEN='| /usr/local/bin/src-hilite-lesspipe.sh %s'
 fi
 
-export ANDROID_SDK_ROOT="/usr/local/Cellar/android-sdk/r21"
+export ANDROID_SDK_ROOT="/usr/local/opt/android-sdk"
 # Cのリンク時のオプション. -Lはライブラリのパス. cairo用
 export LDFLAGS="-L/usr/local/opt/cairo/lib"
 # Cのプリプロセッサフラグ. cairo用 

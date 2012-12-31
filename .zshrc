@@ -230,7 +230,8 @@ bindkey -e
 # move dotfiles in Dropbox<<<
 function dotf {
     if [ $# != 0 ]; then # 引数が存在するならば
-        cd ~/Dropbox/dotfiles/$1
+        cd ~/Dropbox/dotfiles
+        vim $1
     else
         cd ~/Dropbox/dotfiles
     fi
