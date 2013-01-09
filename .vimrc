@@ -20,7 +20,7 @@ NeoBundle 'Shougo/vimproc', {
 NeoBundle 'Shougo/neocomplcache'
 NeoBundle 'Shougo/neosnippet'
 NeoBundle 'Shougo/neobundle.vim'
-NeoBundle 'Shougo/vimfiler'
+NeoBundleLazy 'Shougo/vimfiler'
 
 " snipets for neosnippet's dirctory
 NeoBundle 'honza/snipmate-snippets'
