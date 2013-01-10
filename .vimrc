@@ -169,7 +169,11 @@ NeoBundleLazy 'kien/rainbow_parentheses.vim', {
 
 " }}}
 " -- markup and style {{{
-NeoBundle 'mattn/zencoding-vim'
+NeoBundleLazy 'mattn/zencoding-vim', {
+    \ "autoload" : {
+    \   "filetypes" : ["html", "xhtml", "htmldjango", "play2-html"],
+    \ }
+    \}
 NeoBundleLazy 'groenewege/vim-less', {
     \ "autoload" : {
     \   "filetypes" : ["less"] }
@@ -196,7 +200,10 @@ NeoBundleLazy 'ujihisa/unite-colorscheme'
 NeoBundleLazy 'ujihisa/unite-font'
 " }}}
 
-NeoBundle 'mattn/sonictemplate-vim'
+NeoBundleLazy 'mattn/sonictemplate-vim', {
+    \ 'autoload' : {
+    \   'commands' : [ "Templete" ]}
+    \}
 NeoBundle 'Lokaltog/vim-powerline'
 
 NeoBundleLazy 'mattn/gist-vim', {
@@ -204,9 +211,9 @@ NeoBundleLazy 'mattn/gist-vim', {
     \   'commands' : [ "Gist" ]}
     \}
 NeoBundle 'mattn/webapi-vim'
-NeoBundle 'motemen/hatena-vim', {
+NeoBundleLazy 'motemen/hatena-vim', {
     \ 'autoload' : {
-    \   'commands' : ["Gist" ],
+    \   'commands' : ["HatenaEdit", "HatenaUpdate" ],
     \ }
     \}
 NeoBundleLazy 'tyru/open-browser.vim', {
