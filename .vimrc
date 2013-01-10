@@ -15,84 +15,169 @@ NeoBundle 'Shougo/vimproc', {
     \   'cygwin' : 'make -f make_cygwin.mak',
     \   'mac' : 'make -f make_mac.mak',
     \   'unix' : 'make -f make_unix.mak',
-    \    },
+    \ },
     \}
 NeoBundle 'Shougo/neocomplcache'
+call neobundle#config('neosnippet', {
+      \ 'lazy' : 1,
+      \ 'autoload' : {
+      \   'insert' : 1,
+      \ }})
 NeoBundle 'Shougo/neosnippet'
 NeoBundle 'Shougo/neobundle.vim'
-NeoBundleLazy 'Shougo/vimfiler'
+NeoBundleLazy 'Shougo/vimfiler', {
+    \ 'autoload' : {
+    \   'commands' : [ "VimFilerTab", "VimFiler", "VimFilerExplorer" ],
+    \ }
+    \}
 
 " snipets for neosnippet's dirctory
 NeoBundle 'honza/snipmate-snippets'
 
-NeoBundle 'tpope/vim-fugitive'
+NeoBundleLazy 'tpope/vim-fugitive', {
+    \ 'autoload': {
+    \   'functions': ["fugitive#statusline"],
+    \   'commands': [ "Git", "Gstatus", "Gcommit", "Gedit", "Gwrite", "Ggrep", "Glog" ],
+    \ }
+    \}
+
+"NeoBundle 'mileszs/ack.vim', { 'external_commands' : 'ack' }
 NeoBundle 'mileszs/ack.vim'
 "@Deprecated
 NeoBundle 'scrooloose/syntastic'
 
 "Unite
-NeoBundle 'Shougo/unite.vim'
+NeoBundleLazy 'Shougo/unite.vim', {
+    \ 'autoload' : {
+    \   'commands' : [ "Unite" ],
+    \ }
+    \}
+
 NeoBundle 'h1mesuke/unite-outline'
 NeoBundle 'osyo-manga/unite-quickfix'
 
 " compile and exec the code and pop result on Quickfix-window
-NeoBundle 'thinca/vim-quickrun'
+NeoBundleLazy 'thinca/vim-quickrun', { 'autoload' : {
+      \ 'mappings' : [
+      \   ['nxo', '<Plug>(quickrun)']],
+      \ }}
 " get and read referece on vim
-NeoBundle 'thinca/vim-ref'
+NeoBundleLazy 'thinca/vim-ref', { 'autoload' : {
+      \ 'commands' : 'Ref'
+      \ }}
+NeoBundleLazy 'thinca/vim-scouter', '', 'same', { 'autoload' : {
+      \ 'commands' : 'Scouter'
+      \ }}
 
 NeoBundle 'tpope/vim-surround'
 " undo history visualizer
-NeoBundle 'sjl/gundo.vim'
-
+NeoBundleLazy 'sjl/gundo.vim', {
+    \ 'autoload' : {
+    \   'commands' : ["GundoToggle"],
+    \ }
+    \}
 "TDD plugin for vim
-NeoBundle 'reinh/vim-makegreen'
+NeoBundleLazy 'reinh/vim-makegreen', {
+    \ 'autoload' : {
+    \   'functions' : ["MakeGreen"],
+    \ }
+    \}
 
 NeoBundle 'git://github.com/vim-scripts/IndentAnything.git'
-NeoBundleLazy 'nathanaelkane/vim-indent-guides'
+NeoBundleLazy 'nathanaelkane/vim-indent-guides', {
+    \ "autoload" : {
+    \   "filetypes" : ["python", "vbnet"],
+    \ }
+    \}
+
 " === Language surpport === {{{
 " -- Python {{{
 " search invailed code with pyflakes
-NeoBundleLazy 'kevinw/pyflakes-vim'
-NeoBundleLazy 'davidhalter/jedi-vim'
-NeoBundleLazy 'lambdalisue/vim-django-support'
+NeoBundleLazy 'kevinw/pyflakes-vim', {
+    \ "autoload" : {
+    \   "filetypes" : ["python"],
+    \ }
+    \}
+
+NeoBundleLazy 'davidhalter/jedi-vim', {
+    \ "autoload" : {
+    \   "filetypes" : ["python"],
+    \ }
+    \}
+
+NeoBundleLazy 'lambdalisue/vim-django-support', {
+    \ "autoload" : {
+    \   "filetypes" : ["python"],
+    \ }
+    \}
+
 " }}}
 " -- C++ {{{
 " clang
 " C++11's syntax
-NeoBundleLazy 'vim-jp/cpp-vim'
-NeoBundleLazy 'Rip-Rip/clang_complete'
+NeoBundleLazy 'vim-jp/cpp-vim', {
+    \ "autoload" : {
+    \   "filetypes" : ["cpp"] }
+    \}
+NeoBundleLazy 'Rip-Rip/clang_complete', {
+    \ "autoload" : {
+    \   "filetypes" : ["cpp"] }
+    \}
+
 " }}}
 " -- JavaScript {{{
-NeoBundleLazy 'pangloss/vim-javascript'
+NeoBundleLazy 'pangloss/vim-javascript', {
+    \ "autoload" : {
+    \   "filetypes" : ["javascript"] }
+    \}
 " coffee
-NeoBundleLazy 'kchmck/vim-coffee-script'
+NeoBundleLazy 'kchmck/vim-coffee-script', {
+    \ "autoload" : {
+    \   "filetypes" : ["coffee"] }
+    \}
 " }}}
 " -- Scala {{{
-NeoBundleLazy 'yuroyoro/vim-scala'
+NeoBundleLazy 'yuroyoro/vim-scala', {
+    \ "autoload" : {
+    \   "filetypes" : ["scala"] }
+    \}
 " Play2のテンプレートとかのシンタックス
-NeoBundleLazy 'gre/play2vim'
+NeoBundleLazy 'gre/play2vim', {
+    \ "autoload" : {
+    \   "filetypes" : ["scala"] }
+    \}
 " }}}
 " -- Lisp {{{
 " enable use slime on vim
 " ここらへんおかしいのでアレ
-"NeoBundleLazy 'slimv.vim' なぜか最新版が入らないのでbitbucketからとってくる
-NeoBundleLazy 'https://bitbucket.org/kovisoft/slimv'
 " カッコいい言語のカッコをレインボーにする
-NeoBundleLazy 'kien/rainbow_parentheses.vim'
+NeoBundleLazy 'kien/rainbow_parentheses.vim', {
+    \ "autoload" : {
+    \   "filetypes" : ["scala"] }
+    \}
 "}}}
 " -- Java {{{
 
 " }}}
 " -- markup and style {{{
 NeoBundle 'mattn/zencoding-vim'
-NeoBundle 'css_color.vim'
-NeoBundle 'groenewege/vim-less'
+NeoBundleLazy 'groenewege/vim-less', {
+    \ "autoload" : {
+    \   "filetypes" : ["less"] }
+    \}
+NeoBundleLazy 'css_color.vim', {
+    \ "autoload" : {
+    \   "filetypes" : ["css", "less", "scss", "sass"] }
+    \}
 " }}}
 " === }}}
-NeoBundleLazy 'SQLUtilities'
-    \ , {'depends' :
-    \       ['vim-scripts/Align']
-    \   }
+NeoBundleLazy 'SQLUtilities', {
+    \ 'depends' :
+    \   ['vim-scripts/Align'],
+    \ "autoload" : {
+    \   "filetypes" : ["css", "less", "scss", "sass"] }
+    \}
+
 
 " == 4GVim {{{
 NeoBundleLazy 'Shougo/vimshell'
@@ -105,20 +190,35 @@ NeoBundleLazy 'ujihisa/unite-font'
 NeoBundle 'mattn/sonictemplate-vim'
 NeoBundle 'Lokaltog/vim-powerline'
 
-NeoBundle 'mattn/gist-vim'
+NeoBundleLazy 'mattn/gist-vim', {
+    \ 'autoload' : {
+    \   'commands' : [ "Gist" ]}
+    \}
 NeoBundle 'mattn/webapi-vim'
-NeoBundle 'motemen/hatena-vim'
+NeoBundle 'motemen/hatena-vim', {
+    \ 'autoload' : {
+    \   'commands' : ["Gist" ],
+    \ }
+    \}
+NeoBundleLazy 'tyru/open-browser.vim', {
+    \ "type" : "nosync",
+    \ 'autoload' : {
+    \     'functions' : "OpenBrowser",
+    \     'commands'  : "OpenBrowserSearch",
+    \     'mappings'  : "<Plug>(openbrowser-smart-search)"
+    \ },
+    \}
 
-NeoBundle 'osyo-manga/vim-watchdogs'
-    \ , { 'depends' :
+NeoBundle 'osyo-manga/vim-watchdogs', {
+    \ 'depends' :
     \       [ 'Shougo/vimproc'
     \       , 'thinca/vim-quickrun'
     \       , 'osyo-manga/shabadou.vim'
     \       ]
     \   }
 
-NeoBundle 'basyura/TweetVim'
-    \ , { 'depends' :
+NeoBundle 'basyura/TweetVim', {
+    \ 'depends' :
     \       [ 'basyura/bitly.vim'
     \       , 'basyura/twibill.vim'
     \       , 'mattn/webapi-vim'
