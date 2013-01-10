@@ -42,9 +42,18 @@ NeoBundleLazy 'tpope/vim-fugitive', {
     \}
 
 "NeoBundle 'mileszs/ack.vim', { 'external_commands' : 'ack' }
-NeoBundle 'mileszs/ack.vim'
+NeoBundleLazy 'mileszs/ack.vim', {
+    \ 'autoload' : {
+    \   'commands' : [ "Ack" ],
+    \ }
+    \}
+
 "@Deprecated
-NeoBundle 'scrooloose/syntastic'
+NeoBundleLazy 'scrooloose/syntastic', {
+    \ 'autoload' : {
+    \   'commands' : [ "SyntasticCheck" ],
+    \ }
+    \}
 
 "Unite
 NeoBundleLazy 'Shougo/unite.vim', {
