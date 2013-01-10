@@ -274,6 +274,10 @@ set t_Co=256
 set directory=~/.vimcache/vimswap
 set backupdir=~/.vimcache/bak
 set viminfo+=n~/.vimcache/viminfo
+if v:version >= 703
+    set undodir=~/.vimcache/undo
+    set undofile
+endif
 
 " set fold line on {{{, }}}
 set foldmethod=marker
