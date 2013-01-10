@@ -242,6 +242,25 @@ endif
 "Bram氏の提供する設定例をインクルードしない。Kaoriya版用
 let g:no_vimrc_example = 1
 
+let s:is_windows = has('win32') || has('win64')
+
+" encoding ------ {{{
+" settings for infer encoding and formats
+set encoding=utf-8 "WindowsだとCygwin以外で問題でるかも? でも使わないので問題なし
+set fileencodings=ucs-bom,utf-8,euc-jp,iso-2022-jp,cp932,utf-16,utf-16le
+set fileformats=unix,dos
+
+if s:is_windows
+    set termencoding=cp932
+else
+    set termencoding=utf-8
+endif
+
+if has('multi_byte_ime')
+  set iminsert=0 imsearch=0
+endif
+" }}}
+
 "
 " common settings
 "
@@ -255,11 +274,6 @@ set t_Co=256
 set directory=~/.vimcache/vimswap
 set backupdir=~/.vimcache/bak
 set viminfo+=n~/.vimcache/viminfo
-
-" settings for infer encoding and formats
-set encoding=utf-8 "WindowsだとCygwin以外で問題でるかも? でも使わないので問題なし
-set fileencodings=ucs-bom,utf-8,euc-jp,iso-2022-jp,cp932,utf-16,utf-16le
-set fileformats=unix,dos,mac
 
 " set fold line on {{{, }}}
 set foldmethod=marker
