@@ -34,7 +34,7 @@ if [ -f ~/.dir_colors ]; then
     echo 'use local .dir_colors'
     eval `dircolors ~/.dir_colors -b`
 else
-    source ~/.zsh/themes/lscolors.defult
+    source ~/.zsh/themes/lscolors.default
 fi
 
 # OS ごとのfunction, プラグイン, fpathの読み込み <<<
