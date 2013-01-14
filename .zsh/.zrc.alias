@@ -24,9 +24,10 @@ alias mv='mv --interactive'
 case "${OSTYPE}" in
 freebsd*|darwin*)
 # =================== Mac OS X =======================
-    alias vi='env LANG=ja_JP.UTF-8 /Applications/MacVim.app/Contents/MacOS/Vim "$@"'
+if [[ -f /Applications/MacVim.app/Contents/MacOS/Vim ]]; then
     alias vim='env LANG=ja_JP.UTF-8 /Applications/MacVim.app/Contents/MacOS/Vim "$@"'
     alias mvim='env LANG=ja_JP.UTF-8 /Applications/MacVim.app/Contents/MacOS/mvim --remote-tab-silent'
+fi
     alias sed='gsed'
     ;;
 
