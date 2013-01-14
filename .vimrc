@@ -1,12 +1,15 @@
 " vim:fileencoding=utf-8
 
 set nocompatible
+
+let $BUNDLEPATH = expand('~/.neobundle')
+
 filetype off
 
 if has('vim_starting')
-    set runtimepath+=~/.vim/.bundle/neobundle.vim
+    set runtimepath+=~/.vim/neobundle.vim
 endif
-call neobundle#rc(expand('~/.vim/.bundle/'))
+call neobundle#rc($BUNDLEPATH)
 
 "------- set plugins ------- {{{
 NeoBundle 'Shougo/vimproc', {
@@ -188,7 +191,7 @@ NeoBundleLazy 'SQLUtilities', {
     \ 'depends' :
     \   ['vim-scripts/Align'],
     \ "autoload" : {
-    \   "filetypes" : ["css", "less", "scss", "sass"] }
+    \   "filetypes" : ["sql", "sqloracle", "sqlserver"] }
     \}
 
 
@@ -355,10 +358,10 @@ set expandtab
 "
 "syntax enable
 set background=dark
-colorscheme solarized
-let g:solarized_termcolors=256
+"colorscheme solarized
+"let g:solarized_termcolors=256
+colorscheme desert
 
-"colorscheme zenburn
 "set transparency=50
 set title
 set number
@@ -572,7 +575,7 @@ let g:neocomplcache_dictionary_filetype_lists={
         \ 'vim':$HOME.'/.vim/dict/vim.dict',
         \ 'vimshell':$HOME.'/.vim/dict/vimshell.dict',
         \ 'cpp':$HOME.'/.vim/dict/cpp.dict',
-        \ 'scala':$HOME.'/.vim/.bundle/vim-scala/dict/scala.dict'
+        \ 'scala':$BUNDLEPATH.'/vim-scala/dict/scala.dict'
     \}
 
 
@@ -599,7 +602,7 @@ endif
 " ---- neosnippet : {{{
 
 " tell neosnippet about my snippets
-let g:neosnippet#snippets_directory = '~/.vim/snippets,~/.vim/.bundle/snipmate-snippets/snippets'
+let g:neosnippet#snippets_directory = '~/.vim/snippets,~/.neobundle/snipmate-snippets/snippets'
 
 " plugin key-mappings.
 imap <C-k> <Plug>(neosnippet_expand_or_jump)
@@ -789,9 +792,9 @@ let g:rbpt_loadcmd_toggle = 0
 if has('win32')
     let g:vimproc_dll_path = $HOME."/vimfiles/autoload/vimproc_win32.dll"
 elseif has('mac')
-    let g:vimproc_dll_path = $HOME."/.vim/.bundle/vimproc/autoload/vimproc_mac.so"
+    let g:vimproc_dll_path = $BUNDLEPATH."/vimproc/autoload/vimproc_mac.so"
 else
-    let g:vimproc_dll_path = $HOME."/.vim/.bundle/vimproc/autoload/vimproc_unix.so"
+    let g:vimproc_dll_path = $BUNDLEPATH."/vimproc/autoload/vimproc_unix.so"
     let g:ackprg="ack-grep -H --nocolor --nogroup --column"
 endif
 "}}}
