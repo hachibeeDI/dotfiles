@@ -233,7 +233,7 @@ NeoBundle 'osyo-manga/vim-watchdogs', {
     \       ]
     \   }
 
-NeoBundle 'basyura/TweetVim', {
+NeoBundleLazy 'basyura/TweetVim', {
     \ 'depends' :
     \       [ 'basyura/bitly.vim'
     \       , 'basyura/twibill.vim'
@@ -241,8 +241,11 @@ NeoBundle 'basyura/TweetVim', {
     \       , 'tyru/open-browser.vim'
     \       , 'Shougo/unite.vim'
     \       , 'h1mesuke/unite-outline'
-    \       ]
-    \   }
+    \       ],
+    \ 'autoload' : {
+    \   'commands' : ["TweetVimSay", "TweetVimHomeTimeline", "TweetVimMentions", "TweetVimSearch"],
+    \ }
+    \}
 
 filetype plugin indent on
 
