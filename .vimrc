@@ -261,7 +261,7 @@ endif
 let g:no_vimrc_example = 1
 
 let s:is_windows = has('win32') || has('win64')
-let s:exist_ramdisk = isdirectory('/Volumes/RamDisk/')
+let s:exist_ramdisk = isdirectory('/Volumes/RamDisk')
 
 " encoding ------ {{{
 " settings for infer encoding and formats
@@ -590,11 +590,11 @@ let g:use_zen_complete_tag = 1
 
 "キャッシュディレクトリの場所を指定
 if s:exist_ramdisk
+
+else
     let g:neocomplcache_temporary_dir = '/Volumes/RamDisk/.neocon'
     let g:unite_data_directory = '/Volumes/RamDisk/.unite'
     let g:vimfiler_data_directory = '/Volumes/RamDisk/.vimfiler'
-"else
-"    let g:neocomplcache_temporary_dir = '/tmp/.neocon'
 endif
 
 "============================================================
