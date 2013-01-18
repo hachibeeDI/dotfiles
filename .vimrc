@@ -220,7 +220,6 @@ NeoBundleLazy 'motemen/hatena-vim', {
     \ }
     \}
 NeoBundleLazy 'tyru/open-browser.vim', {
-    \ "type" : "nosync",
     \ 'autoload' : {
     \     'functions' : "OpenBrowser",
     \     'commands'  : "OpenBrowserSearch",
