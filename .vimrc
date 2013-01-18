@@ -197,7 +197,7 @@ NeoBundleLazy 'SQLUtilities', {
 
 " == 4GVim {{{
 NeoBundleLazy 'Shougo/vimshell'
-NeoBundleLazy 'Color-Sampler-Pack'
+NeoBundleLazy 'vim-scripts/Colour-Sampler-Pack'
 NeoBundleLazy 'altercation/vim-colors-solarized'
 NeoBundleLazy 'ujihisa/unite-colorscheme'
 NeoBundleLazy 'ujihisa/unite-font'
