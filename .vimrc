@@ -235,6 +235,7 @@ NeoBundle 'osyo-manga/vim-watchdogs', {
     \       ]
     \   }
 
+" utils {{{
 NeoBundleLazy 'basyura/TweetVim', {
     \ 'depends' :
     \       [ 'basyura/bitly.vim'
@@ -248,6 +249,14 @@ NeoBundleLazy 'basyura/TweetVim', {
     \   'commands' : ["TweetVimSay", "TweetVimHomeTimeline", "TweetVimMentions", "TweetVimSearch"],
     \ }
     \}
+NeoBundleLazy 'glidenote/memolist.vim', {
+    \ 'autoload' : {
+    \ 'commands' : ["MemoNew", "MemoList", "MemoGrep"],
+    \ }
+    \}
+
+
+"}}}
 
 filetype plugin indent on
 
@@ -592,12 +601,14 @@ let g:neocomplcache_dictionary_filetype_lists={
 let g:use_zen_complete_tag = 1
 
 "キャッシュディレクトリの場所を指定
-if s:exist_ramdisk
-
-else
+if s:exist_ramdisk == 0
     let g:neocomplcache_temporary_dir = '/Volumes/RamDisk/.neocon'
     let g:unite_data_directory = '/Volumes/RamDisk/.unite'
     let g:vimfiler_data_directory = '/Volumes/RamDisk/.vimfiler'
+else
+    "let g:neocomplcache_temporary_dir = '/Volumes/RamDisk/.neocon'
+    "let g:unite_data_directory = '/Volumes/RamDisk/.unite'
+    "let g:vimfiler_data_directory = '/Volumes/RamDisk/.vimfiler'
 endif
 
 "============================================================
@@ -816,3 +827,17 @@ nnoremap <silent> ,tv :<C-u>TweetVimHomeTimeline<CR>
 nnoremap <silent> ,tm :<C-u>TweetVimMentions<CR>
 nnoremap <silent> ,tp :<C-u>TweetVimSay<CR>
 " }}}
+"
+" --- MemoList {{{
+let g:memolist_memo_suffix = "markdown"
+let g:memolist_memo_suffix = "txt"
+let g:memolist_memo_date = "%Y-%m-%d %H:%M"
+let g:memolist_memo_date = "epoch"
+let g:memolist_memo_date = "%D %T"
+let g:memolist_prompt_tags = 1
+let g:memolist_prompt_categories = 1
+let g:memolist_qfixgrep = 1
+let g:memolist_vimfiler = 1
+let g:memolist_path = "~/Dropbox/memolist"
+"let g:memolist_template_dir_path = 
+"}}}
