@@ -11,6 +11,7 @@ typeset -U path
 path=(
     # 標準のツールとかもhomebrewで導入したのを優先させる
     /usr/local/bin(N-/)
+    /usr/local/share/python(N-/)
     #デフォルトのコマンドをGNUコマンドで
     $(brew --prefix coreutils)/libexec/gnubin(N-/)
     /usr/bin(N-/)
