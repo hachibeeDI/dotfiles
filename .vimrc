@@ -61,7 +61,7 @@ NeoBundleLazy 'scrooloose/syntastic', {
 "Unite
 NeoBundleLazy 'Shougo/unite.vim', {
     \ 'autoload' : {
-    \   'commands' : [ "Unite" ],
+    \   'commands' : ["Unite", "QuickRun"],
     \ }
     \}
 
@@ -69,10 +69,11 @@ NeoBundle 'h1mesuke/unite-outline'
 NeoBundle 'osyo-manga/unite-quickfix'
 
 " compile and exec the code and pop result on Quickfix-window
-NeoBundleLazy 'thinca/vim-quickrun', { 'autoload' : {
-      \ 'mappings' : [
-      \   ['nxo', '<Plug>(quickrun)']],
-      \ }}
+NeoBundleLazy 'thinca/vim-quickrun', {
+    \'autoload' : {
+    \ 'commands' : ["QuickRun"],
+    \ 'mappings' : [['nxo', '<Plug>(quickrun)']],
+    \ }}
 " get and read referece on vim
 NeoBundleLazy 'thinca/vim-ref', { 'autoload' : {
       \ 'commands' : 'Ref'
