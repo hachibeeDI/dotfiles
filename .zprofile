@@ -84,6 +84,8 @@ export EDITOR=vim
 
 #
 export PAGER=less
+# Apply grep color automatically
+export GREP_COLOR=auto
 
 # disable make less-hist-file
 export LESSHISTFILE=-
