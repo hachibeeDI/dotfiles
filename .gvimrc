@@ -27,11 +27,11 @@ if has('mac')
     set background=dark
 
 elseif has('win32')
-    colorscheme desert
+    colorscheme desertEx
     "set shell='C:/cygwin/bin/zsh.exe'
-    set guifont=Source_Code_Pro:h11
-    set guifontwide=Migu_1M:h11
-
+    set guifont=MeiryoKe_Gothic:h12
+    set guifontwide=MeiryoKe_Gothic:h12
+    set clipboard=unnamed
 elseif has('win64')
     colorscheme desert
     set guifont=Source_Code_Pro:h11
