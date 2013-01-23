@@ -83,6 +83,8 @@ NeoBundleLazy 'thinca/vim-scouter', '', 'same', { 'autoload' : {
       \ }}
 
 NeoBundle 'tpope/vim-surround'
+NeoBundle 'kana/vim-operator-replace'
+NeoBundle 'kana/vim-operator-user'
 " undo history visualizer
 NeoBundleLazy 'sjl/gundo.vim', {
     \ 'autoload' : {
@@ -842,3 +844,6 @@ let g:memolist_vimfiler = 1
 let g:memolist_path = "~/Dropbox/memolist"
 "let g:memolist_template_dir_path = 
 "}}}
+" ------ operato-replace {{{
+map R <Plug>(operator-replace)
+" }}}
