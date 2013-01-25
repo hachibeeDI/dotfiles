@@ -410,9 +410,18 @@ nnoremap : ;
 nnoremap <Backspace> :%s/
 
 nnoremap Y y$
-" xとcで削除した文字はblack holeに行ってもらう. sはどうしよう
+
+nnoremap p P
+nnoremap P p
+
+" x,y,cで削除した文字はblack holeに行ってもらう.
 nnoremap x "_x
+nnoremap s "_s
 nnoremap c "_c
+vnoremap x "_x
+vnoremap s "_s
+vnoremap c "_c
+onoremap c "_c
 "}}}
 
 " ---- insert mode ---- {{{
