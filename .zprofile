@@ -101,11 +101,6 @@ if [ -d /usr/local/share/npm/bin ]; then
     export PATH=/usr/local/share/npm/bin:$PATH
 fi
 
-if [ -d /usr/local/share/python ]; then
-    # use package installed by pip
-    export PATH="$PATH:/usr/local/share/python"
-fi
-
 #read PATH for python _and python's tool
 export PYTHONSTARTUP=~/.pythonstartup
 
