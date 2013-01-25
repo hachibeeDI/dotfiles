@@ -272,6 +272,9 @@ if neobundle#exists_not_installed_bundles()
 endif
 "}}}
 
+" enable prebundled plugin
+runtime macros/matchinit.vim
+
 "Bram氏の提供する設定例をインクルードしない。Kaoriya版用
 let g:no_vimrc_example = 1
 
