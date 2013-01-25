@@ -1,13 +1,12 @@
-
 " VB.NET
-autocmd BufRead,BufNewFile *.vb setf vbnet
+autocmd BufRead,BufNewFile *.vb set filetype=vbnet
 " Scala
 autocmd BufRead,BufNewFile *.scala setf scala
 " Clojure
 autocmd BufRead,BufNewFile *.clj setf clojure
 " markdown
-autocmd BufRead,BufNewFile *.md setf markdown
-autocmd BufRead,BufNewFile *.mkd setf markdown
+autocmd BufRead,BufNewFile *.md set filetype=markdown
+autocmd BufRead,BufNewFile *.mkd set filetype=markdown
 " less
 autocmd BufRead,BufNewFile *.less setf less
 " WindowsPowershell
