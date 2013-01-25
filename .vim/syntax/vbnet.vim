@@ -1,7 +1,7 @@
 " Vim syntax file
 " Language   : VisualBasic.NET
 " Maintainers: OGURA Daiki
-" Last Change: 2012 12 17
+" Last Change: 2013-01-25
 
 if version < 600
   syntax clear
@@ -12,9 +12,9 @@ endif
 syn case ignore
 
 syn keyword vbnetStatement Auto Ansi Assembly Declare Lib
-syn keyword vbnetStatement Const Continue Custom
+syn keyword vbnetStatement Continue Custom
 syn keyword vbnetStatement Default
-syn keyword vbnetStatement Dim As DirectCast
+syn keyword vbnetStatement Dim As
 syn keyword vbnetStatement Event Error
 syn keyword vbnetStatement RaiseEvent
 syn keyword vbnetStatement Step Stop
@@ -34,36 +34,36 @@ syn match vbnetOperator "\s\+_$"
 " {{{
 syn keyword vbnetStorage Delegate Namespace
 syn keyword vbnetTypeDef Class Interface
-syn match vbnetTypeDefEnd "End \(Class\|Interface\)$"
+syn match vbnetTypeDefEnd "\<End\> \(Class\|Interface\|NameSpace\)$"
 
 syn keyword vbnetStructure Structure Enum Module
-syn match vbnetStructureEnd "End \(Structure\|Enum\|Module\)$"
+syn match vbnetStructureEnd "\<End\> \(Structure\|Enum\|Module\)$"
 
 syn keyword vbnetRepeat For Each Return While Next To
 syn keyword vbnetConditional If Then Else ElseIf Case
 syn match vbnetConditional "^\s+Select Case"
-syn match vbnetConditionalEnd "End \(If\|Select\)$"
+syn match vbnetConditionalEnd "\<End\> \(If\|Select\)$"
 
 syn keyword vbnetModifier Inherits Implements MustInherit MustOverride Const Overrides Overridable Overloads Readonly WriteOnly Shared NotInheritable NotOverridable Shadows
-syn keyword vbnetFunction Sub Function
-syn match vbnetFunction "End \(Function\|Sub\)"
+syn keyword vbnetFunction Sub Function Operator
+syn match vbnetFunction "\<End\> \(Function\|Sub\)"
 
 syn keyword vbnetScopeDecl Private Protected Public Friend Using
 
 syn keyword vbnetSpecial Of Call
-syn keyword vbnetSugar With AddHandler AddressOf Alias WithEvents RemoveHandler Handles From
-syn match vbnetDefAnonymous "New \(With$\|With {$\)"
+syn keyword vbnetSugar AddHandler AddressOf Alias WithEvents RemoveHandler Handles From
+syn match vbnetDefAnonymousTypedef "\<New\> \(With$\|With {$\)"
 
 syn keyword vbnetProperty Property Get Set
 syn match vbnetPropertyEnd "^\s*End \(Get\|Set\|Property\)$"
 
-syn keyword vbnetKeyword ByVal ByRef GetType ParamArray On Option Optional Exit Imports
+syn keyword vbnetKeyword ByVal GetType ParamArray On Option Optional Exit Imports
 syn keyword vbnetException Try Catch Finally Throw
-syn match vbnetException "End Try"
+syn match vbnetException "\<End\> Try$"
 syn keyword vbnetOperator New And Or AndAlso OrElse Is Not IsNot Like Mod
 syn keyword vbnetBoolean True False
 syn match vbnetDelimiter "\(,\|\.\|:\|{\|}\|\s_$\)"
-syn keyword vbnetDeprecated Do Until Loop Goto Redim GoSub Resume Erase Preserve IIF
+syn keyword vbnetDeprecated Do Until Loop Goto Redim GoSub Resume Erase Preserve IIF ByRef
 "}}}
 
 syn keyword vbnetConst MyBase MyClass Me Nothing
@@ -78,6 +78,7 @@ syn match vbnetNumber "\<\d\+\.\d*\>"
 syn match vbnetNumber "\.\d\+\>"
 
 " String and Character contstants
+syn match vbnetchar "\"[0-9A-Za-z_]\"c"
 syn region vbnetString start=+"+ end=+"+
 
 syn region vbnetComment start="\<REM\>" end="$" contains=vbnetTodo
@@ -140,6 +141,7 @@ if version >= 508 || !exists("did_vbnet")
     hi link vbnetError Error
     hi link vbnetStatement Statement
     hi link vbnetString String
+    hi link vbnetchar vbnetString
     hi link vbnetComment Comment
     hi link vbnetTodo Todo
     hi link vbnetFunction Function
@@ -147,7 +149,7 @@ if version >= 508 || !exists("did_vbnet")
     hi link vbnetPreCondit PreCondit
     hi link vbnetSpecial Special
     hi link vbnetSugar vbnetSpecial
-    hi link vbnetDefAnonymous vbnetSpecial
+    hi link vbnetDefAnonymousTypedef vbnetSpecial
     hi link vbnetProperty vbnetSugar
     hi link vbnetPropertyEnd vbnetSugar
     hi link vbnetTypeSpecifier Type
@@ -165,24 +167,5 @@ if version >= 508 || !exists("did_vbnet")
 "    hi link vbnetXmlQuote Special
 "    hi link vbnetXmlComment Comment
 endif
-
-let b:match_words = '\<Namespace\>:\<End Namespace\>'
-      \ . ',\<Module\>:\<End Module\>'
-      \ . ',\<Class\>:\<End Class\>'
-      \ . ',\<Property\>:\<End Property\>'
-      \ . ',\<Enum\>:\<End Enum\>'
-      \ . ',\<Function\>:\<End Function\>'
-      \ . ',\<Sub\>:\<End Sub\>'
-      \ . ',\<Get\>:\<End Get\>'
-      \ . ',\<Set\>:\<End Set\>'
-      \ . ',\<Do\>:\<Loop\>'
-      \ . ',\<For\>:\<Next\>'
-      \ . ',\<While\>:\<End While\>'
-      \ . ',\<Select\>:\<End Select\>'
-      \ . ',\<Using\>:\<End Using\>'
-      \ . ',\<With\>:\<End With\>'
-      \ . ',\<SyncLock\>:\<End SyncLock\>'
-      \ . ',\<Try\>:\<End Try\>'
-      \ . ',\<If\>:\<End If\>'
 
 let b:current_syntax = "vbnet"
