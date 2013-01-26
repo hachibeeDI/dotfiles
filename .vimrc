@@ -414,8 +414,8 @@ nnoremap <Backspace> :%s/
 
 nnoremap Y y$
 
-nnoremap p P
-nnoremap P p
+"nnoremap p P
+"nnoremap P p
 
 " x,y,cで削除した文字はblack holeに行ってもらう.
 nnoremap x "_x
@@ -481,11 +481,11 @@ endfunction
 nnoremap <silent> <Space>cd :<C-u>CD<CR>
 " }}}
 
-command! DeleteWhite call s:DeleteTrailingSpaces()
+command! DeleteTrail call s:DeleteTrailingSpaces()
 function! s:DeleteTrailingSpaces()
     let l:l = line('.')
     let l:c = col('.')
-    %s/\s*$//g
+    %s/\s\+$//g
     nohl
     call cursor(l, c)
 endfunction
