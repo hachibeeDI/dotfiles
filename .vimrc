@@ -72,7 +72,7 @@ NeoBundle 'osyo-manga/unite-quickfix'
 NeoBundleLazy 'thinca/vim-quickrun', {
     \'autoload' : {
     \ 'commands' : ["QuickRun"],
-    \ 'mappings' : [['nxo', '<Plug>(quickrun)']],
+    \ 'mappings' : ['nxo', '<Plug>(quickrun)'],
     \ }}
 " get and read referece on vim
 NeoBundleLazy 'thinca/vim-ref', { 'autoload' : {
@@ -418,9 +418,6 @@ nnoremap : ;
 nnoremap <Backspace> :%s/
 
 nnoremap Y y$
-
-"nnoremap p P
-"nnoremap P p
 
 " x,y,cで削除した文字はblack holeに行ってもらう.
 nnoremap x "_x
