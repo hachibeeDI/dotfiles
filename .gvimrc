@@ -32,10 +32,18 @@ elseif has('win32')
     set guifont=MeiryoKe_Gothic:h12
     set guifontwide=MeiryoKe_Gothic:h12
     set clipboard=unnamed
+    source $VIMRUNTIME/delmenu.vim
+    set langmenu=ja_jp.utf-8
+    source $VIMRUNTIME/menu.vim
 elseif has('win64')
-    colorscheme desert
-    set guifont=Source_Code_Pro:h11
-    set guifontwide=Migu_1M:h11
+    colorscheme desertEx
+    "set shell='C:/cygwin/bin/zsh.exe'
+    set guifont=MeiryoKe_Gothic:h12
+    set guifontwide=MeiryoKe_Gothic:h12
+    set clipboard=unnamed
+    source $VIMRUNTIME/delmenu.vim
+    set langmenu=ja_jp.utf-8
+    source $VIMRUNTIME/menu.vim
 endif
 
 " add register text on OS's clip boald
