@@ -230,11 +230,10 @@ NeoBundleLazy 'motemen/hatena-vim', {
 NeoBundleLazy 'tyru/open-browser.vim', {
     \ 'autoload' : {
     \     'functions' : "OpenBrowser",
-    \     'commands'  : "OpenBrowserSearch",
-    \     'mappings'  : "<Plug>(openbrowser-smart-search)"
+    \     'commands'  : ["OpenBrowser", "OpenBrowserSearch", "OpenBrowserSmartSearch"],
+    \     'mappings'  : ["<Plug>(openbrowser-smart-search)", "<Plug>(openbrowser-open)"],
     \ },
     \}
-
 NeoBundle 'osyo-manga/vim-watchdogs', {
     \ 'depends' :
     \       [ 'Shougo/vimproc'
@@ -289,6 +288,7 @@ let s:exist_ramdisk = isdirectory('/Volumes/RamDisk')
 " encoding ------ {{{
 " settings for infer encoding and formats
 set encoding=utf-8 "WindowsだとCygwin以外で問題でるかも? でも使わないので問題なし
+scriptencoding utf-8
 set fileencodings=ucs-bom,utf-8,euc-jp,iso-2022-jp,cp932,utf-16,utf-16le
 set fileformats=unix,dos
 
@@ -862,6 +862,9 @@ let g:memolist_vimfiler = 1
 let g:memolist_path = "~/Dropbox/memolist"
 "let g:memolist_template_dir_path = 
 "}}}
+" ------ OpenBrowser {{{
+nmap <Space>w <Plug>(openbrowser-smart-search)
+" ----}}}
 
 " --------- quickhl {{{
 nmap <Space>m <Plug>(quickhl-toggle)
