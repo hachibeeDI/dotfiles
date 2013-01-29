@@ -211,7 +211,12 @@ NeoBundleLazy 'mattn/sonictemplate-vim', {
     \   'commands' : [ "Templete" ]}
     \}
 NeoBundle 'Lokaltog/vim-powerline'
-
+NeoBundleLazy 't9md/vim-quickhl', {
+    \ 'autoload' : {
+    \   'commands' : ["QuickhlAdd"],
+    \   'mappings' : ["<Plug>(quickhl-toggle)", "<Plug>(quickhl-reset)", "<Plug>(quickhl-match)"],
+    \   },
+    \}
 NeoBundleLazy 'mattn/gist-vim', {
     \ 'autoload' : {
     \   'commands' : [ "Gist" ]}
@@ -857,6 +862,15 @@ let g:memolist_vimfiler = 1
 let g:memolist_path = "~/Dropbox/memolist"
 "let g:memolist_template_dir_path = 
 "}}}
+
+" --------- quickhl {{{
+nmap <Space>m <Plug>(quickhl-toggle)
+xmap <Space>m <Plug>(quickhl-toggle)
+nmap <Space>M <Plug>(quickhl-reset)
+xmap <Space>M <Plug>(quickhl-reset)
+nmap <Space>j <Plug>(quickhl-match)
+" ----- }}}
+"
 " ------ operato-replace {{{
 map R <Plug>(operator-replace)
 " }}}
