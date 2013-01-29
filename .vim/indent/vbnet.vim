@@ -16,8 +16,9 @@ setlocal softtabstop=4
 setlocal shiftwidth=4
 
 setlocal indentexpr=VbNetGetIndent(v:lnum)
-setlocal indentkeys&
-setlocal indentkeys+=!^F,o,O,=catch,=else,=elseif,=end,=next,<:>
+"setlocal indentkeys&
+"setlocal indentkeys+=!^F,o,O,=~?catch,=~?else,=~?elseif,=~?end,=~?next,<:>
+setlocal indentkeys+=!^F,o,O,=~?catch,=~?else,=~?elseif,=~?end,=~?next,<:>
 
 " Only define the function once.
 if exists("*VbNetGetIndent")
@@ -27,18 +28,18 @@ let s:keepcpo= &cpo
 set cpo&vim
 
 function VbNetGetIndent(lnum)
-  let ind = indent(lnum)
+  let ind = indent(a:lnum)
 
-  let access_modifier = '\(Public\|Protected\|Protected Friend\|Private\|Friend\)'
+  let access_modifier = '\<\(Public\|Protected\|Private\|Friend\)\>'
 
-  let previous_line = getline(v:lnum - 1)
+  let previous_line = getline(a:lnum - 1)
   if previous_line =~ '\s_$' || previous_line =~ '\s,' || previous_line =~ '^\s*\.'
     return ind
   elseif previous_line =~ '{$' || previous_line =~ '($'
     return ind + &l:shiftwidth
   elseif previous_line =~? '^'.access_modifier || previous_line =~? '^Namespace'
     return ind + &l:shiftwidth
-  elseif previous_line =~? '^\s+'.access_modifier.'\s\(\Class\|Module\|Enum\|Interface\|Operator\)'
+  elseif previous_line =~? '^\s*'.access_modifier.'\s\(\Class\|Module\|Enum\|Interface\|Operator\)'
     return ind + &l:shiftwidth
   elseif previous_line =~? '\s\(Overrides\|Overridable\|Overloads\|NotOverridable\|MustOverride\|Shadows\|Shared\|ReadOnly\|WriteOnly\)\s'
     return ind + &l:shiftwidth
