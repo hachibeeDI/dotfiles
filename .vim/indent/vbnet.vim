@@ -135,4 +135,13 @@ endfunction
 let &cpo = s:keepcpo
 unlet s:keepcpo
 
-" vim:sw=
+let b:undo_indent = 'setlocal '.join([
+\   'autoindent<',
+\   'expandtab<',
+\   'indentexpr<',
+\   'indentkeys<',
+\   'shiftwidth<',
+\   'softtabstop<',
+\ ])
+
+" vim:sw=2
