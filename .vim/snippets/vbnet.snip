@@ -2,10 +2,19 @@
 snippet '''
 abbr    '''<summary>
     ''' <summary>${1:#:summary}</summary>
-    ''' <returns>${2:#:returns}</returns>
-    ''' <remarks>${3:#:remarks} </remarks>
-    ''' <history>${4:Created at: `strftime("%Y-%b-%d")`}</history>
-    ${5:#:TARGET}
+    ''' <remarks>${2:#:remarks} </remarks>
+    ''' <history>${3:Created at: `strftime("%Y-%b-%d")`}</history>${4:#:TARGET}
+
+snippet     'returns
+abbr        '''<returns></returns>
+options     head
+    ''' <returns>${1:#:description}</returns>
+
+snippet     'param
+abbr        '''<param name=""></param>
+options     head
+    '''<param name="${1:#:name}">${2:#:description}</param>${3:#:TARGET}
+
 
 snippet     namespace
 abbr        NameSpace : : End NameSpace
@@ -14,6 +23,7 @@ options     head
     NameSpace ${1:#:name}
         ${2:#:TARGET}
     End NameSpace
+
 
 snippet     class
 abbr        Public Class
@@ -82,11 +92,28 @@ snippet     (of
 abbr        Type(Of hoge)
     ${1:#:type}(Of ${2:#:type})
 
-snippet     If
+snippet     if
 abbr        If expr Then
 options     head
     If ${1:#:expr} Then
         ${2:#:TARGET}
+    End If
+
+snippet     ifelse
+abbr        If expr Then
+options     head
+    If ${1:#:expr} Then
+        ${2:#:TARGET}
+    Else
+        ${2:#:TARGET}
+    End If
+
+snippet     elif
+abbr        ElseIf expr Then
+options     head
+    ElseIf ${1:#:expr} Then
+        ${2:#:TARGET}
+    End If
 
 snippet     lams
 abbr        Sub(var) expr
@@ -130,23 +157,33 @@ abbr        .Foreach(Sub(var) expr
     ${3:#:TARGET}
 
 
-snippet     selq
+snippet     sel+
 abbr        .select(Function(var) expr
      _
     .Select(Function(${1:#:var})
                 ${2:#:TARGET}
             End Function)
 
-snippet     wheq
+snippet     whe+
 abbr        .Where(Function(var) expr
      _
     .Where(Function(${1:#:var})
                 ${2:#:TARGET}
             End Function)
 
-snippet     forq
+snippet     for+
 abbr        .Foreach(Sub(var) expr
      _
     .Foreach(Sub(${1:#:var})
                 ${2:#:TARGET}
             End Sub)
+
+
+snippet     with
+abbr        anonymous type or object initializer
+options     head
+    With
+        {
+            .${1:#:member} = ${2:#:var}${3:#:TARGET}
+        }
+
