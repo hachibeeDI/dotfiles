@@ -437,13 +437,21 @@ onoremap c "_c
 "emacs like key-bind in insert mode
 inoremap <C-a> <Home>
 "inoremap <C-e> <End>
-inoremap <C-e> <C-o>$<CR>
 inoremap <C-f> <Right>
 inoremap <C-b> <Left>
 inoremap <C-p> <Up>
 inoremap <C-n> <Down>
 inoremap <C-h> <Backspace>
 inoremap <C-d> <Del>
+
+cnoremap <C-a> <Home>
+"cnoremap <C-e> <End>
+cnoremap <C-f> <Right>
+cnoremap <C-b> <Left>
+cnoremap <C-p> <Up>
+cnoremap <C-n> <Down>
+cnoremap <C-h> <Backspace>
+cnoremap <C-d> <Del>
 
 if has('path_extra')
     set tags+=.tags;
@@ -654,8 +662,6 @@ if has ('conceal')
 endif
 
 "}}}
-
-
 
 
 "}}}
