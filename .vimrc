@@ -179,6 +179,13 @@ NeoBundleLazy 'kien/rainbow_parentheses.vim', {
 " -- Java {{{
 
 " }}}
+" -- VB.NET {{{
+NeoBundleLazy 'hachibeeDI/vim-vbnet', {
+    \"autoload" : {
+    \   "filetypes" : ["vbnet"],
+    \   }
+    \}
+" }}}
 " -- markup and style {{{
 NeoBundleLazy 'mattn/zencoding-vim', {
     \ "autoload" : {

@@ -1,5 +1,3 @@
-" VB.NET
-autocmd BufRead,BufNewFile *.vb set filetype=vbnet
 " Scala
 autocmd BufRead,BufNewFile *.scala setf scala
 " Clojure
