@@ -388,7 +388,6 @@ set background=dark
 "let g:solarized_termcolors=256
 colorscheme desert
 
-"set transparency=50
 set title
 set number
 
@@ -419,6 +418,8 @@ nnoremap q: <NOP>
 ":はコマンドモードへの移行、;はfind時に次の該当単語へジャンプする
 nnoremap ; :
 nnoremap : ;
+vnoremap ; :
+vnoremap : ;
 nnoremap <Backspace> :%s/
 
 nnoremap Y y$
