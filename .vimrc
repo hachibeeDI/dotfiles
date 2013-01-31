@@ -30,8 +30,13 @@ NeoBundle 'Shougo/neosnippet'
 NeoBundle 'Shougo/neobundle.vim'
 NeoBundleLazy 'Shougo/vimfiler', {
     \ 'autoload' : {
-    \   'commands' : [ "VimFilerTab", "VimFiler", "VimFilerExplorer" ],
+    \   'commands' : ["VimFilerTab", "VimFiler", "VimFilerExplorer", "VimFilerBufferDir"],
     \ }
+    \}
+NeoBundleLazy 'Shougo/vimshell', {
+    \ 'autoload' : {
+    \   'commands' : ["VimShellPop", "VimShell"],
+    \   }
     \}
 
 " snipets for neosnippet's dirctory
@@ -199,7 +204,6 @@ NeoBundleLazy 'SQLUtilities', {
 
 
 " == 4GVim {{{
-NeoBundleLazy 'Shougo/vimshell'
 NeoBundleLazy 'vim-scripts/Colour-Sampler-Pack'
 NeoBundleLazy 'altercation/vim-colors-solarized'
 NeoBundleLazy 'ujihisa/unite-colorscheme'
@@ -874,3 +878,64 @@ nmap <Space>j <Plug>(quickhl-match)
 " ------ operato-replace {{{
 map R <Plug>(operator-replace)
 " }}}
+
+"--- VimShell ----------------{{{
+" This go along with vimshell doc's sample.
+" My purpose of using VimShell is lessen stress of Windows and its terrible terminal-emulator!
+
+let s:bundle_vimshell = neobundle#get('vimshell')
+function! s:bundle_vimshell.hooks.on_source(bundle)
+
+    if has('win32') || has('win64')
+      " Display user name on Windows.
+      let g:vimshell_prompt = $USERNAME."% "
+    else
+      " Display user name on Linux.
+      let g:vimshell_prompt = $USER."% "
+
+      call vimshell#set_execute_file('bmp,jpg,png,gif', 'gexe eog')
+      call vimshell#set_execute_file('mp3,m4a,ogg', 'gexe amarok')
+      let g:vimshell_execute_file_list['zip'] = 'zipinfo'
+      call vimshell#set_execute_file('tgz,gz', 'gzcat')
+      call vimshell#set_execute_file('tbz,bz2', 'bzcat')
+    endif
+
+    let g:vimshell_user_prompt = 'fnamemodify(getcwd(),":~")'
+    " let g:vimshell_right_prompt = 'vimshell#vcs#info("(%s)-[%b]", "(%s)-[%b|%a]")'
+
+    autocmd FileType vimshell
+    \ call vimshell#altercmd#define('g', 'git')
+    \| call vimshell#altercmd#define('i', 'iexe')
+    \| call vimshell#altercmd#define('tree', 'tree /f')
+    \| call vimshell#altercmd#define('ls', 'ls -a --show-control-chars')
+    \| call vimshell#altercmd#define('l', 'ls -a --show-control-chars')
+    \| call vimshell#altercmd#define('ll', 'ls -a --show-control-chars -l')
+    \| call vimshell#hook#set('chpwd', ['g:my_chpwd'])
+    \| call vimshell#hook#set('emptycmd', ['g:my_emptycmd'])
+    \| call vimshell#hook#set('preexec', ['g:my_preexec'])
+
+endfunction
+" command hooks {{{
+function! g:my_chpwd(args, context)
+  call vimshell#execute('echo "===================== to be continued ==================>>"')
+endfunction
+function! g:my_emptycmd(cmdline, context)
+  call vimshell#execute('echo "emptycmd"')
+  return a:cmdline
+endfunction
+function! g:my_preexec(cmdline, context)
+  call vimshell#execute('echo "preexec"')
+
+  let l:args = vimproc#parser#split_args(a:cmdline)
+  if len(l:args) > 0 && l:args[0] ==# 'diff'
+    call vimshell#set_syntax('diff')
+  endif
+
+  return a:cmdline
+endfunction
+"}}}
+nnoremap <silent> ,vp :<C-u>VimShellPop<CR>
+nnoremap <silent> ,cvp :<C-u>VimShellPop %:p:h<CR>
+nnoremap <silent> ,cvs :<C-u>VimShell %:p:h<CR>
+" }}}
+
