@@ -317,7 +317,9 @@ endif
 "
 " common settings
 "
-"
+syntax on
+syntax enable
+
 set visualbell t_vb=
 set virtualedit=block
 
@@ -337,6 +339,7 @@ set foldmethod=marker
 set foldenable
 "set foldmarker={{{,}}}
 "set foldcolumn=3
+set foldlevel=2
 
 set list
 set listchars=tab:>-,trail:~
@@ -350,15 +353,10 @@ set modelines=5
 
 set pastetoggle=<F10>
 
-" set PEP8 Style
-set autoindent
-set cindent "clang style indent
-set indentkeys-=0# " do not break indent on#
 set incsearch
 set ignorecase
 set ruler
 set wildmenu
-set foldlevel=2
 
 set scrolloff=999
 set smartcase
@@ -368,13 +366,6 @@ set autoread
 set splitbelow
 set splitright
 set previewheight=30
-
-" FileType
-" Syntax setting {{{
-" ---------------
-syntax on
-
-"}}}
 
 "___________
 " indent
@@ -388,8 +379,6 @@ set expandtab
 "--------
 " display settings
 "---------
-"
-"syntax enable
 set background=dark
 "colorscheme solarized
 "let g:solarized_termcolors=256
@@ -573,20 +562,6 @@ inoremap <expr><C-h> neocomplcache#smart_close_popup() . "\<C-h>"
 inoremap <expr><C-y> neocomplcache#close_popup()
 inoremap <expr><C-e> neocomplcache#cancel_popup()
 
-" FileType毎のOmni補完を設定
-augroup SetOmniCompletionSetting
-    autocmd!
-" Jediと競合するのでいらない
-"    autocmd FileType python     setlocal omnifunc=pythoncomplete#Complete
-    autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
-    autocmd FileType html       setlocal omnifunc=htmlcomplete#CompleteTags
-    autocmd FileType css        setlocal omnifunc=csscomplete#CompleteCSS
-    autocmd FileType xml        setlocal omnifunc=xmlcomplete#CompleteTags
-    autocmd FileType php        setlocal omnifunc=phpcomplete#CompletePHP
-    autocmd FileType c          setlocal omnifunc=ccomplete#Complete
-    autocmd FileType ruby       setlocal omnifunc=rubycomplete#Complete
-augroup END
-
 " Enable heavy omni completion, which require computational power and may stall the vim.
 if !exists('g:neocomplcache_omni_patterns')
   let g:neocomplcache_omni_patterns = {}
@@ -703,6 +678,9 @@ nnoremap <silent> ,um :<C-u>Unite file_mru<CR>
 nnoremap <silent> ,uu :<C-u>Unite buffer file_mru<CR>
 " 全部乗せ
 nnoremap <silent> ,ua :<C-u>UniteWithBufferDir -buffer-name=files buffer file_mru bookmark file<CR>
+" その他
+nnoremap <silent> ,u` :<C-u>Unite -auto-quit neobundle/update<CR>
+
 
 " ウィンドウを分割して開く
 au FileType unite nnoremap <silent> <buffer> <expr> <C-j> unite#do_action('split')
@@ -736,12 +714,12 @@ let g:vimfiler_marked_file_icon = '*'
 "<C-u>は、Vimによって挿入される範囲指定を削除するためのもの
 "<CR>はキャリッジ・リターンを表すリテラルシーケンス
 "そして:VimFilerExplorerでいんじゃね感
-nnoremap <silent> ,vf :<C-u>VimFiler -buffer-name=explorer -split -winwidth=35 -toggle -no-quit<CR>
+nnoremap <silent> ,fe :<C-u>VimFiler -buffer-name=explorer -split -winwidth=35 -toggle -no-quit<CR>
+nnoremap <silent> ,fb :<C-u>VimFilerBufferDir<CR>
 "autocmd! FileType vimfiler call g:my_vimfiler_settings()
 "function! g:my_vimfiler_settings()
 "    nmap <buffer><expr><Cr> vimfiler#smart_cursor_map
 "}}}
-
 
 " --- quickrun -----{{{
 " url:http://d.hatena.ne.jp/osyo-manga/20111014/1318586711
@@ -776,7 +754,6 @@ let g:quickrun_config["cpp"] = {
 " ===============================================================
 " < " http://d.hatena.ne.jp/osyo-manga/20120924/1348473304
 " < " ---- vim-watchdog --- : {{{
-
 call watchdogs#setup(g:quickrun_config)
 
 " }}}
