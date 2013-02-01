@@ -20,13 +20,14 @@ NeoBundle 'Shougo/vimproc', {
     \   'unix' : 'make -f make_unix.mak',
     \ },
     \}
-NeoBundle 'Shougo/neocomplcache'
-call neobundle#config('neosnippet', {
-      \ 'lazy' : 1,
+NeoBundleLazy 'Shougo/neocomplcache', {
+    \ 'autoload' : {
+    \   'insert' : 1,
+    \ }}
+NeoBundleLazy 'Shougo/neosnippet', {
       \ 'autoload' : {
       \   'insert' : 1,
-      \ }})
-NeoBundle 'Shougo/neosnippet'
+      \ }}
 NeoBundle 'Shougo/neobundle.vim'
 NeoBundleLazy 'Shougo/vimfiler', {
     \ 'autoload' : {
