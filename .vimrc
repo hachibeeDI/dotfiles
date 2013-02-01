@@ -294,6 +294,12 @@ runtime macros/matchinit.vim
 "Bram氏の提供する設定例をインクルードしない。Kaoriya版用
 let g:no_vimrc_example = 1
 
+""netrwの無効化
+"let g:loaded_netrw       = 1
+"let g:loaded_netrwPlugin = 1
+" noteを表示させない
+let g:netrw_localcopycmd=''
+
 let s:is_windows = has('win32') || has('win64')
 let s:exist_ramdisk = isdirectory('/Volumes/RamDisk')
 
