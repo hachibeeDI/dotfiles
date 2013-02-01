@@ -88,7 +88,10 @@ NeoBundleLazy 'thinca/vim-scouter', '', 'same', { 'autoload' : {
       \ 'commands' : 'Scouter'
       \ }}
 
-NeoBundle 'tpope/vim-surround'
+NeoBundleLazy 'tpope/vim-surround', {
+      \ 'autoload' : {
+      \   'insert' : 1,
+      \ }}
 NeoBundle 'kana/vim-operator-replace'
 NeoBundle 'kana/vim-operator-user'
 " undo history visualizer
@@ -293,6 +296,19 @@ runtime macros/matchinit.vim
 
 "Bram氏の提供する設定例をインクルードしない。Kaoriya版用
 let g:no_vimrc_example = 1
+"-- Kaoriya版にデフォルトで入っているプラグイン群の無効化 --
+"$VIM/plugins/kaoriya/autodate.vim
+let plugin_autodate_disable  = 1
+" 便利コマンド集
+"let plugin_cmdex_disable     = 1
+" GENE辞書をひける
+let plugin_dicwin_disable    = 1
+"$VIM/plugins/kaoriya/hz_ja.vim
+let plugin_hz_ja_disable     = 1
+"$VIM/plugins/kaoriya/scrnmode.vim
+let plugin_scrnmode_disable  = 1
+"$VIM/plugins/kaoriya/verifyenc.vim
+"let plugin_verifyenc_disable = 1
 
 ""netrwの無効化
 "let g:loaded_netrw       = 1
