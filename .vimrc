@@ -298,19 +298,21 @@ runtime macros/matchinit.vim
 
 "Bram氏の提供する設定例をインクルードしない。Kaoriya版用
 let g:no_vimrc_example = 1
-"-- Kaoriya版にデフォルトで入っているプラグイン群の無効化 --
-"$VIM/plugins/kaoriya/autodate.vim
-let plugin_autodate_disable  = 1
-" 便利コマンド集
-"let plugin_cmdex_disable     = 1
-" GENE辞書をひける
-let plugin_dicwin_disable    = 1
-"$VIM/plugins/kaoriya/hz_ja.vim
-let plugin_hz_ja_disable     = 1
-"$VIM/plugins/kaoriya/scrnmode.vim
-let plugin_scrnmode_disable  = 1
-"$VIM/plugins/kaoriya/verifyenc.vim
-"let plugin_verifyenc_disable = 1
+if has('kaoriya')
+    "-- Kaoriya版にデフォルトで入っているプラグイン群の無効化 --
+    "$VIM/plugins/kaoriya/autodate.vim
+    let plugin_autodate_disable  = 1
+    " 便利コマンド集
+    "let plugin_cmdex_disable     = 1
+    " GENE辞書をひける
+    let plugin_dicwin_disable    = 1
+    "$VIM/plugins/kaoriya/hz_ja.vim
+    let plugin_hz_ja_disable     = 1
+    "$VIM/plugins/kaoriya/scrnmode.vim
+    let plugin_scrnmode_disable  = 1
+    "$VIM/plugins/kaoriya/verifyenc.vim
+    "let plugin_verifyenc_disable = 1
+endif
 
 ""netrwの無効化
 "let g:loaded_netrw       = 1
@@ -320,6 +322,11 @@ let g:netrw_localcopycmd=''
 
 let s:is_windows = has('win32') || has('win64')
 let s:exist_ramdisk = isdirectory('/Volumes/RamDisk')
+
+if has('mac')
+    "optionをAltとして
+    set macmeta
+endif
 
 " encoding ------ {{{
 " settings for infer encoding and formats
@@ -524,6 +531,7 @@ function! s:DeleteTrailingSpaces()
     %s/\s\+$//g
     nohl
     call cursor(l, c)
+    echo 'delete trail'
 endfunction
 
 command! TabExpand call s:Tab2Space()
