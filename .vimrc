@@ -249,13 +249,15 @@ NeoBundleLazy 'tyru/open-browser.vim', {
     \     'mappings'  : ["<Plug>(openbrowser-smart-search)", "<Plug>(openbrowser-open)"],
     \ },
     \}
-NeoBundle 'osyo-manga/vim-watchdogs', {
-    \ 'depends' :
-    \       [ 'Shougo/vimproc'
+NeoBundleLazy 'osyo-manga/vim-watchdogs', {
+    \ 'depends' : [
+    \       'Shougo/vimproc'
     \       , 'thinca/vim-quickrun'
     \       , 'osyo-manga/shabadou.vim'
-    \       ]
-    \   }
+    \       ],
+    \ 'autoload' : {
+    \   'commands' : ["WatchdogsRun", "WatchdogsRunSilent" ],
+    \}}
 
 " utils {{{
 NeoBundleLazy 'basyura/TweetVim', {
