@@ -338,7 +338,7 @@ let s:exist_ramdisk = isdirectory('/Volumes/RamDisk')
 
 if has('mac')
     "optionをAltとして
-    set macmeta
+"    set macmeta
 endif
 
 " encoding ------ {{{
