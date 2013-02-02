@@ -136,6 +136,19 @@ NeoBundleLazy 'lambdalisue/vim-django-support', {
     \}
 
 " }}}
+" -- haXe {{{
+NeoBundleLazy 'jdonaldson/vaxe', {
+    \ "autoload" : {
+    \   "filetypes" : ["haxe", "hxml", "nmml.xml"],
+    \ }
+    \}
+"NeoBundleLazy 'MarcWeber/vim-haxe', {
+"    \ "autoload" : {
+"    \   "filetypes" : ["python"],
+"    \ }
+"    \}
+
+"  }}}
 " -- C++ {{{
 " clang
 " C++11's syntax
