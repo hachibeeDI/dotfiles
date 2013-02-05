@@ -404,6 +404,7 @@ set ruler
 set wildmenu
 # show completion menu in command mode
 set wildmode=list:full
+set completeopt=menuone,preview
 
 set scrolloff=999
 set smartcase
