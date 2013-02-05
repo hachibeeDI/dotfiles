@@ -402,6 +402,8 @@ set incsearch
 set ignorecase
 set ruler
 set wildmenu
+# show completion menu in command mode
+set wildmode=list:full
 
 set scrolloff=999
 set smartcase
