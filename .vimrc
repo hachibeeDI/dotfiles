@@ -476,6 +476,12 @@ vnoremap x "_x
 vnoremap s "_s
 vnoremap c "_c
 onoremap c "_c
+
+" adjust buffer size
+nnoremap <Up> <C-w>+
+nnoremap <Down> <C-w>-
+nnoremap <Left> <C-w>>
+nnoremap <Right> <C-w><
 "}}}
 
 " ---- insert mode ---- {{{
@@ -882,8 +888,8 @@ let g:tweetvim_tweet_per_page = 50
 let g:tweetvim_cache_size = 30
 "let g:tweetvim_footer = ''
 let g:tweetvim_say_insert_account = 1
-nnoremap <UP> <Plug>(tweetvim_action_page_next)
-nnoremap <Down> <Plug>(tweetvim_action_page_previous)
+"nnoremap <UP> <Plug>(tweetvim_action_page_next)
+"nnoremap <Down> <Plug>(tweetvim_action_page_previous)
 
 nnoremap <silent> ,tv :<C-u>TweetVimHomeTimeline<CR>
 nnoremap <silent> ,tm :<C-u>TweetVimMentions<CR>
