@@ -487,7 +487,7 @@ nnoremap <Right> <C-w><
 " ---- insert mode ---- {{{
 "emacs like key-bind in insert mode
 inoremap <C-a> <Home>
-"inoremap <C-e> <End>
+inoremap <C-e> <End>
 inoremap <C-f> <Right>
 inoremap <C-b> <Left>
 inoremap <C-p> <Up>
@@ -496,7 +496,7 @@ inoremap <C-h> <Backspace>
 inoremap <C-d> <Del>
 
 cnoremap <C-a> <Home>
-"cnoremap <C-e> <End>
+cnoremap <C-e> <End>
 cnoremap <C-f> <Right>
 cnoremap <C-b> <Left>
 cnoremap <C-p> <Up>
@@ -615,7 +615,8 @@ inoremap <expr><TAB> pumvisible() ? "\<C-n>" : "\<TAB>"
 "" <C-h>, <BS>: close popup and delete backword char.
 inoremap <expr><C-h> neocomplcache#smart_close_popup() . "\<C-h>"
 inoremap <expr><C-y> neocomplcache#close_popup()
-inoremap <expr><C-e> neocomplcache#cancel_popup()
+"inoremap <expr><C-e> neocomplcache#cancel_popup()
+inoremap <expr><Del> neocomplcache#cancel_popup()
 
 " Enable heavy omni completion, which require computational power and may stall the vim.
 if !exists('g:neocomplcache_omni_patterns')
