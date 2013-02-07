@@ -403,7 +403,7 @@ set incsearch
 set ignorecase
 set ruler
 set wildmenu
-# show completion menu in command mode
+" show completion menu in command mode
 set wildmode=list:full
 set completeopt=menuone,preview
 
@@ -431,7 +431,7 @@ set expandtab
 set background=dark
 "colorscheme solarized
 "let g:solarized_termcolors=256
-colorscheme desert
+"colorscheme desert
 
 set title
 set number
