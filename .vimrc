@@ -2,6 +2,7 @@
 
 set nocompatible
 
+let $MY_VIMRUNTIME = expand('~/.vim')
 let $BUNDLEPATH = expand('~/.neobundle')
 
 filetype off
@@ -714,7 +715,7 @@ let g:indent_guides_color_change_percent=20
 
 " via: http://www.karakaram.com/vimfiler
 " ---------Unite.vim--------- {{{
-""" unite.vim
+" buffer local keymap is in $MY_VIMRUNTIME/after/ftplugin/unite.vim
 " 入力モードで開始する
 let g:unite_enable_start_insert=1
 " 開くときの横幅
@@ -736,17 +737,6 @@ nnoremap <silent> ,uu :<C-u>Unite buffer file_mru<CR>
 nnoremap <silent> ,ua :<C-u>UniteWithBufferDir -buffer-name=files buffer file_mru bookmark file<CR>
 " その他
 nnoremap <silent> ,u` :<C-u>Unite -auto-quit neobundle/update<CR>
-
-
-" ウィンドウを分割して開く
-au FileType unite nnoremap <silent> <buffer> <expr> <C-j> unite#do_action('split')
-au FileType unite inoremap <silent> <buffer> <expr> <C-j> unite#do_action('split')
-" ウィンドウを縦に分割して開く
-au FileType unite nnoremap <silent> <buffer> <expr> <C-l> unite#do_action('vsplit')
-au FileType unite inoremap <silent> <buffer> <expr> <C-l> unite#do_action('vsplit')
-" ESCキーを2回押すと終了する
-au FileType unite nnoremap <silent> <buffer> <esc><esc> <esc>:q<CR>
-au FileType unite inoremap <silent> <buffer> <esc><esc> <esc>:q<CR>
 
 "}}}
 
@@ -949,37 +939,8 @@ function! s:bundle_vimshell.hooks.on_source(bundle)
 
     let g:vimshell_user_prompt = 'fnamemodify(getcwd(),":~")'
     " let g:vimshell_right_prompt = 'vimshell#vcs#info("(%s)-[%b]", "(%s)-[%b|%a]")'
-
-    autocmd FileType vimshell
-    \ call vimshell#altercmd#define('g', 'git')
-    \| call vimshell#altercmd#define('i', 'iexe')
-    \| call vimshell#altercmd#define('tree', 'tree /f')
-    \| call vimshell#altercmd#define('ls', 'ls -a --show-control-chars')
-    \| call vimshell#altercmd#define('l', 'ls -a --show-control-chars')
-    \| call vimshell#altercmd#define('ll', 'ls -a --show-control-chars -l')
-    \| call vimshell#hook#set('chpwd', ['g:my_chpwd'])
-    \| call vimshell#hook#set('emptycmd', ['g:my_emptycmd'])
-    \| call vimshell#hook#set('preexec', ['g:my_preexec'])
-
 endfunction
-" command hooks {{{
-function! g:my_chpwd(args, context)
-  call vimshell#execute('echo "===================== to be continued ==================>>"')
-endfunction
-function! g:my_emptycmd(cmdline, context)
-  call vimshell#execute('echo "emptycmd"')
-  return a:cmdline
-endfunction
-function! g:my_preexec(cmdline, context)
-  call vimshell#execute('echo "preexec"')
 
-  let l:args = vimproc#parser#split_args(a:cmdline)
-  if len(l:args) > 0 && l:args[0] ==# 'diff'
-    call vimshell#set_syntax('diff')
-  endif
-
-  return a:cmdline
-endfunction
 "}}}
 nnoremap <silent> ,vp :<C-u>VimShellPop<CR>
 nnoremap <silent> ,cvp :<C-u>VimShellPop %:p:h<CR>
