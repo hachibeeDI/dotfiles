@@ -1,0 +1,19 @@
+" galiasでグローバルエイリアスにも対応しているらしいが、恐らくパイプへの対応がアレっぽい
+
+alias d='cd'
+alias ls='ls -a --show-control-chars'
+alias s='ls -a --show-control-chars'
+alias ll='ls -al'
+alias mkdir='mkdir -p'
+
+alias g='git'
+alias ga='git add'
+alias gap='git add -p'
+alias gcm='git commit'
+alias gcmm='git commit -m'
+alias gbr='git branch -a'
+alias gdif='git diff'
+alias gs='git status -sb'
+alias gamend='git commit --amend -C HEAD --date='
+alias ggre='git grep -H --heading --break'
+
