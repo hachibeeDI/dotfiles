@@ -834,6 +834,9 @@ let g:sonictemplate_vim_template_dir = [
 
 " ----- hatena-vim ----
 let g:hatena_user='hachibeechan'
+let g:hatena_upload_on_write = 0
+let g:hatena_upload_on_write_bang = 1
+let g:hatena_no_default_keymappings = 1
 
 " ------ power line ----
 let g:Powerline_symbols = 'fancy'
