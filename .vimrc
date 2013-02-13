@@ -335,7 +335,7 @@ endif
 let g:netrw_localcopycmd=''
 
 let s:is_windows = has('win32') || has('win64')
-let s:exist_ramdisk = isdirectory('/Volumes/RamDisk')
+let s:exist_ramdisk = glob('/Volumes/RamDisk')
 
 if has('mac')
     "optionをAltとして
@@ -673,7 +673,7 @@ let g:neocomplcache_dictionary_filetype_lists={
 let g:use_zen_complete_tag = 1
 
 "キャッシュディレクトリの場所を指定
-if s:exist_ramdisk == 0
+if s:exist_ramdisk
     let g:neocomplcache_temporary_dir = '/Volumes/RamDisk/.neocon'
     let g:unite_data_directory = '/Volumes/RamDisk/.unite'
     let g:vimfiler_data_directory = '/Volumes/RamDisk/.vimfiler'
