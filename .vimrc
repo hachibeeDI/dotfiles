@@ -461,6 +461,14 @@ set diffopt=iwhite,filler
 " }}}
 
 " ======== Key Mapping ======== {{{
+" -- mapping to show status
+nnoremap [Show] <Nop>
+nmap <Space>s [Show]
+nnoremap [Show]m  :<C-u>marks<CR>
+nnoremap [Show]r  :<C-u>registers<CR>
+nnoremap [Show]e  :<C-u>edit $MYVIMRC<CR>
+nnoremap [Show]h  :<C-u>help<Space>
+
 " ---- nomal mode ----{{{
 "<NPA> means to unset command on keymap
 nnoremap q: <NOP>
