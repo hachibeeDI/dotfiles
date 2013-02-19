@@ -95,6 +95,10 @@ NeoBundleLazy 'tpope/vim-surround', {
       \ }}
 NeoBundle 'kana/vim-operator-replace'
 NeoBundle 'kana/vim-operator-user'
+NeoBundleLazy 'kana/vim-smartchr', {
+      \ 'autoload' : {
+      \   'insert' : 1,
+      \ }}
 " undo history visualizer
 NeoBundleLazy 'sjl/gundo.vim', {
     \ 'autoload' : {
@@ -954,4 +958,11 @@ nnoremap <silent> ,vp :<C-u>VimShellPop<CR>
 nnoremap <silent> ,cvp :<C-u>VimShellPop %:p:h<CR>
 nnoremap <silent> ,cvs :<C-u>VimShell %:p:h<CR>
 " }}}
+
+" --- smartchr ---- {{{
+let s:bundle_smartchr = neobundle#get('vim-smartchr')
+function! s:bundle_smartchr.hooks.on_source(bundle)
+    inoremap <buffer><expr> = smartchr#one_of(' = ', ' == ', '=')
+endfunction
+"  }}}
 
