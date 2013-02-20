@@ -512,8 +512,6 @@ cnoremap <C-a> <Home>
 cnoremap <C-e> <End>
 cnoremap <C-f> <Right>
 cnoremap <C-b> <Left>
-cnoremap <C-p> <Up>
-cnoremap <C-n> <Down>
 cnoremap <C-h> <Backspace>
 cnoremap <C-d> <Del>
 
@@ -971,6 +969,7 @@ nnoremap <silent> ,cvs :<C-u>VimShell %:p:h<CR>
 let s:bundle_smartchr = neobundle#get('vim-smartchr')
 function! s:bundle_smartchr.hooks.on_source(bundle)
     inoremap <buffer><expr> = smartchr#one_of(' = ', ' == ', '=')
+    inoremap <expr> , smartchr#one_of(', ', ',')
 endfunction
 "  }}}
 
