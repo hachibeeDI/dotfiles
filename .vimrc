@@ -191,11 +191,11 @@ NeoBundleLazy 'gre/play2vim', {
 " }}}
 " -- Lisp {{{
 " enable use slime on vim
-" ここらへんおかしいのでアレ
 " カッコいい言語のカッコをレインボーにする
+" g:lisp_rainbowでもいいような……
 NeoBundleLazy 'kien/rainbow_parentheses.vim', {
     \ "autoload" : {
-    \   "filetypes" : ["scala"] }
+    \   "filetypes" : ["scheme", "lisp"] }
     \}
 "}}}
 " -- Java {{{
@@ -233,7 +233,7 @@ NeoBundleLazy 'SQLUtilities', {
 
 
 " == 4GVim {{{
-NeoBundleLazy 'vim-scripts/Colour-Sampler-Pack'
+NeoBundle 'vim-scripts/Colour-Sampler-Pack'
 NeoBundleLazy 'altercation/vim-colors-solarized'
 NeoBundleLazy 'ujihisa/unite-colorscheme'
 NeoBundleLazy 'ujihisa/unite-font'
