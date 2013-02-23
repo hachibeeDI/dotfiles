@@ -968,7 +968,7 @@ nnoremap <silent> ,cvs :<C-u>VimShell %:p:h<CR>
 " --- smartchr ---- {{{
 let s:bundle_smartchr = neobundle#get('vim-smartchr')
 function! s:bundle_smartchr.hooks.on_source(bundle)
-    inoremap <buffer><expr> = smartchr#one_of(' = ', ' == ', '=')
+    inoremap <expr> = smartchr#one_of(' = ', ' == ', '=')
     inoremap <expr> , smartchr#one_of(', ', ',')
 endfunction
 "  }}}
