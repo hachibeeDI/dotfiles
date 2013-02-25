@@ -609,8 +609,8 @@ let g:neocomplcache_max_list = 1000
 let g:neocomplcache_auto_completion_start_length = 2
 " set minimum syntax keyword length
 let g:neocomplcache_min_syntax_length = 3
-"" like AutoComplPop
-let g:neocomplcache_enable_auto_select = 1
+" 候補一番目を自動的に選択
+let g:neocomplcache_enable_auto_select = 0
 "" search with camel case like Eclipse
 let g:neocomplcache_enable_camel_case_completion = 1
 " アンダーバーを区切りとした曖昧検索
