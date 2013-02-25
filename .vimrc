@@ -383,6 +383,7 @@ if v:version >= 703
     set undodir=~/.vimcache/undo
     set undofile
 endif
+set history=1000
 
 " set fold line on {{{, }}}
 set foldmethod=marker
