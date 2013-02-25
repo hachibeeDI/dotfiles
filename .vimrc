@@ -619,6 +619,8 @@ let g:neocomplcache_enable_underbar_completion = 1
 let g:NeoComplCache_EnableSkipCompletion=1
 let g:NeoComplCache_SkipCompletionTime = '0.5'
 let g:NeoComplCache_SkipInputTime = '0.1'
+" 日本語をキャッシュしない
+let g:neocomplcache_keyword_patterns['default'] = '\h\w*'
 
 inoremap <expr><CR> pumvisible() ? neocomplcache#close_popup() : "\<CR>"
 "" <TAB>: completion.
