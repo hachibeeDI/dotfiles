@@ -620,8 +620,6 @@ let g:neocomplcache_enable_underbar_completion = 1
 let g:NeoComplCache_EnableSkipCompletion=1
 let g:NeoComplCache_SkipCompletionTime = '0.5'
 let g:NeoComplCache_SkipInputTime = '0.1'
-" 日本語をキャッシュしない
-let g:neocomplcache_keyword_patterns['default'] = '\h\w*'
 
 inoremap <expr><CR> pumvisible() ? neocomplcache#close_popup() : "\<CR>"
 "" <TAB>: completion.
@@ -631,6 +629,12 @@ inoremap <expr><C-h> neocomplcache#smart_close_popup() . "\<C-h>"
 inoremap <expr><C-y> neocomplcache#close_popup()
 "inoremap <expr><C-e> neocomplcache#cancel_popup()
 inoremap <expr><Del> neocomplcache#cancel_popup()
+
+if !exists('g:neocomplcache_keyword_patterns')
+  let g:neocomplcache_keyword_patterns = {}
+endif
+" 日本語をキャッシュしない
+let g:neocomplcache_keyword_patterns._ = '\h\w*'
 
 " Enable heavy omni completion, which require computational power and may stall the vim.
 if !exists('g:neocomplcache_omni_patterns')
