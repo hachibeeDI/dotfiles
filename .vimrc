@@ -474,7 +474,7 @@ nnoremap [EditSupport] <Nop>
 nmap , [EditSupport]
 
 " substitute word under cursor
-nnoremap <expr> [EditSupport]s ':%substitute/\<' . expand('<cword>') . '\>/'
+nnoremap <expr> [EditSupport]* ':%substitute/\<' . expand('<cword>') . '\>/'
 
 
 " ---- nomal mode ----{{{
