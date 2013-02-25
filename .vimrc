@@ -470,6 +470,13 @@ nnoremap [Show]r  :<C-u>registers<CR>
 nnoremap [Show]e  :<C-u>edit $MYVIMRC<CR>
 nnoremap [Show]h  :<C-u>help<Space>
 
+nnoremap [EditSupport] <Nop>
+nmap , [EditSupport]
+
+" substitute word under cursor
+nnoremap <expr> [EditSupport]s ':%substitute/\<' . expand('<cword>') . '\>/'
+
+
 " ---- nomal mode ----{{{
 "<NPA> means to unset command on keymap
 nnoremap q: <NOP>
