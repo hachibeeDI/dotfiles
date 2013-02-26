@@ -474,8 +474,8 @@ nnoremap [EditSupport] <Nop>
 nmap , [EditSupport]
 
 " substitute word under cursor
-nnoremap <expr> [EditSupport]* ':%substitute/\<' . expand('<cword>') . '\>/'
-
+nnoremap <expr> [EditSupport]s* ':%substitute/\<' . expand('<cword>') . '\>/'
+nnoremap <expr> [EditSupport]e* ':' . line(".") . ',$s/\<' . expand('<cword>') . '\>/'
 
 " ---- nomal mode ----{{{
 "<NPA> means to unset command on keymap
@@ -531,16 +531,6 @@ endif
 "inoremap <Backspace> <C-o>:
 "}}}
 "}}}
-
-" ---- Load Templetes ---- <<<
-" ゆくゆくはtempletefile.vimみたいなものを検討
-"autocmd BufNewFile *.java 0r ~/.vim/templates/javasrc.java
-"autocmd BufNewFile *.h 0r ~/.vim/templates/header.h
-"autocmd BufNewFile *.c 0r ~/.vim/templates/csrc.c
-""autocmd BufNewFile *.cpp 0r ~/.vim/templates/
-"autocmd BufNewFile *.cs 0r ~/.vim/templates/csharp.cs
-"autocmd BufNewFile *.py 0r ~/.vim/templates/python.py
-">>>
 
 " ---------
 "  Scripts
