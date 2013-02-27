@@ -1,0 +1,12 @@
+snippet     %blo
+abbr        {%- %}
+options     word
+    {%- block ${1:#NAME} %}
+    ${2:TARGET}
+
+snippet     %end
+abbr        {%- %}
+options     word
+    {%- endblock ${1:#NAME} %}
+    ${2:TARGET}
+
