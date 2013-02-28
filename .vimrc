@@ -404,8 +404,6 @@ set modelines=5
 
 set pastetoggle=<F10>
 
-set incsearch
-set ignorecase
 set ruler
 set wildmenu
 " show completion menu in command mode
@@ -413,7 +411,6 @@ set wildmode=list:full
 set completeopt=menuone,preview
 
 set scrolloff=999
-set smartcase
 set smarttab
 set autoread
 
@@ -455,11 +452,17 @@ match ZenkakuSpace /　/
 "" StatusLine{{{
 "set laststatus=2
 "set statusline=%F%m%r%h%w\ [%L]\ %y%{'['.(&fenc!=''?&fenc:&enc).':'.&ff.']'}%r%m%=%c:%l/%L
+" }}}
 
 " ignore white space, show match lines,
 set diffopt=iwhite,filler
+" search behavior
+set incsearch
+set ignorecase
+set smartcase
+set nowrapscan
+set hlsearch
 
-" }}}
 
 " ======== Key Mapping ======== {{{
 " -- mapping to show status
