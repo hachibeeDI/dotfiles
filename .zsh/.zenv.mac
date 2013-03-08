@@ -13,7 +13,7 @@ path=(
     /usr/local/bin(N-/)
 
     /usr/local/share/python(N-/)
-    /usr/local/Cellar/ruby/1.9.3-p374/bin(N-/)
+    $(ruby -e 'require "rubygems"; puts Gem::bindir')(N-/)
     #デフォルトのコマンドをGNUコマンドで
     $(brew --prefix coreutils)/libexec/gnubin(N-/)
     /usr/bin(N-/)
