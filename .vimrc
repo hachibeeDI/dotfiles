@@ -161,10 +161,16 @@ NeoBundleLazy 'vim-jp/cpp-vim', {
     \ "autoload" : {
     \   "filetypes" : ["cpp"] }
     \}
+"https://github.com/beyondmarc/opengl.vim
+" git submodule add git://github.com/beyondmarc/opengl.vim.git bundle/syntax_opengl
 NeoBundleLazy 'Rip-Rip/clang_complete', {
     \ "autoload" : {
     \   "filetypes" : ["cpp"] }
     \}
+"NeoBundleLazy 'beyondmarc/opengl.vim', {
+"    \ "autoload" : {
+"    \   "filetypes" : ["c", "cpp"] }
+"    \}
 
 " }}}
 " -- JavaScript {{{
@@ -448,6 +454,8 @@ set showtabline=2
 
 highlight link ZenkakuSpace Error
 match ZenkakuSpace /　/
+
+set ambiwidth=double
 
 "" StatusLine{{{
 "set laststatus=2

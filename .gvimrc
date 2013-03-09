@@ -15,7 +15,7 @@ map <silent> gW :macaction selectPreviousWindow:
 nnoremap + :set transparency+=5<CR>
 nnoremap - :set transparency-=5<CR>
 
-"set clipboard=unnamed
+set clipboard=unnamed
 set guioptions=C
 
 if has('mac')
@@ -30,7 +30,6 @@ elseif has('win32')
     "set shell='C:/cygwin/bin/zsh.exe'
     set guifont=MeiryoKe_Gothic:h12
     set guifontwide=MeiryoKe_Gothic:h12
-    set clipboard=unnamed
     source $VIMRUNTIME/delmenu.vim
     set langmenu=ja_jp.utf-8
     source $VIMRUNTIME/menu.vim
@@ -39,7 +38,6 @@ elseif has('win64')
     "set shell='C:/cygwin/bin/zsh.exe'
     set guifont=MeiryoKe_Gothic:h12
     set guifontwide=MeiryoKe_Gothic:h12
-    set clipboard=unnamed
     source $VIMRUNTIME/delmenu.vim
     set langmenu=ja_jp.utf-8
     source $VIMRUNTIME/menu.vim
