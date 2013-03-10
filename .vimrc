@@ -47,7 +47,7 @@ NeoBundle 'honza/snipmate-snippets'
 NeoBundleLazy 'tpope/vim-fugitive', {
     \ 'autoload': {
     \   'functions': ["fugitive#statusline"],
-    \   'commands': [ "Git", "Gstatus", "Gcommit", "Gedit", "Gwrite", "Ggrep", "Glog" ],
+    \   'commands': [ "Git", "Gstatus", "Gcommit", "Gedit", "Gwrite", "Ggrep", "Glog", "Gdiff" ],
     \ }
     \}
 
@@ -373,7 +373,6 @@ endif
 "
 " common settings
 "
-syntax on
 syntax enable
 
 set visualbell t_vb=
@@ -416,6 +415,9 @@ set wildmenu
 set wildmode=list:full
 set completeopt=menuone,preview
 
+" <C-a> <C-x> で英字も増減させる
+set nrformats=alpha,octal,hex
+
 set scrolloff=999
 set smarttab
 set autoread
@@ -423,15 +425,20 @@ set autoread
 set splitbelow
 set splitright
 set previewheight=30
+" ウィンドウのリサイズを抑える
+set noequalalways
+" disable auto comment when start a new line
+set formatoptions-=ro
 
 "___________
 " indent
 "---------
 "
-set tabstop=4
-set softtabstop=4
-set shiftwidth=4
+set tabstop=4 shiftwidth=4 softtabstop=4
 set expandtab
+" インデントを shiftwidth の倍数に丸める
+set shiftround
+set smarttab
 
 "--------
 " display settings
@@ -452,10 +459,21 @@ set wrap
 
 set showtabline=2
 
+"閉じカッコが入力されたとき、対応するカッコを表示する
+"set showmatch
+" 括弧を入力した時にカーソルが移動しないように設定
+set matchtime=0
+
 highlight link ZenkakuSpace Error
 match ZenkakuSpace /　/
 
 set ambiwidth=double
+"コマンド実行中は再描画しない
+set lazyredraw
+"高速ターミナル接続を行う
+set ttyfast
+" 読み込んでいるファイルが変更された時自動で読み直す
+set autoread
 
 "" StatusLine{{{
 "set laststatus=2
