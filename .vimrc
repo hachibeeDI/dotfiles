@@ -6,11 +6,12 @@ let $MY_VIMRUNTIME = expand('~/.vim')
 let $BUNDLEPATH = expand('~/.neobundle')
 
 filetype off
+filetype plugin indent off
 
 if has('vim_starting')
-    set runtimepath+=~/.vim/neobundle.vim
+    set runtimepath+=$BUNDLEPATH/neobundle.vim/
+    call neobundle#rc($BUNDLEPATH)
 endif
-call neobundle#rc($BUNDLEPATH)
 
 "------- set plugins ------- {{{
 NeoBundle 'Shougo/vimproc', {
@@ -47,7 +48,7 @@ NeoBundle 'honza/snipmate-snippets'
 NeoBundleLazy 'tpope/vim-fugitive', {
     \ 'autoload': {
     \   'functions': ["fugitive#statusline"],
-    \   'commands': [ "Git", "Gstatus", "Gcommit", "Gedit", "Gwrite", "Ggrep", "Glog", "Gdiff" ],
+    \   'commands': [ "Git", "Gstatus", "Gcommit", "Gedit", "Gwrite", "Ggrep", "Glog", "Gdiff"],
     \ }
     \}
 
@@ -608,6 +609,18 @@ function! s:Tab2Space()
     nohl
     call cursor(l, c)
 endfunction
+
+" chmod a+xするコマンド
+if executable('chmod')
+    command! AddPermissionX call s:add_permission_x()
+
+    function! s:add_permission_x()
+        let file = expand('%:p')
+        if getline(1) =~# '^#!' && !executable(file)
+            silent! call vimproc#system('chmod a+x ' . shellescape(file))
+        endif
+    endfunction
+endif
 
 " 指定したエンコードでファイルを開き直すためのエイリアス
 command! Utf8 edit ++enc=utf-8
