@@ -9,7 +9,7 @@ filetype off
 filetype plugin indent off
 
 if has('vim_starting')
-    set runtimepath+=$BUNDLEPATH/neobundle.vim/
+    set runtimepath& runtimepath+=$BUNDLEPATH/neobundle.vim/
     call neobundle#rc($BUNDLEPATH)
 endif
 
@@ -384,7 +384,7 @@ set t_Co=256
 
 set directory=~/.vimcache/vimswap
 set backupdir=~/.vimcache/bak
-set viminfo+=n~/.vimcache/viminfo
+set viminfo& viminfo+=n~/.vimcache/viminfo
 if v:version >= 703
     set undodir=~/.vimcache/undo
     set undofile
@@ -429,7 +429,7 @@ set previewheight=30
 " ウィンドウのリサイズを抑える
 set noequalalways
 " disable auto comment when start a new line
-set formatoptions-=ro
+set formatoptions& formatoptions-=ro
 
 "___________
 " indent
@@ -554,7 +554,7 @@ cnoremap <C-h> <Backspace>
 cnoremap <C-d> <Del>
 
 if has('path_extra')
-    set tags+=.tags;
+    set tags& tags+=.tags;
 endif
 
 "command mode
@@ -645,7 +645,7 @@ let g:acp_enableAtStartup = 0
 
 let g:neocomplcache_enable_at_startup = 1   " enabled when start vim
 let g:neocomplcache_enable_smart_case = 1
-let g:neocomplcache_max_list = 1000
+let g:neocomplcache_max_list = 50
 let g:neocomplcache_auto_completion_start_length = 2
 " set minimum syntax keyword length
 let g:neocomplcache_min_syntax_length = 3
@@ -669,6 +669,8 @@ inoremap <expr><C-y> neocomplcache#close_popup()
 "inoremap <expr><C-e> neocomplcache#cancel_popup()
 inoremap <expr><Del> neocomplcache#cancel_popup()
 
+let g:neocomplcache_force_overwrite_completefunc=1
+
 if !exists('g:neocomplcache_keyword_patterns')
   let g:neocomplcache_keyword_patterns = {}
 endif
@@ -689,9 +691,6 @@ let g:neocomplcache_omni_patterns.haxe = '\v([\]''"]|\w)(\.|\()'
 
 " clang {{{
 " via - http://d.hatena.ne.jp/osyo-manga/20120911/1347354707
-" neocomplcache 側の設定
-let g:neocomplcache_force_overwrite_completefunc=1
-
 if !exists("g:neocomplcache_force_omni_patterns")
     let g:neocomplcache_force_omni_patterns = {}
 endif
@@ -699,9 +698,17 @@ endif
 " omnifunc が呼び出される場合の正規表現パターンを設定しておく
 let g:neocomplcache_force_omni_patterns.cpp = '[^.[:digit:] *\t]\%(\.\|->\)\|::'
 
-" clang_complete 側の設定
-" clang_complete の自動呼び出しは必ず切っておく
+" ------------------- clang_complete ------------- {{{
+" neocomplcacheとの競合を避けるため、自動呼び出しはOff
 let g:clang_complete_auto=0
+let g:clang_auto_select=0
+"libclangを使う
+let g:clang_use_library=1
+if has('mac')
+  let g:clang_library_path="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/libclang.dylib"
+endif
+let g:clang_user_options = '-std=c++11'
+" }}}
 " }}}
 
 "Define dictonaru
@@ -716,14 +723,6 @@ let g:neocomplcache_dictionary_filetype_lists={
         \ 'cpp':$HOME.'/.vim/dict/cpp.dict',
         \ 'scala':$BUNDLEPATH.'/vim-scala/dict/scala.dict'
     \}
-
-
-""タグ補完
-""タグファイルの場所
-"augroup SetTagsFile
-"  autocmd!
-"  autocmd FileType php set tags=$HOME/.vim/tags/php.tags
-"augroup END
 
 "zencoding連携
 let g:use_zen_complete_tag = 1
@@ -823,10 +822,6 @@ let g:vimfiler_marked_file_icon = '*'
 "そして:VimFilerExplorerでいんじゃね感
 nnoremap <silent> ,fe :<C-u>VimFiler -buffer-name=explorer -split -winwidth=35 -toggle -no-quit<CR>
 nnoremap <silent> ,fb :<C-u>VimFilerBufferDir<CR>
-"autocmd! FileType vimfiler call g:my_vimfiler_settings()
-"function! g:my_vimfiler_settings()
-"    nmap <buffer><expr><Cr> vimfiler#smart_cursor_map
-"}}}
 
 " --- quickrun -----{{{
 " url:http://d.hatena.ne.jp/osyo-manga/20111014/1318586711
