@@ -15,7 +15,7 @@ autoload -Uz colors
 colors
 ## Enable zmv command
 autoload zmv
-alias zmv='noglob zmv'
+alias zmv='noglob zmv -W'
 ## call version check function
 autoload -Uz is-at-least
 # zsh editor
