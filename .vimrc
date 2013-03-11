@@ -704,8 +704,9 @@ let g:clang_complete_auto=0
 let g:clang_auto_select=0
 "libclangを使う
 let g:clang_use_library=1
+let g:clang_debug=1
 if has('mac')
-  let g:clang_library_path="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/libclang.dylib"
+  let g:clang_library_path="/usr/lib"
 endif
 let g:clang_user_options = '-std=c++11'
 " }}}
@@ -804,7 +805,7 @@ nnoremap <silent> ,uo :<C-u>Unite -vertical outline<CR>
 " use Vimfiler as default instead of netrw
 let g:vimfiler_as_default_explorer =  1
 " Enable file operation commands.
-let g:vimfiler_safe_mode_by_default = 1
+let g:vimfiler_safe_mode_by_default = 0
 " Edit file by tabedit.
 let g:vimfiler_edit_action = 'tabopen'
 " Like Textmate icons.
