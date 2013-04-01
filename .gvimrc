@@ -41,6 +41,12 @@ elseif has('win64')
     source $VIMRUNTIME/delmenu.vim
     set langmenu=ja_jp.utf-8
     source $VIMRUNTIME/menu.vim
+elseif has('unix')
+    colorscheme desertEx
+    set transparency=5 " 透明度を指定
+    set guifont=RictyDiscord-Regular:h20
+    set guifontwide=RictyDiscord-Regular:h20
+    set background=dark
 endif
 
 " add register text on OS's clip boald
