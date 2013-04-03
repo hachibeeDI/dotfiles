@@ -1,6 +1,6 @@
 # vim:set filetype=zsh fdm=marker:
 
-echo 'setting up environment variables as MacOSX ... ...'
+echo 'setting up environment variables as gnu/linux ... ...'
 
 # -U : 重複したパスは登録しない
 typeset -U path
