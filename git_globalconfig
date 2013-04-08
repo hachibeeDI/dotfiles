@@ -17,6 +17,8 @@
     autocrlf = false
 [grep]
     lineNumber = true
+[push]
+    default = upstream
 [alias]
     # common
     st = status
