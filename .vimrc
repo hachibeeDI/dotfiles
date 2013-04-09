@@ -43,7 +43,7 @@ NeoBundleLazy 'Shougo/vimshell', {
     \}
 
 " snipets for neosnippet's dirctory
-NeoBundle 'honza/snipmate-snippets'
+NeoBundle 'honza/vim-snippets'
 
 NeoBundleLazy 'tpope/vim-fugitive', {
     \ 'autoload': {

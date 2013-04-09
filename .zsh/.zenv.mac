@@ -23,7 +23,8 @@ path=(
     /usr/sbin(N-/)
     /sbin(N-/)
     # 自分のスクリプトとか、自分でビルドしたやつとか
-    $HOME/Dropbox/sh(N-/)
+    $HOME/Dropbox/bin/mac(N-/)
+    $HOME/Dropbox/bin(N-/)
     $HOME/bin(N-/)
     # MacOS規定のPATHを全てこちらで上書きにする？
     # $PATH

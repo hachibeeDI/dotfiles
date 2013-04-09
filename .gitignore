@@ -49,10 +49,6 @@ nosetests.xml
 # Mr Developer(?)
 .mr.developer.cfg
 
-# dotfiles local setting
-.vim/.bundle/*
-.vim/neobundle.vim
-
 #Java {{{
 
 # Package Files #
