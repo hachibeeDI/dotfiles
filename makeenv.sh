@@ -1,7 +1,8 @@
 #!/bin/sh
+
 #動作テストしてないよてへぺろ☆
-path=`pwd`
-echo "$path"
+dotfile_path=`pwd`
+echo "$dotfile_path"
 
 mkdir ~/dotfilebackup
 
@@ -16,25 +17,22 @@ mkdir -p ~/.vimcache/bak/
 mkdir ~/.vimcache/vimswap/
 
 # 汚い…
-ln -s "$path"/.vimrc ~/.vimrc
-ln -s "$path"/.gvimrc ~/.gvimrc
-ln -s "$path"/.zsh ~/.zsh
-ln -s "$path"/.zprofile ~/.zprofile
-ln -s "$path"/.zshenv ~/.zshenv
-ln -s "$path"/.zshrc ~/.zshrc
-ln -s "$path"/.pythonstartup ~/.pythonstartup
-ln -s "$path"/.tmux.conf ~/.tmux.conf
-ln -s "$path"/.gitignore ~/.gitignore
-ln -s "$path"/.sheets ~/.sheets
-ln -s "$path"/.ctags ~/.ctags
+ln -s "$dotfile_path"/.vimrc ~/.vimrc
+ln -s "$dotfile_path"/.gvimrc ~/.gvimrc
+ln -s "$dotfile_path"/.zsh ~/.zsh
+ln -s "$dotfile_path"/.zprofile ~/.zprofile
+ln -s "$dotfile_path"/.zshenv ~/.zshenv
+ln -s "$dotfile_path"/.zshrc ~/.zshrc
+ln -s "$dotfile_path"/.pythonstartup ~/.pythonstartup
+ln -s "$dotfile_path"/.tmux.conf ~/.tmux.conf
+ln -s "$dotfile_path"/.gitignore ~/.gitignore
+ln -s "$dotfile_path"/.sheets ~/.sheets
+ln -s "$dotfile_path"/.ctags ~/.ctags
 
-ln -s "$path"/git_globalconfig ~/.gitconfig
+ln -s "$dotfile_path"/git_globalconfig ~/.gitconfig
 touch ~/.gitconfig.local
 
-ln -s "$path"/.vim ~/.vim
-#ln -s "$path"/.vim/syntax ~/.vim/syntax
-#ln -s "$path"/.vim/neobundle.vim ~/.vim/neobundle.vim
-#ln -s "$path"/.vim/colors ~/.vim/colors
-#ln -s "$path"/.vim/.netrwhist ~/.vim/.netrwhist
-#ln -s "$path"/.vim/templates ~/.vim/templates
+ln -s "$dotfile_path"/.vim ~/.vim
+
+ln -s "$dotfile_path"/.zsh/modules/LS_COLORS/LS_COLORS ~/.dircolors
 

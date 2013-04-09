@@ -4,3 +4,6 @@
 [submodule ".vim/neobundle.vim"]
 	path = .vim/neobundle.vim
 	url = git://github.com/Shougo/neobundle.vim.git
+[submodule ".zsh/modules/LS_COLORS"]
+	path = .zsh/modules/LS_COLORS
+	url = git://github.com/trapd00r/LS_COLORS.git
