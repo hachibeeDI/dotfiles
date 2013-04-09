@@ -9,7 +9,7 @@ filetype off
 filetype plugin indent off
 
 if has('vim_starting')
-    set runtimepath& runtimepath+=$BUNDLEPATH/neobundle.vim/
+    set runtimepath& runtimepath+=~/.vim/neobundle.vim
     call neobundle#rc($BUNDLEPATH)
 endif
 
@@ -310,12 +310,7 @@ NeoBundleLazy 'glidenote/memolist.vim', {
 filetype plugin indent on
 
 " Installation check.
-if neobundle#exists_not_installed_bundles()
-  echomsg 'Not installed bundles : ' .
-        \ string(neobundle#get_not_installed_bundle_names())
-  echomsg 'Please execute ":NeoBundleInstall" command.'
-  "finish
-endif
+NeoBundleCheck
 "}}}
 
 " enable prebundled plugin
