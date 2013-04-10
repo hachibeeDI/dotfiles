@@ -52,6 +52,13 @@ export LDFLAGS="-L/usr/local/opt/sqlite/lib"
 # Cのプリプロセッサフラグ.
 export CPPFLAGS="-I/usr/local/opt/sqlite/include"
 
+# Python settings for virtualenv {{{
+export VIRTUALENVWRAPPER_PYTHON=/usr/local/bin/python
+export VIRTUALENVWRAPPER_VIRTUALENV=/usr/local/share/python/virtualenv
+export WORKON_HOME=$HOME/.virtualenvs
+#source /usr/local/share/python/virtualenvwrapper.sh
+source /usr/local/share/python/virtualenvwrapper_lazy.sh
+# }}}
 
 ##homebrew
 #export HOMEBREW_USE_CLANG =
