@@ -148,11 +148,12 @@ setopt prompt_subst
 # if there too many Completementes
 export LISTMAX=0
 
-
 # history settings<<<
-HISTFILE=~/.histfile
-HISTSIZE=10000
-SAVEHIST=10000
+HISTFILE=~/.zsh_histfile
+# history in memory
+HISTSIZE=100000
+# history in file
+SAVEHIST=100000
 
 # disable to save hist, if it's on RootUser
 if [ $UID = 0 ]; then
@@ -163,13 +164,18 @@ fi
 setopt share_history
 setopt hist_ignore_all_dups # if there are overlaps on histfile, delete the old one
 setopt hist_ignore_dups # disable to save histfile, if its overlaps on just before
+# ignore `history` command itselfs
 setopt hist_no_store
 setopt hist_reduce_blanks
+# ignore command is same as old one
+setopt hist_save_no_dups
 ## 補完時にヒストリを自動的に展開する。
 setopt hist_expand
 setopt share_history
 # when use zsh on multiwindow, add on a history file
 setopt append_history
+# save Begin and End
+setopt EXTENDED_HISTORY
 
 # --- 入力済みの文字列にマッチしたコマンドのヒストリを表示させる ---
 autoload history-search-end
@@ -177,6 +183,9 @@ zle -N history-beginning-search-backward-end history-search-end
 zle -N history-beginning-search-forward-end history-search-end
 bindkey "^P" history-beginning-search-backward-end
 bindkey "^N" history-beginning-search-forward-end
+
+# ヒストリ呼び出しから、実行までの間に一度編集を可能にする
+setopt hist_verify
 
 #>>>
 
@@ -285,6 +294,8 @@ bindkey '[3~' cdup
 
 #>>>
 
+# 全履歴の検索
+function history-all { history -E l }
 
 # -------------
 #  source auto-fu.zsh(plugin)<<<
