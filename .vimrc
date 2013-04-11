@@ -122,6 +122,12 @@ NeoBundleLazy 'nathanaelkane/vim-indent-guides', {
 
 " === Language surpport === {{{
 " -- Python {{{
+NeoBundleLazy 'jmcantrell/vim-virtualenv', {
+    \ "autoload" : {
+    \   "filetypes" : ["python"],
+    \ }
+    \}
+
 " search invailed code with pyflakes
 NeoBundleLazy 'kevinw/pyflakes-vim', {
     \ "autoload" : {
@@ -1009,4 +1015,6 @@ function! s:bundle_smartchr.hooks.on_source(bundle)
     inoremap <expr> , smartchr#one_of(', ', ',')
 endfunction
 "  }}}
+
+source ~/.vimrc.local
 
