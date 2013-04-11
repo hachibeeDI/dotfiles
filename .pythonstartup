@@ -3,8 +3,12 @@
 import sys
 import os
 import readline
-import rlcompleter2
 import atexit
+
+try:
+    import rlcompleter2
+except ImportError:
+    print "no rlcompleter2 module"
 
 # tab auto-complete
 readline.parse_and_bind('tab: complete')
