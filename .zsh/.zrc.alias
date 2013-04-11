@@ -9,7 +9,8 @@ alias sudo='sudo '
 # オプションの設定はGNUコマンドが前提となっている
 # なのでMac ユーザはhomebrewかportsからcoreutilsを導入すること
 
-alias grep='grep --color=auto'
+# エスケープシーケンスがうまいこと処理されなかったりするので無効る
+#alias grep='grep --color=auto'
 
 alias diff='colordiff'
 

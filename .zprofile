@@ -91,16 +91,6 @@ export GREP_COLOR=auto
 export LESSHISTFILE=-
 #}}}
 
-# ======= language specific ========================{{{
-# node.js-npm
-if [ -d /usr/local/lib/node_modules ]; then
-    export NODE_PATH=/usr/local/lib/node_modules/
-fi
-
-if [ -d /usr/local/share/npm/bin ]; then
-    export PATH=/usr/local/share/npm/bin:$PATH
-fi
-
 #read PATH for python _and python's tool
 export PYTHONSTARTUP=~/.pythonstartup
 
