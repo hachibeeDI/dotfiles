@@ -1,6 +1,5 @@
-[user]
-    name = OGURA_Daiki
-    email = 8hachibee125@gmail.com
+#[user]
+# ~/.gitconfig.local に書く
 [include]
     # ex-> github token ...
     path = .gitconfig.local
