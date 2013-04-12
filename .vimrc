@@ -761,9 +761,31 @@ if has ('conceal')
 endif
 
 "}}}
-
-
 "}}}
+
+" =============== jedi-vim =============== {{{
+let s:bundle_jedi = neobundle#get('jedi-vim')
+function! s:bundle_jedi.hooks.on_source(bundle)
+
+  " do not allow set some configure auto.
+  let g:jedi#auto_vim_configuration = 0
+
+  let g:jedi#use_tabs_not_buffers = 0
+  " neocomplcacheとコンフリクトを起こすので無効にしておく
+  let g:jedi#popup_on_dot = 0
+  let g:jedi#popup_select_first = 0
+  let g:jedi#show_function_definition = "1"
+
+  " command mappings
+  let g:jedi#goto_command = "<leader>g"
+  let g:jedi#get_definition_command = "<leader>d"
+  let g:jedi#pydoc = "K"
+  let g:jedi#rename_command = "<leader>r"
+  let g:jedi#related_names_command = "<leader>n"
+  let g:jedi#autocompletion_command = "<C-Space>"
+endfunction
+"}}}
+
 
 " vim-indentguides ------------{{{
 let g:indent_guides_enable_on_vim_startup=1
