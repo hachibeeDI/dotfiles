@@ -66,6 +66,9 @@ NeoBundleLazy 'scrooloose/syntastic', {
     \ }
     \}
 
+"" Quickfixの内容を使ってエラー表示をハイライトしてくれる
+"NeoBundleLazy 'jceb/vim-hies'
+
 "Unite
 NeoBundleLazy 'Shougo/unite.vim', {
     \ 'autoload' : {
@@ -964,7 +967,7 @@ function! s:bundle_watchdogs.hooks.on_source(bundle)
   " 書き込み後にシンタックスチェックを行う
   let g:watchdogs_check_BufWritePost_enable = 1
 
-  nnoremap <silent> [Show]w :<C-u>WatchdogsRun<CR>
+  nnoremap [Show]w :<C-u>WatchdogsRun<CR>
 endfunction
 
 " }}}
