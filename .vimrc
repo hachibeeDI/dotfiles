@@ -554,6 +554,13 @@ cnoremap <C-b> <Left>
 cnoremap <C-h> <Backspace>
 cnoremap <C-d> <Del>
 
+" ----------- operation
+" http://vim-users.jp/2011/04/hack214/
+onoremap ) t)
+onoremap ( t(
+vnoremap ) t)
+vnoremap ( t(
+
 if has('path_extra')
     set tags& tags+=.tags;
 endif
@@ -622,6 +629,32 @@ if executable('chmod')
         endif
     endfunction
 endif
+
+" http://vim-users.jp/2011/02/hack203/
+command!
+\   -nargs=* -complete=mapping
+\   AllMaps
+\   map <args> | map! <args> | lmap <args>
+
+" Capture "{{{
+command!
+\   -nargs=+ -complete=command
+\   Capture
+\   call s:cmd_capture(<q-args>)
+
+function! s:cmd_capture(q_args)
+    redir => output
+    silent execute a:q_args
+    redir END
+    let output = substitute(output, '^\n\+', '', '')
+
+    belowright new
+
+    silent file `=printf('[Capture: %s]', a:q_args)`
+    setlocal buftype=nofile bufhidden=unload noswapfile nobuflisted
+    call setline(1, split(output, '\n'))
+endfunction
+"}}}
 
 " 指定したエンコードでファイルを開き直すためのエイリアス
 command! Utf8 edit ++enc=utf-8
