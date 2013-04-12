@@ -69,7 +69,7 @@ NeoBundleLazy 'scrooloose/syntastic', {
 "Unite
 NeoBundleLazy 'Shougo/unite.vim', {
     \ 'autoload' : {
-    \   'commands' : ["Unite", "QuickRun"],
+    \   'commands' : ["Unite", "UniteWithBufferDir", "QuickRun"],
     \ }
     \}
 
@@ -872,8 +872,13 @@ let g:quickrun_config["_"] = {
             \ }
 
 let g:quickrun_config["cpp"] = {
-    \ 'command' : 'clang++',
-    \ 'cmdopt' : '-std=c++11 -stdlib=libc++',
+    \ 'command': 'clang++',
+    \ 'cmdopt': '-std=c++11 -stdlib=libc++',
+    \ 'runner': 'vimproc',
+    \ }
+
+let g:quickrun_config["python"] = {
+    \ 'runner': 'vimproc',
     \ }
 "  }}}
 
