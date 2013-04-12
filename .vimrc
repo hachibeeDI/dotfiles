@@ -880,6 +880,8 @@ let g:quickrun_config["cpp"] = {
 let g:quickrun_config["python"] = {
     \ 'runner': 'vimproc',
     \ }
+
+nmap <F5> <Plug>(quickrun)
 "  }}}
 
 " ===============================================================
