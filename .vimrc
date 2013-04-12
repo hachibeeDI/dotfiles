@@ -744,7 +744,7 @@ endif
 " ---- neosnippet : {{{
 
 " tell neosnippet about my snippets
-let g:neosnippet#snippets_directory = '~/.vim/snippets,~/.neobundle/snipmate-snippets/snippets'
+let g:neosnippet#snippets_directory = '~/.vim/snippets,'.$BUNDLEPATH.'/vim-snippets/snippets'
 
 " plugin key-mappings.
 imap <C-k> <Plug>(neosnippet_expand_or_jump)
