@@ -849,45 +849,90 @@ nnoremap <silent> ,fb :<C-u>VimFilerBufferDir<CR>
 
 " --- quickrun -----{{{
 " url:http://d.hatena.ne.jp/osyo-manga/20111014/1318586711
+let s:bundle_quickrun = neobundle#get('vim-quickrun')
+function! s:bundle_quickrun.hooks.on_source(bundle)
 
-if !exists("g:quickrun_config")
-    let g:quickrun_config={}
-endif
+  "設定の初期化
+  if !exists("g:quickrun_config")
+      let g:quickrun_config={}
+  endif
 
-" default via http://d.hatena.ne.jp/osyo-manga/20120919/1348054752
-let g:quickrun_config["_"] = {
-            \ "hook/close_unite_quickfix/enable_hook_loaded" : 1,
-            \ "hook/unite_quickfix/enable_failure" : 1,
-            \ "hook/close_quickfix/enable_exit" : 1,
-            \ "hook/close_quickfix/enable_success" : 1,
-            \ "hook/close_buffer/enable_failure" : 1,
-            \ "hook/close_buffer/enable_empty_data" : 1,
-            \ "outputter" : "multi:buffer:quickfix",
-            \ "hook/shabadoubi_touch_henshin/enable" : 1,
-            \ "hook/shabadoubi_touch_henshin/wait" : 20,
-            \ "outputter/buffer/split" : ":botright 8sp",
-            \ "runner" : "vimproc",
-            \ "runner/vimproc/updatetime" : 40,
-            \
-            \ }
+  " default config via http://d.hatena.ne.jp/osyo-manga/20120919/1348054752
+  let g:quickrun_config["_"] = {
+              \ "hook/close_unite_quickfix/enable_hook_loaded" : 1,
+              \ "hook/unite_quickfix/enable_failure" : 1,
+              \ "hook/close_quickfix/enable_exit" : 1,
+              \ "hook/close_quickfix/enable_success" : 1,
+              \ "hook/close_buffer/enable_failure" : 1,
+              \ "hook/close_buffer/enable_empty_data" : 1,
+              \ "outputter" : "multi:buffer:quickfix",
+              \ "hook/shabadoubi_touch_henshin/enable" : 1,
+              \ "hook/shabadoubi_touch_henshin/wait" : 20,
+              \ "outputter/buffer/split" : ":botright 8sp",
+              \ "runner" : "vimproc",
+              \ "runner/vimproc/updatetime" : 40,
+              \
+              \ }
+  " 実行
+  let g:quickrun_config["run/vimproc"] = {
+      \ "exec": "%s:p:r %a",
+      \ "output_encode" : "utf-8",
+      \ "runner" : "vimproc",
+      \ "outputter" : "buffer"
+      \ }
+  let g:quickrun_config["run/system"] = {
+      \ "exec": "%s:p:r %a",
+      \ "output_encode" : "utf-8",
+      \ "runner" : "system",
+      \ "outputter" : "buffer"
+      \ }
 
-let g:quickrun_config["cpp"] = {
-    \ 'command': 'clang++',
-    \ 'cmdopt': '-std=c++11 -stdlib=libc++',
-    \ 'runner': 'vimproc',
-    \ }
+  let g:quickrun_config["run/vimproc/pause"] = {
+      \ "exec": "%s:p:r %a && pause",
+      \ "output_encode" : "utf-8",
+      \ "runner" : "shell",
+      \ "outputter" : "buffer"
+      \ }
+  " -----
 
-let g:quickrun_config["python"] = {
-    \ 'runner': 'vimproc',
-    \ }
+  let g:quickrun_config["cpp"] = {
+      \ 'command': 'clang++',
+      \ 'cmdopt': '-std=c++11 -stdlib=libc++',
+      \ 'runner': 'vimproc',
+      \ }
 
-nmap <F5> <Plug>(quickrun)
+  let g:quickrun_config["python"] = {
+      \ 'runner': 'vimproc',
+      \ }
+
+  " watchdogs用
+  " エラー出過ぎ感あるので、適当にhookでgrepしたり実行オプション追加したりする必要がありそう
+  let g:quickrun_config["watchdogs_checker/pychecker"] = {
+      \ 'command': 'pychecker',
+      \ 'exec': '%c %o %s:p',
+      \ 'quickfix/errorformat': '%f:%l:%m',
+      \ }
+  let g:quickrun_config["python/watchdogs_checker"] = {
+      \ 'type': 'watchdogs_checker/pychecker',
+      \ }
+
+  nnoremap <F5> <Plug>(quickrun)
+endfunction
+
 "  }}}
 
 " ===============================================================
 " < " http://d.hatena.ne.jp/osyo-manga/20120924/1348473304
 " < " ---- vim-watchdog --- : {{{
-call watchdogs#setup(g:quickrun_config)
+let s:bundle_watchdogs = neobundle#get('vim-watchdogs')
+function! s:bundle_watchdogs.hooks.on_source(bundle)
+
+  call watchdogs#setup(g:quickrun_config)
+  " 書き込み後にシンタックスチェックを行う
+  let g:watchdogs_check_BufWritePost_enable = 1
+
+  nnoremap <silent> [Show]w :<C-u>WatchdogsRun<CR>
+endfunction
 
 " }}}
 
@@ -988,7 +1033,7 @@ let g:memolist_prompt_categories = 1
 let g:memolist_qfixgrep = 1
 let g:memolist_vimfiler = 1
 let g:memolist_path = "~/Dropbox/memolist"
-"let g:memolist_template_dir_path = 
+"let g:memolist_template_dir_path =
 "}}}
 " ------ OpenBrowser {{{
 nmap <Space>w <Plug>(openbrowser-smart-search)
