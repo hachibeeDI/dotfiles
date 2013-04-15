@@ -33,6 +33,11 @@
     bmd = branch --merged
     bnm = branch --no-merged
 
+    # reset
+    re = reset
+    rehar = reset --hard
+    res = reset --soft
+
     #diff
     dm = diff master
     dw = diff --color-words
