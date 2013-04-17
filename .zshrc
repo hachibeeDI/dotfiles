@@ -343,6 +343,8 @@ function _sheets {
 mkcd() {mkdir -p "$@" && cd "$*[-1]"}
 mktmp() {mkdir `date +"%Y%m%d_%H%M%S"`}
 
+g_root() { cd `git rev-parse --git-dir |sed -e "s/[^\/]*$//g"` }
+
 # arrange a littele: http://qiita.com/items/1f01aa09ccf148542f21
 gs() {
     git status -sb && git stash list
