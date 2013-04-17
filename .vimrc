@@ -659,6 +659,12 @@ function! s:cmd_capture(q_args)
 endfunction
 "}}}
 
+command!
+\  -nargs=1
+\  VimGrepCurrent
+\  vimgrep <args> % | cw
+
+
 " 指定したエンコードでファイルを開き直すためのエイリアス
 command! Utf8 edit ++enc=utf-8
 command! Cp932 edit ++enc=cp932
@@ -942,7 +948,6 @@ function! s:bundle_quickrun.hooks.on_source(bundle)
       \ }
 
   " watchdogs用
-  " エラー出過ぎ感あるので、適当にhookでgrepしたり実行オプション追加したりする必要がありそう
   let g:quickrun_config["watchdogs_checker/pychecker"] = {
       \ 'command': 'pychecker',
       \ 'exec': '%c %o %s:p',
@@ -952,8 +957,8 @@ function! s:bundle_quickrun.hooks.on_source(bundle)
       \ 'type': 'watchdogs_checker/pychecker',
       \ }
 
-  nnoremap <F5> <Plug>(quickrun)
 endfunction
+nnoremap <F5> <Plug>(quickrun)
 
 "  }}}
 
@@ -964,11 +969,11 @@ let s:bundle_watchdogs = neobundle#get('vim-watchdogs')
 function! s:bundle_watchdogs.hooks.on_source(bundle)
 
   call watchdogs#setup(g:quickrun_config)
-  " 書き込み後にシンタックスチェックを行う
-  let g:watchdogs_check_BufWritePost_enable = 1
+  " 書き込み後にシンタックスチェックを行うかどうか
+  let g:watchdogs_check_BufWritePost_enable = 0
 
-  nnoremap [Show]w :<C-u>WatchdogsRun<CR>
 endfunction
+nnoremap [Show]w :<C-u>WatchdogsRunSilent<CR><Esc>
 
 " }}}
 
