@@ -8,7 +8,7 @@ export BREW_PATH
 # -U : 重複したパスは登録しない
 typeset -U path
 # homebrewとcoreutils優先の設定
-brewgembin="$(ruby -e 'require "rubygems"; puts Gem::bindir')"
+brewgembin=`ruby -e 'require "rubygems"; puts Gem::bindir'`
 path=(
     # 自分のスクリプトとか、自分でビルドしたやつとか
     $HOME/Dropbox/bin/mac(N-/)
@@ -19,9 +19,10 @@ path=(
     /usr/local/bin(N-/)
 
     /usr/local/share/python(N-/)
-    $brewgembin(N-/)
+    /usr/local/Cellar/ruby/2.0.0-p0/bin(N-/)
     #デフォルトのコマンドをGNUコマンドで
     $(brew --prefix coreutils)/libexec/gnubin(N-/)
+
     /usr/bin(N-/)
     /bin(N-/)
     #sbin
@@ -36,7 +37,9 @@ MANPATH="$(brew --prefix coreutils)/libexec/gnuman:$MANPATH"
 export MANPATH
 
 # set MacVim-kaoriya on default editor
-export EDITOR=/Applications/MacVim.app/Contents/MacOS/Vim
+if [[ -f /Applications/MacVim.app/Contents/MacOS/Vim ]]; then
+    export EDITOR=/Applications/MacVim.app/Contents/MacOS/Vim
+fi
 
 if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
 export RBENV_ROOT=/usr/local/opt/rbenv

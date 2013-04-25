@@ -315,11 +315,6 @@ source ~/.zsh/modules/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 # }}}
 
-# --------
-# auto jump <<<
-# ------------------
-alias j="autojump"
-
 #読み込み部分は各OSごとのアレ部分
 
 #>>>
