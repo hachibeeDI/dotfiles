@@ -450,7 +450,7 @@ set smarttab
 "---------
 set background=dark
 "colorscheme solarized
-"let g:solarized_termcolors=256
+let g:solarized_termcolors=256
 "colorscheme desert
 
 set title
@@ -502,12 +502,13 @@ nmap <Space>s [Show]
 nnoremap [Show]m  :<C-u>marks<CR>
 nnoremap [Show]r  :<C-u>registers<CR>
 nnoremap [Show]e  :<C-u>edit $MYVIMRC<CR>
+nnoremap [Show]l  :<C-u>source $MYVIMRC<CR>
 nnoremap [Show]h  :<C-u>help<Space>
 
 nnoremap [EditSupport] <Nop>
 nmap , [EditSupport]
 
-" substitute word under cursor
+" substitute word is under cursor
 nnoremap <expr> [EditSupport]s* ':%substitute/\<' . expand('<cword>') . '\>/'
 nnoremap <expr> [EditSupport]e* ':' . line(".") . ',$s/\<' . expand('<cword>') . '\>/'
 
@@ -537,6 +538,12 @@ nnoremap <Up> <C-w>+
 nnoremap <Down> <C-w>-
 nnoremap <Left> <C-w>>
 nnoremap <Right> <C-w><
+
+" Ctrl + C は、`insert modeの強制終了`なので微妙に挙動がかわる。うざいので置き換える
+inoremap <C-c> <Esc>
+
+nnoremap 0 ^
+nnoremap ^ 0
 "}}}
 
 " ---- insert mode ---- {{{
@@ -563,6 +570,9 @@ onoremap ) t)
 onoremap ( t(
 vnoremap ) t)
 vnoremap ( t(
+
+onoremap _ t_
+vnoremap _ t_
 
 if has('path_extra')
     set tags& tags+=.tags;
@@ -833,7 +843,8 @@ endfunction
 let g:indent_guides_enable_on_vim_startup=1
 let g:indent_guides_guide_size=1
 let g:indent_guides_start_level=2
-let g:indent_guides_color_change_percent=20
+let g:indent_guides_color_change_percent=10
+nmap <silent> <Leader>ig <Plug>IndentGuidesToggle
 "}}}
 
 " via: http://www.karakaram.com/vimfiler
@@ -845,6 +856,13 @@ let g:unite_enable_start_insert=1
 let g:unite_winwidth=40
 " 縦幅
 let g:unite_winheight=50
+
+" -- grep
+let g:unite_source_grep_command = 'ag'
+let g:unite_source_grep_default_opts = '--nocolor --nogroup'
+let g:unite_source_grep_recursive_opt = ''
+let g:unite_source_grep_max_candidates = 200
+
 
 " バッファ一覧
 nnoremap <silent> ,ub :<C-u>Unite buffer<CR>
@@ -863,6 +881,8 @@ nnoremap <silent> ,ua :<C-u>UniteWithBufferDir -buffer-name=files buffer file_mr
 nnoremap <silent> ,u` :<C-u>Unite -auto-quit neobundle/update<CR>
 " Outline
 nnoremap <silent> ,uo :<C-u>Unite -vertical outline<CR>
+" grepjj
+nnoremap <silent> ,ug :<C-u>Unite grep<CR>
 
 "}}}
 
@@ -957,23 +977,18 @@ function! s:bundle_quickrun.hooks.on_source(bundle)
       \ 'type': 'watchdogs_checker/pychecker',
       \ }
 
-endfunction
-nnoremap <F5> <Plug>(quickrun)
 
-"  }}}
-
-" ===============================================================
 " < " http://d.hatena.ne.jp/osyo-manga/20120924/1348473304
 " < " ---- vim-watchdog --- : {{{
-let s:bundle_watchdogs = neobundle#get('vim-watchdogs')
-function! s:bundle_watchdogs.hooks.on_source(bundle)
-
   call watchdogs#setup(g:quickrun_config)
   " 書き込み後にシンタックスチェックを行うかどうか
   let g:watchdogs_check_BufWritePost_enable = 0
 
 endfunction
+nnoremap <F5> <Plug>(quickrun)
 nnoremap [Show]w :<C-u>WatchdogsRunSilent<CR><Esc>
+
+"  }}}
 
 " }}}
 
