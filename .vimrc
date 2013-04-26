@@ -45,12 +45,12 @@ NeoBundleLazy 'Shougo/vimshell', {
 " snipets for neosnippet's dirctory
 NeoBundle 'honza/vim-snippets'
 
-NeoBundleLazy 'tpope/vim-fugitive', {
-    \ 'autoload': {
-    \   'functions': ["fugitive#statusline"],
-    \   'commands': [ "Git", "Gstatus", "Gcommit", "Gedit", "Gwrite", "Ggrep", "Glog", "Gdiff"],
-    \ }
-    \}
+" runtimepathに追加されていない？ 要調査
+NeoBundleLazy 'tpope/vim-fugitive'
+"    \ 'autoload': {
+"    \   'commands': [ "Git", "Gstatus", "Gcommit", "Gedit", "Gwrite", "Ggrep", "Glog", "Gdiff"],
+"    \ }
+"    \}
 
 "@Deprecated
 NeoBundleLazy 'scrooloose/syntastic', {
@@ -75,8 +75,7 @@ NeoBundle 'osyo-manga/unite-quickfix'
 " compile and exec the code and pop result on Quickfix-window
 NeoBundleLazy 'thinca/vim-quickrun', {
     \'autoload' : {
-    \ 'commands' : ["QuickRun"],
-    \ 'mappings' : ['nxo', '<Plug>(quickrun)'],
+    \   'insert' : 1,
     \ }}
 " get and read referece on vim
 NeoBundleLazy 'thinca/vim-ref', { 'autoload' : {
@@ -249,17 +248,9 @@ NeoBundleLazy 'ujihisa/unite-font'
 " }}}
 
 NeoBundle 'kana/vim-metarw'
-NeoBundleLazy 'mattn/sonictemplate-vim', {
-    \ 'autoload' : {
-    \   'commands' : [ "Templete" ]}
-    \}
-NeoBundle 'Lokaltog/vim-powerline'
-NeoBundleLazy 't9md/vim-quickhl', {
-    \ 'autoload' : {
-    \   'commands' : ["QuickhlAdd"],
-    \   'mappings' : ["<Plug>(quickhl-toggle)", "<Plug>(quickhl-reset)", "<Plug>(quickhl-match)"],
-    \   },
-    \}
+"NeoBundle 'Lokaltog/vim-powerline'
+NeoBundle 't9md/vim-quickhl'
+
 NeoBundleLazy 'mattn/gist-vim', {
     \ 'autoload' : {
     \   'commands' : [ "Gist" ]}
@@ -1007,12 +998,6 @@ if has('mac')
     let g:slimv_swank_clojure = '!osascript -e "tell app \"iTerm\"" -e "tell the first terminal" -e "set mysession to current session" -e "launch session \"Default Session\"" -e "tell the last session" -e "exec command \"/bin/bash\"" -e "write text \"cd $(pwd)\"" -e "write text \"lein swank\"" -e "end tell" -e "select mysession" -e "end tell" -e "end tell"'
 endif
 
-" ------- sonictemplate.vim -----{{{
-let g:sonictemplate_vim_template_dir = [
-\ '$HOME/.vim/templates'
-\]
-
-"}}}
 
 " ----- hatena-vim ----
 let g:hatena_user='hachibeechan'
