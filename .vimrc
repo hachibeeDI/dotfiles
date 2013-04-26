@@ -30,7 +30,10 @@ NeoBundleLazy 'Shougo/neosnippet', {
       \ 'autoload' : {
       \   'insert' : 1,
       \ }}
-NeoBundle 'Shougo/neobundle.vim'
+NeoBundleFetch 'Shougo/neobundle.vim', {
+    \ 'base': '~/.vim',
+    \ }
+
 NeoBundleLazy 'Shougo/vimfiler', {
     \ 'autoload' : {
     \   'commands' : ["VimFilerTab", "VimFiler", "VimFilerExplorer", "VimFilerBufferDir"],
@@ -466,9 +469,9 @@ set ttyfast
 set autoread
 
 "" StatusLine{{{
-"set laststatus=2
-"set statusline=%F%m%r%h%w\ [%L]\ %y%{'['.(&fenc!=''?&fenc:&enc).':'.&ff.']'}%r%m%=%c:%l/%L
-" }}}
+" always show statusline
+set laststatus=2
+set statusline=%F%m%r%h%w\ [%L]\ %y%{'['.(&fenc!=''?&fenc:&enc).':'.&ff.']'}%r%m%=%c:%l/%L
 
 " ignore white space, show match lines,
 set diffopt=iwhite,filler
@@ -895,6 +898,7 @@ let g:vimfiler_marked_file_icon = '*'
 "そして:VimFilerExplorerでいんじゃね感
 nnoremap <silent> ,fe :<C-u>VimFiler -buffer-name=explorer -split -winwidth=35 -toggle -no-quit<CR>
 nnoremap <silent> ,fb :<C-u>VimFilerBufferDir<CR>
+"" }}}
 
 " --- quickrun -----{{{
 " url:http://d.hatena.ne.jp/osyo-manga/20111014/1318586711
