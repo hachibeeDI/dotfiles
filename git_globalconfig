@@ -59,3 +59,11 @@
     #http://qiita.com/items/2b9d9560381bbe316818
     tref = for-each-ref --sort=-taggerdate --format='%(taggerdate:short) %(tag) %(taggername) %(subject)' refs/tags
 
+    # pull
+    plmas = pull --rebase origin master
+
+    # submodule
+    subm = submodule
+    # update all submodules
+    subup = "submodule foreach 'git checkout master; git pull --rebase'"
+
