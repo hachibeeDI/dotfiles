@@ -52,13 +52,6 @@ NeoBundleLazy 'tpope/vim-fugitive', {
     \ }
     \}
 
-"NeoBundle 'mileszs/ack.vim', { 'external_commands' : 'ack' }
-NeoBundleLazy 'mileszs/ack.vim', {
-    \ 'autoload' : {
-    \   'commands' : [ "Ack" ],
-    \ }
-    \}
-
 "@Deprecated
 NeoBundleLazy 'scrooloose/syntastic', {
     \ 'autoload' : {
@@ -255,6 +248,7 @@ NeoBundleLazy 'ujihisa/unite-colorscheme'
 NeoBundleLazy 'ujihisa/unite-font'
 " }}}
 
+NeoBundle 'kana/vim-metarw'
 NeoBundleLazy 'mattn/sonictemplate-vim', {
     \ 'autoload' : {
     \   'commands' : [ "Templete" ]}
