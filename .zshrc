@@ -356,6 +356,12 @@ gsa() {
     echo "add $targfile"
     git add $targfile
 }
+gsap() {
+    local targfile;
+    targfile=`git status -sb |grep -v "^#" | awk '{print$1="";print}' |grep -v "^$" | awk "NR==$1" | sed "s/\s//g"`
+    echo "add $targfile"
+    git add -p $targfile
+}
 gsd() {
     local targfile;
     targfile=`git status -sb |grep -v "^#" | awk '{print$1="";print}' |grep -v "^$" | awk "NR==$1" | sed "s/\s//g"`
