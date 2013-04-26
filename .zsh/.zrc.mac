@@ -8,7 +8,7 @@ alias j="autojump"
 #    source `brew --prefix`/etc/autojump
 #fi
 
-[[ -f `brew --prefix`/etc/autojump.sh ]] && . `brew --prefix`/etc/autojump.sh
+[[ -f `brew --prefix`/etc/autojump.zsh ]] && . `brew --prefix`/etc/autojump.zsh
 
 echo "done."
 
