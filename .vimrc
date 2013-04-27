@@ -1065,7 +1065,7 @@ nnoremap <silent> ,tp :<C-u>TweetVimSay<CR>
 "
 " --- MemoList {{{
 let g:memolist_memo_suffix = "markdown"
-let g:memolist_memo_suffix = "txt"
+let g:memolist_memo_suffix = "markdown"
 let g:memolist_memo_date = "%Y-%m-%d %H:%M"
 let g:memolist_memo_date = "epoch"
 let g:memolist_memo_date = "%D %T"
