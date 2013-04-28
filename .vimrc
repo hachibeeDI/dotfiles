@@ -215,7 +215,24 @@ NeoBundleLazy 'kien/rainbow_parentheses.vim', {
     \   "filetypes" : ["scheme", "lisp"] }
     \}
 "}}}
-" -- Java {{{
+" -- Haskell {{{
+NeoBundleLazy 'dag/vim2hs', {
+    \ "autoload" : {
+    \   "filetypes" : ["haskell"] }
+    \}
+NeoBundleLazy 'pbrisbin/html-template-syntax', {
+    \ "autoload" : {
+    \   "filetypes" : ["haskell"] }
+    \}
+NeoBundleLazy 'ujihisa/neco-ghc', {
+    \ "autoload" : {
+    \   "filetypes" : ["haskell"] }
+    \}
+"http://vim-users.jp/2011/12/hack241/
+NeoBundleLazy 'ujihisa/unite-haskellimport', {
+    \ "autoload" : {
+    \   "filetypes" : ["haskell"] }
+    \}
 
 " }}}
 " -- VB.NET {{{
@@ -248,6 +265,7 @@ NeoBundleLazy 'SQLUtilities', {
     \   "filetypes" : ["sql", "sqloracle", "sqlserver"] }
     \}
 
+NeoBundle 'godlygeek/tabular'
 
 " == 4GVim {{{
 NeoBundle 'vim-scripts/Colour-Sampler-Pack'
@@ -831,6 +849,18 @@ function! s:bundle_jedi.hooks.on_source(bundle)
 endfunction
 "}}}
 
+" haskell -----------------{{{
+let g:haskell_conceal_wide = 1
+"let g:haskell_quasi          =  0
+"let g:haskell_interpolation  =  0
+"let g:haskell_regex          =  0
+"let g:haskell_jmacro         =  0
+"let g:haskell_shqq           =  0
+"let g:haskell_sql            =  0
+"let g:haskell_json           =  0
+"let g:haskell_xml            =  0
+let g:haskell_hsp = 0
+" }}}
 
 " vim-indentguides ------------{{{
 let g:indent_guides_enable_on_vim_startup=1
