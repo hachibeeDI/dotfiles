@@ -151,9 +151,9 @@ export LISTMAX=0
 # history settings<<<
 HISTFILE=~/.zsh_histfile
 # history in memory
-HISTSIZE=100000
+HISTSIZE=1000000
 # history in file
-SAVEHIST=100000
+SAVEHIST=1000000
 
 # disable to save hist, if it's on RootUser
 if [ $UID = 0 ]; then
