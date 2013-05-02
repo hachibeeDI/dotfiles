@@ -64,6 +64,12 @@ NeoBundleLazy 'scrooloose/syntastic', {
 
 "" Quickfixの内容を使ってエラー表示をハイライトしてくれる
 "NeoBundleLazy 'jceb/vim-hies'
+NeoBundle 't9md/vim-quickhl'
+
+NeoBundleLazy 'kien/ctrlp.vim', {
+    \ 'autoload' : {
+    \   'insert' : 1,
+    \ }}
 
 "Unite
 NeoBundleLazy 'Shougo/unite.vim', {
@@ -252,7 +258,6 @@ NeoBundleLazy 'ujihisa/unite-font'
 
 NeoBundle 'kana/vim-metarw'
 "NeoBundle 'Lokaltog/vim-powerline'
-NeoBundle 't9md/vim-quickhl'
 
 NeoBundleLazy 'mattn/gist-vim', {
     \ 'autoload' : {
@@ -835,6 +840,11 @@ let g:indent_guides_color_change_percent=10
 nmap <silent> <Leader>ig <Plug>IndentGuidesToggle
 "}}}
 
+" ctrlP ------------------------ {{{
+let g:ctrlp_map = '<c-p>'
+let g:ctrlp_cmd = 'CtrlP'
+"=========== ===========}}}
+
 " via: http://www.karakaram.com/vimfiler
 " ---------Unite.vim--------- {{{
 " buffer local keymap is in $MY_VIMRUNTIME/after/ftplugin/unite.vim
@@ -896,7 +906,7 @@ let g:vimfiler_marked_file_icon = '*'
 "<C-u>は、Vimによって挿入される範囲指定を削除するためのもの
 "<CR>はキャリッジ・リターンを表すリテラルシーケンス
 "そして:VimFilerExplorerでいんじゃね感
-nnoremap <silent> ,fe :<C-u>VimFiler -buffer-name=explorer -split -winwidth=35 -toggle -no-quit<CR>
+nnoremap <silent> ,fe :<C-u>VimFilerExplorer<CR>
 nnoremap <silent> ,fb :<C-u>VimFilerBufferDir<CR>
 "" }}}
 
