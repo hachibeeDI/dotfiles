@@ -339,41 +339,64 @@ function _sheets {
 mkcd() {mkdir -p "$@" && cd "$*[-1]"}
 mktmp() {mkdir `date +"%Y%m%d_%H%M%S"`}
 
-g_root() { cd `git rev-parse --git-dir |sed -e "s/[^\/]*$//g"` }
+showroot() { `git rev-parse --git-dir |sed -e "s/[^\/]*$//g"` }
 
 # arrange a littele: http://qiita.com/items/1f01aa09ccf148542f21
 gs() {
     git status -sb && git stash list
 }
 
+# show git status with line numbers
 gst() {
     git status -sb | head -n 1 && git stash list
     git status -sb | sed '1d' | grep --line-number '^'
 }
 
 gsa() {
+    if [ $# -eq 0 ]; then
+        echo "you should appoint number of lines"
+        return 0
+    fi
     local targfile;
     targfile=`git status -sb |grep -v "^#" | awk '{print$1="";print}' |grep -v "^$" | awk "NR==$1" | sed "s/\s//g"`
     echo "add $targfile"
-    git add $targfile
-}
-gsap() {
-    local targfile;
-    targfile=`git status -sb |grep -v "^#" | awk '{print$1="";print}' |grep -v "^$" | awk "NR==$1" | sed "s/\s//g"`
-    echo "add $targfile"
-    git add -p $targfile
+
+    # -pとかをねじ込むため
+    if [ $# -ge 2 ]; then
+        git add $2 $targfile
+    else
+        git add $targfile
+    fi
 }
 gsd() {
+    if [ $# -eq 0 ]; then
+        git diff --color
+        return 1
+    fi
     local targfile;
     targfile=`git status -sb |grep -v "^#" | awk '{print$1="";print}' |grep -v "^$" | awk "NR==$1" | sed "s/\s//g"`
     echo "show diff $targfile"
-    git diff --color -- $targfile
+
+    # --cachedとかをねじ込むため
+    if [ $# -ge 2 ]; then
+        git diff --color $2 $targfile
+    else
+        git diff --color -- $targfile
+    fi
 }
 gsv() {
     local targfile;
     targfile=`git status -sb |grep -v "^#" | awk '{print$1="";print}' |grep -v "^$" | awk "NR==$1" | sed "s/\s//g"`
     echo "edit $targfile"
     vim $targfile
+}
+stashow() {
+    if [ $# -eq 1 ]; then
+        git stash show stash@\{$1\} -p --color
+        return 1
+    else
+        echo 'you should appoint number of stash'
+    fi
 }
 #>>>
 
