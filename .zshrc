@@ -91,6 +91,8 @@ zstyle ':completion:*:default' menu select=2
 # via cdd formaat
 zstyle ':completion:*:descriptions' format '%F{yellow}Completing %B%d%b%f'
 zstyle ':completion:*' list-separator '-->'
+# ../ などとタイプしたとき、現在いるディレクトリを補完候補に出さない
+zstyle ':completion:*' ignore-parents parent pwd ..
 
 ###>>>
 
@@ -282,20 +284,19 @@ bindkey "q" show_buffer_stack
 
 #>>>
 
-# ^ => cd ..<<<
 function cdup() {
     echo
-    cd -
+    cd ..
     zle reset-prompt
 }
 zle -N cdup
-# delete
-bindkey '[3~' cdup
+# Ctrl+] なんかとかぶったら考える
+bindkey '^]' cdup
 
 #>>>
 
 # 全履歴の検索
-function history-all { history -E l }
+function history-all { history -E 1 }
 
 # -------------
 #  source auto-fu.zsh(plugin)<<<
