@@ -363,9 +363,9 @@ let g:netrw_localcopycmd=''
 let s:is_windows = has('win32') || has('win64')
 let s:exist_ramdisk = glob('/Volumes/RamDisk')
 
-if has('mac')
-    "optionをAltとして
-"    set macmeta
+if has('+macmeta')
+  "optionをAltとして
+  set macmeta
 endif
 
 " encoding ------ {{{
@@ -405,6 +405,8 @@ if v:version >= 703
     set undofile
 endif
 set history=1000
+" set default register is unnamed register. (same as OS's clipboard)
+set clipboard=unnamed
 
 " set fold line on {{{, }}}
 set foldmethod=marker
@@ -433,6 +435,7 @@ set completeopt=menuone,preview
 
 " <C-a> <C-x> で英字も増減させる
 set nrformats=alpha,octal,hex
+set backspace=eol,indent,start
 
 set scrolloff=999
 set smarttab
@@ -459,6 +462,17 @@ set smarttab
 "--------
 " display settings
 "---------
+autocmd ColorScheme *
+            \ highlight TabLine
+            \ cterm=NONE
+            \ ctermfg=lightgray
+            \ ctermbg=darkgray
+doautocmd ColorScheme _
+
+setlocal cursorline
+autocmd WinEnter * setlocal cursorline
+autocmd WinLeave * setlocal nocursorline
+
 set background=dark
 "colorscheme solarized
 let g:solarized_termcolors=256
@@ -473,15 +487,10 @@ set textwidth=0
 set colorcolumn=80
 set wrap
 
-set showtabline=2
-
 "閉じカッコが入力されたとき、対応するカッコを表示する
 "set showmatch
 " 括弧を入力した時にカーソルが移動しないように設定
 set matchtime=0
-
-highlight link ZenkakuSpace Error
-match ZenkakuSpace /　/
 
 set ambiwidth=double
 "コマンド実行中は再描画しない
