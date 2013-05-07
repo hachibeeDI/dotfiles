@@ -370,18 +370,19 @@ gsa() {
 }
 gsd() {
     if [ $# -eq 0 ]; then
-        git diff --color
+        git diff --color-words
         return 1
     fi
     local targfile;
     targfile=`git status -sb |grep -v "^#" | awk '{print$1="";print}' |grep -v "^$" | awk "NR==$1" | sed "s/\s//g"`
-    echo "show diff $targfile"
 
     # --cachedとかをねじ込むため
     if [ $# -ge 2 ]; then
-        git diff --color $2 $targfile
+        git diff --color-words $2 $targfile
+        echo "show diff cache $targfile"
     else
-        git diff --color -- $targfile
+        git diff --color-words -- $targfile
+        echo "show diff $targfile"
     fi
 }
 gsv() {
