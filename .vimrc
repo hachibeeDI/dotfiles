@@ -418,8 +418,6 @@ set foldlevel=2
 set list
 set listchars=tab:>-,trail:~
 
-set cursorline
-
 " enable modeline
 set modeline
 " number of readble lines
@@ -500,10 +498,66 @@ set ttyfast
 " 読み込んでいるファイルが変更された時自動で読み直す
 set autoread
 
+set showmode
+
+set title
+set titlestring=Vim:\ %f\ %h%r%m
+
 "" StatusLine{{{
 " always show statusline
 set laststatus=2
-set statusline=%F%m%r%h%w\ [%L]\ %y%{'['.(&fenc!=''?&fenc:&enc).':'.&ff.']'}%r%m%=%c:%l/%L
+"set statusline=
+let &statusline = ''
+let &statusline .= ' %F%m%r%h%w %y'
+let &statusline .= "%{'['.(&fenc!=''?&fenc:&enc).':'.&ff.']'}"
+let &statusline .= '%= [height-%l/%L : width-%c]  '
+
+" tabline {{{
+" via:[manbou] http://d.hatena.ne.jp/thinca/20111204/1322932585
+set showtabline=2
+
+" n 番目のタブのラベルを返す
+function! s:tabpage_label(n)
+  " t:titleという変数があればそれを使う
+  let title = gettabvar(a:n, 'title')
+  if title !=# ''
+    return title
+  endif
+
+  "タブページ内のバッファのリスト
+  let bufnrs = tabpagebuflist(a:n)
+  " カレントかどうかをハイライトで区別する
+  let hi = a:n is tabpagenr() ? '%#TabLineSel#' : '%#TabLine#'
+  "" バッファが複数あればバッファ数を表示
+  "let no = len(bufnrs)
+  "if no is 1
+    let bufcount = ''
+  "endif
+  " modifiedマークをつける
+  let ismod = len(filter(copy(bufnrs), 'getbufvar(v:val, "&modified")')) ? '+' : ''
+  let sp  =  (bufcount . ismod)  ==# '' ? '' : ' '  " 隙間
+" カレントバッファ
+  let curbufnr  =  bufnrs[tabpagewinnr(a:n) - 1]  " tabpagewinnr() は 1
+"   origin
+  let fname  =  pathshorten(bufname(curbufnr))
+  let label = bufcount . ismod . sp . fname
+
+  return hi . a:n . ':<' . '%' . a:n . 'T' . label . '%T%#TabLineFill#'
+endfunction
+
+function! MakeTabLine()
+  let titles = map(range(1, tabpagenr('$')), 's:tabpage_label(v:val)')
+  let sep = ' | '  " タブ間の区切り
+  let tabpages = join(titles, sep) . sep . '%#TabLineFill#%T'
+  " 好きな情報を入れる
+  let info = ''
+  let info .= fnamemodify(getcwd(), ":~") . ' '
+
+  return tabpages . '%=' . info  " タブリストを左に、情報を右に表示
+endfunction
+
+set tabline=%!MakeTabLine()
+" }}}
 
 " ignore white space, show match lines,
 set diffopt=iwhite,filler
