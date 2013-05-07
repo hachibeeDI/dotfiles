@@ -4,10 +4,9 @@ let g:no_gvimrc_example = 1
 set showtabline=2  " タブを常に表示
 "set imdisable      " IMを無効化
 
-NeoBundleSource Color-Sampler-Pack
 NeoBundleSource vim-colors-solarized
-NeoBundleSource unite-colorscheme
-NeoBundleSource unite-font
+      \ unite-colorscheme
+      \ unite-font
 
 map <silent> gw :macaction selectNextWindow:
 map <silent> gW :macaction selectPreviousWindow:
@@ -15,8 +14,9 @@ map <silent> gW :macaction selectPreviousWindow:
 nnoremap + :set transparency+=5<CR>
 nnoremap - :set transparency-=5<CR>
 
-set clipboard=unnamed
 set guioptions=C
+" add register text on OS's clip boald
+set guioptions+=a
 
 if has('mac')
     colorscheme solarized
@@ -49,8 +49,6 @@ elseif has('unix')
     set background=dark
 endif
 
-" add register text on OS's clip boald
-set guioptions+=a
 
 set antialias
 "}}}
