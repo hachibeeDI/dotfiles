@@ -386,6 +386,10 @@ gsd() {
     fi
 }
 gsv() {
+    if [ $# -eq 0 ]; then
+        echo "you should appoint number of lines"
+        return 0
+    fi
     local targfile;
     targfile=`git status -sb |grep -v "^#" | awk '{print$1="";print}' |grep -v "^$" | awk "NR==$1" | sed "s/\s//g"`
     echo "edit $targfile"

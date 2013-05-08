@@ -42,6 +42,7 @@ done
 brew install ruby --with-doc
 brew install ruby-build
 
+mkdir ~/Applications
 brew linkapps
 
 sl

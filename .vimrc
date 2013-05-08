@@ -78,6 +78,7 @@ NeoBundleLazy 'Shougo/unite.vim', {
     \ }
     \}
 
+NeoBundle 'Shougo/unite-ssh'
 NeoBundle 'h1mesuke/unite-outline'
 NeoBundle 'osyo-manga/unite-quickfix'
 

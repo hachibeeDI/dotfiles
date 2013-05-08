@@ -20,6 +20,8 @@ alias vless='/usr/share/vim/vim73/macros/less.sh'
 #alias rm='rm --verbose'
 alias mkdir='mkdir -p'
 alias ls='ls --color=auto -AF'
+alias l='ls'
+alias ll='ls -AFltr'
 alias rm='rm --interactive=once'
 alias cp='cp --interactive'
 alias mv='mv --interactive'
@@ -49,9 +51,6 @@ cygwin*)
    ;;
 
 esac
-
-alias ll='ls -ltr'
-alias la='ls -a'
 
 #>>>
 
