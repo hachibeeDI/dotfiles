@@ -541,7 +541,7 @@ function! s:tabpage_label(n)
     let bufcount = ''
   "endif
   " modifiedマークをつける
-  let ismod = len(filter(copy(bufnrs), 'getbufvar(v:val, "&modified")')) ? '+' : ''
+  let ismod = len(filter(copy(bufnrs), 'getbufvar(v:val, "&modified")')) ? '[+]' : ''
   let sp  =  (bufcount . ismod)  ==# '' ? '' : ' '  " 隙間
 " カレントバッファ
   let curbufnr  =  bufnrs[tabpagewinnr(a:n) - 1]  " tabpagewinnr() は 1
