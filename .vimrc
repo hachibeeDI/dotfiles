@@ -461,13 +461,7 @@ set smarttab
 "--------
 " display settings
 "---------
-autocmd ColorScheme *
-            \ highlight TabLine
-            \ cterm=NONE
-            \ ctermfg=lightgray
-            \ ctermbg=darkgray
-doautocmd ColorScheme _
-
+" enable cursorline only forcused buffer.
 setlocal cursorline
 autocmd WinEnter * setlocal cursorline
 autocmd WinLeave * setlocal nocursorline
@@ -475,7 +469,6 @@ autocmd WinLeave * setlocal nocursorline
 set background=dark
 "colorscheme solarized
 let g:solarized_termcolors=256
-"colorscheme desert
 
 set title
 set number
@@ -516,6 +509,16 @@ let &statusline .= '%= [height-%l/%L : width-%c]  '
 " tabline {{{
 " via:[manbou] http://d.hatena.ne.jp/thinca/20111204/1322932585
 set showtabline=2
+autocmd ColorScheme *
+            \ highlight TabLine
+            \ guifg=gray guibg=grey16 gui=NONE ctermfg=250 ctermbg=235 cterm=NONE
+autocmd ColorScheme *
+            \ highlight TabLineSel
+            \ guifg=lightgoldenrod2 gui=bold ctermfg=186 cterm=bold
+autocmd ColorScheme *
+            \ highlight TabLineFill
+            \ guifg=skyblue gui=NONE ctermfg=117 cterm=NONE
+doautocmd ColorScheme _
 
 " n 番目のタブのラベルを返す
 function! s:tabpage_label(n)
@@ -543,7 +546,7 @@ function! s:tabpage_label(n)
   let fname  =  pathshorten(bufname(curbufnr))
   let label = bufcount . ismod . sp . fname
 
-  return hi . a:n . ':<' . '%' . a:n . 'T' . label . '%T%#TabLineFill#'
+  return hi . a:n . ':< ' . '%' . a:n . 'T' . label . '%T%#TabLineFill#'
 endfunction
 
 function! MakeTabLine()
