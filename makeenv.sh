@@ -18,6 +18,7 @@ mkdir ~/.vimcache/vimswap/
 
 # 汚い…
 ln -s "$dotfile_path"/.vimrc ~/.vimrc
+touch ~/.vimrc.local
 ln -s "$dotfile_path"/.gvimrc ~/.gvimrc
 ln -s "$dotfile_path"/.zsh ~/.zsh
 ln -s "$dotfile_path"/.zprofile ~/.zprofile
