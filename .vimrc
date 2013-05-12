@@ -137,7 +137,7 @@ NeoBundleLazy 'jmcantrell/vim-virtualenv', {
 NeoBundleLazy 'kevinw/pyflakes-vim', {
     \ "autoload" : {
     \   "filetypes" : ["python"],
-    \ }
+    \ },
     \}
 
 NeoBundleLazy 'davidhalter/jedi-vim', {
@@ -574,6 +574,16 @@ set hlsearch
 
 
 " ======== Key Mapping ======== {{{
+
+" disable unuseful keys
+"<NPA> means to unset command on keymap
+nnoremap q: <NOP>
+nnoremap Q <NOP>
+" same as :wq
+nnoremap ZZ <NOP>
+" same as :q!
+nnoremap ZQ <Nop>
+
 " -- mapping to show status
 nnoremap [Show] <Nop>
 nmap <Space>s [Show]
@@ -591,8 +601,6 @@ nnoremap <expr> [EditSupport]s* ':%substitute/\<' . expand('<cword>') . '\>/'
 nnoremap <expr> [EditSupport]e* ':' . line(".") . ',$s/\<' . expand('<cword>') . '\>/'
 
 " ---- nomal mode ----{{{
-"<NPA> means to unset command on keymap
-nnoremap q: <NOP>
 ":はコマンドモードへの移行、;はfind時に次の該当単語へジャンプする
 nnoremap ; :
 nnoremap : ;
