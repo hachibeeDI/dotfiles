@@ -4,6 +4,10 @@ set nocompatible
 
 let $MY_VIMRUNTIME = expand('~/.vim')
 let $BUNDLEPATH = expand('~/.neobundle')
+"set autogroup
+augroup MyAutoCmd
+  autocmd!
+augroup END
 
 filetype off
 filetype plugin indent off
@@ -462,8 +466,8 @@ set smarttab
 "---------
 " enable cursorline only forcused buffer.
 setlocal cursorline
-autocmd WinEnter * setlocal cursorline
-autocmd WinLeave * setlocal nocursorline
+autocmd MyAutoCmd WinEnter * setlocal cursorline
+autocmd MyAutoCmd WinLeave * setlocal nocursorline
 
 set background=dark
 "colorscheme solarized
@@ -508,13 +512,13 @@ let &statusline .= '%= [height-%l/%L : width-%c]  '
 " tabline {{{
 " via:[manbou] http://d.hatena.ne.jp/thinca/20111204/1322932585
 set showtabline=2
-autocmd ColorScheme *
+autocmd MyAutoCmd ColorScheme *
             \ highlight TabLine
             \ guifg=gray guibg=grey16 gui=NONE ctermfg=250 ctermbg=235 cterm=NONE
-autocmd ColorScheme *
+autocmd MyAutoCmd ColorScheme *
             \ highlight TabLineSel
             \ guifg=lightgoldenrod2 gui=bold ctermfg=186 cterm=bold
-autocmd ColorScheme *
+autocmd MyAutoCmd ColorScheme *
             \ highlight TabLineFill
             \ guifg=skyblue gui=NONE ctermfg=117 cterm=NONE
 doautocmd ColorScheme _
@@ -586,11 +590,13 @@ nnoremap ZQ <Nop>
 " -- mapping to show status
 nnoremap [Show] <Nop>
 nmap <Space>s [Show]
-nnoremap [Show]m  :<C-u>marks<CR>
-nnoremap [Show]r  :<C-u>registers<CR>
+nnoremap [Show]m  :<C-u>Capture marks<CR>
+nnoremap [Show]k  :<C-u>Capture map<CR>
+nnoremap [Show]r  :<C-u>Capture registers<CR>
 nnoremap [Show]e  :<C-u>edit $MYVIMRC<CR>
 nnoremap [Show]l  :<C-u>source $MYVIMRC<CR>
 nnoremap [Show]h  :<C-u>help<Space>
+nnoremap [Show]n  :<C-u>set number!<CR>
 
 nnoremap [EditSupport] <Nop>
 nmap , [EditSupport]
