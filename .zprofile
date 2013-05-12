@@ -37,8 +37,6 @@ fpath=(
         #cygwin
         /usr/share/zsh/4.3.12/functions(N-/)
         $HOME/.autojump/functions(N-/)
-
-        $fpath
         )
 #autoload -U ~/.zsh/functions/Completion/*(:t)
 
