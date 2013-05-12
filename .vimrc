@@ -85,7 +85,7 @@ NeoBundle 'osyo-manga/unite-quickfix'
 " compile and exec the code and pop result on Quickfix-window
 NeoBundleLazy 'thinca/vim-quickrun', {
     \'autoload' : {
-    \   'insert' : 1,
+    \   'commands' : ["QuickRun"],
     \ }}
 " get and read referece on vim
 NeoBundleLazy 'thinca/vim-ref', { 'autoload' : {
@@ -302,7 +302,7 @@ NeoBundleLazy 'osyo-manga/vim-watchdogs', {
     \       , 'osyo-manga/shabadou.vim'
     \       ],
     \ 'autoload' : {
-    \   'commands' : ["WatchdogsRun", "WatchdogsRunSilent" ],
+    \   'commands' : ["WatchdogsRun", "WatchdogsRunSilent", "QuickRun"],
     \}}
 
 " utils {{{
@@ -324,7 +324,6 @@ NeoBundleLazy 'glidenote/memolist.vim', {
     \ 'commands' : ["MemoNew", "MemoList", "MemoGrep"],
     \ }
     \}
-
 
 "}}}
 
@@ -1019,11 +1018,8 @@ nnoremap <silent> ,fb :<C-u>VimFilerBufferDir<CR>
 " url:http://d.hatena.ne.jp/osyo-manga/20111014/1318586711
 let s:bundle_quickrun = neobundle#get('vim-quickrun')
 function! s:bundle_quickrun.hooks.on_source(bundle)
-
   "設定の初期化
-  if !exists("g:quickrun_config")
-      let g:quickrun_config={}
-  endif
+  let g:quickrun_config = get(g:, 'quickrun_config', {})
 
   " default config via http://d.hatena.ne.jp/osyo-manga/20120919/1348054752
   let g:quickrun_config["_"] = {
@@ -1039,7 +1035,6 @@ function! s:bundle_quickrun.hooks.on_source(bundle)
               \ "outputter/buffer/split" : ":botright 8sp",
               \ "runner" : "vimproc",
               \ "runner/vimproc/updatetime" : 40,
-              \
               \ }
   " 実行
   let g:quickrun_config["run/vimproc"] = {
@@ -1066,11 +1061,10 @@ function! s:bundle_quickrun.hooks.on_source(bundle)
   let g:quickrun_config["cpp"] = {
       \ 'command': 'clang++',
       \ 'cmdopt': '-std=c++11 -stdlib=libc++',
-      \ 'runner': 'vimproc',
       \ }
 
   let g:quickrun_config["python"] = {
-      \ 'runner': 'vimproc',
+      \ 'command': 'python',
       \ }
 
   " watchdogs用
@@ -1091,7 +1085,8 @@ function! s:bundle_quickrun.hooks.on_source(bundle)
   let g:watchdogs_check_BufWritePost_enable = 0
 
 endfunction
-nnoremap <F5> <Plug>(quickrun)
+let g:quickrun_no_default_key_mappings = 1
+nnoremap <F5> :<C-u>QuickRun<CR>
 nnoremap [Show]w :<C-u>WatchdogsRunSilent<CR><Esc>
 
 "  }}}
