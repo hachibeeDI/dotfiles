@@ -67,3 +67,7 @@
     # update all submodules
     subup = "submodule foreach 'git checkout master; git pull --rebase'"
 
+    # stash
+    sth = stash
+    shp = stash pop
+    shl = stash list
