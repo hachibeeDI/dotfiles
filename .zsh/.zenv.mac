@@ -52,6 +52,10 @@ else
 fi
 
 export ANDROID_SDK_ROOT="/usr/local/opt/android-sdk"
+
+# C/C++ {{{
+export CC="clang"
+export CXX="clang++"
 # Cのリンク時のオプション. -Lはライブラリのパス.
 export LDFLAGS="-L/usr/local/opt/sqlite/lib"
 # Cのプリプロセッサフラグ.
