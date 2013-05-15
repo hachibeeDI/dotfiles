@@ -680,6 +680,20 @@ endif
 "}}}
 "}}}
 
+" =================== 既存のキーマップを割と大幅に変えるもの {{{
+
+nnoremap <C-j> *
+nnoremap <C-k> #
+
+command!
+\  -nargs=1
+\  VimGrepCurrent
+\  vimgrep <args> % | cw
+
+nnoremap <expr>* ':<C-u>VimGrepCurrent' . ' expand('<cword>>') . '\<CR>'
+
+" ============}}}
+
 " ---------
 "  Scripts
 "  ======================={{{
@@ -765,11 +779,6 @@ function! s:cmd_capture(q_args)
     call setline(1, split(output, '\n'))
 endfunction
 "}}}
-
-command!
-\  -nargs=1
-\  VimGrepCurrent
-\  vimgrep <args> % | cw
 
 
 " 指定したエンコードでファイルを開き直すためのエイリアス
