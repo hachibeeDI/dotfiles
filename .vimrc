@@ -109,6 +109,10 @@ NeoBundleLazy 'kana/vim-smartchr', {
       \ 'autoload' : {
       \   'insert' : 1,
       \ }}
+
+NeoBundle 'kana/vim-textobj-user'
+NeoBundle 'kana/vim-textobj-indent'
+
 " undo history visualizer
 NeoBundleLazy 'sjl/gundo.vim', {
     \ 'autoload' : {
