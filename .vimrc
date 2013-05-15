@@ -804,9 +804,11 @@ let g:neocomplcache_enable_camel_case_completion = 1
 " アンダーバーを区切りとした曖昧検索
 let g:neocomplcache_enable_underbar_completion = 1
 " Skip Heavy complete
-let g:NeoComplCache_EnableSkipCompletion=1
-let g:NeoComplCache_SkipCompletionTime = '0.5'
-let g:NeoComplCache_SkipInputTime = '0.1'
+let g:neocomplcache_skip_auto_completion_time = '0.5'
+
+" Plugin key-mappings.
+inoremap <expr><C-g>     neocomplcache#undo_completion()
+inoremap <expr><C-l>     neocomplcache#complete_common_string()
 
 inoremap <expr><CR> pumvisible() ? neocomplcache#close_popup() : "\<CR>"
 "" <TAB>: completion.
@@ -845,6 +847,8 @@ endif
 
 " omnifunc が呼び出される場合の正規表現パターンを設定しておく
 let g:neocomplcache_force_omni_patterns.cpp = '[^.[:digit:] *\t]\%(\.\|->\)\|::'
+" for jedi.vim
+let g:neocomplcache_force_omni_patterns.python = '[^. \t]\.\w*'
 
 " ------------------- clang_complete ------------- {{{
 " neocomplcacheとの競合を避けるため、自動呼び出しはOff
@@ -872,6 +876,16 @@ let g:neocomplcache_dictionary_filetype_lists={
         \ 'cpp':$HOME.'/.vim/dict/cpp.dict',
         \ 'scala':$BUNDLEPATH.'/vim-scala/dict/scala.dict'
     \}
+
+" Examples:
+if !exists('g:neocomplcache_vim_completefuncs')
+  let g:neocomplcache_vim_completefuncs = {}
+endif
+let g:neocomplcache_vim_completefuncs.Ref = 'ref#complete'
+
+let g:neocomplcache_ignore_composite_filetype_lists = {
+  \ 'ruby.spec' : 'ruby'
+  \ }
 
 "zencoding連携
 let g:use_zen_complete_tag = 1
