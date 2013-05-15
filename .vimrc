@@ -476,6 +476,8 @@ autocmd MyAutoCmd WinLeave * setlocal nocursorline
 set background=dark
 "colorscheme solarized
 let g:solarized_termcolors=256
+let g:solarized_termtrans = 1
+let g:solarized_italic = 0
 
 set title
 set number
