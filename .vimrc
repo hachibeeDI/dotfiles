@@ -109,9 +109,11 @@ NeoBundleLazy 'kana/vim-smartchr', {
       \ 'autoload' : {
       \   'insert' : 1,
       \ }}
-
+NeoBundle 'kana/vim-smartword'
 NeoBundle 'kana/vim-textobj-user'
 NeoBundle 'kana/vim-textobj-indent'
+
+NeoBundle 'rhysd/accelerated-jk'
 
 " undo history visualizer
 NeoBundleLazy 'sjl/gundo.vim', {
@@ -283,6 +285,7 @@ NeoBundleLazy 'ujihisa/unite-colorscheme'
 NeoBundleLazy 'ujihisa/unite-font'
 " }}}
 
+NeoBundle 'sudo.vim'
 NeoBundle 'kana/vim-metarw'
 "NeoBundle 'Lokaltog/vim-powerline'
 
@@ -412,7 +415,7 @@ if v:version >= 703
     set undodir=~/.vimcache/undo
     set undofile
 endif
-set history=1000
+set history=100000
 " set default register is unnamed register. (same as OS's clipboard)
 set clipboard=unnamed
 
@@ -422,6 +425,8 @@ set foldenable
 "set foldmarker={{{,}}}
 "set foldcolumn=3
 set foldlevel=2
+
+set hidden
 
 set list
 set listchars=tab:>-,trail:~
@@ -690,7 +695,7 @@ command!
 \  VimGrepCurrent
 \  vimgrep <args> % | cw
 
-nnoremap <expr>* ':<C-u>VimGrepCurrent' . ' expand('<cword>>') . '\<CR>'
+nnoremap <expr>* ':<C-u>VimGrepCurrent ' . expand('<cword>') . '<CR>'
 
 " ============}}}
 
