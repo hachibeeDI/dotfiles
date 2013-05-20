@@ -686,6 +686,38 @@ endif
 "}}}
 
 " =================== 既存のキーマップを割と大幅に変えるもの {{{
+" Like builtin getchar() but returns string always.
+" and do inputsave()/inputrestore() before/after getchar().
+function! s:getchar_safe(...)
+  let c = s:input_helper('getchar', a:000)
+  return type(c) == type("") ? c : nr2char(c)
+endfunction
+
+" Like builtin getchar() but
+" do inputsave()/inputrestore() before/after input().
+function! s:input_safe(...)
+    return s:input_helper('input', a:000)
+endfunction
+
+" Do inputsave()/inputrestore() before/after calling a:funcname.
+function! s:input_helper(funcname, args)
+    let success = 0
+    if inputsave() !=# success
+        throw 'inputsave() failed'
+    endif
+    try
+        return call(a:funcname, a:args)
+    finally
+        if inputrestore() !=# success
+            throw 'inputrestore() failed'
+        endif
+    endtry
+endfunction
+
+nnoremap <expr><silent> f '/\V'.<SID>getchar_safe()."\<CR>:nohlsearch\<CR>"
+nnoremap <expr><silent> F '?\V'.<SID>getchar_safe()."\<CR>:nohlsearch\<CR>"
+nnoremap <expr><silent> t '/.\ze\V'.<SID>getchar_safe()."\<CR>:nohlsearch\<CR>"
+nnoremap <expr><silent> T '?\V'.<SID>getchar_safe().'\v\zs.'."\<CR>:nohlsearch\<CR>"
 
 nnoremap <C-j> *
 nnoremap <C-k> #
