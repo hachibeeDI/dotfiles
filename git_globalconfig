@@ -52,10 +52,6 @@
     gr = grep -HI --color --heading --break
     grn = grep -n
 
-    info = config --list
-    hist = log --pretty=format:\"%C(yellow)%h %C(White)%ad | %C(White)%s%C(Green)%d %C(Red)[%an]\" --graph --date=short
-    chspace = diff --check
-
     #http://qiita.com/items/2b9d9560381bbe316818
     tref = for-each-ref --sort=-taggerdate --format='%(taggerdate:short) %(tag) %(taggername) %(subject)' refs/tags
 
@@ -71,3 +67,11 @@
     sth = stash
     shp = stash pop
     shl = stash list
+
+    # utils
+    showremote = remote -v
+    info = config --list
+    hist = log --pretty=format:\"%C(yellow)%h %C(White)%ad | %C(White)%s%C(Green)%d %C(Red)[%an]\" --graph --date=short
+    shit = log --pretty=format:\"%C(yellow)%h %C(White)%ad | %C(White)%s%C(Green)%d %C(Red)[%an]\" --graph --date=short
+    chspace = diff --check
+
