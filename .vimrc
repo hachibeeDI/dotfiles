@@ -16,6 +16,8 @@ if has('vim_starting')
     set runtimepath& runtimepath+=~/.vim/neobundle.vim
     call neobundle#rc($BUNDLEPATH)
 endif
+" gitプロトコルよりもhttpsのほうが高速
+"let g:neobundle_default_git_protocol = 'https'
 
 "------- set plugins ------- {{{
 NeoBundle 'Shougo/vimproc', {
@@ -511,7 +513,7 @@ set showmode
 set title
 set titlestring=Vim:\ %f\ %h%r%m
 
-"" StatusLine{{{
+"" StatusLine ------------------- {{{
 " always show statusline
 set laststatus=2
 "set statusline=
@@ -519,6 +521,18 @@ let &statusline = ''
 let &statusline .= ' %F%m%r%h%w %y'
 let &statusline .= "%{'['.(&fenc!=''?&fenc:&enc).':'.&ff.']'}"
 let &statusline .= '%= [height-%l/%L : width-%c]  '
+
+highlight StatusLine
+            \ guifg=gray guibg=lightgoldenrod2 gui=NONE ctermbg=250 ctermfg=235 cterm=NONE
+
+" モードに応じて色を変える(現状Insert modeのみ)
+autocmd MyAutoCmd InsertEnter *
+            \ highlight StatusLine
+            \ guibg=skyblue gui=NONE ctermbg=117 cterm=NONE
+autocmd MyAutoCmd InsertLeave *
+            \ highlight StatusLine
+            \ guifg=gray guibg=lightgoldenrod2 gui=NONE ctermbg=250 ctermfg=235 cterm=NONE
+" ------ status line ----}}}
 
 " tabline {{{
 " via:[manbou] http://d.hatena.ne.jp/thinca/20111204/1322932585
@@ -531,6 +545,9 @@ autocmd MyAutoCmd ColorScheme *
             \ guifg=lightgoldenrod2 gui=bold ctermfg=186 cterm=bold
 autocmd MyAutoCmd ColorScheme *
             \ highlight TabLineFill
+            \ guifg=skyblue gui=NONE ctermfg=117 cterm=NONE
+autocmd MyAutoCmd ColorScheme *
+            \ highlight Cursor
             \ guifg=skyblue gui=NONE ctermfg=117 cterm=NONE
 doautocmd ColorScheme _
 
@@ -646,6 +663,11 @@ inoremap <C-c> <Esc>
 
 nnoremap 0 ^
 nnoremap ^ 0
+
+" use accelerated_jk
+nmap j <Plug>(accelerated_jk_gj)
+nmap k <Plug>(accelerated_jk_gk)
+
 "}}}
 
 " ---- insert mode ---- {{{
@@ -1159,6 +1181,7 @@ function! s:bundle_quickrun.hooks.on_source(bundle)
 endfunction
 let g:quickrun_no_default_key_mappings = 1
 nnoremap <F5> :<C-u>QuickRun<CR>
+nnoremap <F6> <Plug>(quickrun)
 nnoremap [Show]w :<C-u>WatchdogsRunSilent<CR><Esc>
 
 "  }}}
