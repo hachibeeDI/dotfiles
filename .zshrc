@@ -370,7 +370,7 @@ gsa() {
 }
 gsd() {
     if [ $# -eq 0 ]; then
-        git diff --color-words
+        git diff --color
         return 1
     fi
     local targfile;
@@ -378,10 +378,10 @@ gsd() {
 
     # --cachedとかをねじ込むため
     if [ $# -ge 2 ]; then
-        git diff --color-words $2 $targfile
+        git diff --color $2 $targfile
         echo "show diff cache $targfile"
     else
-        git diff --color-words -- $targfile
+        git diff --color -- $targfile
         echo "show diff $targfile"
     fi
 }
