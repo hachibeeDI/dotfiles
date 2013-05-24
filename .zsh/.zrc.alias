@@ -31,8 +31,8 @@ case "${OSTYPE}" in
 freebsd*|darwin*)
 # =================== Mac OS X =======================
 if [[ -f /Applications/MacVim.app/Contents/MacOS/Vim ]]; then
-    alias vim='env LANG=ja_JP.UTF-8 /Applications/MacVim.app/Contents/MacOS/Vim "$@"'
-    alias mvim='env LANG=ja_JP.UTF-8 /Applications/MacVim.app/Contents/MacOS/mvim --remote-tab-silent'
+    alias kao_vim='env LANG=ja_JP.UTF-8 /Applications/MacVim.app/Contents/MacOS/Vim "$@"'
+    alias kao_mvim='env LANG=ja_JP.UTF-8 /Applications/MacVim.app/Contents/MacOS/mvim --remote-tab-silent'
 fi
     alias sed='gsed'
     ;;
