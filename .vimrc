@@ -50,6 +50,11 @@ NeoBundleLazy 'Shougo/vimshell', {
     \   'commands' : ["VimShellPop", "VimShell"],
     \   }
     \}
+" compile and exec the code and pop result on Quickfix-window
+NeoBundle 'thinca/vim-quickrun' ", {
+"    \'autoload' : {
+"    \   'commands' : ["QuickRun"],
+"    \ }}
 
 " snipets for neosnippet's dirctory
 NeoBundle 'honza/vim-snippets'
@@ -70,7 +75,6 @@ NeoBundleLazy 'scrooloose/syntastic', {
 
 "" Quickfixの内容を使ってエラー表示をハイライトしてくれる
 "NeoBundleLazy 'jceb/vim-hies'
-NeoBundle 't9md/vim-quickhl'
 
 NeoBundleLazy 'kien/ctrlp.vim', {
     \ 'autoload' : {
@@ -87,12 +91,6 @@ NeoBundleLazy 'Shougo/unite.vim', {
 NeoBundle 'Shougo/unite-ssh'
 NeoBundle 'h1mesuke/unite-outline'
 NeoBundle 'osyo-manga/unite-quickfix'
-
-" compile and exec the code and pop result on Quickfix-window
-NeoBundleLazy 'thinca/vim-quickrun', {
-    \'autoload' : {
-    \   'commands' : ["QuickRun"],
-    \ }}
 " get and read referece on vim
 NeoBundleLazy 'thinca/vim-ref', { 'autoload' : {
       \ 'commands' : 'Ref'
@@ -290,6 +288,7 @@ NeoBundleLazy 'ujihisa/unite-font'
 NeoBundle 'sudo.vim'
 NeoBundle 'kana/vim-metarw'
 "NeoBundle 'Lokaltog/vim-powerline'
+NeoBundle 't9md/vim-quickhl'
 
 NeoBundleLazy 'mattn/gist-vim', {
     \ 'autoload' : {
@@ -402,6 +401,8 @@ endif
 "
 " common settings
 "
+set regexpengine=1
+
 syntax enable
 
 set visualbell t_vb=
@@ -528,10 +529,10 @@ highlight StatusLine
 " モードに応じて色を変える(現状Insert modeのみ)
 autocmd MyAutoCmd InsertEnter *
             \ highlight StatusLine
-            \ guibg=skyblue gui=NONE ctermbg=117 cterm=NONE
+            \ guifg=black guibg=skyblue gui=NONE ctermbg=117 cterm=NONE
 autocmd MyAutoCmd InsertLeave *
             \ highlight StatusLine
-            \ guifg=gray guibg=lightgoldenrod2 gui=NONE ctermbg=250 ctermfg=235 cterm=NONE
+            \ guifg=black guibg=lightgoldenrod2 gui=NONE ctermbg=250 ctermfg=235 cterm=NONE
 " ------ status line ----}}}
 
 " tabline {{{
