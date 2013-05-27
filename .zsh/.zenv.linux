@@ -1,0 +1,72 @@
+# vim:set filetype=zsh fdm=marker:
+
+echo 'setting up environment variables as Linux ... ...'
+
+# -U : 重複したパスは登録しない
+typeset -U path
+# homebrewとcoreutils優先の設定
+path=(
+    # 自分のスクリプトとか、自分でビルドしたやつとか
+    $HOME/Dropbox/bin/linux(N-/)
+    $HOME/Dropbox/bin(N-/)
+    $HOME/bin(N-/)
+
+    # ディストリごとに変わりそうだけどどうしよう
+    /usr/local/bin(N-/)
+
+    /usr/local/share/python(N-/)
+    /usr/local/opt/ruby/bin(N-/)
+
+    /usr/bin(N-/)
+    /bin(N-/)
+    #sbin
+    /usr/local/sbin(N-/)
+    /usr/sbin(N-/)
+    /sbin(N-/)
+    )
+export path
+
+# setting completion's function path<<<
+fpath=(
+        #自作
+        $HOME/.zsh/functions/Completion(N-/)
+        $HOME/.autojump/functions(N-/)
+
+        #zsh-completions
+        /usr/local/share/zsh-completions(N-/)
+        /usr/local/share/zsh-completions/src(N-/)
+
+        #homebrew
+        /usr/local/share/zsh/functions(N-/)
+        )
+export fpath
+
+if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
+export RBENV_ROOT=/usr/local/opt/rbenv
+
+# 自分で作ったlesspipeがあればそっち。なければsource-highlight付属のlesspipeを使う。
+if [[ -f $HOME/bin/src-hilite-lesspipe.sh ]]; then
+    export LESSOPEN='| $HOME/bin/src-hilite-lesspipe.sh %s'
+else
+    export LESSOPEN='| /usr/share/source-highlight/src-hilite-lesspipe.sh %s'
+fi
+
+## C/C++ {{{
+#export CC="clang"
+#export CXX="clang++"
+## Cのリンク時のオプション. -Lはライブラリのパス.
+#export LDFLAGS="-L/usr/local/opt/sqlite/lib"
+## Cのプリプロセッサフラグ.
+#export CPPFLAGS="-I/usr/local/opt/sqlite/include"
+
+
+# Python settings for virtualenv {{{
+export VIRTUALENVWRAPPER_PYTHON=/usr/local/bin/python
+export VIRTUALENVWRAPPER_VIRTUALENV=/usr/local/share/python/virtualenv
+export WORKON_HOME=$HOME/.virtualenvs
+#source /usr/local/share/python/virtualenvwrapper.sh
+source /usr/local/share/python/virtualenvwrapper_lazy.sh
+# }}}
+
+echo 'done'
+

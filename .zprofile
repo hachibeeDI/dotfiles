@@ -3,8 +3,6 @@
 # put settings, which are enough by loaded once when that is called as login-shell and first time.
 #
 # ===========================================================
-
-# pathの設定は、スクリプト実行時のためにもzshenvに書くべき？
 #{{{
 #　PATH設定用の便利な記法
 ### -U : 重複したパスは登録しない
@@ -18,27 +16,6 @@
 #
 
 #}}}
-
-# fpath設定
-#fpath=(`brew --prefix`/share/zsh/functions(N) `brew --prefix`/share/zsh/site-functions(N) $fpath)
-
-# setting completion's function path<<<
-fpath=(
-        #自作
-        $HOME/.zsh/functions/Completion(N-/)
-
-        #zsh-completions
-        /usr/local/share/zsh-completions(N-/)
-        /usr/local/share/zsh-completions/src(N-/)
-
-        #homebrew
-        /usr/local/share/zsh/functions(N-/)
-
-        #cygwin
-        /usr/share/zsh/4.3.12/functions(N-/)
-        $HOME/.autojump/functions(N-/)
-        )
-#autoload -U ~/.zsh/functions/Completion/*(:t)
 
 # ====================== OS TYPE ============================
 
@@ -54,11 +31,9 @@ freebsd*|darwin*)
 linux*)
     #ディストリごとの分岐とか考えたい（debian-fedoraとか、あとarchはくせがあるらしい）
     source ~/.zsh/.zenv.linux
-    export LESSOPEN='| /usr/share/source-highlight/src-hilite-lesspipe.sh %s'
     ;;
 cygwin*)
     source ~/.zsh/.zenv.cyg
-    #export LESSOPEN='| /bin/src-hilite-lesspipe.sh %s'
     ;;
 esac
 

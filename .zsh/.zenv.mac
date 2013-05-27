@@ -32,14 +32,25 @@ path=(
     # MacOS規定のPATHを全てこちらで上書きにする？
     # $PATH
     )
+export path
+
+# setting completion's function path<<<
+fpath=(
+        #自作
+        $HOME/.zsh/functions/Completion(N-/)
+
+        #zsh-completions
+        /usr/local/share/zsh-completions(N-/)
+        /usr/local/share/zsh-completions/src(N-/)
+
+        #homebrew
+        /usr/local/share/zsh/functions(N-/)
+        )
+export fpath
+
 
 MANPATH="$(brew --prefix coreutils)/libexec/gnuman:$MANPATH"
 export MANPATH
-
-# set MacVim-kaoriya on default editor
-if [[ -f /Applications/MacVim.app/Contents/MacOS/Vim ]]; then
-    export EDITOR=/Applications/MacVim.app/Contents/MacOS/Vim
-fi
 
 if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
 export RBENV_ROOT=/usr/local/opt/rbenv
