@@ -624,7 +624,7 @@ nnoremap [Show]k  :<C-u>Capture map<CR>
 nnoremap [Show]r  :<C-u>Capture registers<CR>
 nnoremap [Show]e  :<C-u>edit $MYVIMRC<CR>
 nnoremap [Show]l  :<C-u>source $MYVIMRC<CR>
-nnoremap [Show]h  :<C-u>help<Space>
+nnoremap [Show]h  :<C-u>tab help<Space>
 nnoremap [Show]n  :<C-u>set number!<CR>
 
 nnoremap [EditSupport] <Nop>
