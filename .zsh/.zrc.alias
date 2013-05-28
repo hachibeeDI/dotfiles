@@ -17,6 +17,7 @@ alias diff='colordiff'
 #alias ssh='TERM=xterm-265color ssh'
 # use vim --nopluginmode as pager
 alias vless='/usr/share/vim/vim73/macros/less.sh'
+alias ved='vim ~/.vimrc'
 #alias rm='rm --verbose'
 alias mkdir='mkdir -p'
 alias ls='ls --color=auto -AF'
@@ -74,7 +75,7 @@ alias gbr='git branch -a'
 alias gdif='git diff'
 # alias gst='git status -sb'
 alias gamend='git commit --amend -C HEAD --date='
-alias ggre='git grep -H --heading --break'
+alias ggre='git grep -Hi --heading --break'
 
 #>>>
 #>>>
