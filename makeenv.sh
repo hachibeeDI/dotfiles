@@ -37,3 +37,5 @@ ln -s "$dotfile_path"/.vim ~/.vim
 
 ln -s "$dotfile_path"/.zsh/modules/LS_COLORS/LS_COLORS ~/.dircolors
 
+git submodule init && git submodule update
+
