@@ -88,8 +88,8 @@ zstyle ':completion:*' verbose yes
 # 補完リストをグループ分けする
 zstyle ':completion:*' group-name ''
 zstyle ':completion:*:default' menu select=2
-# via cdd formaat
-zstyle ':completion:*:descriptions' format '%F{yellow}Completing %B%d%b%f'
+## via cdd formaat
+zstyle ':completion:*:descriptions' format '%BCompleting%b %F{yellow}%U%d%u'
 zstyle ':completion:*' list-separator '-->'
 # ../ などとタイプしたとき、現在いるディレクトリを補完候補に出さない
 zstyle ':completion:*' ignore-parents parent pwd ..
@@ -220,6 +220,20 @@ bindkey -e
 
 #>>>
 
+# ------------------- load plugins ---------------- {{{
+# -- zsh syntax highlight ---
+source ~/.zsh/modules/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+# -- cdd --
+source ~/.zsh/modules/cdd/cdd
+
+# }}}
+# -------------------- settings for plugins ------------ {{{
+# --- cdd ---
+typeset -ga chpwd_functions
+chpwd_functions+=_cdd_chpwd
+
+# }}}
+
 # move dotfiles in Dropbox<<<
 function dotf {
     if [ $# != 0 ]; then # 引数が存在するならば
@@ -231,13 +245,6 @@ function dotf {
 }
 # >>>
 
-# use cdd script<<<
-. ~/.zsh/functions/cdd
-
-chpwd() {
-    _cdd_chpwd
-}
-#>>>
 
 # google search<<<
 function google() {
@@ -280,23 +287,6 @@ bindkey '^]' cdup
 # 全履歴の検索
 function history-all { history -E 1 }
 
-# -------------
-#  source auto-fu.zsh(plugin)<<<
-#
-#   if [ -f ~/.zsh/auto-fu.zsh ]; then
-#       source ~/.zsh/auto-fu.zsh
-#       function zle-line-init () {
-#           auto-fu-init
-#       }
-#       zle -N zle-line-init
-#       zstyle ':completion:*' completer _oldlist _complete
-#   fi
-#---->>>
-
-# -- zsh syntax highlight ----{{{
-source ~/.zsh/modules/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-
-# }}}
 
 #読み込み部分は各OSごとのアレ部分
 #>>>
