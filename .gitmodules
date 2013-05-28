@@ -7,3 +7,6 @@
 [submodule ".zsh/modules/LS_COLORS"]
 	path = .zsh/modules/LS_COLORS
 	url = git://github.com/trapd00r/LS_COLORS.git
+[submodule ".zsh/modules/cdd"]
+	path = .zsh/modules/cdd
+	url = https://github.com/m4i/cdd.git
