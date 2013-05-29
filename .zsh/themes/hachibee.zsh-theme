@@ -1,22 +1,20 @@
 # vim:set filetype=zsh :
 
 # -------- prompt setting ------------{{{
+export VIRTUAL_ENV_DISABLE_PROMPT='1'
+
 function virtualenv_info {
-    if [ -n $VIRTUAL_ENV ]; then
-        export VIRTUAL_ENV_DISABLE_PROMPT='1'
-        echo "<venv: `basename $VIRTUAL_ENV` >"
-    fi
-    echo ''
+    [ $VIRTUAL_ENV ] && echo "<venv: `basename $VIRTUAL_ENV` >"
 }
 
 
 nom_prom () {
-    local result_ok=\
-        $'\n''%F{cyan}CURRENT_DIR %F{green}===___ %F{cyan}[%~] %F{blue}$(virtualenv_info)'\
-        $'\n%F{cyan} ╹_╹✖  %F{red}:: %f'
-    local result_ng=\
-        $'\n''%F{cyan}CURRENT_DIR %F{red}===___ %F{cyan}[%~] %F{blue}$(virtualenv_info)'\
-        $'\n%F{cyan} Ծ‸Ծ✖  %F{red}||%f '
+    local result_ok='
+%F{cyan}CURRENT_DIR %F{green}===___ %F{cyan}[%~] %F{blue}$(virtualenv_info)
+%F{cyan} ╹_╹✖  %F{red}:: %f'
+    local result_ng='
+%F{cyan}CURRENT_DIR %F{red}===___ %F{cyan}[%~] %F{blue}$(virtualenv_info)
+%F{cyan} Ծ‸Ծ✖  %F{red}||%f '
 
     local uname_mname='%F{cyan}[%n@%m]%f'
     case ${UID} in
