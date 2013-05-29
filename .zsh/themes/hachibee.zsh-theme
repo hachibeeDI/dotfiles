@@ -1,9 +1,22 @@
 # vim:set filetype=zsh :
 
 # -------- prompt setting ------------{{{
+function virtualenv_info {
+    if [ -n $VIRTUAL_ENV ]; then
+        export VIRTUAL_ENV_DISABLE_PROMPT='1'
+        echo "<venv: `basename $VIRTUAL_ENV` >"
+    fi
+    echo ''
+}
+
+
 nom_prom () {
-    local result_ok=$'\n''%F{cyan}CURRENT_DIR %F{green}===___ %F{cyan}[%~]'$'\n%F{cyan} ╹_╹✖  %F{red}:: %f'
-    local result_ng=$'\n''%F{cyan}CURRENT_DIR %F{red}===___ %F{cyan}[%~]'$'\n%F{cyan} Ծ‸Ծ✖  %F{red}||%f '
+    local result_ok=\
+        $'\n''%F{cyan}CURRENT_DIR %F{green}===___ %F{cyan}[%~] %F{blue}$(virtualenv_info)'\
+        $'\n%F{cyan} ╹_╹✖  %F{red}:: %f'
+    local result_ng=\
+        $'\n''%F{cyan}CURRENT_DIR %F{red}===___ %F{cyan}[%~] %F{blue}$(virtualenv_info)'\
+        $'\n%F{cyan} Ծ‸Ծ✖  %F{red}||%f '
 
     local uname_mname='%F{cyan}[%n@%m]%f'
     case ${UID} in
@@ -38,11 +51,12 @@ if is-at-least 4.3.7; then
     local br_name="%F{yellow}%b%f"
     local stgd="%F{green}%c%f"
     local unst="%F{red}%u%f"
+    zstyle ':vcs_info:*' enable git
     zstyle ':vcs_info:git:*' check-for-changes true
     zstyle ':vcs_info:git:*' stagedstr '+'
     zstyle ':vcs_info:git:*' unstagedstr '-'
     zstyle ':vcs_info:git:*' formats "($br_name) [$stgd/$unst]"
-    zstyle ':vcs_info:git:*' actionformats "[$br_name|%F{red}%a%f] [$stgd/$unst]"
+    zstyle ':vcs_info:git:*' actionformats "($br_name) %F{red}!%f![%F{red}%a%f] [$stgd/$unst]"
 fi
 
 #psvarの中身は%1vとかの形で参照できる
