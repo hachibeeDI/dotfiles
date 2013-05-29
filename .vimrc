@@ -401,7 +401,7 @@ endif
 "
 " common settings
 "
-set regexpengine=1
+"set regexpengine=1
 
 syntax enable
 
