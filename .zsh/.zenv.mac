@@ -15,10 +15,10 @@ path=(
     $HOME/bin(N-/)
 
     # 標準のツールとかもhomebrewで導入したのを優先させる
-    /usr/local/bin(N-/)
+    $BREW_PATH/bin(N-/)
 
-    /usr/local/share/python(N-/)
-    /usr/local/opt/ruby/bin(N-/)
+    $BREW_PATH/share/python(N-/)
+    $BREW_PATH/opt/ruby/bin(N-/)
 
     #デフォルトのコマンドをGNUコマンドで
     $(brew --prefix coreutils)/libexec/gnubin(N-/)

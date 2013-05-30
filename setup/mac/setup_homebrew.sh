@@ -15,7 +15,7 @@ brew install zsh-completions
 echo 'if you want to use zsh installed from homebrew, have to append its path on /etc/shells.'
 echo ''
 
-brew install vim --override-system-vi --with-lua --with-ruby --with-python --with-python3 
+brew install vim --override-system-vi --with-lua --with-ruby --with-python --with-python3
 
 for pkg in "automake" "autoconf" "openssl" "sqlite"
 do
