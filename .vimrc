@@ -1063,25 +1063,30 @@ if executable('ag')
 endif
 
 
+nnoremap [Unite] <Nop>
+nmap ,u [Unite]
+
 " バッファ一覧
-nnoremap <silent> ,ub :<C-u>Unite buffer<CR>
+nnoremap <silent> [Unite]b :<C-u>Unite buffer<CR>
 " ファイル一覧
-nnoremap <silent> ,uf :<C-u>UniteWithBufferDir -buffer-name=files file<CR>
+nnoremap <silent> [Unite]f :<C-u>UniteWithBufferDir -buffer-name=files file<CR>
 " レジスタ一覧
-nnoremap <silent> ,ur :<C-u>Unite -buffer-name=register register<CR>
+nnoremap <silent> [Unite]r :<C-u>Unite -buffer-name=register register<CR>
 " 最近使用したファイル一覧
-nnoremap <silent> ,um :<C-u>Unite file_mru<CR>
+nnoremap <silent> [Unite]m :<C-u>Unite file_mru<CR>
 " 常用セット
-nnoremap <silent> ,uu :<C-u>Unite buffer file_mru<CR>
+nnoremap <silent> [Unite]u :<C-u>Unite buffer file_mru<CR>
+" タブ一覧
+nnoremap <silent> [Unite]t :<C-u>Unite tab<CR>
 " 全部乗せ
-nnoremap <silent> ,ua :<C-u>UniteWithBufferDir -buffer-name=files buffer file_mru bookmark file<CR>
+nnoremap <silent> [Unite]a :<C-u>UniteWithBufferDir -buffer-name=files buffer file_mru bookmark file<CR>
 
 " その他
-nnoremap <silent> ,u` :<C-u>Unite -auto-quit neobundle/update<CR>
+nnoremap <silent> [Unite]` :<C-u>Unite -auto-quit neobundle/update<CR>
 " Outline
-nnoremap <silent> ,uo :<C-u>Unite -vertical outline<CR>
-" grepjj
-nnoremap <silent> ,ug :<C-u>Unite grep<CR>
+nnoremap <silent> [Unite]o :<C-u>Unite -vertical outline<CR>
+" grep
+nnoremap <silent> [Unite]g :<C-u>Unite grep<CR>
 
 "}}}
 
