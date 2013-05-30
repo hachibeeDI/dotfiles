@@ -1,0 +1,6 @@
+__metaclass__
+__slots__
+
+@property
+@classmethod
+
