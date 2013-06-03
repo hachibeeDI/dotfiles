@@ -411,7 +411,13 @@ set virtualedit=block
 " have to set, before setting colorscheme-command
 set t_Co=256
 
-set directory=~/.vimcache/vimswap
+"set directory=~/.vimcache/vimswap
+" いい加減うっとおしいのでswapはいらない
+set noswapfile
+if has('unix')
+    set nofsync
+    set swapsync=
+endif
 set backupdir=~/.vimcache/bak
 set viminfo& viminfo+=n~/.vimcache/viminfo
 if v:version >= 703
@@ -476,6 +482,7 @@ set smarttab
 "--------
 " display settings
 "---------
+
 " enable cursorline only forcused buffer.
 setlocal cursorline
 autocmd MyAutoCmd WinEnter * setlocal cursorline
@@ -515,7 +522,7 @@ set title
 set titlestring=Vim:\ %f\ %h%r%m
 
 "" StatusLine ------------------- {{{
-" always show statusline
+" 2 -> always show statusline, 1 -> only twe windows is here, 0 -> None
 set laststatus=2
 "set statusline=
 let &statusline = ''
@@ -1186,7 +1193,9 @@ function! s:bundle_quickrun.hooks.on_source(bundle)
 
 endfunction
 let g:quickrun_no_default_key_mappings = 1
-nnoremap <F5> :<C-u>QuickRun<CR>
+"nnoremap <F5> :<C-u>QuickRun<CR> なぜかQuickRun内のコマンド定義がロードされない
+" とりあえず暇になるまでこれで
+nnoremap <F5> :<C-u>call quickrun#run()<CR>
 nnoremap <F6> <Plug>(quickrun)
 nnoremap [Show]w :<C-u>WatchdogsRunSilent<CR><Esc>
 
