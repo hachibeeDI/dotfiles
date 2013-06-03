@@ -1,4 +1,4 @@
-" vim:fileencoding=utf-8
+
 
 set nocompatible
 
@@ -427,6 +427,7 @@ endif
 set history=100000
 " set default register is unnamed register. (same as OS's clipboard)
 set clipboard=unnamed
+set mouse=a
 
 " set fold line on {{{, }}}
 set foldmethod=marker
@@ -436,6 +437,7 @@ set foldenable
 set foldlevel=2
 
 set hidden
+set secure
 
 set list
 set listchars=tab:>-,trail:~
@@ -452,6 +454,8 @@ set wildmenu
 " show completion menu in command mode
 set wildmode=list:full
 set completeopt=menuone,preview
+" Don't complete from other buffer.
+set complete=.
 
 " <C-a> <C-x> で英字も増減させる
 set nrformats=alpha,octal,hex
@@ -496,8 +500,9 @@ let g:solarized_italic = 0
 
 set title
 set number
+" Display all the information of the tag by the supplement of the Insert mode.
+set showfulltag
 
-set showcmd
 " disable auto textwraping
 set textwidth=0
 set colorcolumn=80
@@ -515,8 +520,13 @@ set lazyredraw
 set ttyfast
 " 読み込んでいるファイルが変更された時自動で読み直す
 set autoread
+" No equal window size.
+set noequalalways
 
 set showmode
+set showcmd
+" Height of command line.
+set cmdheight=2
 
 set title
 set titlestring=Vim:\ %f\ %h%r%m
@@ -608,7 +618,8 @@ set diffopt=iwhite,filler
 set incsearch
 set ignorecase
 set smartcase
-set nowrapscan
+"set nowrapscan
+set wrapscan
 set hlsearch
 
 
@@ -1352,4 +1363,5 @@ endfunction
 "  }}}
 
 source ~/.vimrc.local
+
 
