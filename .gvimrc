@@ -21,9 +21,8 @@ set guioptions+=a
 if has('mac')
     colorscheme solarized
     set transparency=5 " 透明度を指定
-    set guifont=RictyDiscord-Regular-Powerline:h28
+    set guifont=RictyDiscord:h20
     "set guifontwide=RictyDiscord-Regular-Powerline:h20
-    set background=dark
 
 elseif has('win32')
     colorscheme desertEx
