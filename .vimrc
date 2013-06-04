@@ -59,10 +59,11 @@ NeoBundleLazy 'Shougo/vimshell', {
     \   }
     \}
 " compile and exec the code and pop result on Quickfix-window
-NeoBundle 'thinca/vim-quickrun' ", {
-"    \'autoload' : {
-"    \   'commands' : ["QuickRun"],
-"    \ }}
+NeoBundleLazy 'thinca/vim-quickrun', {
+    \ 'autoload' : {
+    \   'commands' : ["QuickRun"],
+    \ 'mappings' : [['nxo', '<Plug>(quickrun)']],
+    \ }}
 
 " snipets for neosnippet's dirctory
 NeoBundle 'honza/vim-snippets'
@@ -73,13 +74,6 @@ NeoBundleLazy 'tpope/vim-fugitive'
 "    \   'commands': [ "Git", "Gstatus", "Gcommit", "Gedit", "Gwrite", "Ggrep", "Glog", "Gdiff"],
 "    \ }
 "    \}
-
-"@Deprecated
-NeoBundleLazy 'scrooloose/syntastic', {
-    \ 'autoload' : {
-    \   'commands' : [ "SyntasticCheck" ],
-    \ }
-    \}
 
 "" Quickfixの内容を使ってエラー表示をハイライトしてくれる
 "NeoBundleLazy 'jceb/vim-hies'
@@ -1148,61 +1142,57 @@ function! s:bundle_quickrun.hooks.on_source(bundle)
   let g:quickrun_config = get(g:, 'quickrun_config', {})
 
   " default config via http://d.hatena.ne.jp/osyo-manga/20120919/1348054752
-  let g:quickrun_config["_"] = {
-              \ "hook/close_unite_quickfix/enable_hook_loaded" : 1,
-              \ "hook/unite_quickfix/enable_failure" : 1,
-              \ "hook/close_quickfix/enable_exit" : 1,
-              \ "hook/close_quickfix/enable_success" : 1,
-              \ "hook/close_buffer/enable_failure" : 1,
-              \ "hook/close_buffer/enable_empty_data" : 1,
-              \ "outputter" : "multi:buffer:quickfix",
-              \ "hook/shabadoubi_touch_henshin/enable" : 1,
-              \ "hook/shabadoubi_touch_henshin/wait" : 20,
-              \ "outputter/buffer/split" : ":botright 8sp",
-              \ "runner" : "vimproc",
-              \ "runner/vimproc/updatetime" : 40,
-              \ }
-  " 実行
-  let g:quickrun_config["run/vimproc"] = {
-      \ "exec": "%s:p:r %a",
-      \ "output_encode" : "utf-8",
-      \ "runner" : "vimproc",
-      \ "outputter" : "buffer"
-      \ }
-  let g:quickrun_config["run/system"] = {
-      \ "exec": "%s:p:r %a",
-      \ "output_encode" : "utf-8",
-      \ "runner" : "system",
-      \ "outputter" : "buffer"
-      \ }
-
-  let g:quickrun_config["run/vimproc/pause"] = {
-      \ "exec": "%s:p:r %a && pause",
-      \ "output_encode" : "utf-8",
-      \ "runner" : "shell",
-      \ "outputter" : "buffer"
-      \ }
-  " -----
-
-  let g:quickrun_config["cpp"] = {
-      \ 'command': 'clang++',
-      \ 'cmdopt': '-std=c++11 -stdlib=libc++',
-      \ }
-
-  let g:quickrun_config["python"] = {
-      \ 'command': 'python',
-      \ }
-
-  " watchdogs用
-  let g:quickrun_config["watchdogs_checker/pychecker"] = {
-      \ 'command': 'pychecker',
-      \ 'exec': '%c %o %s:p',
-      \ 'quickfix/errorformat': '%f:%l:%m',
-      \ }
-  let g:quickrun_config["python/watchdogs_checker"] = {
-      \ 'type': 'watchdogs_checker/pychecker',
-      \ }
-
+  let g:quickrun_config = {
+\    '_': {
+\      "hook/close_unite_quickfix/enable_hook_loaded": 1
+\      , "hook/unite_quickfix/enable_failure": 1
+\      , "hook/close_quickfix/enable_exit": 1
+\      , "hook/close_quickfix/enable_success": 1
+\      , "hook/close_buffer/enable_failure": 1
+\      , "hook/close_buffer/enable_empty_data": 1
+\      , "outputter": "multi:buffer:quickfix"
+\      , "hook/shabadoubi_touch_henshin/enable": 1
+\      , "hook/shabadoubi_touch_henshin/wait": 20
+\      , "outputter/buffer/split": ":botright 8sp"
+\      , "runner": "vimproc"
+\      , "runner/vimproc/updatetime": 40
+\    },
+\    'run/vimproc': {
+\      "exec": "%s:p:r %a"
+\      , "output_encode": "utf-8"
+\      , "runner": "vimproc"
+\      , "outputter": "buffer"
+\    },
+\    "run/vimproc/pause": {
+\      "exec": "%s:p:r %a && pause"
+\      , "output_encode": "utf-8"
+\      , "runner": "shell"
+\      , "outputter": "buffer"
+\    },
+\    'run/system': {
+\      "exec": "%s:p:r %a"
+\      , "output_encode": "utf-8"
+\      , "runner": "system"
+\      , "outputter": "buffer"
+\    },
+\    'markdown': {
+\      'type': 'markdown/pandoc'
+\      , 'cmdopt': '-s'
+\      , 'outputter': 'browser'
+\    },
+\    'cpp': {
+\      'command': 'clang++'
+\      , 'cmdopt': '-std=c++11 -stdlib=libc++'
+\    },
+\    'watchdogs_checker/pychecker': {
+\      'command': 'pychecker'
+\      , 'exec': '%c %o %s:p'
+\      , 'quickfix/errorformat': '%f:%l:%m'
+\    },
+\    'python/watchdogs_checker': {
+\      'type': 'watchdogs_checker/pychecker'
+\    }
+\ }
 
 " < " http://d.hatena.ne.jp/osyo-manga/20120924/1348473304
 " < " ---- vim-watchdog --- : {{{
@@ -1221,20 +1211,6 @@ nnoremap [Show]w :<C-u>WatchdogsRunSilent<CR><Esc>
 "  }}}
 
 " }}}
-
-" =============================================================
-" --- Syntastic --- : {{{
-
-" active_filetypes -> 自動でチェックして欲しいファイル・タイプ
-" passive_filetypes -> :SyntasticCheck で手動で呼び出すファイル
-let g:syntastic_mode_map = {'mode': 'active',
-    \ 'active_filetypes': [],
-    \ 'passive_filetypes': ['html', 'zsh', 'scala', 'c', 'cpp']
-    \ }
-" エラーがあったら、自動的にQuickfixが立ち上がる
-let g:syntastic_auto_loc_list = 1
-
-"}}}
 
 " ----- slimv.vim --------
 if has('mac')
