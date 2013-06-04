@@ -4,4 +4,5 @@ endif
 let b:did_ftplugin_python = 1
 
 set foldmethod=syntax
+set commentstring=#%s
 
