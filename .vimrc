@@ -402,7 +402,6 @@ syntax enable
 NeoBundleCheck
 "}}}
 
-
 let s:exist_ramdisk = glob('/Volumes/RamDisk')
 
 " encoding ------ {{{
@@ -428,9 +427,61 @@ endif
 "
 "set regexpengine=1
 
+" ======== edit ========= {{{
+" indent ---------
+set smarttab
+set expandtab
+set shiftround
+"set tabstop=4 shiftwidth=4 softtabstop=4
+" -----------
 
-set visualbell t_vb=
 set virtualedit=block
+" Display another buffer when current buffer isn't saved.
+set hidden
+" Auto reload if file is changed.
+set autoread
+" Ignore case on insert completion.
+set infercase
+"閉じカッコが入力されたとき、対応するカッコを表示する
+set showmatch
+" 括弧を入力した時にカーソルが移動しないように設定
+set matchtime=0
+" 常にカーソルが真ん中
+set scrolloff=999
+" set default register is unnamed register. (same as OS's clipboard)
+set clipboard=unnamed
+" mouse surport
+set mouse=a
+
+" enable command-line completion operates in an enhanced mode.
+set wildmenu
+" show completion menu in command mode
+set wildmode=list:full
+" A list of file patterns is ignored when expanding
+set wildignore=*.o,*.obj,*.pyc
+set completeopt=menuone,preview
+" Don't complete from other buffer.
+set complete=.
+" Set popup menu max height.
+"
+set pumheight=20
+" Enable spell check.
+set spelllang=en_us
+" <C-a> <C-x> で英字も増減させる
+set nrformats=alpha,octal,hex
+" a list of deletable
+set backspace=eol,indent,start
+
+" Disable automatically insert comment.
+autocmd MyAutoCmd FileType *
+      \ setl formatoptions-=ro | setl formatoptions+=mM
+
+" ======== {{{
+
+" ========== View ======================== {{{
+" disable bell
+set t_vb=
+set novisualbell
 
 " have to set, before setting colorscheme-command
 set t_Co=256
@@ -449,9 +500,6 @@ if v:version >= 703
     set undofile
 endif
 set history=100000
-" set default register is unnamed register. (same as OS's clipboard)
-set clipboard=unnamed
-set mouse=a
 
 " set fold line on {{{, }}}
 set foldmethod=marker
@@ -460,7 +508,6 @@ set foldenable
 "set foldcolumn=3
 set foldlevel=2
 
-set hidden
 set secure
 
 set list
@@ -474,20 +521,6 @@ set modelines=5
 set pastetoggle=<F10>
 
 set ruler
-set wildmenu
-" show completion menu in command mode
-set wildmode=list:full
-set completeopt=menuone,preview
-" Don't complete from other buffer.
-set complete=.
-
-" <C-a> <C-x> で英字も増減させる
-set nrformats=alpha,octal,hex
-set backspace=eol,indent,start
-
-set scrolloff=999
-set smarttab
-set autoread
 
 set splitbelow
 set splitright
@@ -497,15 +530,13 @@ set noequalalways
 " disable auto comment when start a new line
 set formatoptions& formatoptions-=ro
 
-"___________
-" indent
-"---------
-"
-set tabstop=4 shiftwidth=4 softtabstop=4
-set expandtab
-" インデントを shiftwidth の倍数に丸める
-set shiftround
-set smarttab
+
+" for snippet_complete marker
+if v:version >= 703
+  set conceallevel=2 concealcursor=iv
+  set colorcolumn=79
+endif
+" ==== }}}
 
 "--------
 " display settings
@@ -522,20 +553,13 @@ let g:solarized_termcolors=256
 let g:solarized_termtrans = 1
 let g:solarized_italic = 0
 
-set title
 set number
 " Display all the information of the tag by the supplement of the Insert mode.
 set showfulltag
 
 " disable auto textwraping
 set textwidth=0
-set colorcolumn=80
 set wrap
-
-"閉じカッコが入力されたとき、対応するカッコを表示する
-"set showmatch
-" 括弧を入力した時にカーソルが移動しないように設定
-set matchtime=0
 
 set ambiwidth=double
 "コマンド実行中は再描画しない
@@ -553,6 +577,8 @@ set showcmd
 set cmdheight=2
 
 set title
+" Title length.
+set titlelen=95
 set titlestring=Vim:\ %f\ %h%r%m
 
 "" StatusLine ------------------- {{{
@@ -1030,11 +1056,6 @@ xmap <C-k> <Plug>(neosnippet_expand_target)
 "" SuperTab Like snippets behavior
 "imap <expr><TAB> neosnippet#expandable() ? "\<Plug>(neosnippet_expand_or_jump)" :pumvisible() ? "\<C-n>" : "\<TAB>"
 "smap <expr><TAB> neosnippet#expandable() ? "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
-
-" for snippet_complete marker
-if has ('conceal')
-    set conceallevel=2 concealcursor=i
-endif
 
 "}}}
 "}}}
