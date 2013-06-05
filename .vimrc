@@ -10,8 +10,19 @@
 
 set nocompatible
 
+" variables ----
+
 let $MY_VIMRUNTIME = expand('~/.vim')
 let $BUNDLEPATH = expand('~/.neobundle')
+
+let s:is_windows = has('win16') || has('win32') || has('win64')
+let s:is_cygwin = has('win32unix')
+let s:is_mac = !s:is_windows && !s:is_cygwin
+      \ && (has('mac') || has('macunix') || has('gui_macvim') ||
+      \   (!executable('xdg-open') &&
+      \     system('uname') =~? '^darwin'))
+
+
 "set autogroup
 augroup MyAutoCmd
   autocmd!
@@ -351,12 +362,7 @@ NeoBundleLazy 'glidenote/memolist.vim', {
 
 "}}}
 
-filetype plugin indent on
-
-" Installation check.
-NeoBundleCheck
-"}}}
-
+" --- default bundled plugins ---
 " enable prebundled plugin
 runtime macros/matchinit.vim
 
@@ -378,19 +384,26 @@ if has('kaoriya')
     "let plugin_verifyenc_disable = 1
 endif
 
-""netrwの無効化
-"let g:loaded_netrw       = 1
-"let g:loaded_netrwPlugin = 1
+" Disable menu.vim
+if has('gui_running')
+  set guioptions=Mc
+endif
+" Disable GetLatestVimPlugin.vim
+let g:loaded_getscriptPlugin = 1
+" Disable netrw
+let g:loaded_netrwPlugin = 1
 " noteを表示させない
 let g:netrw_localcopycmd=''
 
-let s:is_windows = has('win32') || has('win64')
-let s:exist_ramdisk = glob('/Volumes/RamDisk')
+filetype plugin indent on
+syntax enable
 
-if has('+macmeta')
-  "optionをAltとして
-  set macmeta
-endif
+" Installation check.
+NeoBundleCheck
+"}}}
+
+
+let s:exist_ramdisk = glob('/Volumes/RamDisk')
 
 " encoding ------ {{{
 " settings for infer encoding and formats
@@ -415,7 +428,6 @@ endif
 "
 "set regexpengine=1
 
-syntax enable
 
 set visualbell t_vb=
 set virtualedit=block
@@ -626,13 +638,15 @@ set tabline=%!MakeTabLine()
 
 " ignore white space, show match lines,
 set diffopt=iwhite,filler
-" search behavior
+
+" ---- search behavior ---- {{{
 set incsearch
 set ignorecase
 set smartcase
 "set nowrapscan
 set wrapscan
 set hlsearch
+" ------------ }}}
 
 
 " ======== Key Mapping ======== {{{
@@ -958,7 +972,7 @@ let g:clang_auto_select=0
 "libclangを使う
 let g:clang_use_library=1
 let g:clang_debug=1
-if has('mac')
+if s:is_mac
   let g:clang_library_path="/usr/lib"
 endif
 let g:clang_user_options = '-std=c++11'
@@ -1223,7 +1237,7 @@ nnoremap [Show]w :<C-u>WatchdogsRunSilent<CR><Esc>
 " }}}
 
 " ----- slimv.vim --------
-if has('mac')
+if s:is_mac
     let g:slimv_swank_clojure = '!osascript -e "tell app \"iTerm\"" -e "tell the first terminal" -e "set mysession to current session" -e "launch session \"Default Session\"" -e "tell the last session" -e "exec command \"/bin/bash\"" -e "write text \"cd $(pwd)\"" -e "write text \"lein swank\"" -e "end tell" -e "select mysession" -e "end tell" -e "end tell"'
 endif
 
@@ -1263,12 +1277,11 @@ let g:rbpt_loadcmd_toggle = 0
 "そろそろ限界…今後はOSごとに別ファイルでやったほうがよいかも
 "for debian /ubuntu
 if has('win32')
-    let g:vimproc_dll_path = $HOME."/vimfiles/autoload/vimproc_win32.dll"
-elseif has('mac')
+    let g:vimproc_dll_path = $BUNDLEPATH."/vimproc/autoload/vimproc_win32.dll"
+elseif s:is_mac
     let g:vimproc_dll_path = $BUNDLEPATH."/vimproc/autoload/vimproc_mac.so"
 else
     let g:vimproc_dll_path = $BUNDLEPATH."/vimproc/autoload/vimproc_unix.so"
-    let g:ackprg="ack-grep -H --nocolor --nogroup --column"
 endif
 "}}}
 
