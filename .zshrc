@@ -204,10 +204,6 @@ REPORTTIME=3
 # spell checks on commandline
 # setopt corrent
 
-# Ctrl-u  "delete" like windows
-bindkey '^U' backward-kill-line
-
-
 ######
 # key binds setting <<<
 #######
@@ -217,6 +213,13 @@ bindkey '^U' backward-kill-line
 
 # Like Emacs
 bindkey -e
+
+# Ctrl-u delete line before cursor
+bindkey '^U' backward-kill-line
+# Ctrl-u delete word before cursor
+bindkey "^[h" backward-kill-word
+bindkey "^[u" undo
+bindkey "^[r" redo
 
 #>>>
 
@@ -264,7 +267,7 @@ function google() {
 #show buffer stack<<<
 show_buffer_stack(){
     POSTDISPLAY="
-stck: $LBUFFER"
+stacked: $LBUFFER"
     zle push-line-or-edit
 }
 zle -N show_buffer_stack
