@@ -432,7 +432,8 @@ endif
 set smarttab
 set expandtab
 set shiftround
-"set tabstop=4 shiftwidth=4 softtabstop=4
+" use 4 as default tab width, and will customize in $MY_VIMRUNTIME/after/ftplugin/*.vim
+set shiftwidth=4 softtabstop=4
 " -----------
 
 set virtualedit=block
@@ -463,7 +464,6 @@ set completeopt=menuone,preview
 " Don't complete from other buffer.
 set complete=.
 " Set popup menu max height.
-"
 set pumheight=20
 " Enable spell check.
 set spelllang=en_us
@@ -734,6 +734,8 @@ inoremap <C-c> <Esc>
 
 nnoremap 0 ^
 nnoremap ^ 0
+onoremap 0 ^
+onoremap ^ 0
 
 " use accelerated_jk
 nmap j <Plug>(accelerated_jk_gj)
