@@ -101,12 +101,19 @@ NeoBundleLazy 'thinca/vim-scouter', '', 'same', { 'autoload' : {
       \ 'commands' : 'Scouter'
       \ }}
 
-NeoBundleLazy 'tpope/vim-surround', {
-      \ 'autoload' : {
-      \   'insert' : 1,
-      \ }}
-NeoBundle 'kana/vim-operator-replace'
+"NeoBundle 'tpope/vim-surround'
+" forked version : http://www.sopht.jp/blog/index.php?/archives/450-surrounding.html
+NeoBundle 'anyakichi/vim-surround', {
+  \ 'autoload' : {
+  \   'mappings' : [
+  \     ['n', '<Plug>Dsurround'], ['n', '<Plug>Csurround'],
+  \     ['n', '<Plug>Ysurround'], ['n', '<Plug>YSurround']
+  \ ]}}
+
 NeoBundle 'kana/vim-operator-user'
+NeoBundle 'kana/vim-operator-replace'
+NeoBundle 'emonkak/vim-operator-comment'
+
 NeoBundleLazy 'kana/vim-smartchr', {
       \ 'autoload' : {
       \   'insert' : 1,
@@ -139,6 +146,12 @@ NeoBundleLazy 'nathanaelkane/vim-indent-guides', {
 
 " === Language surpport === {{{
 " -- Python {{{
+NeoBundleLazy 'Crapworks/python_fn.vim', {
+    \ "autoload" : {
+    \   "filetypes" : ["python"],
+    \ }
+    \}
+
 NeoBundleLazy 'jmcantrell/vim-virtualenv', {
     \ "autoload" : {
     \   "filetypes" : ["python"],
@@ -324,10 +337,7 @@ NeoBundleLazy 'basyura/TweetVim', {
     \ 'depends' :
     \       [ 'basyura/bitly.vim'
     \       , 'basyura/twibill.vim'
-    \       , 'mattn/webapi-vim'
     \       , 'tyru/open-browser.vim'
-    \       , 'Shougo/unite.vim'
-    \       , 'h1mesuke/unite-outline'
     \       ],
     \ 'autoload' : {
     \   'commands' : ["TweetVimSay", "TweetVimHomeTimeline", "TweetVimMentions", "TweetVimSearch"],
