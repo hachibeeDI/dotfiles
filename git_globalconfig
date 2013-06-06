@@ -38,6 +38,13 @@
     rehar = reset --hard
     res = reset --soft
 
+    # rebase
+    rb = rebase
+
+    # merge
+    mer = merge
+    merege = merge
+
     #diff
     dm = diff master
     dw = diff --color-words
