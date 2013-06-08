@@ -581,6 +581,16 @@ set title
 set titlelen=95
 set titlestring=Vim:\ %f\ %h%r%m
 
+" ---------- Cursor -------- {{{
+" via: http://blog.remora.cx/2012/10/spotlight-cursor-line.html
+"let &t_SI = "\e]50;CursorShape = 1\x7"
+"let &t_EI = "\e]50;CursorShape = 0\x7"
+"autocmd MyAutoCmd ColorScheme *
+"            \ highlight Cursor
+"            \ guibg=skyblue gui=NONE ctermbg=117 cterm=NONE
+" }}}
+
+
 "" StatusLine ------------------- {{{
 " 2 -> always show statusline, 1 -> only twe windows is here, 0 -> None
 set laststatus=2
@@ -613,9 +623,6 @@ autocmd MyAutoCmd ColorScheme *
             \ guifg=lightgoldenrod2 gui=bold ctermfg=186 cterm=bold
 autocmd MyAutoCmd ColorScheme *
             \ highlight TabLineFill
-            \ guifg=skyblue gui=NONE ctermfg=117 cterm=NONE
-autocmd MyAutoCmd ColorScheme *
-            \ highlight Cursor
             \ guifg=skyblue gui=NONE ctermfg=117 cterm=NONE
 doautocmd ColorScheme _
 
@@ -859,20 +866,6 @@ function! s:DeleteTrailingSpaces()
     echo 'delete trail'
 endfunction
 
-command! TabExpand call s:Tab2Space()
-function! s:Tab2Space()
-    let l:l = line('.')
-    let l:c = col('.')
-    "ts=tabの見た目上の幅, softtabstop=expandtab::enableのときにTabを押した時に挿入される空白の量
-    let l:ts_value = &tabstop
-    let l:tmp_space = ' '
-    for i in range(0, ts_value)
-        let l:tmp_space = tmp_space.' '
-    endfor
-    execute '%s/\t/'.tmp_space.'/g'
-    nohl
-    call cursor(l, c)
-endfunction
 
 " chmod a+xするコマンド
 if executable('chmod')
@@ -885,6 +878,7 @@ if executable('chmod')
         endif
     endfunction
 endif
+
 
 " http://vim-users.jp/2011/02/hack203/
 command!
@@ -1271,9 +1265,6 @@ let g:hatena_upload_on_write = 0
 let g:hatena_upload_on_write_bang = 1
 let g:hatena_no_default_keymappings = 1
 
-" ------ power line ----
-let g:Powerline_symbols = 'fancy'
-
 " ------ RainbowParentTheses
 let g:rbpt_colorpairs = [
     \ ['brown',       'RoyalBlue3'],
@@ -1296,7 +1287,7 @@ let g:rbpt_colorpairs = [
 let g:rbpt_max = 15
 let g:rbpt_loadcmd_toggle = 0
 
-"--- ack.vim procとか ---  {{{
+"--- procとか ---  {{{
 "そろそろ限界…今後はOSごとに別ファイルでやったほうがよいかも
 "for debian /ubuntu
 if has('win32')
@@ -1351,7 +1342,12 @@ nmap <Space>j <Plug>(quickhl-match)
 "
 " ------ operato-replace {{{
 map R <Plug>(operator-replace)
+map r <Plug>(operator-replace)
 " }}}
+
+" ----- Gundo.vim --- {{{
+nnoremap U :<C-u>GundoToggle<CR>
+" ---- }}}
 
 "--- VimShell ----------------{{{
 " This go along with vimshell doc's sample.
