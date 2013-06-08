@@ -25,13 +25,19 @@
     ft = fetch
     ad = add
     cm = commit
-    co = checkout
 
     # branch
     br = branch
     ba = branch -a
     bmd = branch --merged
     bnm = branch --no-merged
+
+    # checkout
+    co = checkout
+
+    # to operate branch
+    rmbr = branch -d
+    mkbr = checkout -b
 
     # reset
     re = reset
