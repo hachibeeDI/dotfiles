@@ -2,7 +2,7 @@
 
 echo 'setting up environment variables as MacOSX ... ...'
 
-BREW_PATH=`brew --prefix`
+BREW_PATH=`/usr/local/bin/brew --prefix`
 export BREW_PATH
 
 # -U : 重複したパスは登録しない
@@ -21,7 +21,7 @@ path=(
     $BREW_PATH/opt/ruby/bin(N-/)
 
     #デフォルトのコマンドをGNUコマンドで
-    $(brew --prefix coreutils)/libexec/gnubin(N-/)
+    $(/usr/local/bin/brew --prefix coreutils)/libexec/gnubin(N-/)
 
     /usr/bin(N-/)
     /bin(N-/)
@@ -49,7 +49,7 @@ fpath=(
 export fpath
 
 
-MANPATH="$(brew --prefix coreutils)/libexec/gnuman:$MANPATH"
+MANPATH="$(/usr/local/bin/brew --prefix coreutils)/libexec/gnuman:$MANPATH"
 export MANPATH
 
 if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
