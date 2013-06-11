@@ -80,11 +80,11 @@ NeoBundleLazy 'thinca/vim-quickrun', {
 NeoBundle 'honza/vim-snippets'
 
 " runtimepathに追加されていない？ 要調査
-NeoBundleLazy 'tpope/vim-fugitive'
-"    \ 'autoload': {
-"    \   'commands': [ "Git", "Gstatus", "Gcommit", "Gedit", "Gwrite", "Ggrep", "Glog", "Gdiff"],
-"    \ }
-"    \}
+NeoBundleLazy 'tpope/vim-fugitive', {
+    \ 'autoload': {
+    \   'commands': [ "Git", "Gstatus", "Gcommit", "Gedit", "Gwrite", "Ggrep", "Glog", "Gdiff"],
+    \ }
+    \}
 
 "" Quickfixの内容を使ってエラー表示をハイライトしてくれる
 "NeoBundleLazy 'jceb/vim-hies'
