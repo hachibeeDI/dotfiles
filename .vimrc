@@ -1388,6 +1388,10 @@ function! s:bundle_smartchr.hooks.on_source(bundle)
 endfunction
 "  }}}
 
+" --- gist-vim -----{{{
+let g:gist_use_password_in_gitconfig = 1
+"}}}
+
 source ~/.vimrc.local
 
 " vim: foldmethod=marker
