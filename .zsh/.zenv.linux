@@ -3,8 +3,6 @@
 echo 'setting up environment variables as Linux ... ...'
 
 # -U : 重複したパスは登録しない
-typeset -U path
-# homebrewとcoreutils優先の設定
 path=(
     # 自分のスクリプトとか、自分でビルドしたやつとか
     $HOME/Dropbox/bin/linux(N-/)

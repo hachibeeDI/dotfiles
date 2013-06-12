@@ -19,6 +19,9 @@
 
 # ====================== OS TYPE ============================
 
+# 以下のパスについては重複を削除する
+typeset -U path cdpath fpath manpath
+
 # http://www.pochinet.org/linux2L003.htm
 # -Xと--quit-if-one-screenの組み合わせで、一画面に収まる時はcatのような動きになる
 export LESS='-gj10 --no-init --quit-if-one-screen --RAW-CONTROL-CHARS'
@@ -41,12 +44,12 @@ esac
 ## -x: export SUDO_PATHも一緒に行う。
 ## -T: SUDO_PATHとsudo_pathを連動する。
 typeset -xT SUDO_PATH sudo_path
-## 重複したパスを登録しない。
-typeset -U sudo_path
 sudo_path=({,/usr/pkg,/usr/local,/usr}/sbin(N-/))
 
 
 # ====== common PATH ======={{{
+# ZLS_COLORSの意味って？ とりあえずみんな設定してるくさいからおれもする
+export ZLS_COLORS=$LS_COLORS
 # lang
 export LANG=ja_JP.UTF-8
 # locale

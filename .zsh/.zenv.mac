@@ -5,8 +5,6 @@ echo 'setting up environment variables as MacOSX ... ...'
 BREW_PATH=`/usr/local/bin/brew --prefix`
 export BREW_PATH
 
-# -U : 重複したパスは登録しない
-typeset -U path
 # homebrewとcoreutils優先の設定
 path=(
     # 自分のスクリプトとか、自分でビルドしたやつとか
