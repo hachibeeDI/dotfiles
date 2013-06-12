@@ -1,11 +1,11 @@
-# vim:set filetype=zsh fdm=marker fmr=<<<,>>>:
+# vim:set filetype=zsh fdm=marker:
 
-# alias settings<<<
+# alias settings{{{
 
 # sudo時もエイリアスが展開されるりょうに
 alias sudo='sudo '
 
-# common <<<
+# common {{{
 # オプションの設定はGNUコマンドが前提となっている
 # なのでMac ユーザはhomebrewかportsからcoreutilsを導入すること
 
@@ -53,9 +53,9 @@ cygwin*)
 
 esac
 
-#>>>
+#}}}
 
-# --- global alias ---<<<
+# --- global alias ---{{{
 alias -g @g='| grep'
 alias -g @x='| xargs'
 alias -g @a='| awk'
@@ -63,9 +63,9 @@ alias -g @s='| sed'
 alias -g @l='| less'
 alias -g @h='| head'
 alias -g @t='| tail'
-#>>>
+#}}}
 
-# -------- git alias -------<<<
+# -------- git alias -------{{{
 alias g='git'
 alias ga='git add'
 alias gap='git add -p'
@@ -77,6 +77,130 @@ alias gdif='git diff'
 alias gamend='git commit --amend -C HEAD --date='
 alias ggre='git grep -Hi --heading --break'
 
-#>>>
-#>>>
+#}}}
+#}}}
+
+
+# --------- functions --------- {{{
+# arrange a littele: http://qiita.com/items/1f01aa09ccf148542f21
+gs() {
+    git status -sb && git stash list
+}
+
+# show git status with line numbers
+gst() {
+    git status -sb | head -n 1 && git stash list
+    git status -sb | sed '1d' | grep --line-number '^'
+}
+
+git_get_target() {
+    if [ $# -eq 0 ]; then
+        return 0
+    fi
+    echo `git status -sb |grep -v "^#" | awk '{print$1="";print}' |grep -v "^$" | awk "NR==$1" | sed "s/\s//g"`
+}
+
+gsa() {
+    if [ $# -eq 0 ]; then
+        echo "you should appoint number of lines"
+        return 0
+    fi
+    local targfile=$(git_get_target $1)
+    echo "add $targfile"
+
+    # -pとかをねじ込むため
+    if [ $# -ge 2 ]; then
+        git add $2 $targfile
+    else
+        git add $targfile
+    fi
+}
+gsd() {
+    if [ $# -eq 0 ]; then
+        git diff --color
+        return 1
+    fi
+    local targfile=$(git_get_target $1)
+
+    # --cachedとかをねじ込むため
+    if [ $# -ge 2 ]; then
+        git diff --color $2 $targfile
+        echo "show diff cache $targfile"
+    else
+        git diff --color -- $targfile
+        echo "show diff $targfile"
+    fi
+}
+gsv() {
+    if [ $# -eq 0 ]; then
+        echo "you should appoint number of lines"
+        return 0
+    fi
+    local targfile=$(git_get_target $1)
+    echo "edit $targfile"
+    vim $targfile
+}
+gsrm() {
+    if [ $# -eq 0 ]; then
+        echo "you should appoint number of lines"
+        return 0
+    fi
+    local targfile=$(git_get_target $1)
+    git rm $targfile
+}
+stashow() {
+    if [ $# -eq 1 ]; then
+        git stash show stash@\{$1\} -p --color
+        return 1
+    else
+        echo 'you should appoint number of stash'
+    fi
+}
+# --- }}}
+
+# context seinsitive alias
+# https://github.com/uasi/zsh-context-sensitive-alias
+
+source ~/.zsh/modules/zsh-context-sensitive-alias/csa.zsh
+
+csa_init
+# コンテキストを更新する関数
+function my_context_func {
+    local -a ctx
+    # Git リポジトリの中にいるなら git コンテキストを追加
+    if [[ -n `git rev-parse --git-dir 2> /dev/null` ]]; then
+        ctx+=git
+    fi
+    # Mercurial リポジトリの中にいるなら hg コンテキストを追加
+    if [[ -n `hg root 2> /dev/null` ]]; then
+        ctx+=hg
+    fi
+    if [[ -e Rakefile ]]; then
+        ctx+=rake
+    fi
+    if [[ -e Gemfile ]]; then
+        ctx+=bundler
+    fi
+
+    # コンテキストをセット
+    # 同名のエイリアスが複数のコンテキストで定義されている場合、
+    # 配列変数 ctx 内の*より後ろ*にあるコンテキストのエイリアスが優先される
+    csa_set_context $ctx
+}
+
+# コンテキストを更新する関数が cd のたびに呼ばれるようにする
+typeset -ga chpwd_functions
+chpwd_functions+=my_context_func
+
+# エイリアスを定義
+# csalias <context> <alias> <command>
+csalias git st 'gs'
+csalias git stn 'gst'
+csalias hg st 'hg status'
+
+csalias rake ra 'rake'
+csalias bundler ra 'bundle exec rake'
+# ↑カレントディレクトリに Rakefile と Gemfile が両方とも存在する場合、
+# bundler コンテキストのエイリアスが優先される
+# （my_context_func 内で rake コンテキストの*後*に bundler コンテキストを追加しているため）
 
