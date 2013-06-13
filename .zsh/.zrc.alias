@@ -194,8 +194,21 @@ chpwd_functions+=my_context_func
 
 # エイリアスを定義
 # csalias <context> <alias> <command>
+# ---- git -----
 csalias git st 'gs'
 csalias git stn 'gst'
+csalias git ad 'gsa'
+csalias git df 'gsd'
+csalias git vv 'gsv'
+csalias git sth 'git stash'
+csalias git stpop 'git stash pop'
+csalias git br 'git branch -a'
+csalias git mkbr 'git co -b'
+csalias git rmbr 'git branch -d'
+csalias git hist 'git hist'
+csalias git pul 'git pull'
+csalias git push 'git push'
+
 csalias hg st 'hg status'
 
 csalias rake ra 'rake'
