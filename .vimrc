@@ -133,6 +133,8 @@ NeoBundle 'kana/vim-smartword'
 NeoBundle 'kana/vim-textobj-user'
 NeoBundle 'kana/vim-textobj-indent'
 
+NeoBundle 'kana/vim-smartinput'
+
 NeoBundle 'rhysd/accelerated-jk'
 
 " undo history visualizer
@@ -1057,8 +1059,8 @@ xmap <C-k> <Plug>(neosnippet_expand_target)
 "}}}
 
 " =============== jedi-vim =============== {{{
-let s:bundle_jedi = neobundle#get('jedi-vim')
-function! s:bundle_jedi.hooks.on_source(bundle)
+let bundle = neobundle#get('jedi-vim')
+function! bundle.hooks.on_source(bundle)
 
   " do not allow set some configure auto.
   let g:jedi#auto_vim_configuration = 0
@@ -1077,6 +1079,8 @@ function! s:bundle_jedi.hooks.on_source(bundle)
   let g:jedi#related_names_command = "<leader>n"
   let g:jedi#autocompletion_command = "<C-Space>"
 endfunction
+
+unlet bundle
 "}}}
 
 " haskell -----------------{{{
@@ -1177,8 +1181,8 @@ nnoremap <silent> ,fb :<C-u>VimFilerBufferDir<CR>
 
 " --- quickrun -----{{{
 " url:http://d.hatena.ne.jp/osyo-manga/20111014/1318586711
-let s:bundle_quickrun = neobundle#get('vim-quickrun')
-function! s:bundle_quickrun.hooks.on_source(bundle)
+let bundle = neobundle#get('vim-quickrun')
+function! bundle.hooks.on_source(bundle)
   "設定の初期化
   let g:quickrun_config = get(g:, 'quickrun_config', {})
 
@@ -1242,6 +1246,9 @@ function! s:bundle_quickrun.hooks.on_source(bundle)
   let g:watchdogs_check_BufWritePost_enable = 0
 
 endfunction
+
+unlet bundle
+
 let g:quickrun_no_default_key_mappings = 1
 "nnoremap <F5> :<C-u>QuickRun<CR> なぜかQuickRun内のコマンド定義がロードされない
 " とりあえず暇になるまでこれで
@@ -1353,8 +1360,8 @@ nnoremap U :<C-u>GundoToggle<CR>
 " This go along with vimshell doc's sample.
 " My purpose of using VimShell is lessen stress of Windows and its terrible terminal-emulator!
 
-let s:bundle_vimshell = neobundle#get('vimshell')
-function! s:bundle_vimshell.hooks.on_source(bundle)
+let bundle = neobundle#get('vimshell')
+function! bundle.hooks.on_source(bundle)
 
     if has('win32') || has('win64')
       " Display user name on Windows.
@@ -1373,6 +1380,7 @@ function! s:bundle_vimshell.hooks.on_source(bundle)
     let g:vimshell_user_prompt = 'fnamemodify(getcwd(),":~")'
     " let g:vimshell_right_prompt = 'vimshell#vcs#info("(%s)-[%b]", "(%s)-[%b|%a]")'
 endfunction
+unlet bundle
 
 "}}}
 nnoremap <silent> ,vp :<C-u>VimShellPop<CR>
@@ -1381,12 +1389,25 @@ nnoremap <silent> ,cvs :<C-u>VimShell %:p:h<CR>
 " }}}
 
 " --- smartchr ---- {{{
-let s:bundle_smartchr = neobundle#get('vim-smartchr')
-function! s:bundle_smartchr.hooks.on_source(bundle)
-    inoremap <expr> = smartchr#one_of(' = ', ' == ', '=')
-    inoremap <expr> , smartchr#one_of(', ', ',')
+let bundle = neobundle#get('vim-smartchr')
+function! bundle.hooks.on_source(bundle)
+  inoremap <expr> = smartchr#one_of(' = ', ' == ', '=')
+  inoremap <expr> , smartchr#one_of(', ', ',')
+  inoremap <expr> , smartchr#one_of(':', ': ')
 endfunction
+
+unlet bundle
 "  }}}
+
+" --- smartinput --- {{{
+  " via: http://rhysd.hatenablog.com/entry/20121017/1350444269
+call smartinput#define_rule({
+  \   'at': '\s\+\%#',
+  \   'char': '<CR>',
+  \   'input': "<C-o>:call setline('.', substitute(getline('.'), '\\s\\+$', '', ''))<CR><CR>",
+  \   })
+
+"----
 
 " --- gist-vim -----{{{
 let g:gist_use_password_in_gitconfig = 1
