@@ -3,6 +3,8 @@ if exists('b:did_ftplugin_python')
 endif
 let b:did_ftplugin_python = 1
 
-set foldmethod=syntax
-set commentstring=#%s
+setlocal foldmethod=indent
+setlocal commentstring=#%s
+" python.vim (default bundled syntax plugin)
+let python_highlight_all = 1
 
