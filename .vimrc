@@ -416,7 +416,7 @@ set fileformats=unix,dos
 if s:is_windows
     set termencoding=cp932
 else
-    set termencoding=utf-8
+    "set termencoding=utf-8
 endif
 
 if has('multi_byte_ime')
@@ -1393,7 +1393,7 @@ let bundle = neobundle#get('vim-smartchr')
 function! bundle.hooks.on_source(bundle)
   inoremap <expr> = smartchr#one_of(' = ', ' == ', '=')
   inoremap <expr> , smartchr#one_of(', ', ',')
-  inoremap <expr> , smartchr#one_of(':', ': ')
+  inoremap <expr> : smartchr#one_of(':', ': ')
 endfunction
 
 unlet bundle
