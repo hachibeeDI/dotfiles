@@ -81,7 +81,7 @@ export VIRTUALENV_DISTRIBUTE=true
 source /usr/local/share/python/virtualenvwrapper_lazy.sh
 #--- pip
 # cache pip-installed packages to avoid re-downloading
-export PIP_DOWNLOAD_CACHE = $HOME/.pip/cache
+export PIP_DOWNLOAD_CACHE=$HOME/.pip/cache
 
 # }}}
 
