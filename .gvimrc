@@ -21,8 +21,8 @@ set guioptions+=a
 if has('mac')
   colorscheme desertEx
   set transparency=5 " 透明度を指定
-  set guifont=Ricty\ Discord:h16
-  set guifontwide=Ricty\ Discord:h16
+  set guifont=Ricty\ Discord:h19
+  set guifontwide=Ricty\ Discord:h19
 elseif has('win32')
     colorscheme desertEx
     "set shell='C:/cygwin/bin/zsh.exe'
