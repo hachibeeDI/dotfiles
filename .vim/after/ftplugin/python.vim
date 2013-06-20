@@ -8,3 +8,5 @@ setlocal commentstring=#%s
 " python.vim (default bundled syntax plugin)
 let python_highlight_all = 1
 
+
+setlocal omnifunc=jedi#complete
