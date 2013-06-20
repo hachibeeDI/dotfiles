@@ -47,7 +47,7 @@ NeoBundle 'Shougo/vimproc', {
     \   'unix' : 'make -f make_unix.mak',
     \ },
     \}
-NeoBundleLazy 'Shougo/neocomplcache', {
+NeoBundleLazy 'Shougo/neocomplete.vim', {
     \ 'autoload' : {
     \   'insert' : 1,
     \ }}
@@ -669,6 +669,18 @@ function! MakeTabLine()
 endfunction
 
 set tabline=%!MakeTabLine()
+
+" Comletion menu ----- {{{
+"autocmd MyAutoCmd ColorScheme *
+"      \ highlight Pmenu
+"      \ ctermbg=8 guibg=#606060
+"autocmd MyAutoCmd ColorScheme *
+"      \ highlight PmenuSel
+"      \ ctermbg=1 guifg=#dddd00 guibg=#1f82cd
+"autocmd MyAutoCmd ColorScheme *
+"      \ highlight PmenuSbar
+"      \ ctermbg=0 guibg=#d6d6d6
+"}}}
 " }}}
 
 " ignore white space, show match lines,
@@ -926,68 +938,108 @@ command! Eucjp edit ++enc=euc-jp
 "---------------
 
 " =======================================================
-" ------------ neocomplcache -----------------: {{{
-" disable autoComplPop
+" ------------ neocomplete.vim -----------------: {{{
+"Note: This option must set it in .vimrc(_vimrc).  NOT IN .gvimrc(_gvimrc)!
+" Disable AutoComplPop.
 let g:acp_enableAtStartup = 0
+" Use neocomplete.
+let g:neocomplete#enable_at_startup = 1
+" Use smartcase.
+let g:neocomplete#enable_smart_case = 1
+"" default
+"let g:neocomplete#auto_completion_start_length = 2
+"" Set minimum syntax keyword length. default is 4
+"let g:neocomplete#sources#syntax#min_keyword_length = 4
+let g:neocomplete#skip_auto_completion_time = '1'
+let g:neocomplete#lock_buffer_name_pattern = '\*ku\*'
 
-let g:neocomplcache_enable_at_startup = 1   " enabled when start vim
-let g:neocomplcache_enable_smart_case = 1
-let g:neocomplcache_max_list = 50
-let g:neocomplcache_auto_completion_start_length = 2
-" set minimum syntax keyword length
-let g:neocomplcache_min_syntax_length = 3
-" 候補一番目を自動的に選択
-let g:neocomplcache_enable_auto_select = 0
-"" search with camel case like Eclipse
-let g:neocomplcache_enable_camel_case_completion = 1
-" アンダーバーを区切りとした曖昧検索
-let g:neocomplcache_enable_underbar_completion = 1
-" Skip Heavy complete
-let g:neocomplcache_skip_auto_completion_time = '0.5'
+" Define dictionary.
+let g:neocomplete#sources#dictionary#dictionaries = {
+\     'default': '',
+\     'java': $HOME.'/.vim/dict/java.dict',
+\     'javascript': $HOME.'/.vim/dict/javascript.dict',
+\     'python': $HOME.'/.vim/dict/python.dict',
+\     'vim': $HOME.'/.vim/dict/vim.dict',
+\     'cpp': $HOME.'/.vim/dict/cpp.dict',
+\     'vimshell': $HOME.'/.vimshell_hist',
+\     'scheme': $HOME.'/.gosh_completions',
+\     'scala':$BUNDLEPATH.'/vim-scala/dict/scala.dict',
+\ }
+
+"initialize
+if !exists('g:neocomplete#keyword_patterns')
+  let g:neocomplete#keyword_patterns = {}
+endif
+" Define keyword means 日本語をキャッシュしない
+let g:neocomplete#keyword_patterns['default'] = '\h\w*'
 
 " Plugin key-mappings.
-inoremap <expr><C-g>     neocomplcache#undo_completion()
-inoremap <expr><C-l>     neocomplcache#complete_common_string()
+inoremap <expr><C-g>     neocomplete#undo_completion()
+inoremap <expr><C-l>     neocomplete#complete_common_string()
 
-inoremap <expr><CR> pumvisible() ? neocomplcache#close_popup() : "\<CR>"
-"" <TAB>: completion.
-inoremap <expr><TAB> pumvisible() ? "\<C-n>" : "\<TAB>"
-"" <C-h>, <BS>: close popup and delete backword char.
-inoremap <expr><C-h> neocomplcache#smart_close_popup() . "\<C-h>"
-inoremap <expr><C-y> neocomplcache#close_popup()
-"inoremap <expr><C-e> neocomplcache#cancel_popup()
-inoremap <expr><Del> neocomplcache#cancel_popup()
+" Recommended key-mappings.
+" <CR>: close popup and save indent.
+inoremap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
+function! s:my_cr_function()
+  return neocomplete#smart_close_popup() . "\<CR>"
+  " For no inserting <CR> key.
+  "return pumvisible() ? neocomplete#close_popup() : "\<CR>"
+endfunction
+" <TAB>: completion.
+inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
+" <C-h>, <BS>: close popup and delete backword char.
+inoremap <expr><C-h> neocomplete#smart_close_popup()."\<C-h>"
+inoremap <expr><BS> neocomplete#smart_close_popup()."\<C-h>"
+inoremap <expr><C-y>  neocomplete#close_popup()
+inoremap <expr><C-e>  neocomplete#cancel_popup()
+" Close popup by <Space>.
+"inoremap <expr><Space> pumvisible() ? neocomplete#close_popup() : "\<Space>"
 
-let g:neocomplcache_force_overwrite_completefunc=1
+" For cursor moving in insert mode(Not recommended)
+"inoremap <expr><Left>  neocomplete#close_popup() . "\<Left>"
+"inoremap <expr><Right> neocomplete#close_popup() . "\<Right>"
+"inoremap <expr><Up>    neocomplete#close_popup() . "\<Up>"
+"inoremap <expr><Down>  neocomplete#close_popup() . "\<Down>"
+" Or set this.
+"let g:neocomplete#enable_cursor_hold_i = 1
+" Or set this.
+"let g:neocomplete#enable_insert_char_pre = 1
 
-if !exists('g:neocomplcache_keyword_patterns')
-  let g:neocomplcache_keyword_patterns = {}
+" AutoComplPop like behavior.
+"let g:neocomplete#enable_auto_select = 1
+
+" Enable heavy omni completion.
+if !exists('g:neocomplete#sources#omni#input_patterns')
+  let g:neocomplete#sources#omni#input_patterns = {}
 endif
-" 日本語をキャッシュしない
-let g:neocomplcache_keyword_patterns._ = '\h\w*'
+let g:neocomplete#sources#omni#input_patterns.php = '[^. \t]->\h\w*\|\h\w*::'
+" clang via - http://d.hatena.ne.jp/osyo-manga/20120911/1347354707
+let g:neocomplete#sources#omni#input_patterns.c = '[^.[:digit:] *\t]\%(\.\|->\)'
+let g:neocomplete#sources#omni#input_patterns.cpp = '[^.[:digit:] *\t]\%(\.\|->\)\|\h\w*::'
+let g:neocomplete#sources#omni#input_patterns.ruby = '[^. *\t]\.\w*\|\h\w*::'
+let g:neocomplete#sources#omni#input_patterns.haxe = '\v([\]''"\)]|\w|(^\s*))(\.|\()'
+let g:neocomplete#sources#omni#input_patterns.python = '[^. \t]\.\w*'
 
-" Enable heavy omni completion, which require computational power and may stall the vim.
-if !exists('g:neocomplcache_omni_patterns')
-  let g:neocomplcache_omni_patterns = {}
+" -----------------------------------------------
+" ---  NOTE: some of filetype specific settings is in
+" ---  $HOME/.vim/after/ftplugin/*.vim .
+" ex. setlocal omnifunc * ... ...
+" -----------------------------------------------
+
+" ================ force omni patterns ======
+" NOTE: this fearture is heavy.
+if !exists('g:neocomplete#force_omni_input_patterns')
+  let g:neocomplete#force_omni_input_patterns = {}
 endif
-let g:neocomplcache_omni_patterns.ruby = '[^. *\t]\.\w*\|\h\w*::'
-"autocmd FileType ruby setlocal omnifunc=rubycomplete#Complete
-let g:neocomplcache_omni_patterns.php = '[^. \t]->\h\w*\|\h\w*::'
-let g:neocomplcache_omni_patterns.c = '\%(\.\|->\)\h\w*'
-let g:neocomplcache_omni_patterns.cpp = '\h\w*\%(\.\|->\)\h\w*\|\h\w*::'
-" via https://github.com/jdonaldson/vaxe
-let g:neocomplcache_omni_patterns.haxe = '\v([\]''"\)]|\w|(^\s*))(\.|\()'
+let g:neocomplete#force_omni_input_patterns.ruby =
+\ '[^. *\t]\.\w*\|\h\w*::'
+let g:neocomplete#force_omni_input_patterns.haxe =
+\ '\v([\]''"\)]|\w|(^\s*))(\.|\()'
+let g:neocomplete#force_omni_input_patterns.python =
+\ '[^. \t]\.\w*'
 
-" clang {{{
-" via - http://d.hatena.ne.jp/osyo-manga/20120911/1347354707
-if !exists("g:neocomplcache_force_omni_patterns")
-    let g:neocomplcache_force_omni_patterns = {}
-endif
-
-" omnifunc が呼び出される場合の正規表現パターンを設定しておく
-let g:neocomplcache_force_omni_patterns.cpp = '[^.[:digit:] *\t]\%(\.\|->\)\|::'
-" for jedi.vim
-let g:neocomplcache_force_omni_patterns.python = '[^. \t]\.\w*'
+" customize sort complete candiates
+"call neocomplete#custom#source('_', 'sorters', ['sorter_length'])
 
 " ------------------- clang_complete ------------- {{{
 " neocomplcacheとの競合を避けるため、自動呼び出しはOff
@@ -1001,30 +1053,6 @@ if s:is_mac
 endif
 let g:clang_user_options = '-std=c++11'
 " }}}
-" }}}
-
-"Define dictonaru
-"scalaの設定は @yuroyoro 氏のプラギンのを拝借
-let g:neocomplcache_dictionary_filetype_lists={
-        \ 'default':'',
-        \ 'java':$HOME.'/.vim/dict/java.dict',
-        \ 'javascript':$HOME.'/.vim/dict/javascript.dict',
-        \ 'python':$HOME.'/.vim/dict/python.dict',
-        \ 'vim':$HOME.'/.vim/dict/vim.dict',
-        \ 'vimshell':$HOME.'/.vim/dict/vimshell.dict',
-        \ 'cpp':$HOME.'/.vim/dict/cpp.dict',
-        \ 'scala':$BUNDLEPATH.'/vim-scala/dict/scala.dict'
-    \}
-
-" Examples:
-if !exists('g:neocomplcache_vim_completefuncs')
-  let g:neocomplcache_vim_completefuncs = {}
-endif
-let g:neocomplcache_vim_completefuncs.Ref = 'ref#complete'
-
-let g:neocomplcache_ignore_composite_filetype_lists = {
-  \ 'ruby.spec' : 'ruby'
-  \ }
 
 "zencoding連携
 let g:use_zen_complete_tag = 1
@@ -1153,6 +1181,9 @@ nnoremap <silent> [Unite]o :<C-u>Unite -vertical outline<CR>
 " grep
 nnoremap <silent> [Unite]g :<C-u>Unite grep<CR>
 
+" neocomplete
+imap <C-i>  <Plug>(neocomplete_start_unite_complete)
+imap <C-w>  <Plug>(neocomplete_start_unite_quick_match)
 "}}}
 
 " ------------- VimFiler ------------------"{{{
