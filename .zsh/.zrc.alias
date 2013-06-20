@@ -31,6 +31,11 @@ alias mv='mv --interactive'
 case "${OSTYPE}" in
 freebsd*|darwin*)
 # =================== Mac OS X =======================
+if [[ -f /usr/local/Cellar/macvim-kaoriya/HEAD/MacVim.app/Contents/MacOS/mvim ]]; then
+    # use taped super greeeeeet formula `http://supermomonga.com/2013/06/15/macvim_kaoriya_homebrew/`
+    alias mvim='/usr/local/Cellar/macvim-kaoriya/HEAD/MacVim.app/Contents/MacOS/mvim --remote-tab-silent'
+fi
+
 if [[ -f /Applications/MacVim.app/Contents/MacOS/Vim ]]; then
     alias kao_vim='env LANG=ja_JP.UTF-8 /Applications/MacVim.app/Contents/MacOS/Vim "$@"'
     alias kao_mvim='env LANG=ja_JP.UTF-8 /Applications/MacVim.app/Contents/MacOS/mvim --remote-tab-silent'

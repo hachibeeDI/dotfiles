@@ -754,9 +754,9 @@ nnoremap <Right> <C-w><
 inoremap <C-c> <Esc>
 
 nnoremap 0 ^
-nnoremap ^ 0
+nnoremap _ 0
 onoremap 0 ^
-onoremap ^ 0
+onoremap _ 0
 
 " use accelerated_jk
 nmap j <Plug>(accelerated_jk_gj)
@@ -1181,9 +1181,9 @@ nnoremap <silent> [Unite]o :<C-u>Unite -vertical outline<CR>
 " grep
 nnoremap <silent> [Unite]g :<C-u>Unite grep<CR>
 
-" neocomplete
-imap <C-i>  <Plug>(neocomplete_start_unite_complete)
-imap <C-w>  <Plug>(neocomplete_start_unite_quick_match)
+"" neocomplete
+"imap <C-i>  <Plug>(neocomplete_start_unite_complete)
+"imap <C-w>  <Plug>(neocomplete_start_unite_quick_match)
 "}}}
 
 " ------------- VimFiler ------------------"{{{
