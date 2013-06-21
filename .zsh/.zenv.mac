@@ -7,6 +7,9 @@ export BREW_PATH
 
 # homebrewとcoreutils優先の設定
 path=(
+    # rbenvを設定してれば優先
+    $HOME/.rbenv/bin(N-/)
+
     # 自分のスクリプトとか、自分でビルドしたやつとか
     $HOME/Dropbox/bin/mac(N-/)
     $HOME/Dropbox/bin(N-/)
@@ -32,6 +35,10 @@ path=(
     )
 export path
 
+if [ -d $HOME/.rbenv/bin ]; then
+    eval "$(rbenv init -)"
+fi
+
 # setting completion's function path<<<
 fpath=(
         #自作
@@ -50,15 +57,10 @@ export fpath
 MANPATH="$(/usr/local/bin/brew --prefix coreutils)/libexec/gnuman:$MANPATH"
 export MANPATH
 
-# Ruby environments {{{
 # ruby -vをsedしたりしてバージョンを取得した方がよいのかしらん
 export GEM_HOME=$HOME/.gem/ruby/2.0.0
 
-if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
-export RBENV_ROOT=/usr/local/opt/rbenv
-
 # }}}
-
 # 自分で作ったlesspipeがあればそっち。なければsource-highlight付属のlesspipeを使う。
 if [[ -f $HOME/bin/src-hilite-lesspipe.sh ]]; then
     export LESSOPEN='| $HOME/bin/src-hilite-lesspipe.sh %s'
