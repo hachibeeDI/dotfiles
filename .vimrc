@@ -114,6 +114,13 @@ NeoBundleLazy 'thinca/vim-scouter', '', 'same', { 'autoload' : {
       \ 'commands' : 'Scouter'
       \ }}
 
+" ---------- utils for edit {{{
+" auto insert end after def scope,
+" in ruby, lua, sh, zsh and some languages ... ...
+NeoBundleLazy 'tpope/vim-endwise', {
+\   'autoload' : {
+\     'insert' : 1,
+\   }}
 "NeoBundle 'tpope/vim-surround'
 " forked version : http://www.sopht.jp/blog/index.php?/archives/450-surrounding.html
 NeoBundle 'anyakichi/vim-surround', {
@@ -136,6 +143,7 @@ NeoBundle 'kana/vim-textobj-user'
 NeoBundle 'kana/vim-textobj-indent'
 
 NeoBundle 'kana/vim-smartinput'
+" }}}
 
 NeoBundle 'rhysd/accelerated-jk'
 
@@ -252,6 +260,43 @@ NeoBundleLazy 'gre/play2vim', {
     \   "filetypes" : ["scala"] }
     \}
 " }}}
+
+" -- Ruby {{{
+NeoBundleLazy 'ruby-matchit', {
+\ 'autoload' : {
+\   'filetypes': ['ruby', 'eruby', 'haml']},
+\ }
+NeoBundleLazy 'skwp/vim-rspec', {
+\ 'autoload': {
+\    'filetypes': ['ruby', 'eruby', 'haml'] }}
+
+NeoBundleLazy 'tpope/vim-rails', {
+\  "autoload" : {
+\    "filetypes" : ["ruby"] }}
+
+NeoBundleLazy 'ujihisa/unite-rake', {
+\  'autoload' : {
+\    "filetypes" : ["ruby"] }
+\ }
+
+NeoBundleLazy 'basyura/unite-rails', {
+\  'autoload' : {
+\    "filetypes" : ["ruby"] }
+\ }
+
+" require `gem install rails_best_practices`
+NeoBundleLazy 'taichouchou2/unite-rails_best_practices', {
+\  'autoload' : {
+\    "filetypes" : ["ruby"] }
+\ }
+
+" require `gem install reek`
+NeoBundleLazy 'taichouchou2/unite-reek', {
+\   'autoload': {
+\     'filetypes': ['ruby', 'eruby', 'haml'] },
+\ }
+"}}}
+
 " -- Lisp {{{
 " enable use slime on vim
 " カッコいい言語のカッコをレインボーにする
