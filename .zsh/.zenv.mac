@@ -11,6 +11,8 @@ export RBENV_ROOT=/usr/local/var/rbenv
 
 # homebrewとcoreutils優先の設定
 path=(
+    #$RBENV_ROOT/shims(N-/) rbenv init -が通してくれてるっぽい
+    $RBENV_ROOT/bin(N-/)
 
     # 自分のスクリプトとか、自分でビルドしたやつとか
     $HOME/Dropbox/bin/mac(N-/)
