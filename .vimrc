@@ -73,7 +73,7 @@ NeoBundleLazy 'Shougo/vimshell', {
 NeoBundleLazy 'thinca/vim-quickrun', {
     \ 'autoload' : {
     \   'commands' : ["QuickRun"],
-    \ 'mappings' : [['nxo', '<Plug>(quickrun)']],
+    \ 'mappings' : ['nxo', '<Plug>(quickrun)'],
     \ }}
 
 " snipets for neosnippet's dirctory
@@ -150,12 +150,17 @@ NeoBundleLazy 'reinh/vim-makegreen', {
     \ }
     \}
 
-NeoBundle 'git://github.com/vim-scripts/IndentAnything.git'
 NeoBundleLazy 'nathanaelkane/vim-indent-guides', {
     \ "autoload" : {
     \   "filetypes" : ["python", "vbnet"],
     \ }
     \}
+NeoBundleLazy 'git://github.com/vim-scripts/IndentAnything.git', {
+    \ "autoload" : {
+    \   "filetypes" : ["html", "xhtml", "htmldjango", "play2-html", "javascript"],
+    \ }
+    \}
+
 
 " === Language surpport === {{{
 " -- Python {{{
@@ -308,7 +313,7 @@ NeoBundle 'godlygeek/tabular'
 
 " == 4GVim {{{
 NeoBundle 'vim-scripts/Colour-Sampler-Pack'
-NeoBundleLazy 'altercation/vim-colors-solarized'
+NeoBundle 'altercation/vim-colors-solarized'
 NeoBundleLazy 'ujihisa/unite-colorscheme'
 NeoBundleLazy 'ujihisa/unite-font'
 " }}}
@@ -323,11 +328,6 @@ NeoBundleLazy 'mattn/gist-vim', {
     \   'commands' : [ "Gist" ]}
     \}
 NeoBundle 'mattn/webapi-vim'
-NeoBundleLazy 'motemen/hatena-vim', {
-    \ 'autoload' : {
-    \   'commands' : ["HatenaEdit", "HatenaUpdate" ],
-    \ }
-    \}
 NeoBundleLazy 'tyru/open-browser.vim', {
     \ 'autoload' : {
     \     'functions' : "OpenBrowser",
@@ -336,13 +336,9 @@ NeoBundleLazy 'tyru/open-browser.vim', {
     \ },
     \}
 NeoBundleLazy 'osyo-manga/vim-watchdogs', {
-    \ 'depends' : [
-    \       'Shougo/vimproc'
-    \       , 'thinca/vim-quickrun'
-    \       , 'osyo-manga/shabadou.vim'
-    \       ],
     \ 'autoload' : {
     \   'commands' : ["WatchdogsRun", "WatchdogsRunSilent", "QuickRun"],
+    \   'mappings' : ['nxo', '<Plug>(quickrun)'],
     \}}
 
 " utils {{{
@@ -1296,13 +1292,6 @@ if s:is_mac
     let g:slimv_swank_clojure = '!osascript -e "tell app \"iTerm\"" -e "tell the first terminal" -e "set mysession to current session" -e "launch session \"Default Session\"" -e "tell the last session" -e "exec command \"/bin/bash\"" -e "write text \"cd $(pwd)\"" -e "write text \"lein swank\"" -e "end tell" -e "select mysession" -e "end tell" -e "end tell"'
 endif
 
-
-" ----- hatena-vim ----
-let g:hatena_user='hachibeechan'
-let g:hatena_upload_on_write = 0
-let g:hatena_upload_on_write_bang = 1
-let g:hatena_no_default_keymappings = 1
-
 " ------ RainbowParentTheses
 let g:rbpt_colorpairs = [
     \ ['brown',       'RoyalBlue3'],
@@ -1328,10 +1317,10 @@ let g:rbpt_loadcmd_toggle = 0
 "--- procとか ---  {{{
 "そろそろ限界…今後はOSごとに別ファイルでやったほうがよいかも
 "for debian /ubuntu
-if has('win32')
-    let g:vimproc_dll_path = $BUNDLEPATH."/vimproc/autoload/vimproc_win32.dll"
-elseif s:is_mac
+if s:is_mac
     let g:vimproc_dll_path = $BUNDLEPATH."/vimproc/autoload/vimproc_mac.so"
+elseif has('win32')
+    let g:vimproc_dll_path = $BUNDLEPATH."/vimproc/autoload/vimproc_win32.dll"
 else
     let g:vimproc_dll_path = $BUNDLEPATH."/vimproc/autoload/vimproc_unix.so"
 endif
