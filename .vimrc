@@ -32,9 +32,11 @@ filetype off
 filetype plugin indent off
 
 if has('vim_starting')
-    set runtimepath& runtimepath+=~/.vim/neobundle.vim
-    call neobundle#rc($BUNDLEPATH)
+  set runtimepath& runtimepath+=~/.vim/neobundle.vim/
 endif
+call neobundle#rc($BUNDLEPATH)
+
+
 " gitプロトコルよりもhttpsのほうが高速
 "let g:neobundle_default_git_protocol = 'https'
 
