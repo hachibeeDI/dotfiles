@@ -5,10 +5,12 @@ echo 'setting up environment variables as MacOSX ... ...'
 BREW_PATH=`/usr/local/bin/brew --prefix`
 export BREW_PATH
 
+# to read `brew info rbenv`
+# rbenv有無に関わらず環境変数は設定する。$HOME以下にするか迷ったが、info準拠で
+export RBENV_ROOT=/usr/local/var/rbenv
+
 # homebrewとcoreutils優先の設定
 path=(
-    # rbenvを設定してれば優先
-    $HOME/.rbenv/bin(N-/)
 
     # 自分のスクリプトとか、自分でビルドしたやつとか
     $HOME/Dropbox/bin/mac(N-/)
@@ -35,10 +37,6 @@ path=(
     )
 export path
 
-if [ -d $HOME/.rbenv/bin ]; then
-    eval "$(rbenv init -)"
-fi
-
 # setting completion's function path<<<
 fpath=(
         #自作
@@ -57,8 +55,16 @@ export fpath
 MANPATH="$(/usr/local/bin/brew --prefix coreutils)/libexec/gnuman:$MANPATH"
 export MANPATH
 
-# ruby -vをsedしたりしてバージョンを取得した方がよいのかしらん
-export GEM_HOME=$HOME/.gem/ruby/2.0.0
+if which rbenv > /dev/null; then
+    # rbenv initがやっていること #
+    # - $RBENV_ROOT/shims以下にPATHを通す
+    # - rbenvへの補完関数のロード
+    # - rehash
+    # - その他
+    eval "$(rbenv init -)"
+fi
+## ruby -vをsedしたりしてバージョンを取得した方がよいのかしらん
+#export GEM_HOME=$HOME/.gem/ruby/2.0.0
 
 # }}}
 # 自分で作ったlesspipeがあればそっち。なければsource-highlight付属のlesspipeを使う。
