@@ -13,6 +13,7 @@ export RBENV_ROOT=/usr/local/var/rbenv
 path=(
     #$RBENV_ROOT/shims(N-/) rbenv init -が通してくれてるっぽい
     $RBENV_ROOT/bin(N-/)
+    $HOME/.gem/ruby/2.0.0/bin(N-/)
 
     # 自分のスクリプトとか、自分でビルドしたやつとか
     $HOME/Dropbox/bin/mac(N-/)
