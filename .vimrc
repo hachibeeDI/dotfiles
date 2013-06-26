@@ -1510,6 +1510,7 @@ call smartinput#define_rule({
 \   'filetype': ['ruby'],
 \   'syntax': ['Constant', 'Special'],
 \ })
+
 " add bar(`|`) in smartinput definitions and define input rule.
 call smartinput#map_to_trigger('i', '<Bar>', '<Bar>', '<Bar>')
 call smartinput#define_rule({
@@ -1518,6 +1519,7 @@ call smartinput#define_rule({
 \   'input': '<Bar><Bar><Left>',
 \   'filetype': ['ruby'],
 \ })
+
 " insert <bar> on both side of block argsments.
 call smartinput#define_rule({
 \   'at': '\({\|\<do\>\)\s*\%#',
@@ -1526,7 +1528,39 @@ call smartinput#define_rule({
 \   'filetype': ['ruby'],
 \ })
 
-"----
+" html and markdown like that -----
+call smartinput#map_to_trigger('i', '<', '<', '<')
+call smartinput#map_to_trigger('i', '>', '>', '>')
+call smartinput#define_rule({
+\   'at': '\%#',
+\   'char': '<',
+\   'input': '<>',
+\   'filetype': ['xml', 'html', 'eruby'],
+\ })
+
+call smartinput#define_rule({
+\   'at': '<.*\%#>',
+\   'char': '>',
+\   'input': '',
+\   'filetype': ['xml', 'html', 'eruby'],
+\ })
+
+" ERB
+call smartinput#map_to_trigger('i', '%', '%', '%')
+call smartinput#define_rule({
+\   'at': '<\%#',
+\   'char': '%',
+\   'input': '%%',
+\   'filetype': ['eruby'],
+\ })
+call smartinput#define_rule({
+\   'at': '%.*\%#%',
+\   'char': '%',
+\   'input': '',
+\   'filetype': ['eruby'],
+\ })
+
+"---- }}}
 
 " --- gist-vim -----{{{
 let g:gist_use_password_in_gitconfig = 1
