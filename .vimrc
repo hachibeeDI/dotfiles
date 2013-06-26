@@ -1466,7 +1466,7 @@ let bundle = neobundle#get('vim-smartchr')
 function! bundle.hooks.on_source(bundle)
   inoremap <expr> = smartchr#one_of(' = ', ' == ', '=')
   inoremap <expr> , smartchr#one_of(', ', ',')
-  inoremap <expr> : smartchr#one_of(':', ': ')
+  inoremap <expr> : smartchr#loop(':', ': ')
 endfunction
 
 unlet bundle

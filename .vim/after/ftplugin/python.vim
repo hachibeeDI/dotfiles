@@ -8,5 +8,6 @@ setlocal commentstring=#%s
 " python.vim (default bundled syntax plugin)
 let python_highlight_all = 1
 
+inoremap <expr> \ smartchr#loop('\', 'lambda ')
 
 setlocal omnifunc=jedi#complete
