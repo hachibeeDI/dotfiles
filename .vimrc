@@ -336,7 +336,7 @@ NeoBundleLazy 'hachibeeDI/vim-vbnet', {
 " -- markup and style {{{
 NeoBundleLazy 'mattn/zencoding-vim', {
     \ "autoload" : {
-    \   "filetypes" : ["html", "xhtml", "htmldjango", "play2-html"],
+    \   "filetypes" : ["html", "xhtml", "htmldjango", "play2-html",  "eruby"],
     \ }
     \}
 NeoBundleLazy 'groenewege/vim-less', {
