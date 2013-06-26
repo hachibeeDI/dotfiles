@@ -1022,17 +1022,23 @@ inoremap <expr><C-l>     neocomplete#complete_common_string()
 
 " Recommended key-mappings.
 " <CR>: close popup and save indent.
-inoremap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
-function! s:my_cr_function()
-  return neocomplete#smart_close_popup() . "\<CR>"
-  " For no inserting <CR> key.
-  "return pumvisible() ? neocomplete#close_popup() : "\<CR>"
-endfunction
+"inoremap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
+imap <silent><expr> <CR> neocomplete#smart_close_popup() . "\<Plug>(smartinput_CR)"
+
+"function! s:my_cr_function()
+"  return neocomplete#smart_close_popup() . "\<Plug>(smartinput_CR)"
+"  " For no inserting <CR> key.
+"  "return pumvisible() ? neocomplete#close_popup() : "\<Plug>(smartinput_CR)"
+"endfunction
 " <TAB>: completion.
 inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
+
 " <C-h>, <BS>: close popup and delete backword char.
-inoremap <expr><C-h> neocomplete#smart_close_popup()."\<C-h>"
-inoremap <expr><BS> neocomplete#smart_close_popup()."\<C-h>"
+"inoremap <expr><C-h> neocomplete#smart_close_popup()."\<C-h>"
+"inoremap <expr><BS> neocomplete#smart_close_popup()."\<C-h>"
+imap <expr><C-h> neocomplete#smart_close_popup()."\<Plug>(smartinput_C-h)"
+imap <expr><BS> neocomplete#smart_close_popup()."\<Plug>(smartinput_C-h)"
+
 inoremap <expr><C-y>  neocomplete#close_popup()
 inoremap <expr><C-e>  neocomplete#cancel_popup()
 " Close popup by <Space>.
@@ -1467,12 +1473,33 @@ unlet bundle
 "  }}}
 
 " --- smartinput --- {{{
-  " via: http://rhysd.hatenablog.com/entry/20121017/1350444269
+
+" 他プラグインへの<BS>や<CR>マッピング時に、smartinputの機能を含むソレを提供させる
+" via: http://qiita.com/todashuta@github/items/bdad8e28843bfb3cd8bf
+call smartinput#map_to_trigger('i', '<Plug>(smartinput_BS)',
+      \                        '<BS>',
+      \                        '<BS>')
+call smartinput#map_to_trigger('i', '<Plug>(smartinput_C-h)',
+      \                        '<BS>',
+      \                        '<C-h>')
+call smartinput#map_to_trigger('i', '<Plug>(smartinput_CR)',
+      \                        '<Enter>',
+      \                        '<Enter>')
+
+"" via: http://rhysd.hatenablog.com/entry/20121017/1350444269
+"call smartinput#define_rule({
+"\   'at': '\s\+\%#',
+"\   'char': '<CR>',
+"\   'input': "<C-o>:call setline('.', substitute(getline('.'), '\\s\\+$', '', ''))<CR><CR>",
+"\   })
+
+" classとかの定義時に:までを入れる
 call smartinput#define_rule({
-  \   'at': '\s\+\%#',
-  \   'char': '<CR>',
-  \   'input': "<C-o>:call setline('.', substitute(getline('.'), '\\s\\+$', '', ''))<CR><CR>",
-  \   })
+\   'at'       : '^\s*\%(\<def\>\|\<if\>\|\<for\>\|\<while\>\|\<class\>\|\<with\>\)\s*\w\+.*\%#',
+\   'char'     : '(',
+\   'input'    : '():<Left><Left>',
+\   'filetype' : ['python'],
+\   })
 
 "----
 
