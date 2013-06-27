@@ -963,6 +963,24 @@ function! s:cmd_capture(q_args)
 endfunction
 "}}}
 
+" via: http://vim-users.jp/2010/11/hack181/
+" Open junk file. ---------------- {{{
+command! -nargs=0 JunkFile call s:open_junk_file()
+function! s:open_junk_file()
+  let l:junk_dir = $HOME . '/.vim_junk'. strftime('/%Y/%m')
+  if !isdirectory(l:junk_dir)
+    call mkdir(l:junk_dir, 'p')
+  endif
+
+  let l:filename = input('Junk Code: ', l:junk_dir.strftime('/%Y-%m-%d-%H%M%S.'))
+  if l:filename != ''
+    execute 'edit ' . l:filename
+  endif
+endfunction
+
+nnoremap [Show]j :<C-u>JunkFile 
+
+"}}}
 
 " 指定したエンコードでファイルを開き直すためのエイリアス
 command! Utf8 edit ++enc=utf-8
@@ -975,6 +993,7 @@ command! Jis Iso2022jp
 command! Eucjp edit ++enc=euc-jp
 "
 " ============= }}}
+
 
 "-------------
 " plugin settings
@@ -1487,11 +1506,11 @@ call smartinput#map_to_trigger('i', '<Plug>(smartinput_CR)',
       \                        '<Enter>')
 
 "" via: http://rhysd.hatenablog.com/entry/20121017/1350444269
-"call smartinput#define_rule({
-"\   'at': '\s\+\%#',
-"\   'char': '<CR>',
-"\   'input': "<C-o>:call setline('.', substitute(getline('.'), '\\s\\+$', '', ''))<CR><CR>",
-"\   })
+call smartinput#define_rule({
+\   'at': '\s\+\%#',
+\   'char': '<CR>',
+\   'input': "<C-o>:call setline('.', substitute(getline('.'), '\s\+$', '', ''))<CR><CR>",
+\   })
 
 " classとかの定義時に:までを入れる
 call smartinput#define_rule({
