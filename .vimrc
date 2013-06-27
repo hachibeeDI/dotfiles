@@ -73,20 +73,23 @@ NeoBundleLazy 'Shougo/vimshell', {
     \}
 " compile and exec the code and pop result on Quickfix-window
 NeoBundleLazy 'thinca/vim-quickrun', {
-    \ 'autoload' : {
-    \   'commands' : ["QuickRun"],
-    \ 'mappings' : ['nxo', '<Plug>(quickrun)'],
-    \ }}
+\ 'autoload' : {
+\   'insert' : 1,
+\ }}
+"    \ 'autoload' : {
+"    \   'commands' : ["QuickRun"],
+"    \ 'mappings' : ['nxo', '<Plug>(quickrun)'],
+"    \ }}
 
 " snipets for neosnippet's dirctory
 NeoBundleLazy 'honza/vim-snippets'
 
 " runtimepathに追加されていない？ 要調査
 NeoBundleLazy 'tpope/vim-fugitive', {
-    \ 'autoload': {
-    \   'commands': [ "Git", "Gstatus", "Gcommit", "Gedit", "Gwrite", "Ggrep", "Glog", "Gdiff"],
-    \ }
-    \}
+\ 'autoload': {
+\   'commands': [ "Git", "Gstatus", "Gcommit", "Gedit", "Gwrite", "Ggrep", "Glog", "Gdiff"],
+\ }
+\}
 
 "" Quickfixの内容を使ってエラー表示をハイライトしてくれる
 "NeoBundleLazy 'jceb/vim-hies'
@@ -406,11 +409,15 @@ NeoBundleLazy 'tyru/open-browser.vim', {
     \     'mappings'  : ["<Plug>(openbrowser-smart-search)", "<Plug>(openbrowser-open)"],
     \ },
     \}
+
 NeoBundleLazy 'osyo-manga/vim-watchdogs', {
+    \ 'depends' :
+    \       ['osyo-manga/shabadou.vim'],
     \ 'autoload' : {
     \   'commands' : ["WatchdogsRun", "WatchdogsRunSilent", "QuickRun"],
     \   'mappings' : ['nxo', '<Plug>(quickrun)'],
     \}}
+NeoBundle 'osyo-manga/shabadou.vim'
 
 " utils {{{
 NeoBundleLazy 'basyura/TweetVim', {
@@ -1319,8 +1326,8 @@ function! bundle.hooks.on_source(bundle)
 \      , "hook/close_buffer/enable_failure": 1
 \      , "hook/close_buffer/enable_empty_data": 1
 \      , "outputter": "multi:buffer:quickfix"
-\      , "hook/shabadoubi_touch_henshin/enable": 1
-\      , "hook/shabadoubi_touch_henshin/wait": 20
+\      , "hook/inu/enable": 1
+\      , "hook/inu/wait": 20
 \      , "outputter/buffer/split": ":botright 8sp"
 \      , "runner": "vimproc"
 \      , "runner/vimproc/updatetime": 40
