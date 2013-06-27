@@ -333,21 +333,33 @@ NeoBundleLazy 'hachibeeDI/vim-vbnet', {
     \   }
     \}
 " }}}
-" -- markup and style {{{
+" -- markup {{{
 NeoBundleLazy 'mattn/zencoding-vim', {
     \ "autoload" : {
     \   "filetypes" : ["html", "xhtml", "htmldjango", "play2-html",  "eruby"],
     \ }
     \}
-NeoBundleLazy 'groenewege/vim-less', {
-    \ "autoload" : {
-    \   "filetypes" : ["less"] }
-    \}
-NeoBundleLazy 'css_color.vim', {
-    \ "autoload" : {
-    \   "filetypes" : ["css", "less", "scss", "sass"] }
-    \}
 " }}}
+
+" --- style sheets {{{
+" css_color is too heavy... ...
+"" seems more useful then css_color.vim
+"NeoBundleLazy 'skammer/vim-css-color', {
+"    \ "autoload" : {
+"    \   "filetypes" : ["css", "less", "scss", "sass"] }
+"    \}
+
+NeoBundleLazy 'cakebaker/scss-syntax.vim', {
+\ "autoload" : {
+\   "filetypes" : ["scss", "sass"] }
+\ }
+
+NeoBundleLazy 'groenewege/vim-less', {
+\ "autoload" : {
+\   "filetypes" : ["less"] }
+\ }
+" }}}
+
 " === }}}
 NeoBundleLazy 'SQLUtilities', {
     \ 'depends' :
