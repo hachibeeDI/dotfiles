@@ -79,7 +79,7 @@ NeoBundleLazy 'thinca/vim-quickrun', {
     \ }}
 
 " snipets for neosnippet's dirctory
-NeoBundle 'honza/vim-snippets'
+NeoBundleLazy 'honza/vim-snippets'
 
 " runtimepathに追加されていない？ 要調査
 NeoBundleLazy 'tpope/vim-fugitive', {
@@ -335,10 +335,16 @@ NeoBundleLazy 'hachibeeDI/vim-vbnet', {
 " }}}
 " -- markup {{{
 NeoBundleLazy 'mattn/zencoding-vim', {
-    \ "autoload" : {
-    \   "filetypes" : ["html", "xhtml", "htmldjango", "play2-html",  "eruby"],
-    \ }
-    \}
+\ "autoload" : {
+\   "filetypes" : ["html", "xhtml", "htmldjango", "play2-html",  "eruby"],
+\ }
+\}
+NeoBundleLazy 'othree/html5.vim', {
+\ "autoload" : {
+\   "filetypes" : ["html", "xhtml", "htmldjango", "play2-html",  "eruby"],
+\ }
+\}
+
 " }}}
 
 " --- style sheets {{{
@@ -353,6 +359,12 @@ NeoBundleLazy 'cakebaker/scss-syntax.vim', {
 \ "autoload" : {
 \   "filetypes" : ["scss", "sass"] }
 \ }
+
+" もう少しscssとcompassへの理解を深めてから使う
+"NeoBundleLazy 'AtsushiM/sass-compile.vim', {
+"\ "autoload" : {
+"\   "filetypes" : ["scss", "sass"] }
+"\ }
 
 NeoBundleLazy 'groenewege/vim-less', {
 \ "autoload" : {
