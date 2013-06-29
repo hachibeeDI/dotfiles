@@ -1514,9 +1514,53 @@ nnoremap <silent> ,cvs :<C-u>VimShell %:p:h<CR>
 " --- smartchr ---- {{{
 let bundle = neobundle#get('vim-smartchr')
 function! bundle.hooks.on_source(bundle)
-  inoremap <expr> = smartchr#one_of(' = ', ' == ', '=')
+  " ft-afterに入れようかと思ったけど混乱しそうだからここに
+
   inoremap <expr> , smartchr#one_of(', ', ',')
-  inoremap <expr> : smartchr#loop(':', ': ')
+
+  function! s:def_smartchar(lang)
+    " NOTE: 辞書とかを駆使した方が高速かな？
+    if a:lang == 'ruby'
+      inoremap <buffer> <expr> : smartchr#loop(': ', '::', ':')
+      inoremap <buffer> <expr> = smartchr#one_of(' = ', ' == ', '=')
+
+    elseif a:lang == 'python'
+      inoremap <buffer> <expr> = smartchr#one_of(' = ', ' == ', '=')
+      inoremap <buffer> <expr> > smartchr#loop(' > ', ' >= ')
+      inoremap <buffer> <expr> < smartchr#loop(' < ', ' <= ')
+      inoremap <buffer> <expr> + smartchr#loop(' + ', '+')
+      inoremap <buffer> <expr> - smartchr#loop(' - ', '-')
+
+    elseif a:lang == 'js'
+      inoremap <buffer> <expr> = smartchr#one_of(' = ', ' == ', ' === ', '=')
+      inoremap <buffer> <expr> -> smartchr#one_of('function', '->')
+
+    elseif a:lang == 'cpp'
+      inoremap <buffer> <expr> : smartchr#loop(': ', '::', ':')
+      inoremap <buffer> <expr> . smartchr#loop('.', '->')
+
+    endif
+
+  endfunction
+
+
+  autocmd MyAutoCmd
+        \ FileType ruby
+        \ call s:def_smartchar('ruby')
+
+  autocmd MyAutoCmd
+        \ FileType python
+        \ call s:def_smartchar('python')
+
+  autocmd MyAutoCmd
+        \ FileType javascript
+        \ call s:def_smartchar('js')
+
+  autocmd MyAutoCmd
+        \ FileType cpp
+        \ call s:def_smartchar('cpp')
+
+
 endfunction
 
 unlet bundle
