@@ -1009,7 +1009,7 @@ function! s:open_junk_file()
   endif
 endfunction
 
-nnoremap [Show]j :<C-u>JunkFile 
+nnoremap [Show]j :<C-u>JunkFile
 
 "}}}
 
@@ -1584,7 +1584,7 @@ call smartinput#map_to_trigger('i', '>', '>', '>')
 call smartinput#define_rule({
 \   'at': '\%#',
 \   'char': '<',
-\   'input': '<>',
+\   'input': '<><Left>',
 \   'filetype': ['xml', 'html', 'eruby'],
 \ })
 
@@ -1600,7 +1600,7 @@ call smartinput#map_to_trigger('i', '%', '%', '%')
 call smartinput#define_rule({
 \   'at': '<\%#',
 \   'char': '%',
-\   'input': '%%',
+\   'input': '%%<Left>',
 \   'filetype': ['eruby'],
 \ })
 call smartinput#define_rule({
