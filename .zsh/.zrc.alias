@@ -88,6 +88,9 @@ alias ggre='git grep -Hi --heading --break'
 #}}}
 #}}}
 
+# ruy ----{{{
+alias be='bundle exec'
+#}}}
 
 # --------- functions --------- {{{
 # arrange a littele: http://qiita.com/items/1f01aa09ccf148542f21
