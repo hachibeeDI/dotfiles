@@ -121,8 +121,22 @@ NeoBundleLazy 'Shougo/unite.vim', {
     \}
 
 NeoBundle 'Shougo/unite-ssh'
-NeoBundle 'h1mesuke/unite-outline'
+" NeoBundle 'h1mesuke/unite-outline'
+" NOTE: Imploved by lua-interface
+NeoBundle 'Shougo/unite-outline', '', 'default'
+call neobundle#config('unite-outline', {
+      \ 'lazy' : 1,
+      \ 'autoload' : {
+      \   'unite_sources' : 'outline'},
+      \ })
+
 NeoBundle 'osyo-manga/unite-quickfix'
+call neobundle#config('unite-quickfix', {
+      \ 'lazy' : 1,
+      \ 'autoload' : {
+      \   'unite_sources' : 'quickfix'},
+      \ })
+
 " get and read referece on vim
 NeoBundleLazy 'thinca/vim-ref', { 'autoload' : {
       \ 'commands' : 'Ref'
@@ -162,7 +176,6 @@ NeoBundleLazy 'kana/vim-smartchr', {
       \ 'autoload' : {
       \   'insert' : 1,
       \ }}
-NeoBundle 'kana/vim-smartword'
 NeoBundle 'kana/vim-textobj-user'
 NeoBundle 'kana/vim-textobj-indent'
 
