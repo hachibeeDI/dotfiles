@@ -61,11 +61,25 @@ NeoBundleFetch 'Shougo/neobundle.vim', {
     \ 'base': '~/.vim',
     \ }
 
-NeoBundleLazy 'Shougo/vimfiler', {
-    \ 'autoload' : {
-    \   'commands' : ["VimFilerTab", "VimFiler", "VimFilerExplorer", "VimFilerBufferDir"],
-    \ }
-    \}
+NeoBundle 'Shougo/vimfiler', '', 'default'
+call neobundle#config('vimfiler', {
+      \ 'lazy' : 1,
+      \ 'depends' : 'Shougo/unite.vim',
+      \ 'autoload' : {
+      \    'commands' : [
+      \                  { 'name' : 'VimFiler',
+      \                    'complete' : 'customlist,vimfiler#complete' },
+      \                  { 'name' : 'VimFilerExplorer',
+      \                    'complete' : 'customlist,vimfiler#complete' },
+      \                  { 'name' : 'Edit',
+      \                    'complete' : 'customlist,vimfiler#complete' },
+      \                  { 'name' : 'Write',
+      \                    'complete' : 'customlist,vimfiler#complete' },
+      \                  'Read', 'Source'],
+      \    'mappings' : ['<Plug>(vimfiler_switch)'],
+      \    'explorer' : 1,
+      \ }
+      \ })
 NeoBundleLazy 'Shougo/vimshell', {
     \ 'autoload' : {
     \   'commands' : ["VimShellPop", "VimShell"],
@@ -117,6 +131,13 @@ NeoBundleLazy 'thinca/vim-scouter', '', 'same', { 'autoload' : {
       \ 'commands' : 'Scouter'
       \ }}
 
+NeoBundle 'vim-jp/vital.vim', '', 'default'
+call neobundle#config('vital.vim', {
+      \ 'lazy' : 1,
+      \ 'autoload' : {
+      \     'commands' : ['Vitalize'],
+      \ }})
+
 " ---------- utils for edit {{{
 " auto insert end after def scope,
 " in ruby, lua, sh, zsh and some languages ... ...
@@ -146,6 +167,15 @@ NeoBundle 'kana/vim-textobj-user'
 NeoBundle 'kana/vim-textobj-indent'
 
 NeoBundle 'kana/vim-smartinput'
+
+NeoBundleLazy 'kana/vim-smartword', { 'autoload' : {
+      \ 'mappings' : [
+      \   '<Plug>(smartword-w)', '<Plug>(smartword-b)', '<Plug>(smartword-ge)']
+      \ }}
+NeoBundleLazy 'kana/vim-smarttill', { 'autoload' : {
+      \ 'mappings' : [
+      \   '<Plug>(smarttill-t)', '<Plug>(smarttill-T)']
+      \ }}
 " }}}
 
 NeoBundle 'rhysd/accelerated-jk'
@@ -1534,6 +1564,19 @@ nnoremap <silent> ,vp :<C-u>VimShellPop<CR>
 nnoremap <silent> ,cvp :<C-u>VimShellPop %:p:h<CR>
 nnoremap <silent> ,cvs :<C-u>VimShell %:p:h<CR>
 " }}}
+
+" smartword.vim"{{{
+" Replace w and others with smartword-mappings
+nmap w  <Plug>(smartword-w)
+nmap b  <Plug>(smartword-b)
+nmap ge  <Plug>(smartword-ge)
+xmap w  <Plug>(smartword-w)
+xmap b  <Plug>(smartword-b)
+" Operator pending mode.
+omap <Leader>w  <Plug>(smartword-w)
+omap <Leader>b  <Plug>(smartword-b)
+omap <Leader>ge  <Plug>(smartword-ge)
+"}}}
 
 " --- smartchr ---- {{{
 let bundle = neobundle#get('vim-smartchr')
