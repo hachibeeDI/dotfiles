@@ -574,6 +574,13 @@ set viminfo& viminfo+=n~/.vimcache/viminfo
 if v:version >= 703
     set undodir=~/.vimcache/undo
     set undofile
+
+  " for snippet_complete marker
+  set conceallevel=2 concealcursor=iv
+  set colorcolumn=79
+  set relativenumber
+else
+  set number
 endif
 set history=100000
 
@@ -606,12 +613,6 @@ set noequalalways
 " disable auto comment when start a new line
 set formatoptions& formatoptions-=ro
 
-
-" for snippet_complete marker
-if v:version >= 703
-  set conceallevel=2 concealcursor=iv
-  set colorcolumn=79
-endif
 " ==== }}}
 
 "--------
@@ -629,7 +630,6 @@ let g:solarized_termcolors=256
 let g:solarized_termtrans = 1
 let g:solarized_italic = 0
 
-set number
 " Display all the information of the tag by the supplement of the Insert mode.
 set showfulltag
 
@@ -790,7 +790,23 @@ nnoremap [Show]r  :<C-u>Capture registers<CR>
 nnoremap [Show]e  :<C-u>edit $MYVIMRC<CR>
 nnoremap [Show]l  :<C-u>source $MYVIMRC<CR>
 nnoremap [Show]h  :<C-u>tab help<Space>
-nnoremap [Show]n  :<C-u>set number!<CR>
+
+if version >= 703
+  nnoremap <silent> [Show]n :<C-u>ToggleNumber<CR>
+
+  command! -nargs=0 ToggleNumber call ToggleNumberOption()
+
+  function! ToggleNumberOption()
+    if &number
+      set relativenumber
+    else
+      set number
+    endif
+  endfunction
+else
+  nnoremap <silent> [Show]n :<C-u>set number!<CR>
+endif
+
 
 nnoremap [EditSupport] <Nop>
 nmap , [EditSupport]
@@ -1599,6 +1615,12 @@ call smartinput#define_rule({
 \   'at'       : '^\s*\%(\<def\>\|\<if\>\|\<for\>\|\<while\>\|\<class\>\|\<with\>\)\s*\w\+.*\%#:',
 \   'char'     : '(',
 \   'input'    : '()<Left>',
+\   'filetype' : ['python'],
+\   })
+call smartinput#define_rule({
+\   'at'       : '^\s*\%(\<def\>\|\<if\>\|\<for\>\|\<while\>\|\<class\>\|\<with\>\)\s*\w\+.*\%#:',
+\   'char'     : ':',
+\   'input'    : '',
 \   'filetype' : ['python'],
 \   })
 
