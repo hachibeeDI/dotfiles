@@ -1594,6 +1594,13 @@ call smartinput#define_rule({
 \   'input'    : '():<Left><Left>',
 \   'filetype' : ['python'],
 \   })
+" が、すでに:がある場合は重複させない. (smartinputでは、atの定義が長いほど適用の優先度が高くなる)
+call smartinput#define_rule({
+\   'at'       : '^\s*\%(\<def\>\|\<if\>\|\<for\>\|\<while\>\|\<class\>\|\<with\>\)\s*\w\+.*\%#:',
+\   'char'     : '(',
+\   'input'    : '()<Left>',
+\   'filetype' : ['python'],
+\   })
 
 " its in examples in smartinput. insert #{} in a string literal.
 call smartinput#map_to_trigger('i', '#', '#', '#')
