@@ -226,9 +226,10 @@ NeoBundleLazy 'jdonaldson/vaxe', {
 " clang
 " C++11's syntax
 NeoBundleLazy 'vim-jp/cpp-vim', {
-    \ "autoload" : {
-    \   "filetypes" : ["cpp"] }
-    \}
+\ 'script_type': 'syntax',
+\ "autoload" : {
+\   "filetypes" : ["cpp"] }
+\}
 "https://github.com/beyondmarc/opengl.vim
 " git submodule add git://github.com/beyondmarc/opengl.vim.git bundle/syntax_opengl
 NeoBundleLazy 'Rip-Rip/clang_complete', {
@@ -236,6 +237,7 @@ NeoBundleLazy 'Rip-Rip/clang_complete', {
     \   "filetypes" : ["cpp"] }
     \}
 "NeoBundleLazy 'beyondmarc/opengl.vim', {
+"\ 'script_type': 'syntax',
 "    \ "autoload" : {
 "    \   "filetypes" : ["c", "cpp"] }
 "    \}
@@ -259,9 +261,10 @@ NeoBundleLazy 'yuroyoro/vim-scala', {
     \}
 " Play2のテンプレートとかのシンタックス
 NeoBundleLazy 'gre/play2vim', {
-    \ "autoload" : {
-    \   "filetypes" : ["scala"] }
-    \}
+\ 'script_type': 'syntax',
+\ "autoload" : {
+\   "filetypes" : ["scala"] }
+\}
 " }}}
 
 " -- Ruby {{{
@@ -386,8 +389,8 @@ NeoBundleLazy 'SQLUtilities', {
 NeoBundle 'godlygeek/tabular'
 
 " == 4GVim {{{
-NeoBundle 'vim-scripts/Colour-Sampler-Pack'
-NeoBundle 'altercation/vim-colors-solarized'
+NeoBundle 'vim-scripts/Colour-Sampler-Pack', {'script_type' : 'colors'}
+NeoBundle 'altercation/vim-colors-solarized', {'script_type' : 'colors'}
 NeoBundleLazy 'ujihisa/unite-colorscheme'
 NeoBundleLazy 'ujihisa/unite-font'
 " }}}
@@ -476,6 +479,11 @@ syntax enable
 
 " Installation check.
 NeoBundleCheck
+if !has('vim_starting')
+  " Call on_source hook when reloading .vimrc.
+  call neobundle#call_hook('on_source')
+endif
+
 "}}}
 
 let s:exist_ramdisk = glob('/Volumes/RamDisk')
