@@ -1,12 +1,7 @@
 " commonsettings{{{
 let g:no_gvimrc_example = 1
 
-set showtabline=2  " タブを常に表示
 "set imdisable      " IMを無効化
-
-NeoBundleSource vim-colors-solarized
-      \ unite-colorscheme
-      \ unite-font
 
 map <silent> gw :macaction selectNextWindow:
 map <silent> gW :macaction selectPreviousWindow:

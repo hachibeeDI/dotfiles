@@ -28,9 +28,6 @@ augroup MyAutoCmd
   autocmd!
 augroup END
 
-filetype off
-filetype plugin indent off
-
 if has('vim_starting')
   set runtimepath& runtimepath+=~/.vim/neobundle.vim/
 endif
@@ -169,15 +166,21 @@ NeoBundle 'anyakichi/vim-surround', {
   \ ]}}
 
 NeoBundle 'kana/vim-operator-user'
-NeoBundle 'kana/vim-operator-replace'
-NeoBundle 'emonkak/vim-operator-comment'
+NeoBundle 'kana/vim-operator-replace', {
+\   'depends': ['kana/vim-operator-user']
+\ }
+NeoBundle 'emonkak/vim-operator-comment', {
+\   'depends': ['kana/vim-operator-user']
+\ }
 
 NeoBundleLazy 'kana/vim-smartchr', {
       \ 'autoload' : {
       \   'insert' : 1,
       \ }}
 NeoBundle 'kana/vim-textobj-user'
-NeoBundle 'kana/vim-textobj-indent'
+NeoBundle 'kana/vim-textobj-indent', {
+\   'depends': ['kana/vim-textobj-user']
+\ }
 
 NeoBundle 'kana/vim-smartinput'
 
@@ -405,6 +408,7 @@ NeoBundleLazy 'othree/html5.vim', {
 "    \}
 
 NeoBundleLazy 'cakebaker/scss-syntax.vim', {
+\ 'script_type' : 'syntax',
 \ "autoload" : {
 \   "filetypes" : ["scss", "sass"] }
 \ }
@@ -431,12 +435,11 @@ NeoBundleLazy 'SQLUtilities', {
 
 NeoBundle 'godlygeek/tabular'
 
-" == 4GVim {{{
 NeoBundle 'vim-scripts/Colour-Sampler-Pack', {'script_type' : 'colors'}
 NeoBundle 'altercation/vim-colors-solarized', {'script_type' : 'colors'}
-NeoBundleLazy 'ujihisa/unite-colorscheme'
-NeoBundleLazy 'ujihisa/unite-font'
-" }}}
+NeoBundle 'ujihisa/unite-colorscheme', {'gui': 1}
+NeoBundle 'ujihisa/unite-font', {'gui': 1}
+
 
 NeoBundle 'sudo.vim'
 NeoBundle 'kana/vim-metarw'
@@ -1255,11 +1258,12 @@ xmap <C-k> <Plug>(neosnippet_expand_target)
 " =============== jedi-vim =============== {{{
 let bundle = neobundle#get('jedi-vim')
 function! bundle.hooks.on_source(bundle)
+  let g:jedi#squelch_py_warning = 1
 
   " do not allow set some configure auto.
   let g:jedi#auto_vim_configuration = 0
 
-  let g:jedi#use_tabs_not_buffers = 0
+  let g:jedi#use_tabs_not_buffers = 1
   " neocomplcacheとコンフリクトを起こすので無効にしておく
   let g:jedi#popup_on_dot = 0
   let g:jedi#popup_select_first = 0
