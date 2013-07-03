@@ -1,14 +1,17 @@
 # vim:set filetype=zsh :
 
 # -------- prompt setting ------------{{{
+# 参考にしようリスト
+# - http://www.sakito.com/2011/11/zsh.html
+
 export VIRTUAL_ENV_DISABLE_PROMPT='1'
 
 nom_prom () {
     local result_ok='
-%F{cyan}CURRENT_DIR %F{green}===___ %F{cyan}[%~] %F{blue}$(put_virtualenv_info)
+%F{cyan}CURRENT_DIR %F{green}===___ %F{cyan}[%~] $(put_virtualenv_info)$(rbenv_version)
 %F{cyan} ╹_╹✖  %F{red}:: %f'
     local result_ng='
-%F{cyan}CURRENT_DIR %F{red}===___ %F{cyan}[%~] %F{blue}$(put_virtualenv_info)
+%F{cyan}CURRENT_DIR %F{red}===___ %F{cyan}[%~] $(put_virtualenv_info)$(rbenv_version)
 %F{cyan} Ծ‸Ծ✖  %F{red}||%f '
 
     local uname_mname='%F{cyan}[%n@%m]%f'

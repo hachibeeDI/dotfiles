@@ -302,13 +302,27 @@ mktmp() {mkdir `date +"%Y%m%d_%H%M%S"`}
 
 showroot() { `git rev-parse --git-dir |sed -e "s/[^\/]*$//g"` }
 
+DELI_ST_LT="%{${fg[green]}%}<%{${fg[reset_color]}%}"
+DELI_ST_GT="%{${fg[green]}%}>%{${fg[reset_color]}%}"
+
+CR_cyan="%{${fg[cyan]}%}"
+
 # virtualenvを使っていれば、使っているsandboxの情報を出す
 function put_virtualenv_info {
-    [ $VIRTUAL_ENV ] && echo "<venv: `basename $VIRTUAL_ENV` >"
+    [ $VIRTUAL_ENV ] && echo "${DELI_ST_LT}%{${fg[blue]}%}venv: %{${fg[cyan]}%}`basename $VIRTUAL_ENV` $DELI_ST_GT"
 }
 
+# rbenvでアクチしているRubyのversionを表示する
+function rbenv_version() {
+    if [ -n "$RBENV_ROOT" ]; then
+        _ver="$CR_cyan`rbenv version | sed -e "s/\s(.\+$//g"`"
+        echo "${DELI_ST_LT}%{${fg[blue]}%}rbenv: $_ver ${DELI_ST_GT}"
+    else
+        echo ""
+    fi
+}
 
-# load prompt ---------------- {{{
+# -------------- load prompt ---------------- {{{
 source ~/.zsh/themes/hachibee.zsh-theme
 
 # homeに自分で定義したLSCOLORがあれば、それで上書きする
