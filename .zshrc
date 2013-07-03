@@ -26,16 +26,6 @@ autoload predict-on
 
 # load alias
 source ~/.zsh/.zrc.alias
-# load prompt
-source ~/.zsh/themes/hachibee.zsh-theme
-
-# homeに自分で定義したLSCOLORがあれば、それで上書きする
-if [ -f ~/.dir_colors ]; then
-    echo 'use local .dir_colors'
-    eval `dircolors ~/.dir_colors -b`
-else
-    source ~/.zsh/themes/lscolors.default
-fi
 
 # OS ごとのfunction, プラグイン {{{
 case "${OSTYPE}" in
@@ -312,3 +302,20 @@ mktmp() {mkdir `date +"%Y%m%d_%H%M%S"`}
 
 showroot() { `git rev-parse --git-dir |sed -e "s/[^\/]*$//g"` }
 
+# virtualenvを使っていれば、使っているsandboxの情報を出す
+function put_virtualenv_info {
+    [ $VIRTUAL_ENV ] && echo "<venv: `basename $VIRTUAL_ENV` >"
+}
+
+
+# load prompt ---------------- {{{
+source ~/.zsh/themes/hachibee.zsh-theme
+
+# homeに自分で定義したLSCOLORがあれば、それで上書きする
+if [ -f ~/.dir_colors ]; then
+    echo 'use local .dir_colors'
+    eval `dircolors ~/.dir_colors -b`
+else
+    source ~/.zsh/themes/lscolors.default
+fi
+# }}}

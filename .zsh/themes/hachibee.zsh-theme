@@ -3,17 +3,12 @@
 # -------- prompt setting ------------{{{
 export VIRTUAL_ENV_DISABLE_PROMPT='1'
 
-function virtualenv_info {
-    [ $VIRTUAL_ENV ] && echo "<venv: `basename $VIRTUAL_ENV` >"
-}
-
-
 nom_prom () {
     local result_ok='
-%F{cyan}CURRENT_DIR %F{green}===___ %F{cyan}[%~] %F{blue}$(virtualenv_info)
+%F{cyan}CURRENT_DIR %F{green}===___ %F{cyan}[%~] %F{blue}$(put_virtualenv_info)
 %F{cyan} ╹_╹✖  %F{red}:: %f'
     local result_ng='
-%F{cyan}CURRENT_DIR %F{red}===___ %F{cyan}[%~] %F{blue}$(virtualenv_info)
+%F{cyan}CURRENT_DIR %F{red}===___ %F{cyan}[%~] %F{blue}$(put_virtualenv_info)
 %F{cyan} Ծ‸Ծ✖  %F{red}||%f '
 
     local uname_mname='%F{cyan}[%n@%m]%f'
