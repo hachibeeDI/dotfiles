@@ -220,6 +220,8 @@ NeoBundleLazy 'git://github.com/vim-scripts/IndentAnything.git', {
     \ }
     \}
 
+" complete word in English. depends on `look` command.
+Neobundle 'ujihisa/neco-look'
 
 " === Language surpport === {{{
 " -- Python {{{
