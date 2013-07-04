@@ -15,6 +15,7 @@ echo "move orig-files to ~/dotfilebackup/*"
 
 mkdir -p ~/.vimcache/bak/
 mkdir ~/.vimcache/vimswap/
+mkdir ~/.vimcache/undo/
 
 # 汚い…
 ln -s "$dotfile_path"/.vimrc ~/.vimrc
