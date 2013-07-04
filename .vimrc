@@ -1454,7 +1454,7 @@ let g:quickrun_no_default_key_mappings = 1
 "nnoremap <F5> :<C-u>QuickRun<CR> なぜかQuickRun内のコマンド定義がロードされない
 " とりあえず暇になるまでこれで
 nnoremap <F5> :<C-u>call quickrun#run()<CR>
-nnoremap <F6> <Plug>(quickrun)
+nmap <F6> <Plug>(quickrun)
 nnoremap [Show]w :<C-u>WatchdogsRunSilent<CR><Esc>
 
 "  }}}
@@ -1508,8 +1508,8 @@ let g:tweetvim_tweet_per_page = 50
 let g:tweetvim_cache_size = 30
 "let g:tweetvim_footer = ''
 let g:tweetvim_say_insert_account = 1
-"nnoremap <UP> <Plug>(tweetvim_action_page_next)
-"nnoremap <Down> <Plug>(tweetvim_action_page_previous)
+"nmap <UP> <Plug>(tweetvim_action_page_next)
+"nmap <Down> <Plug>(tweetvim_action_page_previous)
 
 nnoremap <silent> ,tv :<C-u>TweetVimHomeTimeline<CR>
 nnoremap <silent> ,tm :<C-u>TweetVimMentions<CR>
