@@ -1,5 +1,3 @@
-# vim: set fdm=marker :
-
 # =======================================================
 #
 # Initial setup file for only interactive zsh
@@ -42,12 +40,12 @@ esac
 # ---- }}}
 
 
-### Command Completemente<<<
+### Command Completemente{{{
 # Default Completement
 # fpathの変更はcompinitを実行する前に行わないと意味がないので注意！
 autoload -U compinit; compinit
 
-#>>>
+# }}}
 
 # 補完方法の設定 指定した順番に実行
 ### _oldlist 前回の補完結果を再利用する。
@@ -81,17 +79,20 @@ zstyle ':completion:*' list-separator '-->'
 # ../ などとタイプしたとき、現在いるディレクトリを補完候補に出さない
 zstyle ':completion:*' ignore-parents parent pwd ..
 
-###>>>
+### }}}
 
-### Set shell options<<<
+### Set shell options{{{
 setopt no_beep
 
 setopt auto_menu
 setopt auto_list
 
+#glob展開の拡張(正規表現ライクな記法が使えるようになる)
+setopt extended_glob
 setopt list_packed
 setopt list_types
 setopt noautoremoveslash
+# =以降も補完する(--prefix=/usrなど)
 setopt magic_equal_subst
 setopt print_eight_bit
 setopt auto_cd
@@ -122,7 +123,7 @@ setopt auto_param_slash
 # ファイル名一覧を順次表示
 setopt always_last_prompt
 
-#>>>
+# }}}
 
 # permission settings
 umask 022
@@ -137,7 +138,7 @@ setopt prompt_subst
 # if there too many Completementes
 export LISTMAX=0
 
-# history settings<<<
+# history settings{{{
 HISTFILE=~/.zsh_histfile
 # history in memory
 HISTSIZE=1000000
@@ -176,7 +177,7 @@ bindkey "^N" history-beginning-search-forward-end
 # ヒストリ呼び出しから、実行までの間に一度編集を可能にする
 setopt hist_verify
 
-#>>>
+# }}}
 
 #クラックされた時に気がつける（かも) #{{{
 ## 全てのユーザのログイン・ログアウトを監視する。
@@ -192,7 +193,7 @@ REPORTTIME=3
 # setopt corrent
 
 ######
-# key binds setting <<<
+# key binds setting {{{
 #######
 ### Binding key ###
 # Like vim
@@ -208,7 +209,7 @@ bindkey "^[h" backward-kill-word
 bindkey "^[u" undo
 bindkey "^[r" redo
 
-#>>>
+# }}}
 
 # ------------------- load plugins ---------------- {{{
 # -- zsh syntax highlight ---
@@ -224,7 +225,7 @@ chpwd_functions+=_cdd_chpwd
 
 # }}}
 
-# move dotfiles in Dropbox<<<
+# move dotfiles in Dropbox{{{
 function dotf {
     if [ $# != 0 ]; then # 引数が存在するならば
         cd ~/Dropbox/dotfiles
@@ -233,10 +234,10 @@ function dotf {
         cd ~/Dropbox/dotfiles
     fi
 }
-# >>>
+#  }}}
 
 
-# google search<<<
+# google search{{{
 function google() {
   local str opt
   if [ $# != 0 ]; then
@@ -249,9 +250,9 @@ function google() {
   fi
   w3m http://www.google.co.jp/$opt
 }
-#>>>
+# }}}
 
-#show buffer stack<<<
+#show buffer stack{{{
 show_buffer_stack(){
     POSTDISPLAY="
 stacked: $LBUFFER"
@@ -261,7 +262,7 @@ zle -N show_buffer_stack
 # ^[ = ESC
 bindkey "q" show_buffer_stack
 
-#>>>
+# }}}
 
 function cdup() {
     echo
@@ -272,17 +273,17 @@ zle -N cdup
 # Ctrl+] なんかとかぶったら考える
 bindkey '^]' cdup
 
-#>>>
+# }}}
 
 # 全履歴の検索
 function history-all { history -E 1 }
 
 
 #読み込み部分は各OSごとのアレ部分
-#>>>
+# }}}
 
 # --------
-# complete sheet<<<
+# complete sheet{{{
 # ------------------
 compdef _sheets sheet
 function _sheets {
@@ -294,9 +295,9 @@ function _sheets {
 
     return 1;
 }
-#>>>
+# }}}
 
-# utils<<<
+# utils{{{
 mkcd() {mkdir -p "$@" && cd "$*[-1]"}
 mktmp() {mkdir `date +"%Y%m%d_%H%M%S"`}
 
@@ -333,3 +334,4 @@ else
     source ~/.zsh/themes/lscolors.default
 fi
 # }}}
+
