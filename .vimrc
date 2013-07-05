@@ -12,8 +12,9 @@ set nocompatible
 
 " variables ----
 
-let $MY_VIMRUNTIME = expand('~/.vim')
-let $BUNDLEPATH = expand('~/.neobundle')
+let s:MY_VIMRUNTIME = expand('~/.vim')
+let s:BUNDLEPATH = expand('~/.neobundle')
+let s:vimrc = $HOME."/.vimrc"
 
 let s:is_windows = has('win16') || has('win32') || has('win64')
 let s:is_cygwin = has('win32unix')
@@ -31,7 +32,7 @@ augroup END
 if has('vim_starting')
   set runtimepath& runtimepath+=~/.vim/neobundle.vim/
 endif
-call neobundle#rc($BUNDLEPATH)
+call neobundle#rc(s:BUNDLEPATH)
 
 
 " gitプロトコルよりもhttpsのほうが高速
@@ -118,6 +119,11 @@ NeoBundleLazy 'Shougo/unite.vim', {
     \}
 
 NeoBundle 'Shougo/unite-ssh'
+call neobundle#config('unite-ssh', {
+      \ 'lazy' : 1,
+      \ 'autoload' : {
+      \   'unite_sources' : 'ssh'},
+      \ })
 " NeoBundle 'h1mesuke/unite-outline'
 " NOTE: Imploved by lua-interface
 NeoBundle 'Shougo/unite-outline', '', 'default'
@@ -221,7 +227,7 @@ NeoBundleLazy 'git://github.com/vim-scripts/IndentAnything.git', {
     \}
 
 " complete word in English. depends on `look` command.
-Neobundle 'ujihisa/neco-look'
+NeoBundle 'ujihisa/neco-look'
 
 " === Language surpport === {{{
 " -- Python {{{
@@ -564,7 +570,7 @@ endif
 set smarttab
 set expandtab
 set shiftround
-" use 4 as default tab width, and will customize in $MY_VIMRUNTIME/after/ftplugin/*.vim
+" use 4 as default tab width, and will customize in s:MY_VIMRUNTIME/after/ftplugin/*.vim
 set shiftwidth=4 softtabstop=4
 " -----------
 
@@ -1047,6 +1053,7 @@ command!
 \   map <args> | map! <args> | lmap <args>
 
 " Capture "{{{
+" TODO: Unite output: で良いかもしれないのでそのうち消すかも
 command!
 \   -nargs=+ -complete=command
 \   Capture
@@ -1128,7 +1135,7 @@ let g:neocomplete#sources#dictionary#dictionaries = {
 \     'cpp': $HOME.'/.vim/dict/cpp.dict',
 \     'vimshell': $HOME.'/.vimshell_hist',
 \     'scheme': $HOME.'/.gosh_completions',
-\     'scala':$BUNDLEPATH.'/vim-scala/dict/scala.dict',
+\     'scala': s:BUNDLEPATH.'/vim-scala/dict/scala.dict',
 \ }
 
 "initialize
@@ -1243,7 +1250,7 @@ endif
 " ---- neosnippet : {{{
 
 " tell neosnippet about my snippets
-let g:neosnippet#snippets_directory = '~/.vim/snippets,'.$BUNDLEPATH.'/vim-snippets/snippets'
+let g:neosnippet#snippets_directory = '~/.vim/snippets,'.s:BUNDLEPATH.'/vim-snippets/snippets'
 
 " plugin key-mappings.
 imap <C-k> <Plug>(neosnippet_expand_or_jump)
@@ -1311,23 +1318,76 @@ let g:ctrlp_cmd = 'CtrlP'
 
 " via: http://www.karakaram.com/vimfiler
 " ---------Unite.vim--------- {{{
-" buffer local keymap is in $MY_VIMRUNTIME/after/ftplugin/unite.vim
-" 入力モードで開始する
-let g:unite_enable_start_insert=1
-" 開くときの横幅
-let g:unite_winwidth=40
-" 縦幅
-let g:unite_winheight=50
+" buffer local keymap is in s:MY_VIMRUNTIME/after/ftplugin/unite.vim
 
-" -- grep
-if executable('ag')
-    let g:unite_source_grep_command = 'ag'
-    let g:unite_source_grep_default_opts = '--nocolor --nogroup'
-    let g:unite_source_grep_recursive_opt = ''
-    let g:unite_source_grep_max_candidates = 200
-endif
+let bundle = neobundle#get('unite.vim')
+function! bundle.hooks.on_source(bundle)
+  " common settings {{{
+  " 入力モードで開始する
+  let g:unite_enable_start_insert=1
+  " 開くときの横幅
+  let g:unite_winwidth=40
+  " 縦幅
+  let g:unite_winheight=50
+  " }}}
 
+  " -- grep
+  if executable('ag')
+      let g:unite_source_grep_command = 'ag'
+      let g:unite_source_grep_default_opts = '--nocolor --nogroup'
+      let g:unite_source_grep_recursive_opt = ''
+      let g:unite_source_grep_max_candidates = 200
+  endif
 
+  " --- Unite menu --- {{{
+  " http://d.hatena.ne.jp/osyo-manga/20130225/1361794133
+  let g:unite_source_menu_menus = get(g:, 'unite_source_menu_menus', {})
+
+  " unite-shortcut {{{
+  let g:unite_source_menu_menus.shortcut = {
+  \   "description" : "shortcut"
+  \}
+
+  let g:unite_source_menu_menus.shortcut.candidates = [
+  \   [ "vimrc"  , s:vimrc ],
+  \   [ "bundles", fnamemodify(s:vimrc, ":h")."/bundles.vim" ],
+  \   [ "after ft plugin",   s:MY_VIMRUNTIME."/.vim/after/ftplugin/"],
+  \   [ "My Blog", "OpenBrowser http://hachibeechan.hateblo.jp" ],
+  \   [ "github", "https://github.com/hachibeeDI" ],
+  \   [ "neobundles", s:BUNDLEPATH ],
+  \   [ "AllMap", "Unite output:AllMap" ],
+  \ ]
+
+  function! g:unite_source_menu_menus.shortcut.map(key, value)
+      let [word, value] = a:value
+
+      if isdirectory(value)
+          return {
+  \               "word" : "[directory] ".word,
+  \               "kind" : "directory",
+  \               "action__directory" : value
+  \           }
+      elseif !empty(glob(value))
+          return {
+  \               "word" : "[file] ".word,
+  \               "kind" : "file",
+  \               "default_action" : "tabdrop",
+  \               "action__path" : value,
+  \           }
+      else
+          return {
+  \               "word" : "[command] ".word,
+  \               "kind" : "command",
+  \               "action__command" : value
+  \           }
+      endif
+  endfunction
+  " --- }}}
+endfunction
+
+unlet bundle
+
+" --- key maps {{{
 nnoremap [Unite] <Nop>
 nmap ,u [Unite]
 
@@ -1345,6 +1405,8 @@ nnoremap <silent> [Unite]u :<C-u>Unite buffer file_mru<CR>
 nnoremap <silent> [Unite]t :<C-u>Unite tab<CR>
 " 全部乗せ
 nnoremap <silent> [Unite]a :<C-u>UniteWithBufferDir -buffer-name=files buffer file_mru bookmark file<CR>
+" output
+nnoremap <silent> [Unite]p :<C-u>Unite menu<CR>
 
 " その他
 nnoremap <silent> [Unite]` :<C-u>Unite -auto-quit neobundle/update<CR>
@@ -1356,7 +1418,8 @@ nnoremap <silent> [Unite]g :<C-u>Unite grep<CR>
 "" neocomplete
 "imap <C-i>  <Plug>(neocomplete_start_unite_complete)
 "imap <C-w>  <Plug>(neocomplete_start_unite_quick_match)
-"}}}
+" }}}
+" ------------ Unite }}}
 
 " ------------- VimFiler ------------------"{{{
 " use Vimfiler as default instead of netrw
@@ -1494,11 +1557,11 @@ let g:rbpt_loadcmd_toggle = 0
 "そろそろ限界…今後はOSごとに別ファイルでやったほうがよいかも
 "for debian /ubuntu
 if s:is_mac
-    let g:vimproc_dll_path = $BUNDLEPATH."/vimproc/autoload/vimproc_mac.so"
+    let g:vimproc_dll_path = s:BUNDLEPATH."/vimproc/autoload/vimproc_mac.so"
 elseif has('win32')
-    let g:vimproc_dll_path = $BUNDLEPATH."/vimproc/autoload/vimproc_win32.dll"
+    let g:vimproc_dll_path = s:BUNDLEPATH."/vimproc/autoload/vimproc_win32.dll"
 else
-    let g:vimproc_dll_path = $BUNDLEPATH."/vimproc/autoload/vimproc_unix.so"
+    let g:vimproc_dll_path = s:BUNDLEPATH."/vimproc/autoload/vimproc_unix.so"
 endif
 "}}}
 
