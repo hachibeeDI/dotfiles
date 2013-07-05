@@ -852,6 +852,8 @@ nnoremap [Show]r  :<C-u>Capture registers<CR>
 nnoremap [Show]e  :<C-u>edit $MYVIMRC<CR>
 nnoremap [Show]l  :<C-u>source $MYVIMRC<CR>
 nnoremap [Show]h  :<C-u>tab help<Space>
+" toggle set spell
+nnoremap [Show]s  :<C-u>setl spell!<Space>
 
 if version >= 703
   nnoremap <silent> [Show]n :<C-u>ToggleNumber<CR>
