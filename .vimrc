@@ -160,7 +160,7 @@ call neobundle#config('vital.vim', {
 " in ruby, lua, sh, zsh and some languages ... ...
 NeoBundleLazy 'tpope/vim-endwise', {
 \   'autoload' : {
-\     'insert' : 1,
+\   "filetypes" : ["ruby", "lua", "sh", "zsh", "vb"],
 \   }}
 "NeoBundle 'tpope/vim-surround'
 " forked version : http://www.sopht.jp/blog/index.php?/archives/450-surrounding.html
@@ -1764,6 +1764,7 @@ call smartinput#map_to_trigger('i', '<Plug>(smartinput_CR)',
       \                        '<Enter>')
 
 "" via: http://rhysd.hatenablog.com/entry/20121017/1350444269
+call smartinput#map_to_trigger('i', '<CR>', '<CR>', '<CR>')
 call smartinput#define_rule({
 \   'at': '\s\+\%#',
 \   'char': '<CR>',
@@ -1784,10 +1785,11 @@ call smartinput#define_rule({
 \   'input'    : '()<Left>',
 \   'filetype' : ['python'],
 \   })
+call smartinput#map_to_trigger('i', ':', ':', ':')
 call smartinput#define_rule({
-\   'at'       : '^\s*\%(\<def\>\|\<if\>\|\<for\>\|\<while\>\|\<class\>\|\<with\>\)\s*\w\+.*\%#:',
+\   'at'       : '^\s*\%(\<def\>\|\<if\>\|\<for\>\|\<while\>\|\<class\>\|\<with\>\)\s*\w\+.*\%#:$',
 \   'char'     : ':',
-\   'input'    : '',
+\   'input'    : '<Right><CR>',
 \   'filetype' : ['python'],
 \   })
 
