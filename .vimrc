@@ -656,6 +656,8 @@ set secure
 set list
 set listchars=tab:>-,trail:~
 
+set fillchars=vert:|,fold:-,stl:-
+
 " enable modeline
 set modeline
 " number of readble lines
