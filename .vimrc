@@ -603,8 +603,6 @@ set completeopt=menuone,preview
 set complete=.
 " Set popup menu max height.
 set pumheight=20
-" Enable spell check.
-set spelllang=en_us
 " <C-a> <C-x> で英字も増減させる
 set nrformats=alpha,octal,hex
 " a list of deletable
@@ -852,8 +850,10 @@ nnoremap [Show]r  :<C-u>Capture registers<CR>
 nnoremap [Show]e  :<C-u>edit $MYVIMRC<CR>
 nnoremap [Show]l  :<C-u>source $MYVIMRC<CR>
 nnoremap [Show]h  :<C-u>tab help<Space>
+"
+set spelllang=en_us
 " toggle set spell
-nnoremap [Show]s  :<C-u>setl spell!<Space>
+nnoremap [Show]s  :<C-u>setl spell!<CR>
 
 if version >= 703
   nnoremap <silent> [Show]n :<C-u>ToggleNumber<CR>
@@ -947,7 +947,7 @@ onoremap _ t_
 vnoremap _ t_
 
 if has('path_extra')
-    set tags& tags+=.tags;
+    set tags& tags+=.tags,tags
 endif
 
 "command mode
