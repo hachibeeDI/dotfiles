@@ -1588,7 +1588,7 @@ let g:rbpt_loadcmd_toggle = 0
 "そろそろ限界…今後はOSごとに別ファイルでやったほうがよいかも
 "for debian /ubuntu
 if s:is_mac
-    let g:vimproc#dll_path = g:BUNDLEPATH."/vimproc/autoload/vimproc_mac.so"
+    let g:vimproc#dll_path = s:BUNDLEPATH."/vimproc/autoload/vimproc_mac.so"
 elseif has('win32')
     let g:vimproc#dll_path = s:BUNDLEPATH."/vimproc/autoload/vimproc_win32.dll"
 else
