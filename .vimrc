@@ -1221,6 +1221,21 @@ let g:neocomplete#force_omni_input_patterns.python =
 " customize sort complete candiates
 "call neocomplete#custom#source('_', 'sorters', ['sorter_length'])
 
+" in text-mode, neocomplete will complete and conversion words in English. {{{
+
+"  " Initialize text mode filetypes. "{{{
+"  call neocomplete#util#set_default_dictionary(
+"        \ 'g:neocomplete#text_mode_filetypes',
+"        \ 'hybrid,text,help,tex,gitcommit,vcs-commit,markdown', 1)
+"  "}}}
+if !exists('g:neocomplete#text_mode_filetypes')
+  let g:neocomplete#text_mode_filetypes = {}
+endif
+let g:neocomplete#text_mode_filetypes.rst = 1
+let g:neocomplete#text_mode_filetypes.gitrebase = 1
+
+"  }}}
+
 " ------------------- clang_complete ------------- {{{
 " neocomplcacheとの競合を避けるため、自動呼び出しはOff
 let g:clang_complete_auto=0
