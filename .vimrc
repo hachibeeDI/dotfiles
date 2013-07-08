@@ -18,10 +18,7 @@ let s:vimrc = $HOME."/.vimrc"
 
 let s:is_windows = has('win16') || has('win32') || has('win64')
 let s:is_cygwin = has('win32unix')
-let s:is_mac = !s:is_windows && !s:is_cygwin
-      \ && (has('mac') || has('macunix') || has('gui_macvim') ||
-      \   (!executable('xdg-open') &&
-      \     system('uname') =~? '^darwin'))
+let s:is_mac = has('mac') || has('macunix') || has('gui_macvim')
 
 
 "set autogroup
@@ -1591,11 +1588,11 @@ let g:rbpt_loadcmd_toggle = 0
 "そろそろ限界…今後はOSごとに別ファイルでやったほうがよいかも
 "for debian /ubuntu
 if s:is_mac
-    let g:vimproc_dll_path = s:BUNDLEPATH."/vimproc/autoload/vimproc_mac.so"
+    let g:vimproc#dll_path = g:BUNDLEPATH."/vimproc/autoload/vimproc_mac.so"
 elseif has('win32')
-    let g:vimproc_dll_path = s:BUNDLEPATH."/vimproc/autoload/vimproc_win32.dll"
+    let g:vimproc#dll_path = s:BUNDLEPATH."/vimproc/autoload/vimproc_win32.dll"
 else
-    let g:vimproc_dll_path = s:BUNDLEPATH."/vimproc/autoload/vimproc_unix.so"
+    let g:vimproc#dll_path = s:BUNDLEPATH."/vimproc/autoload/vimproc_unix.so"
 endif
 "}}}
 
