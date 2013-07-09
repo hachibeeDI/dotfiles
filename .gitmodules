@@ -13,3 +13,6 @@
 [submodule ".zsh/modules/zsh-context-sensitive-alias"]
 	path = .zsh/modules/zsh-context-sensitive-alias
 	url = https://github.com/uasi/zsh-context-sensitive-alias.git
+[submodule ".zsh/modules/zaw"]
+	path = .zsh/modules/zaw
+	url = https://github.com/zsh-users/zaw.git
