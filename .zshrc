@@ -164,6 +164,8 @@ setopt hist_expand
 setopt share_history
 # when use zsh on multiwindow, add on a history file
 setopt append_history
+# append history immediately after commands finished.
+setopt inc_append_history
 # save Begin and End
 setopt EXTENDED_HISTORY
 
