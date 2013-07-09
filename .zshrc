@@ -227,7 +227,8 @@ chpwd_functions+=_cdd_chpwd
 
 # }}}
 # --- zaw --- {{{
-bindkey '^h' zaw-history
+bindkey '^g' zaw
+bindkey '^g^h' zaw-history
 
 # }}}
 
