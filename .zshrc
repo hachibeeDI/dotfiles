@@ -216,12 +216,18 @@ bindkey "^[r" redo
 source ~/.zsh/modules/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 # -- cdd --
 source ~/.zsh/modules/cdd/cdd
+# -- zaw.zsh --------
+source ~/.zsh/modules/zaw/zaw.zsh
 
 # }}}
 # -------------------- settings for plugins ------------ {{{
 # --- cdd ---
 typeset -ga chpwd_functions
 chpwd_functions+=_cdd_chpwd
+
+# }}}
+# --- zaw --- {{{
+bindkey '^h' zaw-history
 
 # }}}
 
