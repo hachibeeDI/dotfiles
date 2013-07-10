@@ -201,16 +201,21 @@ NeoBundle 'rhysd/accelerated-jk'
 
 " undo history visualizer
 NeoBundleLazy 'sjl/gundo.vim', {
-    \ 'autoload' : {
-    \   'commands' : ["GundoToggle"],
-    \ }
-    \}
+\ 'autoload' : {
+\   'commands' : ["GundoToggle"],
+\ }
+\}
 "TDD plugin for vim
 NeoBundleLazy 'reinh/vim-makegreen', {
-    \ 'autoload' : {
-    \   'functions' : ["MakeGreen"],
-    \ }
-    \}
+\ 'autoload' : {
+\   'functions' : ["MakeGreen"],
+\ }
+\}
+NeoBundleLazy 'taglist.vim', {
+\ 'autoload' : {
+\   'commands' : ["Tlist"],
+\ }
+\}
 
 NeoBundleLazy 'nathanaelkane/vim-indent-guides', {
     \ "autoload" : {
@@ -1853,6 +1858,12 @@ call smartinput#define_rule({
 
 " --- gist-vim -----{{{
 let g:gist_use_password_in_gitconfig = 1
+"}}}
+" --- taglist --- {{{
+"taglist が最後のウインドウなら vim を閉じる
+let g:Tlist_Exit_OnlyWindow = 1
+"現在編集中のソースのタグしか表示しない
+let g:Tlist_Show_One_File = 1
 "}}}
 
 source ~/.vimrc.local
