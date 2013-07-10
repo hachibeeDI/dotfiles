@@ -26,3 +26,6 @@ function! g:my_preexec(cmdline, context)
   return a:cmdline
 endfunction
 "}}}
+
+setl norelativenumber
+setl nonumber
