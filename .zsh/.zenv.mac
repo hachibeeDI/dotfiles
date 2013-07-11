@@ -15,6 +15,9 @@ path=(
     $RBENV_ROOT/bin(N-/)
     $HOME/.gem/ruby/2.0.0/bin(N-/)
 
+    #haskell packages
+    $HOME/.cabal/bin(N-/)
+
     # 自分のスクリプトとか、自分でビルドしたやつとか
     $HOME/Dropbox/bin/mac(N-/)
     $HOME/Dropbox/bin(N-/)
