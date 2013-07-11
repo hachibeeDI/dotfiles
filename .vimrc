@@ -129,6 +129,18 @@ call neobundle#config('unite-outline', {
       \ 'autoload' : {
       \   'unite_sources' : 'outline'},
       \ })
+NeoBundle 'tsukkee/unite-tag', '', 'default'
+call neobundle#config('tsukkee/unite-tag', {
+      \ 'lazy' : 1,
+      \ 'autoload' : {
+      \   'unite_sources' : 'tag'},
+      \ })
+" uniteあるじゃん感
+NeoBundleLazy 'taglist.vim', {
+\ 'autoload' : {
+\   'commands' : ["Tlist"],
+\ }
+\}
 
 NeoBundle 'osyo-manga/unite-quickfix'
 call neobundle#config('unite-quickfix', {
@@ -209,11 +221,6 @@ NeoBundleLazy 'sjl/gundo.vim', {
 NeoBundleLazy 'reinh/vim-makegreen', {
 \ 'autoload' : {
 \   'functions' : ["MakeGreen"],
-\ }
-\}
-NeoBundleLazy 'taglist.vim', {
-\ 'autoload' : {
-\   'commands' : ["Tlist"],
 \ }
 \}
 
@@ -1864,6 +1871,7 @@ let g:gist_use_password_in_gitconfig = 1
 let g:Tlist_Exit_OnlyWindow = 1
 "現在編集中のソースのタグしか表示しない
 let g:Tlist_Show_One_File = 1
+nnoremap [Show]t  :<C-u>Tlist<CR>
 "}}}
 
 source ~/.vimrc.local
