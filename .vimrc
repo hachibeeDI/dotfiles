@@ -384,11 +384,18 @@ NeoBundleLazy 'pbrisbin/html-template-syntax', {
     \ "autoload" : {
     \   "filetypes" : ["haskell"] }
     \}
+" NOTE: require 'ghc-mod'. install from `cabal install ghc-mod`.
 NeoBundleLazy 'ujihisa/neco-ghc', {
     \ "autoload" : {
     \   "filetypes" : ["haskell"] }
     \}
+NeoBundleLazy 'eagletmt/ghcmod-vim', {
+    \ "autoload" : {
+    \   "filetypes" : ["haskell"] }
+    \}
+
 "http://vim-users.jp/2011/12/hack241/
+" NOTE: require 'hoogle'
 NeoBundleLazy 'ujihisa/unite-haskellimport', {
     \ "autoload" : {
     \   "filetypes" : ["haskell"] }
@@ -1334,6 +1341,10 @@ unlet bundle
 "}}}
 
 " haskell -----------------{{{
+" neco-ghc --- {{{
+let g:necoghc_enable_detailed_browse = 1
+"}}}
+" vim2hs --- {{{
 let g:haskell_conceal_wide = 1
 "let g:haskell_quasi          =  0
 "let g:haskell_interpolation  =  0
@@ -1344,6 +1355,7 @@ let g:haskell_conceal_wide = 1
 "let g:haskell_json           =  0
 "let g:haskell_xml            =  0
 let g:haskell_hsp = 0
+" }}}
 " }}}
 
 " vim-indentguides ------------{{{
