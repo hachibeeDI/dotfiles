@@ -1571,10 +1571,7 @@ endfunction
 unlet bundle
 
 let g:quickrun_no_default_key_mappings = 1
-"nnoremap <F5> :<C-u>QuickRun<CR> なぜかQuickRun内のコマンド定義がロードされない
-" とりあえず暇になるまでこれで
-nnoremap <F5> :<C-u>call quickrun#run()<CR>
-nmap <F6> <Plug>(quickrun)
+nmap <F5> <Plug>(quickrun)
 nnoremap [Show]w :<C-u>WatchdogsRunSilent<CR><Esc>
 
 "  }}}
