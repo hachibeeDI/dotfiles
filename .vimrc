@@ -270,6 +270,12 @@ NeoBundleLazy 'lambdalisue/vim-django-support', {
     \   "filetypes" : ["python"],
     \ }
     \}
+NeoBundleLazy 'bps/vim-textobj-python', {
+\ 'depends': ['kana/vim-textobj-user'],
+\ 'autoload' : {
+\   "filetypes" : ["python"],
+\   }
+\ }
 
 " }}}
 " -- haXe {{{
@@ -1727,8 +1733,8 @@ function! bundle.hooks.on_source(bundle)
 
     elseif a:lang == 'python'
       inoremap <buffer> <expr> = smartchr#one_of(' = ', ' == ', '=')
-      inoremap <buffer> <expr> > smartchr#loop(' > ', ' >= ')
-      inoremap <buffer> <expr> < smartchr#loop(' < ', ' <= ')
+      "inoremap <buffer> <expr> > smartchr#loop(' > ', ' >= ')
+      "inoremap <buffer> <expr> < smartchr#loop(' < ', ' <= ')
       inoremap <buffer> <expr> + smartchr#loop(' + ', '+')
       inoremap <buffer> <expr> - smartchr#loop(' - ', '-')
 
@@ -1871,6 +1877,20 @@ call smartinput#define_rule({
 \ })
 
 "---- }}}
+" --- text-obj-python ---- {{{
+" - af: a function
+" - if: inner function
+" - ac: a class
+" - ic: inner class
+
+" this plugin has aditional key-bind
+"  -  '[pf', ']pf': move to next/previous function
+"  -  '[pc', ']pc': move to next/previous class
+xmap aF <Plug>(textobj-python-function-a)
+omap aF <Plug>(textobj-python-function-a)
+xmap iF <Plug>(textobj-python-function-i)
+omap iF <Plug>(textobj-python-function-i)
+" }}}
 
 " --- gist-vim -----{{{
 let g:gist_use_password_in_gitconfig = 1
