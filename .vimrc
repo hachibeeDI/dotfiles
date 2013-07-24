@@ -515,6 +515,9 @@ NeoBundleLazy 'glidenote/memolist.vim', {
     \ }
     \}
 
+" developping
+NeoBundle 'hachibeeDI/unite-pythonimport'
+
 "}}}
 
 " --- default bundled plugins ---
@@ -1902,100 +1905,6 @@ let g:Tlist_Exit_OnlyWindow = 1
 let g:Tlist_Show_One_File = 1
 nnoremap [Show]t  :<C-u>Tlist<CR>
 "}}}
-
-" --- {{{
-
-" ソースの定義
-let s:pythonimport_source = {
-\       'name': 'pythonimport',
-\       }
-
-" 辞書変数のリストを返す関数
-function! s:pythonimport_source.gather_candidates(args, context)
-  let importable_list = Pythonimport_define()
-  "let importable_list = ['aa', 'bb']
-  return map(
-        \ importable_list,
-        \ '{
-        \   "word": v:val,
-        \   "source": "pythonimport",
-        \   "kind": "command",
-        \   "action__command": printf("silent Pythonimport \"%s\"", v:val),
-        \ }'
-        \)
-endfunction
-
-" unite用のリストを作成する
-function! Pythonimport_define()
-
-  python <<EOM
-from pydoc import ModuleScanner
-from string import find
-
-modules = []
-modules_append = modules.append
-
-def callback(path, modname, desc, modules=modules):
-    if modname and modname[-9:] == '.__init__':
-        modname = modname[:-9]
-    if find(modname, '.') < 0 and modname not in modules:
-        modules_append(modname)
-
-def onerror(modname):
-    callback(None, modname, None)
-
-ModuleScanner().run(callback, onerror=onerror)
-
-vim.command('let modules = {0}'.format(modules))
-EOM
-
-  return modules
-endfunction
-
-call unite#define_source(s:pythonimport_source)
-unlet s:pythonimport_source
-
-" 使うコマンド
-command! Pythonimport call s:pythonimport(<q-args>)
-
-function! s:pythonimport(x)
-  let pos = getpos('.')
-  let y = split(eval(a:x), ' ')
-  let a:module = y[0]
-
-  let line = printf("import %s", a:module)
-  let newpos = search('^import', 'b')
-  if newpos == 0
-    call cursor(1, 1)
-  else
-    call cursor(newpos)
-    call cursor(search('^[^ ]\|^$'))
-  endif
-  call append(getpos('.')[1] - 1, line)
-
-  call setpos('.', pos)
-
-"  let y = split(eval(a:x), ' ')
-"  let pos = getpos('.')
-"  let added = s:add_name(y[0], y[1])
-"  if !added
-"    call s:add_import(y[0], y[1])
-"  endif
-"  call setpos('.', pos)
-endfunction
-
-"function! s:Add_pyimport(module, name)
-"  let line = printf("import %s (%s)", a:module, a:name)
-"  let newpos = search('^import', 'b')
-"  if newpos == 0
-"    call cursor(1, 1)
-"  else
-"    call cursor(newpos)
-"    call cursor(search('^[^ ]\|^$'))
-"  endif
-"  call append(getpos('.')[1] - 1, line)
-"endfunction
-""}}}
 
 
 source ~/.vimrc.local
