@@ -1788,6 +1788,9 @@ call smartinput#map_to_trigger('i', '<Plug>(smartinput_CR)',
       \                        '<Enter>',
       \                        '<Enter>')
 
+" smartinputとsmartchrの連携tips
+"  -> [http://ac-mopp.blogspot.jp/2013/07/vim-smart-input.html]
+
 "" via: http://rhysd.hatenablog.com/entry/20121017/1350444269
 call smartinput#map_to_trigger('i', '<CR>', '<CR>', '<CR>')
 call smartinput#define_rule({
@@ -1796,6 +1799,7 @@ call smartinput#define_rule({
 \   'input': "<C-o>:call setline('.', substitute(getline('.'), '\s\+$', '', ''))<CR><CR>",
 \   })
 
+" Python専用 ------------------ {{{
 " classとかの定義時に:までを入れる
 call smartinput#define_rule({
 \   'at'       : '^\s*\%(\<def\>\|\<if\>\|\<for\>\|\<while\>\|\<class\>\|\<with\>\)\s*\w\+.*\%#',
@@ -1810,6 +1814,7 @@ call smartinput#define_rule({
 \   'input'    : '()<Left>',
 \   'filetype' : ['python'],
 \   })
+
 call smartinput#map_to_trigger('i', ':', ':', ':')
 call smartinput#define_rule({
 \   'at'       : '^\s*\%(\<def\>\|\<if\>\|\<for\>\|\<while\>\|\<class\>\|\<with\>\)\s*\w\+.*\%#:$',
@@ -1817,6 +1822,14 @@ call smartinput#define_rule({
 \   'input'    : '<Right><CR>',
 \   'filetype' : ['python'],
 \   })
+" 辞書の宣言なことが明らかなケースではsmartchrを呼び出す
+call smartinput#define_rule({
+\   'at'       : '{.\+\%#',
+\   'char'     : ':',
+\   'input'    : "<C-R>=smartchr#loop(': ', ':')<CR>",
+\   'filetype' : ['python'],
+\   })
+" ---- }}}
 
 " its in examples in smartinput. insert #{} in a string literal.
 call smartinput#map_to_trigger('i', '#', '#', '#')
