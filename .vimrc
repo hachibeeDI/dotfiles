@@ -238,6 +238,12 @@ NeoBundleLazy 'git://github.com/vim-scripts/IndentAnything.git', {
 " complete word in English. depends on `look` command.
 NeoBundle 'ujihisa/neco-look'
 
+NeoBundleLazy 'mattn/excitetranslate-vim', {
+      \ 'depends': 'mattn/webapi-vim',
+      \ 'autoload' : { 'commands': ['ExciteTranslate']}
+      \ }
+xnoremap E :ExciteTranslate<CR>
+
 " === Language surpport === {{{
 " -- Python {{{
 NeoBundleLazy 'Crapworks/python_fn.vim', {
