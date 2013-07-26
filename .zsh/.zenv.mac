@@ -26,7 +26,6 @@ path=(
     # 標準のツールとかもhomebrewで導入したのを優先させる
     $BREW_PATH/bin(N-/)
 
-    $BREW_PATH/share/python(N-/)
     $BREW_PATH/opt/ruby/bin(N-/)
 
     #デフォルトのコマンドをGNUコマンドで
