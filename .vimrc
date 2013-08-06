@@ -469,6 +469,12 @@ NeoBundleLazy 'SQLUtilities', {
     \   "filetypes" : ["sql", "sqloracle", "sqlserver"] }
     \}
 
+NeoBundleLazy 'timcharper/textile.vim', {
+\ 'script_type' : 'syntax',
+\ "autoload" : {
+\   "filetypes" : ["textile"] }
+\ }
+
 NeoBundle 'godlygeek/tabular'
 
 NeoBundle 'vim-scripts/Colour-Sampler-Pack', {'script_type' : 'colors'}
@@ -1313,7 +1319,8 @@ endif
 
 "============================================================
 " ---- neosnippet : {{{
-
+" Enable snipMate compatibility feature.
+let g:neosnippet#enable_snipmate_compatibility = 1
 " tell neosnippet about my snippets
 let g:neosnippet#snippets_directory = '~/.vim/snippets,'.s:BUNDLEPATH.'/vim-snippets/snippets'
 
