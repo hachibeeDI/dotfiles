@@ -1197,7 +1197,8 @@ function! bundle.hooks.on_source(bundle)
   " Recommended key-mappings.
   " <CR>: close popup and save indent.
   "inoremap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
-  imap <silent><expr> <CR> neocomplete#smart_close_popup() . "\<Plug>(smartinput_CR)"
+  " ATTENTION: smart inputの設定を優先させるため、こいつはmap_to_triggerにて設定する
+  "imap <silent><expr> <CR> neocomplete#smart_close_popup() . "\<Plug>(smartinput_CR)"
 
   "function! s:my_cr_function()
   "  return neocomplete#smart_close_popup() . "\<Plug>(smartinput_CR)"
@@ -1793,7 +1794,7 @@ call smartinput#map_to_trigger('i', '<Plug>(smartinput_C-h)',
       \                        '<C-h>')
 call smartinput#map_to_trigger('i', '<Plug>(smartinput_CR)',
       \                        '<Enter>',
-      \                        '<Enter>')
+      \                        "<C-o>:call neocomplete#smart_close_popup() . '\<Plug>(smartinput_CR)'<CR>")
 
 " smartinputとsmartchrの連携tips
 "  -> [http://ac-mopp.blogspot.jp/2013/07/vim-smart-input.html]
@@ -1801,9 +1802,9 @@ call smartinput#map_to_trigger('i', '<Plug>(smartinput_CR)',
 "" via: http://rhysd.hatenablog.com/entry/20121017/1350444269
 call smartinput#map_to_trigger('i', '<CR>', '<CR>', '<CR>')
 call smartinput#define_rule({
-\   'at': '\s\+\%#',
+\   'at': '\s\+\%#$',
 \   'char': '<CR>',
-\   'input': "<C-o>:call setline('.', substitute(getline('.'), '\s\+$', '', ''))<CR><CR>",
+\   'input': "<C-o>:call setline('.', substitute(getline('.'), '\\s\\+$', '', ''))<CR><CR>",
 \   })
 
 " Python専用 ------------------ {{{
