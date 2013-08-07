@@ -676,9 +676,8 @@ if v:version >= 703
   set conceallevel=2 concealcursor=iv
   set colorcolumn=79
   set relativenumber
-else
-  set number
 endif
+set number
 set history=100000
 
 " set fold line on {{{, }}}
@@ -1736,6 +1735,10 @@ omap <Leader>ge  <Plug>(smartword-ge)
 "}}}
 
 " --- smartchr ---- {{{
+" commons {{{
+inoremap <expr> , smartchr#one_of(', ', ',')
+"}}}
+
 autocmd MyAutoCmd
       \ FileType ruby
       \ call s:def_smartchar()
@@ -1752,10 +1755,12 @@ autocmd MyAutoCmd
       \ FileType cpp
       \ call s:def_smartchar()
 
+autocmd MyAutoCmd
+      \ FileType haxe
+      \ call s:def_smartchar()
+
 function! s:def_smartchar()
   let l:lang = &filetype
-
-  inoremap <expr> , smartchr#one_of(', ', ',')
 
   " NOTE: 辞書とかを駆使した方が高速かな？
   if l:lang == 'ruby'
@@ -1777,6 +1782,12 @@ function! s:def_smartchar()
     inoremap <buffer> <expr> : smartchr#loop(': ', '::', ':')
     inoremap <buffer> <expr> . smartchr#loop('.', '->')
 
+  elseif l:lang == 'haxe'
+    inoremap <buffer> <expr> = smartchr#one_of(' = ', ' == ', '=')
+    inoremap <buffer> <expr> + smartchr#loop(' + ', '+')
+    inoremap <buffer> <expr> - smartchr#loop(' - ', '-')
+    inoremap <buffer> <expr> - smartchr#loop(' * ', '*')
+    inoremap <buffer> <expr> . smartchr#one_of('.', ' -> ', '.')
   endif
 
 endfunction
@@ -1805,6 +1816,13 @@ call smartinput#define_rule({
 \   'at': '\s\+\%#$',
 \   'char': '<CR>',
 \   'input': "<C-o>:call setline('.', substitute(getline('.'), '\\s\\+$', '', ''))<CR><CR>",
+\   })
+
+call smartinput#define_rule({
+\   'at'       : '\%(\<struct\>\|\<class\>\|\<enum\>\)\s*\w\+.*\%#',
+\   'char'     : '{',
+\   'input'    : '{};<Left><Left>',
+\   'filetype' : ['cpp'],
 \   })
 
 " Python専用 ------------------ {{{
@@ -1873,14 +1891,21 @@ call smartinput#define_rule({
 \   'at': '\%#',
 \   'char': '<',
 \   'input': '<><Left>',
-\   'filetype': ['xml', 'html', 'eruby'],
+\   'filetype': ['xml', 'html', 'eruby', 'java', 'cpp', 'cs', 'haxe'],
+\ })
+
+call smartinput#define_rule({
+\   'at': '<\%#>',
+\   'char': '<BS>',
+\   'input': '<Del><BS>',
+\   'filetype': ['xml', 'html', 'eruby', 'java', 'cpp', 'cs', 'haxe'],
 \ })
 
 call smartinput#define_rule({
 \   'at': '<.*\%#>',
 \   'char': '>',
-\   'input': '',
-\   'filetype': ['xml', 'html', 'eruby'],
+\   'input': '<Right>',
+\   'filetype': ['xml', 'html', 'eruby', 'java', 'cpp', 'cs', 'haxe'],
 \ })
 
 " ERB
