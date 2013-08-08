@@ -1361,6 +1361,14 @@ endfunction
 
 unlet bundle
 "}}}
+" vaxe(haXe's omnicompletion plugin) {{{
+autocmd MyAutoCmd FileType haxe
+      \ setl autowrite
+autocmd MyAutoCmd FileType hxml
+      \ setl autowrite
+autocmd MyAutoCmd FileType nmml.xml
+      \ setl autowrite
+"}}}
 
 " haskell -----------------{{{
 " neco-ghc --- {{{
