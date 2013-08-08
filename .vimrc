@@ -101,7 +101,12 @@ NeoBundleLazy 'tpope/vim-fugitive', {
 \}
 
 "" Quickfixの内容を使ってエラー表示をハイライトしてくれる
-"NeoBundleLazy 'jceb/vim-hies'
+"NeoBundleLazy 'jceb/vim-hier'
+" imploved
+NeoBundle 'cohama/vim-hier'
+" quickfixの該当箇所をコマンドラインに出力
+NeoBundle 'dannyob/quickfixstatus'
+
 
 NeoBundleLazy 'kien/ctrlp.vim', {
     \ 'autoload' : {
@@ -721,6 +726,9 @@ set formatoptions& formatoptions-=ro
 setlocal cursorline
 autocmd MyAutoCmd WinEnter * setlocal cursorline
 autocmd MyAutoCmd WinLeave * setlocal nocursorline
+
+" 各コマンド後の結果をquickfixへ出力させる
+autocmd MyAutoCmd  QuickfixCmdPost make,grep,grepadd,vimgrep copen
 
 set background=dark
 "colorscheme solarized
@@ -1605,6 +1613,12 @@ nmap <F5> <Plug>(quickrun)
 nnoremap [Show]w :<C-u>WatchdogsRunSilent<CR><Esc>
 
 "  }}}
+
+" vim-hier ------------------- {{{
+let g:hier_enabled = 1
+"}}}
+
+" quickfixstatus ================ {{{
 
 " }}}
 
