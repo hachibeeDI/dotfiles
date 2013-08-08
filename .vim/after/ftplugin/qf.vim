@@ -4,10 +4,10 @@ noremap <buffer> p <CR>zz<C-w>p
 
 setlocal statusline+=\ %L
 
-noremap <silent> <buffer> <expr> j <SID>jk(v:count1)
-noremap <silent> <buffer> <expr> k <SID>jk(-v:count1)
+noremap <silent> <buffer> <expr> j <SID>tb_loop(v:count1)
+noremap <silent> <buffer> <expr> k <SID>tb_loop(-v:count1)
 
-function! s:jk(motion)
+function! s:tb_loop(motion)
   " if line has no index infomation, this function ignore that.
   " and loop top and bottom when reach there.
   let max = line('$')
@@ -16,10 +16,10 @@ function! s:jk(motion)
     let list = getqflist()
   endif
   let cur = line('.') - 1
-  let pos = g:V.modulo(cur + a:motion, max)
+  let pos = g:Vit.Math.modulo(cur + a:motion, max)
   let m = 0 < a:motion ? 1 : -1
   while cur != pos && list[pos].bufnr == 0
-    let pos = g:V.modulo(pos + m, max)
+    let pos = g:Vit.Math.modulo(pos + m, max)
   endwhile
   return (pos + 1) . 'G'
 endfunction

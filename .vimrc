@@ -126,6 +126,12 @@ call neobundle#config('unite-ssh', {
       \ 'autoload' : {
       \   'unite_sources' : 'ssh'},
       \ })
+NeoBundle 'Shougo/unite-build'
+call neobundle#config('unite-build', {
+      \ 'lazy' : 1,
+      \ 'autoload' : {
+      \   'unite_sources' : 'buildw'},
+      \ })
 " NeoBundle 'h1mesuke/unite-outline'
 " NOTE: Imploved by lua-interface
 NeoBundle 'Shougo/unite-outline', '', 'default'
@@ -162,12 +168,12 @@ NeoBundleLazy 'thinca/vim-scouter', '', 'same', { 'autoload' : {
       \ 'commands' : 'Scouter'
       \ }}
 
-NeoBundle 'vim-jp/vital.vim', '', 'default'
-call neobundle#config('vital.vim', {
-      \ 'lazy' : 1,
-      \ 'autoload' : {
-      \     'commands' : ['Vitalize'],
-      \ }})
+NeoBundle 'vim-jp/vital.vim'
+"call neobundle#config('vital.vim', {
+"      \ 'lazy' : 1,
+"      \ 'autoload' : {
+"      \     'commands' : ['Vitalize'],
+"      \ }})
 
 " ---------- utils for edit {{{
 " auto insert end after def scope,
@@ -580,6 +586,12 @@ if !has('vim_starting')
   call neobundle#call_hook('on_source')
 endif
 
+" vital.vim --- {{{
+let g:Vit = vital#of('vital')
+"call extend(s:, g:Vit, 'keep') " スクリプトローカルに展開したくなったら
+call g:Vit.load('Data.List').load('Data.String').load("Math")
+
+"}}}
 "}}}
 
 let s:exist_ramdisk = glob('/Volumes/RamDisk')
