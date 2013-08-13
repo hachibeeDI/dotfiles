@@ -96,8 +96,13 @@ NeoBundleLazy 'honza/vim-snippets'
 " runtimepathに追加されていない？ 要調査
 NeoBundleLazy 'tpope/vim-fugitive', {
 \ 'autoload': {
-\   'commands': [ "Git", "Gstatus", "Gcommit", "Gedit", "Gwrite", "Ggrep", "Glog", "Gdiff"],
+\   'commands': ["Git", "Gstatus", "Gcommit", "Gedit", "Gwrite", "Ggrep", "Glog", "Gdiff"],
 \ }
+\}
+NeoBundleLazy 'gregsexton/gitv' , {
+\ 'autoload' : {
+\   'commands' : ['Gitv', 'Gitv!'],
+\   }
 \}
 
 "" Quickfixの内容を使ってエラー表示をハイライトしてくれる
@@ -665,7 +670,8 @@ set backspace=eol,indent,start
 " Disable automatically insert comment.
 autocmd MyAutoCmd FileType *
       \ setl formatoptions-=ro | setl formatoptions+=mM
-
+"autocmd MyAutoCmd InsertEnter,CmdwinEnter * set noimdisable
+"autocmd MyAutoCmd InsertLeave,CmdwinLeave * set imdisable
 " ======== {{{
 
 " ========== View ======================== {{{
@@ -907,7 +913,11 @@ nnoremap [Show]k  :<C-u>Capture map<CR>
 nnoremap [Show]r  :<C-u>Capture registers<CR>
 nnoremap [Show]e  :<C-u>edit $MYVIMRC<CR>
 nnoremap [Show]l  :<C-u>source $MYVIMRC<CR>
-nnoremap [Show]h  :<C-u>tab help<Space>
+nnoremap [Show]q  :<C-u>tab help<Space>
+nnoremap [Show]hc  :<C-u>HierClear<CR>
+nnoremap [Show]hs  :<C-u>HierStart<CR>
+nnoremap [Show]hp  :<C-u>HierStop<CR>
+nnoremap [Show]hu  :<C-u>HierUpdate<CR>
 "
 set spelllang=en_us
 " toggle set spell
@@ -1627,7 +1637,7 @@ nnoremap [Show]w :<C-u>WatchdogsRunSilent<CR><Esc>
 "  }}}
 
 " vim-hier ------------------- {{{
-let g:hier_enabled = 1
+"let g:hier_enabled = 1
 "}}}
 
 " quickfixstatus ================ {{{
