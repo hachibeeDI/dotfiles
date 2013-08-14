@@ -920,6 +920,8 @@ nnoremap [Show]hc  :<C-u>HierClear<CR>
 nnoremap [Show]hs  :<C-u>HierStart<CR>
 nnoremap [Show]hp  :<C-u>HierStop<CR>
 nnoremap [Show]hu  :<C-u>HierUpdate<CR>
+
+nnoremap <Esc><Esc> :<C-u>nohlsearch <Bar> cclose<CR><Esc>
 "
 set spelllang=en_us
 " toggle set spell
