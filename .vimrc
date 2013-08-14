@@ -1533,6 +1533,8 @@ nnoremap <silent> [Unite]` :<C-u>Unite -auto-quit neobundle/update<CR>
 nnoremap <silent> [Unite]o :<C-u>Unite -vertical outline<CR>
 " grep
 nnoremap <silent> [Unite]g :<C-u>Unite grep<CR>
+" quickfix
+nnoremap <silent> [Unite]q :<C-u>Unite -no-quit -direction=botright quickfix
 
 "" neocomplete
 "imap <C-i>  <Plug>(neocomplete_start_unite_complete)
