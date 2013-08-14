@@ -94,11 +94,11 @@ NeoBundleLazy 'thinca/vim-quickrun', {
 NeoBundleLazy 'honza/vim-snippets'
 
 " runtimepathに追加されていない？ 要調査
-NeoBundleLazy 'tpope/vim-fugitive', {
-\ 'autoload': {
-\   'commands': ["Git", "Gstatus", "Gcommit", "Gedit", "Gwrite", "Ggrep", "Glog", "Gdiff"],
-\ }
-\}
+NeoBundle 'tpope/vim-fugitive' ", {
+"\ 'autoload': {
+"\   'commands': ["Git", "Gstatus", "Gcommit", "Gedit", "Gwrite", "Ggrep", "Glog", "Gdiff"],
+"\ }
+"\}
 NeoBundleLazy 'gregsexton/gitv' , {
 \ 'autoload' : {
 \   'commands' : ['Gitv', 'Gitv!'],
@@ -226,6 +226,8 @@ NeoBundleLazy 'kana/vim-smarttill', { 'autoload' : {
 " }}}
 
 NeoBundle 'rhysd/accelerated-jk'
+" search words from two spells matched
+NeoBundle 'goldfeld/vim-seek'
 
 " undo history visualizer
 NeoBundleLazy 'sjl/gundo.vim', {
