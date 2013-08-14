@@ -49,3 +49,7 @@ function! s:undo_entry()
     call setqflist(remove(history, -1), 'r')
   endif
 endfunction
+
+" ESCキーを2回押すと終了する
+nnoremap <silent> <buffer> <esc><esc> <esc>:q<CR>
+inoremap <silent> <buffer> <esc><esc> <esc>:q<CR>
