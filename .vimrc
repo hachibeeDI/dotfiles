@@ -135,7 +135,7 @@ NeoBundle 'Shougo/unite-build'
 call neobundle#config('unite-build', {
       \ 'lazy' : 1,
       \ 'autoload' : {
-      \   'unite_sources' : 'buildw'},
+      \   'unite_sources' : 'build'},
       \ })
 " NeoBundle 'h1mesuke/unite-outline'
 " NOTE: Imploved by lua-interface
