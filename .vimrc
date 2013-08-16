@@ -1356,7 +1356,7 @@ endif
 " Enable snipMate compatibility feature.
 let g:neosnippet#enable_snipmate_compatibility = 1
 " tell neosnippet about my snippets
-let g:neosnippet#snippets_directory = '~/.vim/snippets,'.s:BUNDLEPATH.'/vim-snippets/snippets'
+let g:neosnippet#snippets_directory = '~/.vim/snippets,'.s:BUNDLEPATH.'/vim-snippets/snippets,'.s:BUNDLEPATH.'/vaxe/ultisnips'
 
 " plugin key-mappings.
 imap <C-k> <Plug>(neosnippet_expand_or_jump)
