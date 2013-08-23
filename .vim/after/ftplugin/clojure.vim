@@ -3,8 +3,8 @@ if exists('b:did_ftplugin_clojure')
 endif
 let b:did_ftplugin_clojure = 1
 
-
-RainbowParenthesesToggle
+:RainbowParenthesesLoadRound
+:RainbowParenthesesToggle
 
 " simple word completion
 setlocal omnifunc=clojurecomplete#Complete

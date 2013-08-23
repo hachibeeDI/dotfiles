@@ -397,13 +397,6 @@ NeoBundleLazy 'taichouchou2/unite-reek', {
 "}}}
 
 " -- Lisp {{{
-" enable use slime on vim
-" カッコいい言語のカッコをレインボーにする
-" g:lisp_rainbowでもいいような……
-NeoBundleLazy 'kien/rainbow_parentheses.vim', {
-    \ "autoload" : {
-    \   "filetypes" : ["scheme", "lisp"] }
-    \}
 "}}}
 " -- Haskell {{{
 NeoBundleLazy 'dag/vim2hs', {
@@ -505,6 +498,14 @@ NeoBundle 'sudo.vim'
 NeoBundle 'kana/vim-metarw'
 "NeoBundle 'Lokaltog/vim-powerline'
 NeoBundle 't9md/vim-quickhl'
+
+" enable use slime on vim
+" カッコいい言語のカッコをレインボーにする
+" g:lisp_rainbowでもいいような……
+NeoBundleLazy 'kien/rainbow_parentheses.vim', {
+    \ "autoload" : {
+    \   "filetypes" : ["scheme", "lisp", "cpp", "haxe", "javascript", "clojure", "scala"] }
+    \}
 
 NeoBundleLazy 'mattn/gist-vim', {
     \ 'autoload' : {
@@ -1356,7 +1357,7 @@ endif
 " Enable snipMate compatibility feature.
 let g:neosnippet#enable_snipmate_compatibility = 1
 " tell neosnippet about my snippets
-let g:neosnippet#snippets_directory = '~/.vim/snippets,'.s:BUNDLEPATH.'/vim-snippets/snippets,'.s:BUNDLEPATH.'/vaxe/ultisnips'
+let g:neosnippet#snippets_directory = '~/.vim/snippets,'.s:BUNDLEPATH.'/vim-snippets/snippets'
 
 " plugin key-mappings.
 imap <C-k> <Plug>(neosnippet_expand_or_jump)
@@ -1396,8 +1397,8 @@ endfunction
 unlet bundle
 "}}}
 " vaxe(haXe's omnicompletion plugin) {{{
-autocmd MyAutoCmd FileType haxe
-      \ setl autowrite
+"autocmd MyAutoCmd FileType haxe  # move $HOME/.vim/after/ftplugin/haxe.vim
+"      \ setl autowrite
 autocmd MyAutoCmd FileType hxml
       \ setl autowrite
 autocmd MyAutoCmd FileType nmml.xml
@@ -1676,6 +1677,8 @@ let g:rbpt_colorpairs = [
     \ ]
 let g:rbpt_max = 15
 let g:rbpt_loadcmd_toggle = 0
+" ハイライトを切り替えるキーマップ
+nnoremap <silent> [Show]rr :RainbowParenthesesToggle<CR>
 
 "--- procとか ---  {{{
 "そろそろ限界…今後はOSごとに別ファイルでやったほうがよいかも
@@ -1836,8 +1839,7 @@ function! s:def_smartchar()
     inoremap <buffer> <expr> = smartchr#one_of(' = ', ' == ', '=')
     inoremap <buffer> <expr> + smartchr#loop(' + ', '+')
     inoremap <buffer> <expr> - smartchr#loop(' - ', '-')
-    inoremap <buffer> <expr> - smartchr#loop(' * ', '*')
-    inoremap <buffer> <expr> . smartchr#one_of('.', ' -> ', '.')
+    inoremap <buffer> <expr> * smartchr#loop(' * ', '*')
   endif
 
 endfunction
@@ -1971,6 +1973,12 @@ call smartinput#define_rule({
 \   'char': '%',
 \   'input': '',
 \   'filetype': ['eruby'],
+\ })
+
+call smartinput#define_rule({
+\   'at': '\s\%#=\s',
+\   'char': '<BS>',
+\   'input': '<BS><Right><Del><Left>',
 \ })
 
 "---- }}}
