@@ -497,6 +497,7 @@ NeoBundle 'ujihisa/unite-font', {'gui': 1}
 NeoBundle 'sudo.vim'
 NeoBundle 'kana/vim-metarw'
 "NeoBundle 'Lokaltog/vim-powerline'
+NeoBundle 'itchyny/lightline.vim'
 NeoBundle 't9md/vim-quickhl'
 
 " enable use slime on vim
@@ -636,6 +637,7 @@ set shiftround
 set shiftwidth=4 softtabstop=4
 " -----------
 
+" enable free point cursor when use block select mode
 set virtualedit=block
 " Display another buffer when current buffer isn't saved.
 set hidden
@@ -714,6 +716,8 @@ set foldenable
 set foldlevel=2
 
 set secure
+
+set display=uhex "表示出来ない文字は16進数で表示させる
 
 set list
 set listchars=tab:>-,trail:~
@@ -797,22 +801,22 @@ set titlestring=Vim:\ %f\ %h%r%m
 "" StatusLine ------------------- {{{
 " 2 -> always show statusline, 1 -> only twe windows is here, 0 -> None
 set laststatus=2
-"set statusline=
-let &statusline = ''
-let &statusline .= ' %F%m%r%h%w %y'
-let &statusline .= "%{'['.(&fenc!=''?&fenc:&enc).':'.&ff.']'}"
-let &statusline .= '%= [height-%l/%L : width-%c]  '
-
-highlight StatusLine
-            \ guifg=gray guibg=lightgoldenrod2 gui=NONE ctermbg=250 ctermfg=235 cterm=NONE
-
-" モードに応じて色を変える(現状Insert modeのみ)
-autocmd MyAutoCmd InsertEnter *
-            \ highlight StatusLine
-            \ guifg=black guibg=skyblue gui=NONE ctermbg=117 cterm=NONE
-autocmd MyAutoCmd InsertLeave *
-            \ highlight StatusLine
-            \ guifg=black guibg=lightgoldenrod2 gui=NONE ctermbg=250 ctermfg=235 cterm=NONE
+""set statusline=
+"let &statusline = ''
+"let &statusline .= ' %F%m%r%h%w %y'
+"let &statusline .= "%{'['.(&fenc!=''?&fenc:&enc).':'.&ff.']'}"
+"let &statusline .= '%= [height-%l/%L : width-%c]  '
+"
+"highlight StatusLine
+"            \ guifg=gray guibg=lightgoldenrod2 gui=NONE ctermbg=250 ctermfg=235 cterm=NONE
+"
+"" モードに応じて色を変える(現状Insert modeのみ)
+"autocmd MyAutoCmd InsertEnter *
+"            \ highlight StatusLine
+"            \ guifg=black guibg=skyblue gui=NONE ctermbg=117 cterm=NONE
+"autocmd MyAutoCmd InsertLeave *
+"            \ highlight StatusLine
+"            \ guifg=black guibg=lightgoldenrod2 gui=NONE ctermbg=250 ctermfg=235 cterm=NONE
 " ------ status line ----}}}
 
 " tabline {{{
@@ -2015,6 +2019,22 @@ let g:Tlist_Exit_OnlyWindow = 1
 "現在編集中のソースのタグしか表示しない
 let g:Tlist_Show_One_File = 1
 nnoremap [Show]t  :<C-u>Tlist<CR>
+"}}}
+
+" --- lightline -- {{{
+let g:lightline = {
+\   'component': {
+\     'virtualenv': '%{&filetype=="python"?"":virtualenv#statusline()}',
+\     'readonly': '%{&readonly?"ro":""}',
+\   },
+\   'separator': {'left': '', 'right': '' },
+\   'subseparator': {'left': '|', 'right': '|'},
+\   'active': {
+\     'left': [
+\           ['mode', 'paste'], ['readonly', 'filename', 'modified']],
+\     'right': [['lineinfo' ], ['percent'], ['fileformat', 'fileencoding', 'filetype'], ['virtualenv']],
+\   },
+\ }
 "}}}
 
 
