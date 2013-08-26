@@ -223,6 +223,11 @@ NeoBundleLazy 'kana/vim-smarttill', { 'autoload' : {
       \ 'mappings' : [
       \   '<Plug>(smarttill-t)', '<Plug>(smarttill-T)']
       \ }}
+
+NeoBundleLazy 'taku-o/vim-toggle', {
+\   'autoload': {
+\     'mappings': ['<Plug>ToggleI', '<Plug>ToggleN', '<Plug>ToggleV']
+\   }}
 " }}}
 
 NeoBundle 'rhysd/accelerated-jk'
@@ -1652,7 +1657,8 @@ nnoremap [Show]w :<C-u>WatchdogsRunSilent<CR><Esc>
 "}}}
 
 " quickfixstatus ================ {{{
-
+":QuickfixStatusEnable -- turns on the feature globally
+":QuickfixStatusDisable -- turns off the feature globally
 " }}}
 
 " ----- slimv.vim --------
@@ -1995,6 +2001,34 @@ call smartinput#define_rule({
 \   'syntax': ['haxeSingleString'],
 \ })
 "---- }}}
+
+" toggle.vim {{{
+imap <silent>,t <Plug>ToggleI
+nmap <silent>,t <Plug>ToggleN
+vmap <silent>,t <Plug>ToggleV
+
+let g:toggle_pairs = {
+\   'and': 'or',
+\   'or': 'and',
+\   'elsif': 'else',
+\   'else': 'elsif',
+\   'it': 'specify',
+\   'specify': 'it',
+\   'describe': "context",
+\   'context': "describe",
+\   'true': 'false',
+\   'false': 'true',
+\   'yes': 'no',
+\   'no': 'yes',
+\   'on': 'off',
+\   'off': 'on',
+\   'public': 'protected',
+\   'protected': 'private',
+\   'private': 'public',
+\   '&&': '||',
+\   '||': '&&'
+\ }
+" }}}
 " --- text-obj-python ---- {{{
 " - af: a function
 " - if: inner function
