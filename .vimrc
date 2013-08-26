@@ -1873,12 +1873,19 @@ call smartinput#map_to_trigger('i', '<Plug>(smartinput_CR)',
       \                        '<Enter>',
       \                        "<C-o>:call neocomplete#smart_close_popup() . '\<Plug>(smartinput_CR)'<CR>")
 
+call smartinput#map_to_trigger('i', '<CR>', '<CR>', '<CR>')
+call smartinput#map_to_trigger('i', ':', ':', ':')
+call smartinput#map_to_trigger('i', '#', '#', '#')
+call smartinput#map_to_trigger('i', '<Bar>', '<Bar>', '<Bar>')
+call smartinput#map_to_trigger('i', '<', '<', '<')
+call smartinput#map_to_trigger('i', '>', '>', '>')
+call smartinput#map_to_trigger('i', '%', '%', '%')
+call smartinput#map_to_trigger('i', '$', '$', '$')
 " }}}
 " smartinputとsmartchrの連携tips
 "  -> [http://ac-mopp.blogspot.jp/2013/07/vim-smart-input.html]
 
 "" via: http://rhysd.hatenablog.com/entry/20121017/1350444269
-call smartinput#map_to_trigger('i', '<CR>', '<CR>', '<CR>')
 call smartinput#define_rule({
 \   'at': '\s\+\%#$',
 \   'char': '<CR>',
@@ -1908,7 +1915,6 @@ call smartinput#define_rule({
 \   'filetype' : ['python'],
 \   })
 
-call smartinput#map_to_trigger('i', ':', ':', ':')
 call smartinput#define_rule({
 \   'at'       : '^\s*\%(\<def\>\|\<if\>\|\<for\>\|\<while\>\|\<class\>\|\<with\>\)\s*\w\+.*\%#:$',
 \   'char'     : ':',
@@ -1925,7 +1931,6 @@ call smartinput#define_rule({
 " ---- }}}
 
 " its in examples in smartinput. insert #{} in a string literal.
-call smartinput#map_to_trigger('i', '#', '#', '#')
 call smartinput#define_rule({
 \   'at': '\%#',
 \   'char': '#',
@@ -1935,7 +1940,6 @@ call smartinput#define_rule({
 \ })
 
 " add bar(`|`) in smartinput definitions and define input rule.
-call smartinput#map_to_trigger('i', '<Bar>', '<Bar>', '<Bar>')
 call smartinput#define_rule({
 \   'at': '\%#',
 \   'char': '<Bar>',
@@ -1952,8 +1956,6 @@ call smartinput#define_rule({
 \ })
 
 " html and markdown like that -----
-call smartinput#map_to_trigger('i', '<', '<', '<')
-call smartinput#map_to_trigger('i', '>', '>', '>')
 call smartinput#define_rule({
 \   'at': '\%#',
 \   'char': '<',
@@ -1989,7 +1991,6 @@ call smartinput#define_rule({
 \ })
 
 " ERB
-call smartinput#map_to_trigger('i', '%', '%', '%')
 call smartinput#define_rule({
 \   'at': '<\%#',
 \   'char': '%',
@@ -2010,7 +2011,6 @@ call smartinput#define_rule({
 \ })
 
 " haxe
-call smartinput#map_to_trigger('i', '$', '$', '$')
 call smartinput#define_rule({
 \   'at': '\%#',
 \   'char': '$',
