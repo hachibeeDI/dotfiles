@@ -1836,6 +1836,9 @@ function! s:def_smartchar()
     "inoremap <buffer> <expr> < smartchr#loop(' < ', ' <= ')
     inoremap <buffer> <expr> + smartchr#loop(' + ', '+')
     inoremap <buffer> <expr> - smartchr#loop(' - ', '-')
+    inoremap <buffer> <expr> * smartchr#loop(' * ', '*')
+    inoremap <buffer> <expr> & smartchr#loop('&', ' and ')
+    inoremap <buffer> <expr> <Bar> smartchr#loop('\|', ' or ')
 
   elseif l:lang == 'javascript'
     inoremap <buffer> <expr> = smartchr#one_of(' = ', ' == ', ' === ', '=')
@@ -1857,6 +1860,7 @@ endfunction
 
 " --- smartinput --- {{{
 
+" --------------- trigger definitions ------------------{{{
 " 他プラグインへの<BS>や<CR>マッピング時に、smartinputの機能を含むソレを提供させる
 " via: http://qiita.com/todashuta@github/items/bdad8e28843bfb3cd8bf
 call smartinput#map_to_trigger('i', '<Plug>(smartinput_BS)',
@@ -1869,6 +1873,7 @@ call smartinput#map_to_trigger('i', '<Plug>(smartinput_CR)',
       \                        '<Enter>',
       \                        "<C-o>:call neocomplete#smart_close_popup() . '\<Plug>(smartinput_CR)'<CR>")
 
+" }}}
 " smartinputとsmartchrの連携tips
 "  -> [http://ac-mopp.blogspot.jp/2013/07/vim-smart-input.html]
 
@@ -1953,7 +1958,20 @@ call smartinput#define_rule({
 \   'at': '\%#',
 \   'char': '<',
 \   'input': '<><Left>',
-\   'filetype': ['xml', 'html', 'eruby', 'java', 'cpp', 'cs', 'haxe'],
+\   'filetype': ['xml', 'html', 'eruby'],
+\ })
+" 前が空白以外なら型パタメータ、空白なら演算子だと考えさせる
+call smartinput#define_rule({
+\   'at': '[^[:blank:]]\%#',
+\   'char': '<',
+\   'input': '<><Left>',
+\   'filetype': ['java', 'cpp', 'cs', 'haxe'],
+\ })
+call smartinput#define_rule({
+\   'at': '[:blank:]\%#',
+\   'char': '<',
+\   'input': "<C-R>=smartchr#one_of('< ', '<')<CR>",
+\   'filetype': ['java', 'cpp', 'cs', 'haxe'],
 \ })
 
 call smartinput#define_rule({
@@ -2003,7 +2021,7 @@ call smartinput#define_rule({
 "---- }}}
 
 " toggle.vim {{{
-imap <silent>,t <Plug>ToggleI
+"imap <silent>,t <Plug>ToggleI
 nmap <silent>,t <Plug>ToggleN
 vmap <silent>,t <Plug>ToggleV
 
