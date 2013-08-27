@@ -1,0 +1,11 @@
+# follow the locale time
+set show-date = local
+
+# disable git GC and bind to move last line
+bind generic G move-last-line
+
+# vim like cursor move
+bind diff l scroll-right
+bind diff h scroll-left%
+
+bind diff ; view-next
