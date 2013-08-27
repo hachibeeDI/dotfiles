@@ -9,9 +9,20 @@ map <silent> gW :macaction selectPreviousWindow:
 nnoremap + :set transparency+=5<CR>
 nnoremap - :set transparency-=5<CR>
 
-set guioptions=C
-" add register text on OS's clip boald
-set guioptions+=a
+" M: disable menu.vim
+" a: add register text on OS's clip boald
+" c: use cmdline when intaractive answer
+set guioptions=Mac
+"set guioptions-=m "disable menu
+"set guioptions-=T "disable toolbar
+"" disable right side scroll bar
+"set guioptions-=r
+"set guioptions-=R
+"" disable right side scroll bar
+"set guioptions-=l
+"set guioptions-=L
+"" disable horizontal scroll bar
+"set guioptions-=b
 
 if has('mac')
   colorscheme desertEx

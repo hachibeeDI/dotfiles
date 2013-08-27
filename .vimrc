@@ -579,10 +579,6 @@ if has('kaoriya')
     "let plugin_verifyenc_disable = 1
 endif
 
-" Disable menu.vim
-if has('gui_running')
-  set guioptions=Mc
-endif
 " Disable GetLatestVimPlugin.vim
 let g:loaded_getscriptPlugin = 1
 " Disable netrw
