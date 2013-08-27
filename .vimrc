@@ -151,12 +151,12 @@ call neobundle#config('tsukkee/unite-tag', {
       \ 'autoload' : {
       \   'unite_sources' : 'tag'},
       \ })
-" uniteあるじゃん感
-NeoBundleLazy 'taglist.vim', {
+NeoBundleLazy 'majutsushi/tagbar', {
 \ 'autoload' : {
-\   'commands' : ["Tlist"],
+\   'commands' : ["TagbarToggle"],
 \ }
 \}
+
 
 NeoBundle 'osyo-manga/unite-quickfix'
 call neobundle#config('unite-quickfix', {
@@ -2013,13 +2013,13 @@ call smartinput#define_rule({
 \   'input': '<BS><Right><Del><Left>',
 \ })
 
-" haxe
+" haxe 何故かうごかねえ
 call smartinput#define_rule({
 \   'at': '\%#',
 \   'char': '$',
 \   'input': '${}<Left>',
 \   'filetype': ['haxe'],
-\   'syntax': ['haxeSingleString'],
+\   'syntax': ['haxeSString'],
 \ })
 "---- }}}
 
@@ -2068,12 +2068,8 @@ omap iF <Plug>(textobj-python-function-i)
 " --- gist-vim -----{{{
 let g:gist_use_password_in_gitconfig = 1
 "}}}
-" --- taglist --- {{{
-"taglist が最後のウインドウなら vim を閉じる
-let g:Tlist_Exit_OnlyWindow = 1
-"現在編集中のソースのタグしか表示しない
-let g:Tlist_Show_One_File = 1
-nnoremap [Show]t  :<C-u>Tlist<CR>
+" --- Tagbar --- {{{
+nnoremap [Show]t  :<C-u>TagbarToggle<CR>
 "}}}
 
 " --- lightline -- {{{
