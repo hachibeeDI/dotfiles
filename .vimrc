@@ -863,7 +863,11 @@ function! s:tabpage_label(n)
   let fname = pathshorten(bufname(selected_buffer))
   let label = bufcount . is_modified . spacer . fname
 
-  return hightlight_start . a:n . ':< ' . '%' . a:n . 'T' . label . '%T%#TabLineFill#'
+  if &ft == 'unite'
+    return hightlight_start . a:n . ':[unite] ' . unite#get_status_string() . '%T%#TabLineFill#'
+  else
+    return hightlight_start . a:n . ':< ' . '%' . a:n . 'T' . label . '%T%#TabLineFill#'
+  endif
 endfunction
 
 function! MakeTabLine()
