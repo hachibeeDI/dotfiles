@@ -849,22 +849,21 @@ function! s:tabpage_label(n)
   "タブページ内のバッファのリスト
   let bufnrs = tabpagebuflist(a:n)
   " カレントかどうかをハイライトで区別する
-  let hi = a:n is tabpagenr() ? '%#TabLineSel#' : '%#TabLine#'
-  "" バッファが複数あればバッファ数を表示
+  let hightlight_start = a:n is tabpagenr() ? '%#TabLineSel#' : '%#TabLine#'
+  "" バッファが複数あればバッファ数を表示 # とりあえず今は表示しない
   "let no = len(bufnrs)
   "if no is 1
     let bufcount = ''
   "endif
-  " modifiedマークをつける
-  let ismod = len(filter(copy(bufnrs), 'getbufvar(v:val, "&modified")')) ? '[+]' : ''
-  let sp  =  (bufcount . ismod)  ==# '' ? '' : ' '  " 隙間
+  let is_modified = len(filter(copy(bufnrs), 'getbufvar(v:val, "&modified")')) ? '[+]' : ''
+  let spacer = (bufcount . is_modified)  ==# '' ? '' : ' '  " 隙間
 " カレントバッファ
-  let curbufnr  =  bufnrs[tabpagewinnr(a:n) - 1]  " tabpagewinnr() は 1
+  let selected_buffer  =  bufnrs[tabpagewinnr(a:n) - 1]  " tabpagewinnr: number of tabpage, which is current
 "   origin
-  let fname  =  pathshorten(bufname(curbufnr))
-  let label = bufcount . ismod . sp . fname
+  let fname = pathshorten(bufname(selected_buffer))
+  let label = bufcount . is_modified . spacer . fname
 
-  return hi . a:n . ':< ' . '%' . a:n . 'T' . label . '%T%#TabLineFill#'
+  return hightlight_start . a:n . ':< ' . '%' . a:n . 'T' . label . '%T%#TabLineFill#'
 endfunction
 
 function! MakeTabLine()
@@ -2022,8 +2021,8 @@ call smartinput#define_rule({
 
 " toggle.vim {{{
 "imap <silent>,t <Plug>ToggleI
-nmap <silent>,t <Plug>ToggleN
-vmap <silent>,t <Plug>ToggleV
+nmap <silent> ,t <Plug>ToggleN
+vmap <silent> ,t <Plug>ToggleV
 
 let g:toggle_pairs = {
 \   'and': 'or',
