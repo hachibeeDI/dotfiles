@@ -2074,14 +2074,55 @@ let g:lightline = {
 \     'virtualenv': '%{&filetype=="python"?"":virtualenv#statusline()}',
 \     'readonly': '%{&readonly?"ro":""}',
 \   },
+\   'component_function': {
+\     'fugitive': 'MyFugitive',
+\     'filename': 'MyFilename',
+\     'vaxe': 'MyVaxe',
+\   },
 \   'separator': {'left': '', 'right': '' },
 \   'subseparator': {'left': '|', 'right': '|'},
 \   'active': {
 \     'left': [
-\           ['mode', 'paste'], ['readonly', 'filename', 'modified']],
-\     'right': [['lineinfo' ], ['percent'], ['fileformat', 'fileencoding', 'filetype'], ['virtualenv']],
+\           ['mode', 'paste'], ['readonly', 'filename', 'modified'], ['vaxe', 'virtualenv']],
+\     'right': [['lineinfo' ], ['percent'], ['fileformat', 'fileencoding', 'filetype']],
 \   },
 \ }
+
+function! MyModified()
+  return &ft =~ 'help\|vimfiler\|gundo' ? '' : &modified ? '+' : &modifiable ? '' : '-'
+endfunction
+
+function! MyReadonly()
+  return &ft !~? 'help\|vimfiler\|gundo' && &ro ? '⭤' : ''
+endfunction
+
+function! MyFilename()
+  return ('' != MyReadonly() ? MyReadonly() . ' ' : '') .
+        \ (&ft == 'vimfiler' ? vimfiler#get_status_string() :
+        \  &ft == 'unite' ? unite#get_status_string() :
+        \  &ft == 'vimshell' ? substitute(b:vimshell.current_dir,expand('~'),'~','') :
+        \ '' != expand('%:t') ? expand('%:t') : '[No Name]') .
+        \ ('' != MyModified() ? ' ' . MyModified() : '')
+endfunction
+
+function! MyFugitive()
+  try
+    if &ft !~? 'vimfiler\|gundo' && exists('*fugitive#head')
+      let _ = fugitive#head()
+      return strlen(_) ? '⭠ '._ : ''
+    endif
+  catch
+  endtry
+  return ''
+endfunction
+
+function! MyVaxe()
+  if &ft == 'haxe'
+    return pathshorten(fnamemodify(vaxe#CurrentBuild(), ':p:.')) . ' [' . vaxe#CurrentBuildPlatform() . ']'
+  else
+    return ''
+  endif
+endfunction
 "}}}
 
 
