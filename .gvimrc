@@ -53,6 +53,8 @@ elseif has('unix')
     set background=dark
 endif
 
+" フォントによってはambiwidthが勝手に解除されたりするのでもっかいセットする
+set ambiwidth=double
 
 set antialias
 "}}}
