@@ -16,8 +16,8 @@ autoload zmv
 alias zmv='noglob zmv -W'
 ## call version check function
 autoload -Uz is-at-least
-# zsh editor
-autoload zed
+## zsh editor
+#autoload zed
 # prediction Completion
 autoload predict-on
 # predict-off
@@ -73,6 +73,7 @@ zstyle ':completion:*' verbose yes
 # 補完リストをグループ分けする
 zstyle ':completion:*' group-name ''
 zstyle ':completion:*:default' menu select=2
+zstyle ':completion:*:warnings' format 'No matches for: %d'
 ## via cdd formaat
 zstyle ':completion:*:descriptions' format '%BCompleting%b %F{yellow}%U%d%u'
 zstyle ':completion:*' list-separator '-->'
@@ -82,6 +83,9 @@ zstyle ':completion:*' ignore-parents parent pwd ..
 ### }}}
 
 ### Set shell options{{{
+# カレントディレクトリにサブディレクトリが見つからない場合にcdが検索する場所
+cdpath=($HOME)
+
 setopt no_beep
 
 setopt auto_menu
@@ -89,9 +93,9 @@ setopt auto_list
 
 #glob展開の拡張(正規表現ライクな記法が使えるようになる)
 setopt extended_glob
+# 補完候補リストを出来るだけコンパクトに表示する
 setopt list_packed
 setopt list_types
-setopt noautoremoveslash
 # =以降も補完する(--prefix=/usrなど)
 setopt magic_equal_subst
 setopt print_eight_bit
@@ -99,7 +103,6 @@ setopt auto_cd
 # stack cd history
 setopt auto_pushd
 setopt pushd_ignore_dups
-setopt NO_hup
 setopt ignore_eof
 # 明確に.指定なしで.から始まるファイル名を補完
 setopt globdots
@@ -113,15 +116,33 @@ setopt promptcr
 # setopt print_exit_value
 # 該当するブレース{}展開が存在しない場合、ascii順にソートして展開する
 setopt brace_ccl
-setopt complete_aliases
+## 補完実行時にエイリアスを展開せずにそのままのコマンドとしてエイリアスを扱う
+#setopt complete_aliases # あると g で git が補完されなかったりしてうっとおしいだけなので無効
 # ファイル名の補完時、ディレクトリにマッチしたら/を付与
 setopt mark_dirs
 # カッコの対応なども補完
 setopt auto_param_keys
 # correct slash of a end of name of dir
 setopt auto_param_slash
+# パスの最後の/を削除しない(勝手に削除されると困るケースもあるので)
+setopt noautoremoveslash
 # ファイル名一覧を順次表示
 setopt always_last_prompt
+# 補完候補リストが垂直ではなく水平方向に並ぶようになる
+setopt list_rows_first
+## 曖昧マッチよりも正確さを優先する？
+#setopt rec_exact
+## スペルミスを指摘して正しいと思われるコマンドを出してくれる
+#setopt correct
+#setopt no_correctall
+# バックグラウンドジョブのスピードを落とさない
+setopt no_bg_nice
+# ログアウトしてもバックグランドジョブを止めない
+setopt no_hup
+# ジョブが終了したらただちに知らせる
+setopt notify
+# rm * を実行する前に確認
+setopt rm_star_wait
 
 # }}}
 
