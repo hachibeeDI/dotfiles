@@ -1882,8 +1882,8 @@ function! s:def_smartchar()
     inoremap <buffer> <expr> + smartchr#loop(' + ', '+')
     inoremap <buffer> <expr> - smartchr#loop(' - ', '-')
     inoremap <buffer> <expr> * smartchr#loop(' * ', '*')
-  endif
 
+  endif
 endfunction
 "  }}}
 
@@ -1909,10 +1909,14 @@ call smartinput#map_to_trigger('i', '<Bar>', '<Bar>', '<Bar>')
 call smartinput#map_to_trigger('i', '<', '<', '<')
 call smartinput#map_to_trigger('i', '>', '>', '>')
 call smartinput#map_to_trigger('i', '%', '%', '%')
-call smartinput#map_to_trigger('i', '$', '$', '$')
+call smartinput#map_to_trigger('i', '$', '\$', '\$')
 " }}}
 " smartinputとsmartchrの連携tips
 "  -> [http://ac-mopp.blogspot.jp/2013/07/vim-smart-input.html]
+
+"     Note: that only "wide" syntax items are effective.  In other words,
+"     syntax items which is linked to another is not effective, and they
+"     will never be matched.  For example:
 
 "" via: http://rhysd.hatenablog.com/entry/20121017/1350444269
 call smartinput#define_rule({
@@ -2039,13 +2043,22 @@ call smartinput#define_rule({
 \   'input': '<BS><Right><Del><Left>',
 \ })
 
-" haxe 何故かうごかねえ
+" haxe
+" synIDattr(synID(line('.'), col('.'), 0), 'name') == 'haxeSString' ? '${}<Left>' : '$' みたいにしたい
 call smartinput#define_rule({
 \   'at': '\%#',
 \   'char': '$',
 \   'input': '${}<Left>',
 \   'filetype': ['haxe'],
-\   'syntax': ['haxeSString'],
+\   'syntax': ['Constant'],
+\ })
+" ダブルコーテーションの時はsmartしないように(応急処置)
+call smartinput#define_rule({
+\   'at': '\".*\%#',
+\   'char': '$',
+\   'input': '$',
+\   'filetype': ['haxe'],
+\   'syntax': ['Constant'],
 \ })
 "---- }}}
 
