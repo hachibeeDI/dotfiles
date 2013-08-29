@@ -132,9 +132,9 @@ setopt always_last_prompt
 setopt list_rows_first
 ## 曖昧マッチよりも正確さを優先する？
 #setopt rec_exact
-## スペルミスを指摘して正しいと思われるコマンドを出してくれる
-#setopt correct
-#setopt no_correctall
+# スペルミスを指摘して正しいと思われるコマンドを出してくれる 設定しない
+setopt no_correct
+setopt no_correctall
 # バックグラウンドジョブのスピードを落とさない
 setopt no_bg_nice
 # ログアウトしてもバックグランドジョブを止めない
