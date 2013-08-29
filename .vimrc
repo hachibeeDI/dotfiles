@@ -622,6 +622,10 @@ endif
 if has('multi_byte_ime')
   set iminsert=0 imsearch=0
 endif
+
+if exists('+macmeta')
+  set macmeta
+endif
 " }}}
 
 "
@@ -1084,6 +1088,11 @@ nnoremap <expr><silent> T '?\V'.<SID>getchar_safe().'\v\zs.'."\<CR>:nohlsearch\<
 
 nnoremap <C-j> *
 nnoremap <C-k> #
+
+" preview error line in quickfix
+nnoremap <M-p> :<C-u>cp<CR>
+" next error line in quickfix
+nnoremap <M-n> :<C-u>cn<CR>
 
 command!
 \  -nargs=1
