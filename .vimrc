@@ -930,6 +930,18 @@ nnoremap [Show]hs  :<C-u>HierStart<CR>
 nnoremap [Show]hp  :<C-u>HierStop<CR>
 nnoremap [Show]hu  :<C-u>HierUpdate<CR>
 
+" vim Hack: http://vim-users.jp/2010/07/hack159/ {{{
+nnoremap <SID>(split-to-j) :<C-u>execute 'belowright' (v:count == 0 ? '' : v:count) 'split'<CR>
+nnoremap <SID>(split-to-k) :<C-u>execute 'aboveleft'  (v:count == 0 ? '' : v:count) 'split'<CR>
+nnoremap <SID>(split-to-h) :<C-u>execute 'topleft'    (v:count == 0 ? '' : v:count) 'vsplit'<CR>
+nnoremap <SID>(split-to-l) :<C-u>execute 'botright'   (v:count == 0 ? '' : v:count) 'vsplit'<CR>
+
+nmap spj <SID>(split-to-j)
+nmap spk <SID>(split-to-k)
+nmap sph <SID>(split-to-h)
+nmap spl <SID>(split-to-l)
+" }}}
+
 nnoremap <Esc><Esc> :<C-u>nohlsearch <Bar> cclose<CR><Esc>
 "
 set spelllang=en_us
