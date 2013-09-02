@@ -1430,15 +1430,15 @@ function! bundle.hooks.on_source(bundle)
   " neocomplcacheとコンフリクトを起こすので無効にしておく
   let g:jedi#popup_on_dot = 0
   let g:jedi#popup_select_first = 0
-  let g:jedi#show_function_definition = "1"
+  let g:jedi#show_call_signatures = "1"
 
   " command mappings
-  let g:jedi#goto_command = "<leader>g"
-  let g:jedi#get_definition_command = "<leader>d"
-  let g:jedi#pydoc = "K"
+  let g:jedi#goto_assignments_command = "<leader>g"
+  let g:jedi#goto_definitions_command = "<leader>d"
+  let g:jedi#documentation_command = "K"
   let g:jedi#rename_command = "<leader>r"
-  let g:jedi#related_names_command = "<leader>n"
-  let g:jedi#autocompletion_command = "<C-Space>"
+  let g:jedi#usages_command = "<leader>n"
+  let g:jedi#completions_command = "<C-Space>"
 endfunction
 
 unlet bundle
