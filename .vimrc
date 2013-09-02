@@ -432,17 +432,18 @@ NeoBundleLazy 'ujihisa/unite-haskellimport', {
 " }}}
 " -- VB.NET {{{
 NeoBundleLazy 'hachibeeDI/vim-vbnet', {
-    \"autoload" : {
-    \   "filetypes" : ["vbnet"],
-    \   }
-    \}
+\"autoload" : {
+\   "filetypes" : ["vbnet"],
+\   }
+\}
 " }}}
 " -- markup {{{
-NeoBundleLazy 'mattn/zencoding-vim', {
+NeoBundleLazy 'mattn/emmet-vim', {
 \ "autoload" : {
 \   "filetypes" : ["html", "xhtml", "htmldjango", "play2-html",  "eruby"],
 \ }
 \}
+
 NeoBundleLazy 'othree/html5.vim', {
 \ "autoload" : {
 \   "filetypes" : ["html", "xhtml", "htmldjango", "play2-html",  "eruby"],
@@ -1004,8 +1005,10 @@ nnoremap <Right> <C-w><
 " Ctrl + C は、`insert modeの強制終了`なので微妙に挙動がかわる。うざいので置き換える
 inoremap <C-c> <Esc>
 
-nnoremap 0 ^
-nnoremap _ 0
+" 行頭と空白抜きの先頭をトグルする
+nnoremap <expr> 0
+\         col('.') == 1 ? '^' : '0'
+"nnoremap _ 0
 onoremap 0 ^
 onoremap _ 0
 
@@ -1385,9 +1388,6 @@ endif
 let g:clang_user_options = '-std=c++11'
 " }}}
 
-"zencoding連携
-let g:use_zen_complete_tag = 1
-
 "キャッシュディレクトリの場所を指定
 if s:exist_ramdisk
     let g:neocomplcache_temporary_dir = '/Volumes/RamDisk/.neocon'
@@ -1469,6 +1469,10 @@ let g:haskell_conceal_wide = 1
 let g:haskell_hsp = 0
 " }}}
 " }}}
+
+" emmet-vim {{{
+let g:use_emmet_complete_tag = 1
+"}}}
 
 " vim-indentguides ------------{{{
 let g:indent_guides_enable_on_vim_startup=1
