@@ -114,9 +114,10 @@ NeoBundle 'dannyob/quickfixstatus'
 
 
 NeoBundleLazy 'kien/ctrlp.vim', {
-    \ 'autoload' : {
-    \   'insert' : 1,
-    \ }}
+\ 'autoload' : {
+\   'commands' : ["CtrlP"],
+\ }}
+nnoremap <C-P> :<C-u>CtrlP<CR>
 
 "Unite
 NeoBundle 'Shougo/unite.vim' ", {
