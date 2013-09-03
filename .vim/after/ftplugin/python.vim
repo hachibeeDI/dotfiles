@@ -10,4 +10,4 @@ let python_highlight_all = 1
 
 inoremap <expr> \ smartchr#loop('\', 'lambda ')
 
-setlocal omnifunc=jedi#complete
+setlocal omnifunc=jedi#completions
