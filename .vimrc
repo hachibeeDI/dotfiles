@@ -1883,7 +1883,7 @@ function! s:def_smartchar()
 
   " NOTE: 辞書とかを駆使した方が高速かな？
   if l:lang == 'ruby'
-    inoremap <buffer> <expr> : smartchr#loop(': ', '::', ':')
+    "inoremap <buffer> <expr> : smartchr#loop(': ', '::', ':')
     inoremap <buffer> <expr> = smartchr#one_of(' = ', ' == ', '=')
 
   elseif l:lang == 'python'
