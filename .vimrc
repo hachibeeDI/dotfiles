@@ -759,7 +759,20 @@ autocmd MyAutoCmd WinEnter * setlocal cursorline
 autocmd MyAutoCmd WinLeave * setlocal nocursorline
 
 " 各コマンド後の結果をquickfixへ出力させる
-autocmd MyAutoCmd  QuickfixCmdPost make,grep,grepadd,vimgrep copen
+autocmd MyAutoCmd QuickfixCmdPost make,grep,grepadd,vimgrep copen
+autocmd MyAutoCmd QuickfixCmdPost make call <SID>auto_ccl()
+"autocmd MyAutoCmd BufNew call <SID>auto_ccl()
+function! s:auto_ccl()
+  if &ft != 'qf'
+    return
+  endif
+
+  " リストが空ならそのまま閉じる
+  if getqflist() == []
+    :cclose
+  endif
+endfunction
+
 
 set background=dark
 "colorscheme solarized
@@ -1428,6 +1441,7 @@ function! bundle.hooks.on_source(bundle)
 
   let g:jedi#use_tabs_not_buffers = 1
   " neocomplcacheとコンフリクトを起こすので無効にしておく
+  let g:jedi#completions_enabled = 0
   let g:jedi#popup_on_dot = 0
   let g:jedi#popup_select_first = 0
   let g:jedi#show_call_signatures = "1"
