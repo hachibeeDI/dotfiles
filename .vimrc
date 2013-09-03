@@ -183,10 +183,10 @@ NeoBundle 'vim-jp/vital.vim'
 " ---------- utils for edit {{{
 " auto insert end after def scope,
 " in ruby, lua, sh, zsh and some languages ... ...
-NeoBundleLazy 'tpope/vim-endwise', {
-\   'autoload' : {
-\   "filetypes" : ["ruby", "lua", "sh", "zsh", "vb"],
-\   }}
+"NeoBundleLazy 'tpope/vim-endwise', {
+"\   'autoload' : {
+"\   "filetypes" : ["ruby", "lua", "sh", "zsh", "vb"],
+"\   }}
 "NeoBundle 'tpope/vim-surround'
 " forked version : http://www.sopht.jp/blog/index.php?/archives/450-surrounding.html
 NeoBundle 'anyakichi/vim-surround', {
@@ -759,9 +759,9 @@ autocmd MyAutoCmd WinEnter * setlocal cursorline
 autocmd MyAutoCmd WinLeave * setlocal nocursorline
 
 " 各コマンド後の結果をquickfixへ出力させる
-autocmd MyAutoCmd QuickfixCmdPost make,grep,grepadd,vimgrep copen
-autocmd MyAutoCmd QuickfixCmdPost make call <SID>auto_ccl()
-"autocmd MyAutoCmd BufNew call <SID>auto_ccl()
+autocmd QuickfixCmdPost make,grep,grepadd,vimgrep copen
+autocmd QuickfixCmdPost make call <SID>auto_ccl()
+
 function! s:auto_ccl()
   if &ft != 'qf'
     return
