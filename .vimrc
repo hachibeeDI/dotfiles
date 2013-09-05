@@ -367,6 +367,11 @@ NeoBundleLazy 'gre/play2vim', {
 " }}}
 
 " -- Ruby {{{
+NeoBundleLazy 'Shougo/neocomplcache-rsense.vim', {
+\ 'autoload' : {
+\   'filetypes': ['ruby', 'eruby']},
+\ }
+
 NeoBundleLazy 'ruby-matchit', {
 \ 'autoload' : {
 \   'filetypes': ['ruby', 'eruby', 'haml']},
@@ -1909,7 +1914,7 @@ function! s:def_smartchar()
     inoremap <buffer> <expr> = smartchr#one_of(' = ', ' == ', '=')
     inoremap <buffer> <expr> + smartchr#loop(' + ', '+')
     inoremap <buffer> <expr> - smartchr#loop(' - ', '-')
-    inoremap <buffer> <expr> * smartchr#loop(' * ', '*')
+    "inoremap <buffer> <expr> * smartchr#loop(' * ', '*')
 
   endif
 endfunction
@@ -1938,6 +1943,8 @@ call smartinput#map_to_trigger('i', '<', '<', '<')
 call smartinput#map_to_trigger('i', '>', '>', '>')
 call smartinput#map_to_trigger('i', '%', '%', '%')
 call smartinput#map_to_trigger('i', '$', '\$', '\$')
+call smartinput#map_to_trigger('i', '/', '/', '/')
+call smartinput#map_to_trigger('i', '*', '\*', '\*')
 " }}}
 " smartinputとsmartchrの連携tips
 "  -> [http://ac-mopp.blogspot.jp/2013/07/vim-smart-input.html]
@@ -1945,6 +1952,10 @@ call smartinput#map_to_trigger('i', '$', '\$', '\$')
 "     Note: that only "wide" syntax items are effective.  In other words,
 "     syntax items which is linked to another is not effective, and they
 "     will never be matched.  For example:
+" map(synstack(line('.'), col('.')), 'synIDattr(synIDtrans(v:val), "name")')
+" で得られるSyntax名のみ
+" TODO: synIDattr(synID(line('.'), col('.'), 0), 'name') ではだめなのかな
+
 
 "" via: http://rhysd.hatenablog.com/entry/20121017/1350444269
 call smartinput#define_rule({
@@ -2051,6 +2062,54 @@ call smartinput#define_rule({
 \   'filetype': ['xml', 'html', 'eruby', 'java', 'cpp', 'cs', 'haxe'],
 \ })
 
+" C系syntaxのcomment挿入のスマート {{{
+call smartinput#define_rule({
+\   'at': '/\%#',
+\   'char': '/',
+\   'input': '/<Space>',
+\   'filetype': ['java', 'cpp', 'cs', 'haxe'],
+\ })
+call smartinput#define_rule({
+\   'at': '// \%#',
+\   'char': '<BS>',
+\   'input': '<BS><BS>',
+\   'filetype': ['java', 'cpp', 'cs', 'haxe'],
+\ })
+" one lineコメント後も / 入力でmultiline化
+call smartinput#define_rule({
+\   'at': '// \%#',
+\   'char': '/',
+\   'input': '<BS><BS>*<Space><Space>*/<Left><Left><Left>',
+\   'filetype': ['java', 'cpp', 'cs', 'haxe'],
+\ })
+call smartinput#define_rule({
+\   'at': '/\%#',
+\   'char': '*',
+\   'input': '*<Space><Space>*/<Left><Left><Left>',
+\   'filetype': ['java', 'cpp', 'cs', 'haxe'],
+\ })
+call smartinput#define_rule({
+\   'at': '/\* \%# \*/',
+\   'char': '<BS>',
+\   'input': '<BS><BS><Del><Del><Del>',
+\   'filetype': ['java', 'cpp', 'cs', 'haxe'],
+\ })
+" javadocっぽい感じに展開してくれる
+call smartinput#define_rule({
+\   'at': '/\* \%# \*/',
+\   'char': '<CR>',
+\   'input': '<Del><BS>*<CR><Space>*<CR><Up><End><Space>',
+\   'filetype': ['java', 'cpp', 'cs', 'haxe'],
+\ })
+" multiline commentの中では改行ごとに頭に*をつけてくれる
+call smartinput#define_rule({
+\   'at': '^\s*\*\s\+.*\%#$',
+\   'char': '<CR>',
+\   'input': '<CR>*<Space>',
+\   'filetype': ['java', 'cpp', 'cs', 'haxe'],
+\   'syntax': ['Comment'],
+\ })
+" }}}
 " ERB
 call smartinput#define_rule({
 \   'at': '<\%#',
