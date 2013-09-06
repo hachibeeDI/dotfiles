@@ -1032,6 +1032,7 @@ onoremap _ 0
 nmap j <Plug>(accelerated_jk_gj)
 nmap k <Plug>(accelerated_jk_gk)
 
+nnoremap <silent> <C-m> :<C-u>make<CR>
 "}}}
 
 " ---- insert mode ---- {{{
@@ -1315,7 +1316,8 @@ function! bundle.hooks.on_source(bundle)
   imap <expr><BS> neocomplete#smart_close_popup()."\<Plug>(smartinput_C-h)"
 
   inoremap <expr><C-y>  neocomplete#close_popup()
-  inoremap <expr><C-e>  neocomplete#cancel_popup()
+  "inoremap <expr><C-e>  neocomplete#cancel_popup()
+
   " Close popup by <Space>.
   "inoremap <expr><Space> pumvisible() ? neocomplete#close_popup() : "\<Space>"
 
