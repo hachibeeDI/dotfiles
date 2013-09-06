@@ -1,8 +1,80 @@
-snippet class
-	class `expand('%:t:r')` {
 
-		public function new(${1}) {
-			${2://initialize variables}
-		}
+snippet switch
+        switch (${1}) {
+            case ${2}: ${3}
+        }
 
-	}
+snippet case
+        case ${1}: ${2}
+
+snippet try
+        try {
+            ${1}
+        } catch(e: ${2}) {
+          ${3:// Ignore any errors.}
+        }
+
+snippet for
+        for (${1:var} in ${2:itr}) {
+            ${3}
+        }
+
+snippet class HAXE
+        class `expand('%:t:r')` {
+
+            public function new(${1}) {
+                ${2://initialize variables}
+            }
+        }
+
+snippet main
+        public static function main() {
+            ${1:trace("hello world");}
+        }
+
+snippet new
+        public function new(${1:arg}) {
+            ${1:super();}
+        }
+
+snippet lambda
+        function(${1:arg}) {
+            ${2}
+        }
+
+snippet fu function
+        function ${1:name}(${2:arg}) {
+            ${3}
+        }
+
+snippet trace
+        trace(${1});
+
+snippet desc function
+        trace(${1} + " is the value for $1");
+
+snippet cast
+        cast(${1:cast_this}, ${2:type})
+
+snippet interface
+        interface ${1:name}${2: implements this}${3:, implements other}{
+                ${4}
+        }
+
+snippet #if
+        #if js, php, cpp, flash
+        ${1}
+        #end{2}
+
+snippet typedef
+        typedef ${1}${2:<T>} = {
+                var ${3}:$2;
+        }${4}
+
+snippet untyped
+        untyped { ${1} } ${2}
+
+snippet enum
+        enum ${1:Name} {
+                ${2:Construct}
+        }
