@@ -1062,6 +1062,8 @@ vnoremap ( t(
 
 onoremap _ t_
 vnoremap _ t_
+onoremap , t,
+vnoremap , t,
 
 if has('path_extra')
     set tags& tags+=.tags,tags
@@ -1256,11 +1258,11 @@ command! Eucjp edit ++enc=euc-jp
 "Note: This option must set it in .vimrc(_vimrc).  NOT IN .gvimrc(_gvimrc)!
 " Disable AutoComplPop.
 let g:acp_enableAtStartup = 0
-" Use neocomplete.
-let g:neocomplete#enable_at_startup = 1
 
 let bundle = neobundle#get('neocomplete.vim')
 function! bundle.hooks.on_source(bundle)
+  " Use neocomplete.
+  let g:neocomplete#enable_at_startup = 1
 
   " Use smartcase.
   let g:neocomplete#enable_smart_case = 1
@@ -1371,23 +1373,6 @@ function! bundle.hooks.on_source(bundle)
 
   " customize sort complete candiates
   "call neocomplete#custom#source('_', 'sorters', ['sorter_length'])
-
-  " in text-mode, neocomplete will complete and conversion words in English. {{{
-  if !exists('g:neocomplete#text_mode_filetypes')
-    let g:neocomplete#text_mode_filetypes = {}
-  endif
-  let g:neocomplete#text_mode_filetypes = {
-  \ 'rst': 1,
-  \ 'markdown': 1,
-  \ 'gitrebase': 1,
-  \ 'gitcommit': 1,
-  \ 'vcs-commit': 1,
-  \ 'hybrid': 1,
-  \ 'text': 1,
-  \ 'help': 1,
-  \ 'tex': 1,
-  \ }
-  "  }}}
   "}}}
 endfunction
 unlet bundle
@@ -2010,13 +1995,20 @@ call smartinput#define_rule({
 \   'syntax': ['Constant', 'Special'],
 \ })
 
-" add bar(`|`) in smartinput definitions and define input rule.
+" add bar(`|`) in smartinput definitions and define input rule. {{{
 call smartinput#define_rule({
 \   'at': '\%#',
 \   'char': '<Bar>',
 \   'input': '<Bar><Bar><Left>',
 \   'filetype': ['ruby'],
 \ })
+call smartinput#define_rule({
+\   'at': '|\%#|',
+\   'char': '<BS>',
+\   'input': '<BS><Del>',
+\   'filetype': ['ruby'],
+\ })
+"}}}
 
 " insert <bar> on both side of block argsments.
 call smartinput#define_rule({
