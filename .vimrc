@@ -669,8 +669,12 @@ set mouse=a
 set wildmenu
 " show completion menu in command mode
 set wildmode=list:full
-" A list of file patterns is ignored when expanding
-set wildignore=*.o,*.obj,*.pyc
+" -- wildignore -- A list of file patterns is ignored when expanding {{{
+set wildignore=*.o,*.obj,*.pyc,*.so,*.dll
+" Excluding version control directories
+set wildignore+=*/.git/*,*/.hg/*,*/.svn/*        " Linux/MacOSX
+"set wildignore+=*\\.git\\*,*\\.hg\\*,*\\.svn\\*  " Windows ('noshellslash')
+"}}}
 set completeopt=menuone,preview
 " Don't complete from other buffer.
 set complete=.
@@ -1511,6 +1515,32 @@ nmap <silent> <Leader>ig <Plug>IndentGuidesToggle
 " ctrlP ------------------------ {{{
 let g:ctrlp_map = '<c-p>'
 let g:ctrlp_cmd = 'CtrlP'
+let g:ctrlp_use_caching = 1
+let g:ctrlp_clear_cache_on_exit = 1
+"let g:ctrlp_cache_dir = $HOME.'/.cache/ctrlp'
+
+let g:ctrlp_custom_ignore = {
+\   'dir':  '\v[\/]\.(git|hg|svn)$',
+\   'file': '\v\.(exe|so|dll)$',
+\   'link': 'SOME_BAD_SYMBOLIC_LINKS',
+\ }
+let g:ctrlp_max_files = 10000
+let g:ctrlp_max_depth = 20
+let g:ctrlp_user_command = {
+\   'types': {
+\     1: ['.git', 'cd %s && git ls-files'],
+\     2: ['.hg', 'hg --cwd %s locate -I .'],
+\   },
+\     'fallback': 'find %s -type f'
+\ }
+"let g:ctrlp_max_history = &history
+" ============================
+" t - in a new tab.
+" h - in a new horizontal split.
+" v - in a new vertical split.
+" r - in the current window.
+let g:ctrlp_open_new_file = 'v'
+
 "=========== ===========}}}
 
 " via: http://www.karakaram.com/vimfiler
