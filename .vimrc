@@ -2194,6 +2194,7 @@ let g:lightline = {
 \   'component': {
 \     'virtualenv': '%{&filetype=="python"?"":virtualenv#statusline()}',
 \     'readonly': '%{&readonly?"ro":""}',
+\     'cursorsyntax': '%{synIDattr(synID(line("."), col("."), 0), "name")}'
 \   },
 \   'component_function': {
 \     'fugitive': 'MyFugitive',
@@ -2205,7 +2206,7 @@ let g:lightline = {
 \   'active': {
 \     'left': [
 \           ['mode', 'paste'], ['readonly', 'filename', 'modified'], ['vaxe', 'virtualenv']],
-\     'right': [['lineinfo' ], ['percent'], ['fileformat', 'fileencoding', 'filetype']],
+\     'right': [['percent', 'lineinfo'], ['fileformat', 'fileencoding', 'filetype'], ['cursorsyntax']],
 \   },
 \ }
 
