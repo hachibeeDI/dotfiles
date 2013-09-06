@@ -90,9 +90,6 @@ NeoBundleLazy 'thinca/vim-quickrun', {
 "    \ 'mappings' : ['nxo', '<Plug>(quickrun)'],
 "    \ }}
 
-" snipets for neosnippet's dirctory
-NeoBundleLazy 'honza/vim-snippets'
-
 " runtimepathに追加されていない？ 要調査
 NeoBundle 'tpope/vim-fugitive' ", {
 "\ 'autoload': {
@@ -1423,7 +1420,7 @@ endif
 " Enable snipMate compatibility feature.
 let g:neosnippet#enable_snipmate_compatibility = 1
 " tell neosnippet about my snippets
-let g:neosnippet#snippets_directory = '~/.vim/snippets,'.s:BUNDLEPATH.'/vim-snippets/snippets'
+let g:neosnippet#snippets_directory = '~/.vim/snippets'
 
 " plugin key-mappings.
 imap <C-k> <Plug>(neosnippet_expand_or_jump)
