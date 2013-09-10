@@ -776,8 +776,12 @@ function! s:auto_ccl()
 
   " リストが空ならそのまま閉じる
   if getqflist() == []
+    :QuickfixStatusDisable
     :cclose
+  else
+    :QuickfixStatusEnable
   endif
+  :HierUpdate
 endfunction
 
 
@@ -1036,7 +1040,6 @@ onoremap _ 0
 nmap j <Plug>(accelerated_jk_gj)
 nmap k <Plug>(accelerated_jk_gk)
 
-nnoremap <silent> <C-m> :<C-u>make<CR>
 "}}}
 
 " ---- insert mode ---- {{{
