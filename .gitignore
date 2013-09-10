@@ -4,3 +4,7 @@
 # for Python
 *.py[cod]
 
+# gem bundle
+Gemfile.lock
+vendor/bundle/
+.bundle/
