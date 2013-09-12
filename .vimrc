@@ -1059,6 +1059,7 @@ cnoremap <C-f> <Right>
 cnoremap <C-b> <Left>
 cnoremap <C-h> <Backspace>
 cnoremap <C-d> <Del>
+cnoremap <C-k> <Del><Del><Del><Del><Del><Del><Del><Del><Del><Del><Del><Del><Del><Del><Del>
 
 " ----------- operation
 " http://vim-users.jp/2011/04/hack214/
@@ -1935,9 +1936,9 @@ function! s:def_smartchar()
     inoremap <buffer> <expr> = smartchr#one_of(' = ', ' == ', '=')
     "inoremap <buffer> <expr> > smartchr#loop(' > ', ' >= ')
     "inoremap <buffer> <expr> < smartchr#loop(' < ', ' <= ')
-    inoremap <buffer> <expr> + smartchr#loop(' + ', '+')
-    inoremap <buffer> <expr> - smartchr#loop(' - ', '-')
-    inoremap <buffer> <expr> * smartchr#loop(' * ', '*')
+    "inoremap <buffer> <expr> + smartchr#loop(' + ', '+')
+    "inoremap <buffer> <expr> - smartchr#loop(' - ', '-')
+    "inoremap <buffer> <expr> * smartchr#loop(' * ', '*')
     inoremap <buffer> <expr> & smartchr#loop('&', ' and ')
     inoremap <buffer> <expr> <Bar> smartchr#loop('\|', ' or ')
 
@@ -1951,8 +1952,8 @@ function! s:def_smartchar()
 
   elseif l:lang == 'haxe'
     inoremap <buffer> <expr> = smartchr#one_of(' = ', ' == ', '=')
-    inoremap <buffer> <expr> + smartchr#loop(' + ', '+')
-    inoremap <buffer> <expr> - smartchr#loop(' - ', '-')
+    "inoremap <buffer> <expr> + smartchr#loop(' + ', '+')
+    "inoremap <buffer> <expr> - smartchr#loop(' - ', '-')
     "inoremap <buffer> <expr> * smartchr#loop(' * ', '*')
 
   endif
@@ -1978,6 +1979,8 @@ call smartinput#map_to_trigger('i', '<CR>', '<CR>', '<CR>')
 call smartinput#map_to_trigger('i', ':', ':', ':')
 call smartinput#map_to_trigger('i', '#', '#', '#')
 call smartinput#map_to_trigger('i', '<Bar>', '<Bar>', '<Bar>')
+call smartinput#map_to_trigger('i', '-', '-', "<C-R>=smartchr#loop(' - ', '-')<CR>")
+call smartinput#map_to_trigger('i', '+', '+', "<C-R>=smartchr#loop(' + ', '+')<CR>")
 call smartinput#map_to_trigger('i', '<', '<', '<')
 call smartinput#map_to_trigger('i', '>', '>', '>')
 call smartinput#map_to_trigger('i', '%', '%', '%')
@@ -2009,6 +2012,22 @@ call smartinput#define_rule({
 \   'input'    : '{};<Left><Left>',
 \   'filetype' : ['cpp'],
 \   })
+
+" 演算子でsmartchrを適用したくない条件を書いていく {{{
+call smartinput#define_rule({
+\   'at'       : '\%#',
+\   'char'     : '-',
+\   'input'    : '-',
+\   'syntax': ['Constant', 'Special'],
+\   })
+call smartinput#define_rule({
+\   'at'       : '\%#',
+\   'char'     : '+',
+\   'input'    : '+',
+\   'syntax': ['Constant', 'Special'],
+\   })
+
+"}}}
 
 " Python専用 ------------------ {{{
 " classとかの定義時に:までを入れる
