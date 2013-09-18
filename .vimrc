@@ -632,6 +632,19 @@ if exists('+macmeta')
 endif
 " }}}
 
+" Go {{{
+if $GOROOT != ''
+  " 標準でバンドルされてるプラギン
+  set rtp+=$GOROOT/misc/vim
+  " 補完してくれるやつ
+  exe "set rtp+=".globpath($GOPATH, "src/github.com/nsf/gocode/vim")
+  " lint
+  exe "set rtp+=" . globpath($GOPATH, "src/github.com/golang/lint/misc/vim")
+
+  autocmd MyAutoCmd BufWritePre *.go Fmt
+endif
+"}}}
+
 "
 " common settings
 "
@@ -1360,6 +1373,7 @@ function! bundle.hooks.on_source(bundle)
   let g:neocomplete#sources#omni#input_patterns.ruby = '[^. *\t]\.\w*\|\h\w*::'
   let g:neocomplete#sources#omni#input_patterns.haxe = '\v([\]''"\)]|\w|(^\s*))(\.|\()'
   let g:neocomplete#sources#omni#input_patterns.python = '[^. \t]\.\w*'
+  let g:neocomplete#sources#omni#input_patterns.go = '\h\w*\.\?'
 
   " -----------------------------------------------
   " ---  NOTE: some of filetype specific settings is in
