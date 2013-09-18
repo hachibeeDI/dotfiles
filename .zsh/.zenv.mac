@@ -5,6 +5,26 @@ echo 'setting up environment variables as MacOSX ... ...'
 BREW_PATH=`/usr/local/bin/brew --prefix`
 export BREW_PATH
 
+# Go {{{
+program_exists () {
+    type "$1" &> /dev/null ;
+}
+
+if program_exists go; then
+    function setupGOROOT()
+    {
+        local GOPATH=`which go`
+        local GODIR=`dirname $GOPATH`
+        local GOPATH_BREW_RELATIVE=`readlink $GOPATH`
+        local GOPATH_BREW=`dirname $GOPATH_BREW_RELATIVE`
+        export GOROOT=`cd $GODIR; cd $GOPATH_BREW/..; pwd`
+    }
+    setupGOROOT
+fi
+export GOPATH=$HOME/.go
+# }}}
+
+
 # to read `brew info rbenv`
 # rbenv有無に関わらず環境変数は設定する。$HOME以下にするか迷ったが、info準拠で
 export RBENV_ROOT=/usr/local/var/rbenv
@@ -30,6 +50,10 @@ path=(
 
     #デフォルトのコマンドをGNUコマンドで
     $(/usr/local/bin/brew --prefix coreutils)/libexec/gnubin(N-/)
+
+    # Goの
+    $GOROOT/bin(N-/)
+    $GOPATH/bin(N-/)
 
     /usr/bin(N-/)
     /bin(N-/)
