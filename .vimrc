@@ -2058,6 +2058,28 @@ call smartinput#define_rule({
 \   'input'    : "<C-R>=smartchr#loop(': ', ':')<CR>",
 \   'filetype' : ['python'],
 \   })
+" docstringとかのsphinx形式のアレ
+call smartinput#define_rule({
+\   'at'       : '^\s*\%#',
+\   'char'     : ':',
+\   'input'    : "::<Left>",
+\   'syntax'   : ["Constant"],
+\   'filetype' : ['python'],
+\   })
+call smartinput#define_rule({
+\   'at'       : '^\s*:\%#:',
+\   'char'     : '<BS>',
+\   'input'    : "<BS><Del>",
+\   'syntax'   : ["Constant"],
+\   'filetype' : ['python'],
+\   })
+call smartinput#define_rule({
+\   'at'       : '^\s*:\%#:',
+\   'char'     : ':',
+\   'input'    : '<Right>',
+\   'syntax'   : ["Constant"],
+\   'filetype' : ['python'],
+\   })
 " ---- }}}
 
 " its in examples in smartinput. insert #{} in a string literal.
