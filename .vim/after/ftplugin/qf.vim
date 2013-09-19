@@ -2,8 +2,6 @@
 
 noremap <buffer> p <CR>zz<C-w>p
 
-setlocal statusline+=\ %L
-
 noremap <silent> <buffer> <expr> j <SID>tb_loop(v:count1)
 noremap <silent> <buffer> <expr> k <SID>tb_loop(-v:count1)
 

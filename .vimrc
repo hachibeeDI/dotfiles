@@ -800,6 +800,9 @@ function! s:auto_ccl()
   :HierUpdate
 endfunction
 
+" Auto-close if quickfix window is only in buffer
+autocmd MyAutoCmd WinEnter * if (winnr('$') == 1) && (getbufvar(winbufnr(0), '&buftype')) == 'quickfix' | quit | endif
+
 
 set background=dark
 "colorscheme solarized
@@ -2324,17 +2327,18 @@ let g:lightline = {
 \ }
 
 function! MyModified()
-  return &ft =~ 'help\|vimfiler\|gundo' ? '' : &modified ? '+' : &modifiable ? '' : '-'
+  return &ft =~ 'help\|vimfiler\|gundo\|qf' ? '' : &modified ? '+' : &modifiable ? '' : '-'
 endfunction
 
 function! MyReadonly()
-  return &ft !~? 'help\|vimfiler\|gundo' && &ro ? '⭤' : ''
+  return &ft !~? 'help\|vimfiler\|gundo\|qf' && &ro ? '錠' : ''
 endfunction
 
 function! MyFilename()
   return ('' != MyReadonly() ? MyReadonly() . ' ' : '') .
         \ (&ft == 'vimfiler' ? vimfiler#get_status_string() :
         \  &ft == 'unite' ? unite#get_status_string() :
+        \  &ft == 'qf' ? 'quickfix' :
         \  &ft == 'vimshell' ? substitute(b:vimshell.current_dir,expand('~'),'~','') :
         \ '' != expand('%:t') ? expand('%:t') : '[No Name]') .
         \ ('' != MyModified() ? ' ' . MyModified() : '')
@@ -2342,9 +2346,9 @@ endfunction
 
 function! MyFugitive()
   try
-    if &ft !~? 'vimfiler\|gundo' && exists('*fugitive#head')
+    if &ft !~? 'vimfiler\|gundo\|qf' && exists('*fugitive#head')
       let _ = fugitive#head()
-      return strlen(_) ? '⭠ '._ : ''
+      return strlen(_) ? '梗'._ : ''
     endif
   catch
   endtry
@@ -2353,7 +2357,7 @@ endfunction
 
 function! MyVaxe()
   if &ft == 'haxe'
-    return pathshorten(fnamemodify(vaxe#CurrentBuild(), ':p:.')) . ' [' . vaxe#CurrentBuildPlatform() . ']'
+    return pathshorten(fnamemodify(vaxe#CurrentBuild(), ':p:.')) . ' =>[' . vaxe#CurrentBuildPlatform() . ']'
   else
     return ''
   endif
