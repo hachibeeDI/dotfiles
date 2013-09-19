@@ -779,8 +779,11 @@ autocmd MyAutoCmd WinEnter * setlocal cursorline
 autocmd MyAutoCmd WinLeave * setlocal nocursorline
 
 " 各コマンド後の結果をquickfixへ出力させる
-autocmd QuickfixCmdPost make,grep,grepadd,vimgrep copen
-autocmd QuickfixCmdPost make call <SID>auto_ccl()
+autocmd MyAutoCmd QuickfixCmdPost make,grep,grepadd,vimgrep copen
+autocmd MyAutoCmd QuickfixCmdPost make call <SID>auto_ccl()
+" qf系 -> $HOME/.vim/after/ftplugin/qf.vim
+" make時に、shellに戻ったりとか余計な表示を出さない
+nnoremap <silent> <leader>m :<C-u>silent make<CR>
 
 function! s:auto_ccl()
   if &ft != 'qf'
