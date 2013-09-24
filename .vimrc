@@ -322,7 +322,6 @@ NeoBundleLazy 'jdonaldson/vaxe', {
 " clang
 " C++11's syntax
 NeoBundleLazy 'vim-jp/cpp-vim', {
-\ 'script_type': 'syntax',
 \ "autoload" : {
 \   "filetypes" : ["cpp"] }
 \}
@@ -333,7 +332,6 @@ NeoBundleLazy 'Rip-Rip/clang_complete', {
     \   "filetypes" : ["cpp"] }
     \}
 "NeoBundleLazy 'beyondmarc/opengl.vim', {
-"\ 'script_type': 'syntax',
 "    \ "autoload" : {
 "    \   "filetypes" : ["c", "cpp"] }
 "    \}
@@ -357,7 +355,6 @@ NeoBundleLazy 'yuroyoro/vim-scala', {
     \}
 " Play2のテンプレートとかのシンタックス
 NeoBundleLazy 'gre/play2vim', {
-\ 'script_type': 'syntax',
 \ "autoload" : {
 \   "filetypes" : ["scala"] }
 \}
@@ -464,7 +461,6 @@ NeoBundleLazy 'othree/html5.vim', {
 "    \}
 
 NeoBundleLazy 'cakebaker/scss-syntax.vim', {
-\ 'script_type' : 'syntax',
 \ "autoload" : {
 \   "filetypes" : ["scss", "sass"] }
 \ }
@@ -490,15 +486,14 @@ NeoBundleLazy 'SQLUtilities', {
     \}
 
 NeoBundleLazy 'timcharper/textile.vim', {
-\ 'script_type' : 'syntax',
 \ "autoload" : {
 \   "filetypes" : ["textile"] }
 \ }
 
 NeoBundle 'godlygeek/tabular'
 
-NeoBundle 'vim-scripts/Colour-Sampler-Pack', {'script_type' : 'colors'}
-NeoBundle 'altercation/vim-colors-solarized', {'script_type' : 'colors'}
+NeoBundle 'vim-scripts/Colour-Sampler-Pack'
+NeoBundle 'altercation/vim-colors-solarized'
 NeoBundle 'ujihisa/unite-colorscheme', {'gui': 1}
 NeoBundle 'ujihisa/unite-font', {'gui': 1}
 
