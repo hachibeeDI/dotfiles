@@ -1924,6 +1924,8 @@ function! s:def_smartchar()
     "inoremap <buffer> <expr> * smartchr#loop(' * ', '*')
     inoremap <buffer> <expr> & smartchr#loop('&', ' and ')
     inoremap <buffer> <expr> <Bar> smartchr#loop('\|', ' or ')
+    inoremap <buffer> <expr> \ smartchr#loop('\', 'lambda ')
+
 
   elseif l:lang == 'javascript'
     inoremap <buffer> <expr> = smartchr#one_of(' = ', ' == ', ' === ', '=')
@@ -2002,6 +2004,12 @@ call smartinput#define_rule({
 \   'char'     : '-',
 \   'input'    : '-',
 \   'syntax': ['Constant', 'Special'],
+\   })
+call smartinput#define_rule({
+\   'at'       : '\%#',
+\   'char'     : '-',
+\   'input'    : '-',
+\   'filetype': ['rst', 'markdown'],
 \   })
 call smartinput#define_rule({
 \   'at'       : '\%#',
