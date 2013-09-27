@@ -273,7 +273,12 @@ NeoBundleLazy 'jmcantrell/vim-virtualenv', {
     \}
 
 " search invailed code with pyflakes
-NeoBundleLazy 'kevinw/pyflakes-vim', {
+"NeoBundleLazy 'kevinw/pyflakes-vim', {
+"    \ "autoload" : {
+"    \   "filetypes" : ["python"],
+"    \ },
+"    \}
+NeoBundleLazy 'vim-scripts/Flake8-vim', {
     \ "autoload" : {
     \   "filetypes" : ["python"],
     \ },
@@ -1744,6 +1749,15 @@ nnoremap [Show]w :<C-u>WatchdogsRunSilent<CR><Esc>
 " quickfixstatus ================ {{{
 ":QuickfixStatusEnable -- turns on the feature globally
 ":QuickfixStatusDisable -- turns off the feature globally
+" }}}
+
+" Flake8-vim {{{
+let g:PyFlakeOnWrite = 1
+let g:PyFlakeDisabledMessages = 'E501'
+" エラー行のマーカー。hierあればいらねー
+let g:PyFlakeSigns = 0
+" flake8-autoをかけるためのコマンド。visual-modeでの範囲選択に対応
+let g:PyFlakeRangeCommand = 'Q'
 " }}}
 
 " ----- slimv.vim --------
