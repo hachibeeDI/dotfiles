@@ -199,10 +199,42 @@ NeoBundleLazy 'kana/vim-smartchr', {
       \ 'autoload' : {
       \   'insert' : 1,
       \ }}
+" textobj-user {{{
 NeoBundle 'kana/vim-textobj-user'
 NeoBundle 'kana/vim-textobj-indent', {
 \   'depends': ['kana/vim-textobj-user']
 \ }
+
+NeoBundle 'osyo-manga/vim-textobj-multiblock', {
+\   'depends': ['kana/vim-textobj-user']
+\ }
+omap ab <Plug>(textobj-multiblock-a)
+vmap ab <Plug>(textobj-multiblock-a)
+omap ib <Plug>(textobj-multiblock-i)
+vmap ib <Plug>(textobj-multiblock-i)
+
+NeoBundleLazy 'bps/vim-textobj-python', {
+\ 'depends': ['kana/vim-textobj-user'],
+\ 'autoload' : {
+\   "filetypes" : ["python"],
+\   }
+\ }
+" --- text-obj-python ---- {{{
+" - af: a function
+" - if: inner function
+" - ac: a class
+" - ic: inner class
+
+" this plugin has aditional key-bind
+"  -  '[pf', ']pf': move to next/previous function
+"  -  '[pc', ']pc': move to next/previous class
+xmap aF <Plug>(textobj-python-function-a)
+omap aF <Plug>(textobj-python-function-a)
+xmap iF <Plug>(textobj-python-function-i)
+omap iF <Plug>(textobj-python-function-i)
+" }}}
+
+"}}}
 
 NeoBundle 'kana/vim-smartinput'
 
@@ -295,12 +327,6 @@ NeoBundleLazy 'lambdalisue/vim-django-support', {
     \   "filetypes" : ["python"],
     \ }
     \}
-NeoBundleLazy 'bps/vim-textobj-python', {
-\ 'depends': ['kana/vim-textobj-user'],
-\ 'autoload' : {
-\   "filetypes" : ["python"],
-\   }
-\ }
 
 " }}}
 " -- haXe {{{
@@ -2268,21 +2294,6 @@ let g:toggle_pairs = {
 \   '||': '&&'
 \ }
 " }}}
-" --- text-obj-python ---- {{{
-" - af: a function
-" - if: inner function
-" - ac: a class
-" - ic: inner class
-
-" this plugin has aditional key-bind
-"  -  '[pf', ']pf': move to next/previous function
-"  -  '[pc', ']pc': move to next/previous class
-xmap aF <Plug>(textobj-python-function-a)
-omap aF <Plug>(textobj-python-function-a)
-xmap iF <Plug>(textobj-python-function-i)
-omap iF <Plug>(textobj-python-function-i)
-" }}}
-
 " --- gist-vim -----{{{
 let g:gist_use_password_in_gitconfig = 1
 "}}}
