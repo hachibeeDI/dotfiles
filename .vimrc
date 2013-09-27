@@ -109,13 +109,6 @@ NeoBundle 'cohama/vim-hier'
 " quickfixの該当箇所をコマンドラインに出力
 NeoBundle 'dannyob/quickfixstatus'
 
-
-NeoBundleLazy 'kien/ctrlp.vim', {
-\ 'autoload' : {
-\   'commands' : ["CtrlP"],
-\ }}
-nnoremap <C-P> :<C-u>CtrlP<CR>
-
 "Unite
 NeoBundle 'Shougo/unite.vim' ", {
 "    \ 'autoload' : {
@@ -672,6 +665,8 @@ set scrolloff=999
 set clipboard=unnamed
 " mouse surport
 set mouse=a
+" 新しく開く代わりにすでに開いてあるバッファを開く
+set switchbuf=useopen
 
 " enable command-line completion operates in an enhanced mode.
 set wildmenu
@@ -1531,35 +1526,6 @@ let g:indent_guides_color_change_percent=10
 nmap <silent> <Leader>ig <Plug>IndentGuidesToggle
 "}}}
 
-" ctrlP ------------------------ {{{
-let g:ctrlp_map = '<c-p>'
-let g:ctrlp_cmd = 'CtrlP'
-let g:ctrlp_use_caching = 1
-let g:ctrlp_clear_cache_on_exit = 1
-"let g:ctrlp_cache_dir = $HOME.'/.cache/ctrlp'
-
-let g:ctrlp_custom_ignore = {
-\   'dir':  '\v[\/]\.(git|hg|svn)$',
-\   'file': '\v\.(exe|so|dll)$',
-\   'link': 'SOME_BAD_SYMBOLIC_LINKS',
-\ }
-let g:ctrlp_max_files = 10000
-let g:ctrlp_max_depth = 20
-let g:ctrlp_user_command = {
-\   'types': {
-\     1: ['.git', 'cd %s && git ls-files'],
-\     2: ['.hg', 'hg --cwd %s locate -I .'],
-\   },
-\     'fallback': 'find %s -type f'
-\ }
-"let g:ctrlp_max_history = &history
-" ============================
-" t - in a new tab.
-" h - in a new horizontal split.
-" v - in a new vertical split.
-" r - in the current window.
-let g:ctrlp_open_new_file = 'v'
-
 "=========== ===========}}}
 
 " via: http://www.karakaram.com/vimfiler
@@ -1574,7 +1540,7 @@ function! bundle.hooks.on_source(bundle)
   " 開くときの横幅
   let g:unite_winwidth=40
   " 縦幅
-  let g:unite_winheight=50
+  let g:unite_winheight=40
   " }}}
 
   " -- grep
@@ -1641,6 +1607,8 @@ nmap ,u [Unite]
 nnoremap <silent> [Unite]b :<C-u>Unite buffer<CR>
 " ファイル一覧
 nnoremap <silent> [Unite]f :<C-u>UniteWithBufferDir -buffer-name=files file<CR>
+" .gitを基準にしたプロジェクト一覧 (ctrlp的な)
+nnoremap <silent> <C-p>  :<C-u>Unite file_rec/async:!<CR>
 " レジスタ一覧
 nnoremap <silent> [Unite]r :<C-u>Unite -buffer-name=register register<CR>
 " 最近使用したファイル一覧
