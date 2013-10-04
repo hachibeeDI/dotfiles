@@ -290,6 +290,15 @@ NeoBundleLazy 'mattn/excitetranslate-vim', {
       \ }
 xnoremap E :ExciteTranslate<CR>
 
+NeoBundleLazy 'LeafCage/foldCC', {
+\ 'autoload' : {
+\   'functions' : ["FoldCCtext"],
+\ }
+\}
+" via: http://d.hatena.ne.jp/leafcage/20111223/1324705686
+set foldtext=FoldCCtext()
+"set foldcolumn=5
+
 " === Language surpport === {{{
 " -- Python {{{
 NeoBundleLazy 'Crapworks/python_fn.vim', {
