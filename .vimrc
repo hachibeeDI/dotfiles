@@ -733,7 +733,7 @@ autocmd MyAutoCmd FileType *
       \ setl formatoptions-=ro | setl formatoptions+=mM
 "autocmd MyAutoCmd InsertEnter,CmdwinEnter * set noimdisable
 "autocmd MyAutoCmd InsertLeave,CmdwinLeave * set imdisable
-" ======== {{{
+" ======== edit }}}
 
 " ========== View ======================== {{{
 " disable bell
@@ -764,10 +764,8 @@ endif
 set number
 set history=100000
 
-" set fold line on {{{, }}}
 set foldmethod=marker
 set foldenable
-"set foldmarker={{{,}}}
 "set foldcolumn=3
 set foldlevel=2
 
@@ -796,8 +794,6 @@ set previewheight=30
 set noequalalways
 " disable auto comment when start a new line
 set formatoptions& formatoptions-=ro
-
-" ==== }}}
 
 "--------
 " display settings
@@ -866,6 +862,7 @@ set title
 " Title length.
 set titlelen=95
 set titlestring=Vim:\ %f\ %h%r%m
+
 
 " ---------- Cursor -------- {{{
 " via: http://blog.remora.cx/2012/10/spotlight-cursor-line.html
@@ -972,6 +969,7 @@ set tabline=%!MakeTabLine()
 
 " ignore white space, show match lines,
 set diffopt=iwhite,filler
+" ==== View }}}
 
 " ---- search behavior ---- {{{
 set incsearch
@@ -1129,7 +1127,6 @@ endif
 "command mode
 "inoremap <Backspace> <C-o>:
 "}}}
-"}}}
 
 " =================== 既存のキーマップを割と大幅に変えるもの {{{
 " Like builtin getchar() but returns string always.
@@ -1180,7 +1177,8 @@ command!
 
 nnoremap <expr>* ':<C-u>VimGrepCurrent ' . expand('<cword>') . '<CR>'
 
-" ============}}}
+"}}}
+" KeyMapping }}}
 
 " ---------
 "  Scripts
@@ -1431,10 +1429,9 @@ function! bundle.hooks.on_source(bundle)
 
   " customize sort complete candiates
   "call neocomplete#custom#source('_', 'sorters', ['sorter_length'])
-  "}}}
 endfunction
 unlet bundle
-"}}}
+" }}}
 
 " ------------------- clang_complete ------------- {{{
 " neocomplcacheとの競合を避けるため、自動呼び出しはOff
@@ -1476,8 +1473,7 @@ xmap <C-k> <Plug>(neosnippet_expand_target)
 "imap <expr><TAB> neosnippet#expandable() ? "\<Plug>(neosnippet_expand_or_jump)" :pumvisible() ? "\<C-n>" : "\<TAB>"
 "smap <expr><TAB> neosnippet#expandable() ? "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
 
-"}}}
-"}}}
+" }}}
 
 " =============== jedi-vim =============== {{{
 let bundle = neobundle#get('jedi-vim')
@@ -1566,7 +1562,7 @@ let g:indent_guides_color_change_percent=10
 nmap <silent> <Leader>ig <Plug>IndentGuidesToggle
 "}}}
 
-"=========== ===========}}}
+"=========== =========== }}}
 
 " via: http://www.karakaram.com/vimfiler
 " ---------Unite.vim--------- {{{
@@ -1595,7 +1591,7 @@ function! bundle.hooks.on_source(bundle)
   " http://d.hatena.ne.jp/osyo-manga/20130225/1361794133
   let g:unite_source_menu_menus = get(g:, 'unite_source_menu_menus', {})
 
-  " unite-shortcut {{{
+  " unite-shortcut
   let g:unite_source_menu_menus.shortcut = {
   \   "description" : "shortcut"
   \}
@@ -1634,7 +1630,7 @@ function! bundle.hooks.on_source(bundle)
   \           }
       endif
   endfunction
-  " --- }}}
+  " --- menu }}}
 endfunction
 
 unlet bundle
@@ -1677,7 +1673,7 @@ nnoremap <silent> [Unite]q :<C-u>Unite -no-quit -direction=botright quickfix
 " }}}
 " ------------ Unite }}}
 
-" ------------- VimFiler ------------------"{{{
+" ------------- VimFiler ------------------" {{{
 " use Vimfiler as default instead of netrw
 let g:vimfiler_as_default_explorer =  1
 " Enable file operation commands.
@@ -1774,8 +1770,9 @@ unlet bundle
 let g:quickrun_no_default_key_mappings = 1
 nmap <F5> <Plug>(quickrun)
 nnoremap [Show]w :<C-u>WatchdogsRunSilent<CR><Esc>
+" watchdog }}}
+" quickrun }}}
 
-"  }}}
 
 " vim-hier ------------------- {{{
 "let g:hier_enabled = 1
@@ -1914,7 +1911,6 @@ function! bundle.hooks.on_source(bundle)
 endfunction
 unlet bundle
 
-"}}}
 nnoremap <silent> ,vp :<C-u>VimShellPop<CR>
 nnoremap <silent> ,cvp :<C-u>VimShellPop %:p:h<CR>
 nnoremap <silent> ,cvs :<C-u>VimShell %:p:h<CR>
@@ -1936,7 +1932,7 @@ omap <Leader>ge  <Plug>(smartword-ge)
 " --- smartchr ---- {{{
 " commons {{{
 inoremap <expr> , smartchr#one_of(', ', ',')
-"}}}
+" }}}
 
 autocmd MyAutoCmd
       \ FileType ruby
@@ -2369,8 +2365,7 @@ function! MyVaxe()
     return ''
   endif
 endfunction
-"}}}
-
+" lightline }}}
 
 source ~/.vimrc.local
 
