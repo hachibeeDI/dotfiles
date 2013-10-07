@@ -1969,6 +1969,7 @@ function! s:def_smartchar()
     "inoremap <buffer> <expr> + smartchr#loop(' + ', '+')
     "inoremap <buffer> <expr> - smartchr#loop(' - ', '-')
     "inoremap <buffer> <expr> * smartchr#loop(' * ', '*')
+    inoremap <buffer> <expr> # smartchr#one_of('# ', '#')
     inoremap <buffer> <expr> & smartchr#loop('&', ' and ')
     inoremap <buffer> <expr> <Bar> smartchr#loop('\|', ' or ')
     inoremap <buffer> <expr> \ smartchr#loop('\', 'lambda ')
@@ -2112,7 +2113,7 @@ call smartinput#define_rule({
 \   'filetype' : ['python'],
 \   })
 call smartinput#define_rule({
-\   'at'       : '^\s*:\%#:',
+\   'at'       : '^\s*:.*\%#:',
 \   'char'     : ':',
 \   'input'    : '<Right>',
 \   'syntax'   : ["Constant"],
