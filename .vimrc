@@ -1165,10 +1165,25 @@ nnoremap <expr><silent> T '?\V'.<SID>getchar_safe().'\v\zs.'."\<CR>:nohlsearch\<
 nnoremap <C-j> *
 nnoremap <C-k> #
 
+" <expr>は副作用(カーソルの移動とか)を許可しないので使えない
 " preview error line in quickfix
-nnoremap <M-p> :<C-u>cp<CR>
+nnoremap <M-p> :<C-u>call <SID>loop_qfpreview()<CR>
+function! s:loop_qfpreview()
+  try
+    cprevious
+  catch /No more items/
+    clast
+  endtry
+endfunction
 " next error line in quickfix
-nnoremap <M-n> :<C-u>cn<CR>
+nnoremap <M-n> :<C-u>call <SID>loop_qfnext()<CR>
+function! s:loop_qfnext()
+  try
+    cnext
+  catch /No more items/
+    cfirst
+  endtry
+endfunction
 
 command!
 \  -nargs=1
