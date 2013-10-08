@@ -1171,7 +1171,7 @@ nnoremap <M-p> :<C-u>call <SID>loop_qfpreview()<CR>
 function! s:loop_qfpreview()
   try
     cprevious
-  catch /No more items/
+  catch /E553/
     clast
   endtry
 endfunction
@@ -1180,7 +1180,7 @@ nnoremap <M-n> :<C-u>call <SID>loop_qfnext()<CR>
 function! s:loop_qfnext()
   try
     cnext
-  catch /No more items/
+  catch /E553/
     cfirst
   endtry
 endfunction
