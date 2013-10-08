@@ -826,8 +826,11 @@ function! s:auto_ccl()
   :HierUpdate
 endfunction
 
-" Auto-close if quickfix window is only in buffer
-autocmd MyAutoCmd WinEnter * if (winnr('$') == 1) && (getbufvar(winbufnr(0), '&buftype')) == 'quickfix' | quit | endif
+" Auto-close if quickfix or quickrun window is only in buffer
+autocmd MyAutoCmd WinEnter *
+\   if (winnr('$') == 1) &&
+\      (getbufvar(winbufnr(0), '&filetype')) =~? 'qf\|quickrun'
+\         | quit | endif
 
 
 set background=dark
