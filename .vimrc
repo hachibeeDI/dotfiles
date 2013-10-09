@@ -1887,11 +1887,20 @@ nmap <Space>w <Plug>(openbrowser-smart-search)
 " ----}}}
 
 " --------- quickhl {{{
-nmap <Space>m <Plug>(quickhl-toggle)
-xmap <Space>m <Plug>(quickhl-toggle)
-nmap <Space>M <Plug>(quickhl-reset)
-xmap <Space>M <Plug>(quickhl-reset)
-nmap <Space>j <Plug>(quickhl-match)
+nmap <Space>m <Plug>(quickhl-manual-this)
+xmap <Space>m <Plug>(quickhl-manual-this)
+
+nmap <Space>M <Plug>(quickhl-manual-reset)
+xmap <Space>M <Plug>(quickhl-manual-reset)
+
+nmap <F9>     <Plug>(quickhl-manual-toggle)
+xmap <F9>     <Plug>(quickhl-manual-toggle)
+
+nmap <Space>j <Plug>(quickhl-cword-toggle)
+
+nmap <Space>] <Plug>(quickhl-tag-toggle)
+
+map H <Plug>(operator-quickhl-manual-this-motion)
 " ----- }}}
 "
 " ------ operato-replace {{{
