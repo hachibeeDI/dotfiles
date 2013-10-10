@@ -737,7 +737,7 @@ autocmd MyAutoCmd FileType *
 
 " ========== View ======================== {{{
 " disable bell
-set t_vb=
+set visualbell t_vb=
 set novisualbell
 
 " have to set, before setting colorscheme-command
