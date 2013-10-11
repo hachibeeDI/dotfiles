@@ -182,9 +182,15 @@ NeoBundleLazy 'kana/vim-operator-replace', {
 " ------ operator-replace {{{
 map r <Plug>(operator-replace)
 " }}}
-NeoBundle 'emonkak/vim-operator-comment', {
-\   'depends': ['kana/vim-operator-user']
-\ }
+NeoBundleLazy 'emonkak/vim-operator-comment', {
+\ 'depends': ['kana/vim-operator-user'],
+\ 'autoload': {
+\     'mappings' : ['<Plug>(operator-uncomment)',
+\                   '<Plug>(operator-comment', ], }}
+" operator-comment {{{
+map M <Plug>(operator-uncomment)
+map m <Plug>(operator-comment)
+" }}}
 NeoBundleLazy 'rhysd/vim-operator-surround', {
 \   'depends': ['kana/vim-operator-user', 'osyo-manga/vim-textobj-multiblock', 'thinca/vim-textobj-between'],
 \   'autoload': {
