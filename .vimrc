@@ -333,41 +333,30 @@ set foldtext=FoldCCtext()
 
 " === Language surpport === {{{
 " -- Python {{{
+NeoBundleLazy 'hynek / vim-python-pep8-indent', {
+\ 'autoload' : {
+\   'filetypes' : ['python'],
+\ }}
 NeoBundleLazy 'Crapworks/python_fn.vim', {
-    \ "autoload" : {
-    \   "filetypes" : ["python"],
-    \ }
-    \}
-
+\ 'autoload' : {
+\   'filetypes' : ['python'],
+\ }}
 NeoBundleLazy 'jmcantrell/vim-virtualenv', {
-    \ "autoload" : {
-    \   "filetypes" : ["python"],
-    \ }
-    \}
-
-" search invailed code with pyflakes
-"NeoBundleLazy 'kevinw/pyflakes-vim', {
-"    \ "autoload" : {
-"    \   "filetypes" : ["python"],
-"    \ },
-"    \}
+\ "autoload" : {
+\   "filetypes" : ["python"],
+\ }}
 NeoBundleLazy 'vim-scripts/Flake8-vim', {
-    \ "autoload" : {
-    \   "filetypes" : ["python"],
-    \ },
-    \}
-
+\ 'autoload' : {
+\   'filetypes' : ['python'],
+\ }}
 NeoBundleLazy 'davidhalter/jedi-vim', {
-    \ "autoload" : {
-    \   "filetypes" : ["python"],
-    \ }
-    \}
-
+\ "autoload" : {
+\   "filetypes" : ["python"],
+\ }}
 NeoBundleLazy 'lambdalisue/vim-django-support', {
-    \ "autoload" : {
-    \   "filetypes" : ["python"],
-    \ }
-    \}
+\ "autoload" : {
+\   "filetypes" : ["python"],
+\ }}
 
 " }}}
 " -- haXe {{{
