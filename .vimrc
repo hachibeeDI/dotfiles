@@ -172,21 +172,7 @@ NeoBundle 'vim-jp/vital.vim'
 "      \ }})
 
 " ---------- utils for edit {{{
-" auto insert end after def scope,
-" in ruby, lua, sh, zsh and some languages ... ...
-"NeoBundleLazy 'tpope/vim-endwise', {
-"\   'autoload' : {
-"\   "filetypes" : ["ruby", "lua", "sh", "zsh", "vb"],
-"\   }}
-"NeoBundle 'tpope/vim-surround'
-" forked version : http://www.sopht.jp/blog/index.php?/archives/450-surrounding.html
-NeoBundle 'anyakichi/vim-surround', {
-  \ 'autoload' : {
-  \   'mappings' : [
-  \     ['n', '<Plug>Dsurround'], ['n', '<Plug>Csurround'],
-  \     ['n', '<Plug>Ysurround'], ['n', '<Plug>YSurround']
-  \ ]}}
-
+" vim-operator-user {{{
 NeoBundle 'kana/vim-operator-user'
 NeoBundle 'kana/vim-operator-replace', {
 \   'depends': ['kana/vim-operator-user']
@@ -194,6 +180,26 @@ NeoBundle 'kana/vim-operator-replace', {
 NeoBundle 'emonkak/vim-operator-comment', {
 \   'depends': ['kana/vim-operator-user']
 \ }
+NeoBundleLazy 'rhysd/vim-operator-surround', {
+\   'depends': ['kana/vim-operator-user', 'osyo-manga/vim-textobj-multiblock', 'thinca/vim-textobj-between'],
+\   'autoload': {
+\     'mappings' : ['<Plug>(operator-surround-append)',
+\                   '<Plug>(operator-surround-delete)',
+\                   '<Plug>(operator-surround-replace)', ], }}
+" surround mappings {{{
+map <silent>sa <Plug>(operator-surround-append)
+map <silent>sd <Plug>(operator-surround-delete)
+map <silent>sr <Plug>(operator-surround-replace)
+
+" delete or replace most inner surround
+" if you use vim-textobj-multiblock
+nmap <silent>sdd <Plug>(operator-surround-delete)<Plug>(textobj-multiblock-a)
+nmap <silent>srr <Plug>(operator-surround-replace)<Plug>(textobj-multiblock-a)
+" if you use vim-textobj-between
+nmap <silent>sdb <Plug>(operator-surround-delete)<Plug>(textobj-between-a)
+nmap <silent>srb <Plug>(operator-surround-replace)<Plug>(textobj-between-a)
+" }}}
+" operator-user }}}
 
 NeoBundleLazy 'kana/vim-smartchr', {
       \ 'autoload' : {
