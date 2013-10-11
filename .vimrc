@@ -2030,7 +2030,6 @@ function! s:def_smartchar()
     "inoremap <buffer> <expr> + smartchr#loop(' + ', '+')
     "inoremap <buffer> <expr> - smartchr#loop(' - ', '-')
     "inoremap <buffer> <expr> * smartchr#loop(' * ', '*')
-
   endif
 endfunction
 "  }}}
@@ -2093,7 +2092,7 @@ call smartinput#define_rule({
 \   'at'       : '\%#',
 \   'char'     : '-',
 \   'input'    : '-',
-\   'syntax': ['Constant', 'Special'],
+\   'syntax': ['Constant', 'Special', 'Comment'],
 \   })
 call smartinput#define_rule({
 \   'at'       : '\%#',
@@ -2120,7 +2119,7 @@ call smartinput#define_rule({
 \   })
 " が、すでに:がある場合は重複させない. (smartinputでは、atの定義が長いほど適用の優先度が高くなる)
 call smartinput#define_rule({
-\   'at'       : '^\s*\%(\<def\>\|\<if\>\|\<for\>\|\<while\>\|\<class\>\|\<with\>\)\s*\w\+.*\%#:',
+\   'at'       : '^\s*\%(\<def\>\|\<if\>\|\<for\>\|\<while\>\|\<class\>\|\<with\>\)\s*\w\+.*\%#.*:',
 \   'char'     : '(',
 \   'input'    : '()<Left>',
 \   'filetype' : ['python'],
