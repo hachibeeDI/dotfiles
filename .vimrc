@@ -333,7 +333,7 @@ set foldtext=FoldCCtext()
 
 " === Language surpport === {{{
 " -- Python {{{
-NeoBundleLazy 'hynek / vim-python-pep8-indent', {
+NeoBundleLazy 'hynek/vim-python-pep8-indent', {
 \ 'autoload' : {
 \   'filetypes' : ['python'],
 \ }}
