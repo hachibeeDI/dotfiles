@@ -174,9 +174,14 @@ NeoBundle 'vim-jp/vital.vim'
 " ---------- utils for edit {{{
 " vim-operator-user {{{
 NeoBundle 'kana/vim-operator-user'
-NeoBundle 'kana/vim-operator-replace', {
-\   'depends': ['kana/vim-operator-user']
-\ }
+NeoBundleLazy 'kana/vim-operator-replace', {
+\   'depends': ['kana/vim-operator-user'],
+\   'autoload': {
+\     'mappings' : ['<Plug>(operator-replace)'],
+\ }}
+" ------ operator-replace {{{
+map r <Plug>(operator-replace)
+" }}}
 NeoBundle 'emonkak/vim-operator-comment', {
 \   'depends': ['kana/vim-operator-user']
 \ }
@@ -201,23 +206,35 @@ nmap <silent>srb <Plug>(operator-surround-replace)<Plug>(textobj-between-a)
 " }}}
 " operator-user }}}
 
-NeoBundleLazy 'kana/vim-smartchr', {
-      \ 'autoload' : {
-      \   'insert' : 1,
-      \ }}
 " textobj-user {{{
 NeoBundle 'kana/vim-textobj-user'
 NeoBundle 'kana/vim-textobj-indent', {
 \   'depends': ['kana/vim-textobj-user']
 \ }
 
-NeoBundle 'osyo-manga/vim-textobj-multiblock', {
-\   'depends': ['kana/vim-textobj-user']
-\ }
+NeoBundleLazy 'osyo-manga/vim-textobj-multiblock', {
+\ 'depends': ['kana/vim-textobj-user'],
+\ 'autoload' : {
+\     'mappings' : ['<Plug>(textobj-multiblock-a)', '<Plug>(textobj-multiblock-i)'],
+\ }}
+" textobj multiblock {{{
 omap ab <Plug>(textobj-multiblock-a)
 vmap ab <Plug>(textobj-multiblock-a)
 omap ib <Plug>(textobj-multiblock-i)
 vmap ib <Plug>(textobj-multiblock-i)
+" }}}
+NeoBundleLazy 'thinca/vim-textobj-between', {
+\ 'depends': ['kana/vim-textobj-user'],
+\ 'autoload' : {
+\   'mappings' : ['<Plug>(textobj-between-a)', '<Plug>(textobj-between-i)'],
+\   }
+\ }
+" textobj between {{{
+omap aw <Plug>(textobj-between-a)
+xmap aw <Plug>(textobj-between-a)
+omap iw <Plug>(textobj-between-i)
+xmap iw <Plug>(textobj-between-i)
+"}}}
 
 NeoBundleLazy 'bps/vim-textobj-python', {
 \ 'depends': ['kana/vim-textobj-user'],
@@ -239,10 +256,13 @@ omap aF <Plug>(textobj-python-function-a)
 xmap iF <Plug>(textobj-python-function-i)
 omap iF <Plug>(textobj-python-function-i)
 " }}}
-
-"}}}
+"textobj-user }}}
 
 NeoBundle 'kana/vim-smartinput'
+NeoBundleLazy 'kana/vim-smartchr', {
+      \ 'autoload' : {
+      \   'insert' : 1,
+      \ }}
 
 NeoBundleLazy 'kana/vim-smartword', { 'autoload' : {
       \ 'mappings' : [
@@ -1907,11 +1927,6 @@ nmap <Space>] <Plug>(quickhl-tag-toggle)
 
 map H <Plug>(operator-quickhl-manual-this-motion)
 " ----- }}}
-"
-" ------ operato-replace {{{
-map R <Plug>(operator-replace)
-map r <Plug>(operator-replace)
-" }}}
 
 " ----- Gundo.vim --- {{{
 nnoremap U :<C-u>GundoToggle<CR>
