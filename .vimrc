@@ -668,7 +668,6 @@ if $GOROOT != ''
   exe "set rtp+=".globpath($GOPATH, "src/github.com/nsf/gocode/vim")
   " lint
   exe "set rtp+=" . globpath($GOPATH, "src/github.com/golang/lint/misc/vim")
-  setlocal noexpandtab
   autocmd MyAutoCmd BufWritePre *.go Fmt
 endif
 "}}}
