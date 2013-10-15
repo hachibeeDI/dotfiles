@@ -1001,7 +1001,6 @@ set wrapscan
 set hlsearch
 " ------------ }}}
 
-
 " ======== Key Mapping ======== {{{
 
 " disable unuseful keys
