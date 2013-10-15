@@ -606,7 +606,11 @@ NeoBundleLazy 'glidenote/memolist.vim', {
     \}
 
 " developping
-NeoBundle 'hachibeeDI/unite-pythonimport'
+NeoBundleLazy 'hachibeeDI/unite-pythonimport', {
+\ 'autoload' : {
+\   "filetypes" : ["python"],
+\   }
+\ }
 
 "}}}
 
@@ -944,18 +948,13 @@ function! s:tabpage_label(n)
   let bufnrs = tabpagebuflist(a:n)
   " カレントかどうかをハイライトで区別する
   let hightlight_start = a:n is tabpagenr() ? '%#TabLineSel#' : '%#TabLine#'
-  "" バッファが複数あればバッファ数を表示 # とりあえず今は表示しない
-  "let no = len(bufnrs)
-  "if no is 1
-    let bufcount = ''
-  "endif
   let is_modified = len(filter(copy(bufnrs), 'getbufvar(v:val, "&modified")')) ? '[+]' : ''
-  let spacer = (bufcount . is_modified)  ==# '' ? '' : ' '  " 隙間
+  let spacer = (is_modified) ==# '' ? '' : ' '  " 隙間
 " カレントバッファ
-  let selected_buffer  =  bufnrs[tabpagewinnr(a:n) - 1]  " tabpagewinnr: number of tabpage, which is current
+  let selected_buffer = bufnrs[tabpagewinnr(a:n) - 1]  " tabpagewinnr: number of tabpage, which is current
 "   origin
   let fname = pathshorten(bufname(selected_buffer))
-  let label = bufcount . is_modified . spacer . fname
+  let label = is_modified . spacer . fname
 
   if &ft == 'unite'
     return hightlight_start . a:n . ':[unite] ' . unite#get_status_string() . '%T%#TabLineFill#'
@@ -998,7 +997,6 @@ set diffopt=iwhite,filler
 set incsearch
 set ignorecase
 set smartcase
-"set nowrapscan
 set wrapscan
 set hlsearch
 " ------------ }}}
@@ -1464,6 +1462,7 @@ function! bundle.hooks.on_source(bundle)
   \ '\v([\]''"\)]|\w|(^\s*))(\.|\()'
   let g:neocomplete#force_omni_input_patterns.python =
   \ '[^. \t]\.\w*'
+  let g:neocomplete#force_omni_input_patterns.go = '\h\w*\.\?'
 
   " customize sort complete candiates
   "call neocomplete#custom#source('_', 'sorters', ['sorter_length'])
