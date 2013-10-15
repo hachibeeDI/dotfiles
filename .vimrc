@@ -266,9 +266,9 @@ omap iF <Plug>(textobj-python-function-i)
 
 NeoBundle 'kana/vim-smartinput'
 NeoBundleLazy 'kana/vim-smartchr', {
-      \ 'autoload' : {
-      \   'insert' : 1,
-      \ }}
+\ 'autoload' : {
+\   'function_prefix' : 'smartchr',
+\ }}
 
 NeoBundleLazy 'kana/vim-smartword', { 'autoload' : {
       \ 'mappings' : [
@@ -1999,21 +1999,14 @@ function! s:def_smartchar()
 
   " NOTE: 辞書とかを駆使した方が高速かな？
   if l:lang == 'ruby'
-    "inoremap <buffer> <expr> : smartchr#loop(': ', '::', ':')
     inoremap <buffer> <expr> = smartchr#one_of(' = ', ' == ', '=')
 
   elseif l:lang == 'python'
     inoremap <buffer> <expr> = smartchr#one_of(' = ', ' == ', '=')
-    "inoremap <buffer> <expr> > smartchr#loop(' > ', ' >= ')
-    "inoremap <buffer> <expr> < smartchr#loop(' < ', ' <= ')
-    "inoremap <buffer> <expr> + smartchr#loop(' + ', '+')
-    "inoremap <buffer> <expr> - smartchr#loop(' - ', '-')
-    "inoremap <buffer> <expr> * smartchr#loop(' * ', '*')
     inoremap <buffer> <expr> # smartchr#one_of('# ', '#')
     inoremap <buffer> <expr> & smartchr#loop('&', ' and ')
     inoremap <buffer> <expr> <Bar> smartchr#loop('\|', ' or ')
     inoremap <buffer> <expr> \ smartchr#loop('\', 'lambda ')
-
 
   elseif l:lang == 'javascript'
     inoremap <buffer> <expr> = smartchr#one_of(' = ', ' == ', ' === ', '=')
@@ -2025,9 +2018,6 @@ function! s:def_smartchar()
 
   elseif l:lang == 'haxe'
     inoremap <buffer> <expr> = smartchr#one_of(' = ', ' == ', '=')
-    "inoremap <buffer> <expr> + smartchr#loop(' + ', '+')
-    "inoremap <buffer> <expr> - smartchr#loop(' - ', '-')
-    "inoremap <buffer> <expr> * smartchr#loop(' * ', '*')
   endif
 endfunction
 "  }}}
