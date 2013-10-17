@@ -529,6 +529,15 @@ NeoBundleLazy 'groenewege/vim-less', {
 \ "autoload" : {
 \   "filetypes" : ["less"] }
 \ }
+NeoBundleLazy 'wavded/vim-stylus', {
+\ 'autoload' : {
+\   'filetypes' : ['stylus'] }
+\ }
+NeoBundleLazy 'duganchen/vim-soy', {
+\ 'autoload' : {
+\   'filetypes' : ['soy'] }
+\ }
+
 " }}}
 
 " === }}}
