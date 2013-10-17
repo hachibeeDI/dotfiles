@@ -2003,6 +2003,10 @@ autocmd MyAutoCmd
       \ FileType haxe
       \ call s:def_smartchar()
 
+autocmd MyAutoCmd
+      \ FileType go
+      \ call s:def_smartchar()
+
 function! s:def_smartchar()
   let l:lang = &filetype
 
@@ -2027,6 +2031,13 @@ function! s:def_smartchar()
 
   elseif l:lang == 'haxe'
     inoremap <buffer> <expr> = smartchr#one_of(' = ', ' == ', '=')
+    "inoremap <buffer> <expr> + smartchr#loop(' + ', '+')
+    "inoremap <buffer> <expr> - smartchr#loop(' - ', '-')
+    "inoremap <buffer> <expr> * smartchr#loop(' * ', '*')
+  elseif l:lang == 'go'
+    inoremap <buffer> <expr> = smartchr#one_of(' := ', ' == ', '=')
+    inoremap <buffer> <expr> ! smartchr#one_of(' !', ' != ', '!')
+    inoremap <buffer> <expr> < smartchr#one_of('<', '<-')
   endif
 endfunction
 "  }}}
