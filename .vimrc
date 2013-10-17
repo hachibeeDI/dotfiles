@@ -1112,6 +1112,10 @@ nnoremap <expr> 0
 onoremap 0 ^
 onoremap _ 0
 
+" カーソルを移動せずに改行 http://qiita.com/kentaro/items/42159874a0637d57ae1a
+nnoremap go :<C-u>call append('.', '')<CR>
+nnoremap gO :normal! O<ESC>j
+
 " use accelerated_jk
 nmap j <Plug>(accelerated_jk_gj)
 nmap k <Plug>(accelerated_jk_gk)
