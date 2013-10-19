@@ -699,9 +699,9 @@ if $GOROOT != ''
   " 標準でバンドルされてるプラギン
   set rtp+=$GOROOT/misc/vim
   " 補完してくれるやつ
-  exe "set rtp+=".globpath($GOPATH, "src/github.com/nsf/gocode/vim")
+  set rtp+=$GOPATH/src/github.com/nsf/gocode/vim
   " lint
-  exe "set rtp+=" . globpath($GOPATH, "src/github.com/golang/lint/misc/vim")
+  set rtp+=$GOPATH/src/github.com/golang/lint/misc/vim
   autocmd MyAutoCmd BufWritePre *.go Fmt
 endif
 "}}}
