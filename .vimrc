@@ -1803,7 +1803,15 @@ function! bundle.hooks.on_source(bundle)
 \    },
 \    'python/watchdogs_checker': {
 \      'type': 'watchdogs_checker/pychecker'
-\    }
+\    },
+\    'watchdogs_checker/go_build': {
+\      'command': 'go'
+\      , 'exec': '%c build %s:p'
+\      , 'quickfix/errorformat': '%f:%l:%m'
+\    },
+\    'go/watchdogs_checker': {
+\      'type': 'watchdogs_checker/go_build'
+\    },
 \ }
 
 " < " http://d.hatena.ne.jp/osyo-manga/20120924/1348473304
@@ -2039,7 +2047,7 @@ function! s:def_smartchar()
     "inoremap <buffer> <expr> - smartchr#loop(' - ', '-')
     "inoremap <buffer> <expr> * smartchr#loop(' * ', '*')
   elseif l:lang == 'go'
-    inoremap <buffer> <expr> = smartchr#one_of(' := ', ' == ', '=')
+    inoremap <buffer> <expr> = smartchr#one_of(' = ', ' := ', ' == ', '=')
     inoremap <buffer> <expr> ! smartchr#one_of(' !', ' != ', '!')
     inoremap <buffer> <expr> < smartchr#one_of('<', '<-')
   endif
