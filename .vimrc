@@ -1148,6 +1148,11 @@ onoremap ( t(
 vnoremap ) t)
 vnoremap ( t(
 
+onoremap ] t]
+onoremap [ t[
+vnoremap ] t]
+vnoremap [ t[
+
 onoremap _ t_
 vnoremap _ t_
 onoremap , t,
