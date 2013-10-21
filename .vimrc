@@ -236,10 +236,10 @@ NeoBundleLazy 'thinca/vim-textobj-between', {
 \   }
 \ }
 " textobj between {{{
-omap aw <Plug>(textobj-between-a)
-xmap aw <Plug>(textobj-between-a)
-omap iw <Plug>(textobj-between-i)
-xmap iw <Plug>(textobj-between-i)
+omap at <Plug>(textobj-between-a)
+xmap at <Plug>(textobj-between-a)
+omap it <Plug>(textobj-between-i)
+xmap it <Plug>(textobj-between-i)
 "}}}
 
 NeoBundleLazy 'bps/vim-textobj-python', {
