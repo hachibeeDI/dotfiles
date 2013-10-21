@@ -1125,7 +1125,7 @@ nmap k <Plug>(accelerated_jk_gk)
 " ---- insert mode ---- {{{
 "emacs like key-bind in insert mode
 inoremap <C-a> <Home>
-inoremap <C-e> <End>
+" inoremap <C-e> <End> neocomplete
 inoremap <C-f> <Right>
 inoremap <C-b> <Left>
 inoremap <C-p> <Up>
@@ -1405,17 +1405,9 @@ function! bundle.hooks.on_source(bundle)
   inoremap <expr><C-g>     neocomplete#undo_completion()
   inoremap <expr><C-l>     neocomplete#complete_common_string()
 
-  " Recommended key-mappings.
-  " <CR>: close popup and save indent.
-  "inoremap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
-  " ATTENTION: smart inputの設定を優先させるため、こいつはmap_to_triggerにて設定する
-  "imap <silent><expr> <CR> neocomplete#smart_close_popup() . "\<Plug>(smartinput_CR)"
+  imap <expr> <CR> pumvisible() ?
+\     neocomplete#close_popup() : "\<Plug>(smartinput_CR)"
 
-  "function! s:my_cr_function()
-  "  return neocomplete#smart_close_popup() . "\<Plug>(smartinput_CR)"
-  "  " For no inserting <CR> key.
-  "  "return pumvisible() ? neocomplete#close_popup() : "\<Plug>(smartinput_CR)"
-  "endfunction
   " <TAB>: completion.
   inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
 
@@ -1426,27 +1418,16 @@ function! bundle.hooks.on_source(bundle)
   imap <expr><BS> neocomplete#smart_close_popup()."\<Plug>(smartinput_C-h)"
 
   inoremap <expr><C-y>  neocomplete#close_popup()
-  "inoremap <expr><C-e>  neocomplete#cancel_popup()
+  inoremap <expr><C-e> pumvisible() ? neocomplete#cancel_popup() : "\<End>"
 
   " Close popup by <Space>.
-  "inoremap <expr><Space> pumvisible() ? neocomplete#close_popup() : "\<Space>"
-
-  " For cursor moving in insert mode(Not recommended)
-  "inoremap <expr><Left>  neocomplete#close_popup() . "\<Left>"
-  "inoremap <expr><Right> neocomplete#close_popup() . "\<Right>"
-  "inoremap <expr><Up>    neocomplete#close_popup() . "\<Up>"
-  "inoremap <expr><Down>  neocomplete#close_popup() . "\<Down>"
-  " Or set this.
-  "let g:neocomplete#enable_cursor_hold_i = 1
-  " Or set this.
-  "let g:neocomplete#enable_insert_char_pre = 1
+  inoremap <expr><Space> pumvisible() ? neocomplete#close_popup() : "\<Space>"
 
   " AutoComplPop like behavior.
   "let g:neocomplete#enable_auto_select = 1
 
   imap <expr> `  pumvisible() ?
         \ "\<Plug>(neocomplete_start_unite_quick_match)" : '`'
-
   " }}}
 
   " Enable heavy omni completion.
@@ -2062,6 +2043,8 @@ endfunction
 " --- smartinput --- {{{
 
 " --------------- trigger definitions ------------------{{{
+" 以下、neocompleteなどの主要キーマップを書き換えるプラグインとの衝突に留意すること
+
 " 他プラグインへの<BS>や<CR>マッピング時に、smartinputの機能を含むソレを提供させる
 " via: http://qiita.com/todashuta@github/items/bdad8e28843bfb3cd8bf
 call smartinput#map_to_trigger('i', '<Plug>(smartinput_BS)',
@@ -2071,8 +2054,8 @@ call smartinput#map_to_trigger('i', '<Plug>(smartinput_C-h)',
       \                        '<BS>',
       \                        '<C-h>')
 call smartinput#map_to_trigger('i', '<Plug>(smartinput_CR)',
-      \                        '<Enter>',
-      \                        "<C-o>:call neocomplete#smart_close_popup() . '\<Plug>(smartinput_CR)'<CR>")
+      \                        '<CR>',
+      \                        '<CR>')
 
 call smartinput#map_to_trigger('i', '<CR>', '<CR>', '<CR>')
 call smartinput#map_to_trigger('i', ':', ':', ':')
