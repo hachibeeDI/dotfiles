@@ -24,7 +24,7 @@
     sh = show
     ft = fetch
     ad = add
-    cm = commit
+    cm = commit -v
 
     # branch
     br = branch
