@@ -441,18 +441,6 @@ NeoBundleLazy 'basyura/unite-rails', {
 \  'autoload' : {
 \    "filetypes" : ["ruby"] }
 \ }
-
-" require `gem install rails_best_practices`
-NeoBundleLazy 'taichouchou2/unite-rails_best_practices', {
-\  'autoload' : {
-\    "filetypes" : ["ruby"] }
-\ }
-
-" require `gem install reek`
-NeoBundleLazy 'taichouchou2/unite-reek', {
-\   'autoload': {
-\     'filetypes': ['ruby', 'eruby', 'haml'] },
-\ }
 "}}}
 
 " -- Lisp {{{
