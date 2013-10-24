@@ -18,6 +18,8 @@
     lineNumber = true
 [push]
     default = upstream
+[commit]
+    template = ~/.gitmsgtemplate.txt
 [alias]
     # common
     st = status
