@@ -2276,6 +2276,22 @@ call smartinput#define_rule({
 \   'syntax': ['Comment'],
 \ })
 " }}}
+
+" セミコロンを要求するうんこシンタックス対応 {{{
+call smartinput#define_rule({
+\   'at': '\%#;$',
+\   'char': ';',
+\   'input': '<Right>',
+\   'filetype': ['java', 'cpp', 'cs', 'haxe'],
+\ })
+call smartinput#define_rule({
+\   'at': '\%#;$',
+\   'char': '<CR>',
+\   'input': '<Right><CR>',
+\   'filetype': ['java', 'cpp', 'cs', 'haxe'],
+\ })
+" }}}
+
 " ERB
 call smartinput#define_rule({
 \   'at': '<\%#',
