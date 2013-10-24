@@ -78,3 +78,11 @@ snippet enum
         enum ${1:Name} {
                 ${2:Construct}
         }
+
+snippet     const
+options     head
+        static inline var ${1:Name} = ${2:Value};
+
+snippet     property
+options     head
+        var conn(${1:get}, ${2:set}): ${3:Type};
