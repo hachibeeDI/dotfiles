@@ -242,6 +242,8 @@ source ~/.zsh/modules/cdd/cdd
 # -- zaw.zsh --------
 source ~/.zsh/modules/zaw/zaw.zsh
 
+# -- notify if command takes long time
+source ~/.zsh/functions/notify_wlonger.zsh
 # }}}
 # -------------------- settings for plugins ------------ {{{
 # --- cdd ---
