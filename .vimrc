@@ -362,6 +362,10 @@ NeoBundleLazy 'lambdalisue/vim-django-support', {
 \ "autoload" : {
 \   "filetypes" : ["python"],
 \ }}
+NeoBundleLazy 'Glench/Vim-Jinja2-Syntax', {
+\ "autoload" : {
+\   "filetypes" : ["html"],
+\ }}
 
 " }}}
 " -- haXe {{{
@@ -1802,6 +1806,7 @@ unlet bundle
 
 let g:quickrun_no_default_key_mappings = 1
 nmap <F5> <Plug>(quickrun)
+nmap ,q <Plug>(quickrun-op)
 nnoremap [Show]w :<C-u>WatchdogsRunSilent<CR><Esc>
 " watchdog }}}
 " quickrun }}}
