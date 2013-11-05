@@ -2112,6 +2112,18 @@ call smartinput#define_rule({
 
 "}}}
 
+call smartinput#define_rule({
+\   'at'       : '\s==\s\%#',
+\   'char'     : '<BS>',
+\   'input'    : '<Left><BS><Right>',
+\   })
+call smartinput#define_rule({
+\   'at'       : '\s=\%#',
+\   'char'     : '=',
+\   'input'    : '=<Space>',
+\   })
+
+
 " Python専用 ------------------ {{{
 " classとかの定義時に:までを入れる
 call smartinput#define_rule({
