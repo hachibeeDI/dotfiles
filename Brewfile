@@ -35,7 +35,7 @@ brew "ctags"
 
 # tools
 brew "vim --override-system-vi --with-lua --with-ruby --with-python"
-brew "macvim--with-lua"
+brew "macvim --with-luajit"
 brew "source-highlight"
 brew "reattach-to-user-namespace"
 brew "tmux"
