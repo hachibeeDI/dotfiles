@@ -110,12 +110,12 @@ NeoBundle 'cohama/vim-hier'
 NeoBundle 'dannyob/quickfixstatus'
 
 "Unite
-NeoBundle 'Shougo/unite.vim' ", {
-"    \ 'autoload' : {
-"    \   'commands' : ["Unite", "UniteWithBufferDir", "QuickRun"],
-"    \ }
-"    \}
-"
+NeoBundleLazy 'Shougo/unite.vim' , {
+\ 'autoload' : {
+\   'commands' : ["Unite", "UniteWithBufferDir", "QuickRun"],
+\ }
+\}
+
 NeoBundle 'Shougo/unite-ssh'
 call neobundle#config('unite-ssh', {
       \ 'lazy' : 1,
@@ -148,7 +148,6 @@ NeoBundleLazy 'majutsushi/tagbar', {
 \ }
 \}
 
-
 NeoBundle 'osyo-manga/unite-quickfix'
 call neobundle#config('unite-quickfix', {
       \ 'lazy' : 1,
@@ -165,11 +164,6 @@ NeoBundleLazy 'thinca/vim-scouter', '', 'same', { 'autoload' : {
       \ }}
 
 NeoBundle 'vim-jp/vital.vim'
-"call neobundle#config('vital.vim', {
-"      \ 'lazy' : 1,
-"      \ 'autoload' : {
-"      \     'commands' : ['Vitalize'],
-"      \ }})
 
 " ---------- utils for edit {{{
 " vim-operator-user {{{
@@ -278,11 +272,6 @@ NeoBundleLazy 'kana/vim-smarttill', { 'autoload' : {
       \ 'mappings' : [
       \   '<Plug>(smarttill-t)', '<Plug>(smarttill-T)']
       \ }}
-
-NeoBundleLazy 'taku-o/vim-toggle', {
-\   'autoload': {
-\     'mappings': ['<Plug>ToggleI', '<Plug>ToggleN', '<Plug>ToggleV']
-\   }}
 " }}}
 
 NeoBundle 'rhysd/accelerated-jk'
@@ -293,12 +282,6 @@ NeoBundle 'goldfeld/vim-seek'
 NeoBundleLazy 'sjl/gundo.vim', {
 \ 'autoload' : {
 \   'commands' : ["GundoToggle"],
-\ }
-\}
-"TDD plugin for vim
-NeoBundleLazy 'reinh/vim-makegreen', {
-\ 'autoload' : {
-\   'functions' : ["MakeGreen"],
 \ }
 \}
 
@@ -1320,6 +1303,24 @@ function! s:open_junk_file()
 endfunction
 
 nnoremap [Show]j :<C-u>JunkFile
+
+" GetScriptID {{{
+" via: http://mattn.kaoriya.net/software/vim/20090826003359.htm
+function! GetScriptID(_fname)
+  let fname = tolower(a:_fname)
+  let snlist = ''
+  redir => snlist
+    silent! scriptnames
+  redir END
+  let sid_name = {}
+  let mx = '^\s*\(\d\+\):\s*\(.*\)$'
+  for line in split(snlist, "\n")
+    let sid_name[tolower(substitute(line, mx, '\2', ''))] = substitute(line, mx, '\1', '')
+  endfor
+  let ret = sid_name[fname]
+  return ret
+endfunction
+"}}}
 
 " kobito
 function! s:open_kobito(...)
@@ -2353,33 +2354,6 @@ call smartinput#define_rule({
 \ })
 "---- }}}
 
-" toggle.vim {{{
-"imap <silent>,t <Plug>ToggleI
-nmap <silent> ,t <Plug>ToggleN
-vmap <silent> ,t <Plug>ToggleV
-
-let g:toggle_pairs = {
-\   'and': 'or',
-\   'or': 'and',
-\   'elsif': 'else',
-\   'else': 'elsif',
-\   'it': 'specify',
-\   'specify': 'it',
-\   'describe': "context",
-\   'context': "describe",
-\   'true': 'false',
-\   'false': 'true',
-\   'yes': 'no',
-\   'no': 'yes',
-\   'on': 'off',
-\   'off': 'on',
-\   'public': 'protected',
-\   'protected': 'private',
-\   'private': 'public',
-\   '&&': '||',
-\   '||': '&&'
-\ }
-" }}}
 " --- gist-vim -----{{{
 let g:gist_use_password_in_gitconfig = 1
 "}}}
