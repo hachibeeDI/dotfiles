@@ -14,7 +14,7 @@ set nocompatible
 
 let s:MY_VIMRUNTIME = expand('~/.vim')
 let s:BUNDLEPATH = expand('~/.neobundle')
-let s:vimrc = $HOME."/.vimrc"
+let s:vimrc = "~/.vimrc"
 
 let s:is_windows = has('win16') || has('win32') || has('win64')
 let s:is_cygwin = has('win32unix')
@@ -238,23 +238,12 @@ xmap i_ <Plug>(textobj-between-i)
 
 NeoBundleLazy 'bps/vim-textobj-python', {
 \ 'depends': ['kana/vim-textobj-user'],
-\ 'autoload' : {
-\   "filetypes" : ["python"],
+\ 'autoload': {
+\   'mappings': ['<Plug>(textobj-python-function-a)', '<Plug>(textobj-python-function-i)'],
 \   }
 \ }
 " --- text-obj-python ---- {{{
-" - af: a function
-" - if: inner function
-" - ac: a class
-" - ic: inner class
-
-" this plugin has aditional key-bind
-"  -  '[pf', ']pf': move to next/previous function
-"  -  '[pc', ']pc': move to next/previous class
-xmap aF <Plug>(textobj-python-function-a)
-omap aF <Plug>(textobj-python-function-a)
-xmap iF <Plug>(textobj-python-function-i)
-omap iF <Plug>(textobj-python-function-i)
+  " in $HOME/.vim/after/ftplugin/python.vim
 " }}}
 "textobj-user }}}
 
@@ -631,6 +620,9 @@ let g:loaded_getscriptPlugin = 1
 let g:loaded_netrwPlugin = 1
 " noteを表示させない
 let g:netrw_localcopycmd=''
+
+" python.vim (default bundled syntax plugin)
+let g:python_highlight_all = 1
 
 filetype plugin indent on
 syntax enable
@@ -1982,10 +1974,6 @@ autocmd MyAutoCmd
       \ call s:def_smartchar()
 
 autocmd MyAutoCmd
-      \ FileType python
-      \ call s:def_smartchar()
-
-autocmd MyAutoCmd
       \ FileType javascript
       \ call s:def_smartchar()
 
@@ -2114,9 +2102,19 @@ call smartinput#define_rule({
 "}}}
 
 call smartinput#define_rule({
+\   'at'       : '\s===\s\%#',
+\   'char'     : '<BS>',
+\   'input'    : '<Left><BS><Right>',
+\   })
+call smartinput#define_rule({
 \   'at'       : '\s==\s\%#',
 \   'char'     : '<BS>',
 \   'input'    : '<Left><BS><Right>',
+\   })
+call smartinput#define_rule({
+\   'at'       : '\s=\s\%#',
+\   'char'     : '<BS>',
+\   'input'    : '<BS><Left><BS><Right>',
 \   })
 call smartinput#define_rule({
 \   'at'       : '\s=\%#',
@@ -2419,6 +2417,9 @@ function! MyVaxe()
   endif
 endfunction
 " lightline }}}
+
+
+let g:vimrc_sid = GetScriptID(s:vimrc)
 
 source ~/.vimrc.local
 
