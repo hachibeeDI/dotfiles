@@ -994,18 +994,19 @@ nnoremap ZZ <NOP>
 nnoremap ZQ <Nop>
 
 " -- mapping to show status
-nnoremap [Show] <Nop>
-nmap <Space>s [Show]
-nnoremap [Show]m  :<C-u>Capture marks<CR>
-nnoremap [Show]k  :<C-u>Capture map<CR>
-nnoremap [Show]r  :<C-u>Capture registers<CR>
-nnoremap [Show]e  :<C-u>edit $MYVIMRC<CR>
-nnoremap [Show]l  :<C-u>source $MYVIMRC<CR>
-nnoremap [Show]q  :<C-u>tab help<Space>
-nnoremap [Show]hc  :<C-u>HierClear<CR>
-nnoremap [Show]hs  :<C-u>HierStart<CR>
-nnoremap [Show]hp  :<C-u>HierStop<CR>
-nnoremap [Show]hu  :<C-u>HierUpdate<CR>
+" via: http://vim-users.jp/2010/05/hack-144/
+nnoremap <SID>[Show] <Nop>
+nmap <Space>s <SID>[Show]
+nnoremap <SID>[Show]m  :<C-u>Capture marks<CR>
+nnoremap <SID>[Show]k  :<C-u>Capture map<CR>
+nnoremap <SID>[Show]r  :<C-u>Capture registers<CR>
+nnoremap <SID>[Show]e  :<C-u>edit $MYVIMRC<CR>
+nnoremap <SID>[Show]l  :<C-u>source $MYVIMRC<CR>
+nnoremap <SID>[Show]q  :<C-u>tab help<Space>
+nnoremap <SID>[Show]hc  :<C-u>HierClear<CR>
+nnoremap <SID>[Show]hs  :<C-u>HierStart<CR>
+nnoremap <SID>[Show]hp  :<C-u>HierStop<CR>
+nnoremap <SID>[Show]hu  :<C-u>HierUpdate<CR>
 
 " vim Hack: http://vim-users.jp/2010/07/hack159/ {{{
 nnoremap <SID>(split-to-j) :<C-u>execute 'belowright' (v:count == 0 ? '' : v:count) 'split'<CR>
@@ -1023,10 +1024,10 @@ nnoremap <Esc><Esc> :<C-u>nohlsearch <Bar> cclose<CR><Esc>
 "
 set spelllang=en_us
 " toggle set spell
-nnoremap [Show]s  :<C-u>setl spell!<CR>
+nnoremap <SID>[Show]s  :<C-u>setl spell!<CR>
 
 if version >= 703
-  nnoremap <silent> [Show]n :<C-u>ToggleNumber<CR>
+  nnoremap <silent> <SID>[Show]n :<C-u>ToggleNumber<CR>
 
   command! -nargs=0 ToggleNumber call ToggleNumberOption()
 
@@ -1038,16 +1039,16 @@ if version >= 703
     endif
   endfunction
 else
-  nnoremap <silent> [Show]n :<C-u>set number!<CR>
+  nnoremap <silent> <SID>[Show]n :<C-u>set number!<CR>
 endif
 
 
-nnoremap [EditSupport] <Nop>
-nmap , [EditSupport]
+nnoremap <SID>[EditSupport] <Nop>
+nmap , <SID>[EditSupport]
 
 " substitute word is under cursor
-nnoremap <expr> [EditSupport]s* ':%substitute/\<' . expand('<cword>') . '\>/'
-nnoremap <expr> [EditSupport]e* ':' . line(".") . ',$s/\<' . expand('<cword>') . '\>/'
+nnoremap <expr> <SID>[EditSupport]s* ':%substitute/\<' . expand('<cword>') . '\>/'
+nnoremap <expr> <SID>[EditSupport]e* ':' . line(".") . ',$s/\<' . expand('<cword>') . '\>/'
 
 " ---- nomal mode ----{{{
 ":はコマンドモードへの移行、;はfind時に次の該当単語へジャンプする
@@ -1294,7 +1295,7 @@ function! s:open_junk_file()
   endif
 endfunction
 
-nnoremap [Show]j :<C-u>JunkFile
+nnoremap <SID>[Show]j :<C-u>JunkFile
 
 " GetScriptID {{{
 " via: http://mattn.kaoriya.net/software/vim/20090826003359.htm
@@ -1658,36 +1659,36 @@ endfunction
 unlet bundle
 
 " --- key maps {{{
-nnoremap [Unite] <Nop>
-nmap ,u [Unite]
+nnoremap <SID>[Unite] <Nop>
+nmap ,u <SID>[Unite]
 
 " バッファ一覧
-nnoremap <silent> [Unite]b :<C-u>Unite buffer<CR>
+nnoremap <silent> <SID>[Unite]b :<C-u>Unite buffer<CR>
 " ファイル一覧
-nnoremap <silent> [Unite]f :<C-u>UniteWithBufferDir -buffer-name=files file<CR>
+nnoremap <silent> <SID>[Unite]f :<C-u>UniteWithBufferDir -buffer-name=files file<CR>
 " .gitを基準にしたプロジェクト一覧 (ctrlp的な)
 nnoremap <silent> <C-p>  :<C-u>Unite file_rec/async:!<CR>
 " レジスタ一覧
-nnoremap <silent> [Unite]r :<C-u>Unite -buffer-name=register register<CR>
+nnoremap <silent> <SID>[Unite]r :<C-u>Unite -buffer-name=register register<CR>
 " 最近使用したファイル一覧
-nnoremap <silent> [Unite]m :<C-u>Unite file_mru<CR>
+nnoremap <silent> <SID>[Unite]m :<C-u>Unite file_mru<CR>
 " 常用セット
-nnoremap <silent> [Unite]u :<C-u>Unite buffer file_mru<CR>
+nnoremap <silent> <SID>[Unite]u :<C-u>Unite buffer file_mru<CR>
 " タブ一覧
-nnoremap <silent> [Unite]t :<C-u>Unite tab<CR>
+nnoremap <silent> <SID>[Unite]t :<C-u>Unite tab<CR>
 " 全部乗せ
-nnoremap <silent> [Unite]a :<C-u>UniteWithBufferDir -buffer-name=files buffer file_mru bookmark file<CR>
+nnoremap <silent> <SID>[Unite]a :<C-u>UniteWithBufferDir -buffer-name=files buffer file_mru bookmark file<CR>
 " output
-nnoremap <silent> [Unite]p :<C-u>Unite menu<CR>
+nnoremap <silent> <SID>[Unite]p :<C-u>Unite menu<CR>
 
 " その他
-nnoremap <silent> [Unite]` :<C-u>Unite -auto-quit neobundle/update<CR>
+nnoremap <silent> <SID>[Unite]` :<C-u>Unite -auto-quit neobundle/update<CR>
 " Outline
-nnoremap <silent> [Unite]o :<C-u>Unite -vertical outline<CR>
+nnoremap <silent> <SID>[Unite]o :<C-u>Unite -vertical outline<CR>
 " grep
-nnoremap <silent> [Unite]g :<C-u>Unite grep<CR>
+nnoremap <silent> <SID>[Unite]g :<C-u>Unite grep<CR>
 " quickfix
-nnoremap <silent> [Unite]q :<C-u>Unite -no-quit -direction=botright quickfix
+nnoremap <silent> <SID>[Unite]q :<C-u>Unite -no-quit -direction=botright quickfix
 
 "" neocomplete
 "imap <C-i>  <Plug>(neocomplete_start_unite_complete)
@@ -1800,7 +1801,7 @@ unlet bundle
 let g:quickrun_no_default_key_mappings = 1
 nmap <F5> <Plug>(quickrun)
 nmap ,q <Plug>(quickrun-op)
-nnoremap [Show]w :<C-u>WatchdogsRunSilent<CR><Esc>
+nnoremap <SID>[Show]w :<C-u>WatchdogsRunSilent<CR><Esc>
 " watchdog }}}
 " quickrun }}}
 
@@ -1852,7 +1853,7 @@ let g:rbpt_colorpairs = [
 let g:rbpt_max = 15
 let g:rbpt_loadcmd_toggle = 0
 " ハイライトを切り替えるキーマップ
-nnoremap <silent> [Show]rr :RainbowParenthesesToggle<CR>
+nnoremap <silent> <SID>[Show]rr :RainbowParenthesesToggle<CR>
 
 "--- procとか ---  {{{
 "そろそろ限界…今後はOSごとに別ファイルでやったほうがよいかも
@@ -2356,7 +2357,7 @@ call smartinput#define_rule({
 let g:gist_use_password_in_gitconfig = 1
 "}}}
 " --- Tagbar --- {{{
-nnoremap [Show]t  :<C-u>TagbarToggle<CR>
+nnoremap <SID>[Show]t  :<C-u>TagbarToggle<CR>
 "}}}
 
 " --- lightline -- {{{
