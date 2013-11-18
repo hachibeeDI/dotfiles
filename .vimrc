@@ -2222,7 +2222,7 @@ call smartinput#define_rule({
 \   'input': '<><Left>',
 \   'filetype': ['xml', 'html', 'eruby'],
 \ })
-" 前が空白以外なら型パタメータ、空白なら演算子だと考えさせる
+" 前が空白以外なら型パラメータ、空白なら演算子だと考えさせる
 call smartinput#define_rule({
 \   'at': '[^[:blank:]]\%#',
 \   'char': '<',
@@ -2263,6 +2263,14 @@ call smartinput#define_rule({
 \   'input': '<BS><BS>',
 \   'filetype': ['java', 'cpp', 'cs', 'haxe'],
 \ })
+" css用 {{{
+call smartinput#define_rule({
+\   'at': '/\%#',
+\   'char': '/',
+\   'input': '*<Space><Space>*/<Left><Left><Left>',
+\   'filetype': ['css'],
+\ })
+" }}}
 " one lineコメント後も / 入力でmultiline化
 call smartinput#define_rule({
 \   'at': '// \%#',
@@ -2274,20 +2282,20 @@ call smartinput#define_rule({
 \   'at': '/\%#',
 \   'char': '*',
 \   'input': '*<Space><Space>*/<Left><Left><Left>',
-\   'filetype': ['java', 'cpp', 'cs', 'haxe'],
+\   'filetype': ['java', 'cpp', 'cs', 'haxe', 'css'],
 \ })
 call smartinput#define_rule({
 \   'at': '/\* \%# \*/',
 \   'char': '<BS>',
 \   'input': '<BS><BS><Del><Del><Del>',
-\   'filetype': ['java', 'cpp', 'cs', 'haxe'],
+\   'filetype': ['java', 'cpp', 'cs', 'haxe', 'css'],
 \ })
 " javadocっぽい感じに展開してくれる
 call smartinput#define_rule({
 \   'at': '/\* \%# \*/',
 \   'char': '<CR>',
 \   'input': '<Del><BS>*<CR><Space>*<CR><Up><End><Space>',
-\   'filetype': ['java', 'cpp', 'cs', 'haxe'],
+\   'filetype': ['java', 'cpp', 'cs', 'haxe', 'css'],
 \ })
 " multiline commentの中では改行ごとに頭に*をつけてくれる
 call smartinput#define_rule({
@@ -2310,6 +2318,12 @@ call smartinput#define_rule({
 \   'at': '\%#;$',
 \   'char': '<CR>',
 \   'input': '<Right><CR>',
+\   'filetype': ['java', 'cpp', 'cs', 'haxe'],
+\ })
+call smartinput#define_rule({
+\   'at': '(\%#;$',
+\   'char': '<CR>',
+\   'input': ')<Left><CR><BS><CR><Up><End><Tab>',
 \   'filetype': ['java', 'cpp', 'cs', 'haxe'],
 \ })
 " }}}
