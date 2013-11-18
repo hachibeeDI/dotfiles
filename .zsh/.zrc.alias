@@ -29,6 +29,7 @@ alias mv='mv --interactive'
 
 alias uninstall_gems='gem uninstall -axI `gem list --no-versions |grep -v test-unit |grep -v psych |grep -v rdoc | grep -v minitest |grep -v io-console | grep -v json |grep -v rake |grep -v bigdecimal`'
 
+alias start_server='python -m SimpleHTTPServer 8080'
 
 # ====================== OS specific ===========================
 case "${OSTYPE}" in
