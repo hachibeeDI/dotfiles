@@ -20,6 +20,10 @@
     default = upstream
 [commit]
     template = ~/.gitmsgtemplate.txt
+[pager]
+    log = /usr/local/share/git-core/contrib/diff-highlight/diff-highlight | less
+    show = /usr/local/share/git-core/contrib/diff-highlight/diff-highlight | less
+    diff = /usr/local/share/git-core/contrib/diff-highlight/diff-highlight | less
 [alias]
     # common
     st = status
