@@ -1447,7 +1447,7 @@ function! bundle.hooks.on_source(bundle)
   let g:neocomplete#force_omni_input_patterns.haxe =
   \ '\v([\]''"\)]|\w|(^\s*))(\.|\()'
   let g:neocomplete#force_omni_input_patterns.python =
-  \ '[^. \t]\.\w*'
+  \ '\%([^. \t]\.\|^\s*@\|^\s*from\s.\+import \|^\s*from \|^\s*import \)\w*'
   let g:neocomplete#force_omni_input_patterns.go = '\h\w*\.\?'
 
   " customize sort complete candiates
