@@ -1573,6 +1573,11 @@ let g:haskell_hsp = 0
 " }}}
 " }}}
 
+" vim-coffeescript {{{
+" in $HOME/.vim/after/ftplugin/coffee.vim
+" let coffee_make_options = '--bare'
+" }}}
+
 " emmet-vim {{{
 let g:use_emmet_complete_tag = 1
 "}}}
@@ -2008,6 +2013,10 @@ function! s:def_smartchar()
     inoremap <buffer> <expr> = smartchr#one_of(' = ', ' == ', ' === ', '=')
     inoremap <buffer> <expr> -> smartchr#one_of('function', '->')
 
+  elseif l:lang == 'coffee'
+    inoremap <buffer> <expr> = smartchr#one_of(' = ', ' == ', '=')
+    inoremap <buffer> <expr> \ smartchr#one_of('\', ' -> ', ' => ')
+
   elseif l:lang == 'cpp'
     inoremap <buffer> <expr> : smartchr#loop(': ', '::', ':')
     inoremap <buffer> <expr> . smartchr#loop('.', '->')
@@ -2043,6 +2052,7 @@ call smartinput#map_to_trigger('i', '<Plug>(smartinput_CR)',
       \                        '<CR>')
 
 call smartinput#map_to_trigger('i', '<CR>', '<CR>', '<CR>')
+call smartinput#map_to_trigger('i', '<C-j>', '<C-j>', '<C-j>')
 call smartinput#map_to_trigger('i', ':', ':', ':')
 call smartinput#map_to_trigger('i', '#', '#', '#')
 call smartinput#map_to_trigger('i', '<Bar>', '<Bar>', '<Bar>')
