@@ -336,7 +336,7 @@ NeoBundleLazy 'lambdalisue/vim-django-support', {
 \ }}
 NeoBundleLazy 'Glench/Vim-Jinja2-Syntax', {
 \ "autoload" : {
-\   "filetypes" : ["html"],
+\   "filetypes" : ["html", "jinja"],
 \ }}
 
 " }}}
