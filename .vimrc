@@ -138,10 +138,10 @@ call neobundle#config('unite-outline', {
       \ })
 NeoBundle 'tsukkee/unite-tag', '', 'default'
 call neobundle#config('tsukkee/unite-tag', {
-      \ 'lazy' : 1,
-      \ 'autoload' : {
-      \   'unite_sources' : 'tag'},
-      \ })
+\ 'lazy' : 1,
+\ 'autoload' : {
+\   'unite_sources' : 'tag'},
+\ })
 NeoBundleLazy 'majutsushi/tagbar', {
 \ 'autoload' : {
 \   'commands' : ["TagbarToggle"],
@@ -150,18 +150,18 @@ NeoBundleLazy 'majutsushi/tagbar', {
 
 NeoBundle 'osyo-manga/unite-quickfix'
 call neobundle#config('unite-quickfix', {
-      \ 'lazy' : 1,
-      \ 'autoload' : {
-      \   'unite_sources' : 'quickfix'},
-      \ })
+\ 'lazy' : 1,
+\ 'autoload' : {
+\   'unite_sources' : 'quickfix'},
+\ })
 
 " get and read referece on vim
 NeoBundleLazy 'thinca/vim-ref', { 'autoload' : {
-      \ 'commands' : 'Ref'
-      \ }}
+\ 'commands' : 'Ref'
+\ }}
 NeoBundleLazy 'thinca/vim-scouter', '', 'same', { 'autoload' : {
-      \ 'commands' : 'Scouter'
-      \ }}
+\ 'commands' : 'Scouter'
+\ }}
 
 NeoBundle 'vim-jp/vital.vim'
 
@@ -346,12 +346,6 @@ NeoBundleLazy 'jdonaldson/vaxe', {
     \   "filetypes" : ["haxe", "hxml", "nmml.xml"],
     \ }
     \}
-"NeoBundleLazy 'MarcWeber/vim-haxe', {
-"    \ "autoload" : {
-"    \   "filetypes" : ["python"],
-"    \ }
-"    \}
-
 "  }}}
 " -- C++ {{{
 " clang
@@ -455,9 +449,10 @@ NeoBundleLazy 'ujihisa/unite-haskellimport', {
 " }}}
 " -- VB.NET {{{
 NeoBundleLazy 'hachibeeDI/vim-vbnet', {
-\"autoload" : {
+\ "autoload" : {
 \   "filetypes" : ["vbnet"],
-\   }
+\   },
+\ "stay_same" : 1,
 \}
 " }}}
 " -- markup {{{
@@ -578,16 +573,17 @@ NeoBundleLazy 'basyura/TweetVim', {
     \ }
     \}
 NeoBundleLazy 'glidenote/memolist.vim', {
-    \ 'autoload' : {
-    \ 'commands' : ["MemoNew", "MemoList", "MemoGrep"],
-    \ }
-    \}
+\ 'autoload' : {
+\ 'commands' : ["MemoNew", "MemoList", "MemoGrep"],
+\ }
+\}
 
 " developping
 NeoBundleLazy 'hachibeeDI/unite-pythonimport', {
 \ 'autoload' : {
 \   "filetypes" : ["python"],
-\   }
+\   },
+\ "stay_same" : 1,
 \ }
 
 "}}}
