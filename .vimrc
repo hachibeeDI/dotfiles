@@ -936,7 +936,7 @@ function! s:tabpage_label(n)
   if &ft == 'unite'
     return hightlight_start . a:n . ':[unite] ' . unite#get_status_string() . '%T%#TabLineFill#'
   else
-    return hightlight_start . a:n . ':< ' . '%' . a:n . 'T' . label . '%T%#TabLineFill#'
+    return hightlight_start . a:n . ':< %' . a:n . 'T' . label . '%T%#TabLineFill#'
   endif
 endfunction
 
@@ -946,13 +946,13 @@ function! MakeTabLine()
   let tabpages = join(titles, sep) . sep . '%#TabLineFill#%T'
   " 好きな情報を入れる
   let info = ''
-  let info .= fnamemodify(getcwd(), ":~") . ' '
+  let info .= fnamemodify(getcwd(), ':~') . ' '
 
   return tabpages . '%=' . info  " タブリストを左に、情報を右に表示
 endfunction
 
+" lightlineではなくて、自作のを使う
 set tabline=%!MakeTabLine()
-
 " Comletion menu ----- {{{
 "autocmd MyAutoCmd ColorScheme *
 "      \ highlight Pmenu
@@ -1827,11 +1827,6 @@ let g:PyFlakeSigns = 0
 let g:PyFlakeRangeCommand = 'Q'
 " }}}
 
-" ----- slimv.vim --------
-if s:is_mac
-    let g:slimv_swank_clojure = '!osascript -e "tell app \"iTerm\"" -e "tell the first terminal" -e "set mysession to current session" -e "launch session \"Default Session\"" -e "tell the last session" -e "exec command \"/bin/bash\"" -e "write text \"cd $(pwd)\"" -e "write text \"lein swank\"" -e "end tell" -e "select mysession" -e "end tell" -e "end tell"'
-endif
-
 " ------ RainbowParentTheses
 let g:rbpt_colorpairs = [
     \ ['brown',       'RoyalBlue3'],
@@ -1855,18 +1850,6 @@ let g:rbpt_max = 15
 let g:rbpt_loadcmd_toggle = 0
 " ハイライトを切り替えるキーマップ
 nnoremap <silent> <SID>[Show]rr :RainbowParenthesesToggle<CR>
-
-"--- procとか ---  {{{
-"そろそろ限界…今後はOSごとに別ファイルでやったほうがよいかも
-"for debian /ubuntu
-if s:is_mac
-    let g:vimproc#dll_path = s:BUNDLEPATH."/vimproc/autoload/vimproc_mac.so"
-elseif has('win32')
-    let g:vimproc#dll_path = s:BUNDLEPATH."/vimproc/autoload/vimproc_win32.dll"
-else
-    let g:vimproc#dll_path = s:BUNDLEPATH."/vimproc/autoload/vimproc_unix.so"
-endif
-"}}}
 
 " ------ TweetVim {{{
 let g:tweetvim_async_post = 1
@@ -2398,6 +2381,9 @@ let g:lightline = {
 \     'left': [
 \           ['mode', 'paste'], ['readonly', 'filename', 'modified'], ['vaxe', 'virtualenv']],
 \     'right': [['percent', 'lineinfo'], ['fileformat', 'fileencoding', 'filetype'], ['cursorsyntax']],
+\   },
+\   'enable': {
+\     'tabline': 0
 \   },
 \ }
 
