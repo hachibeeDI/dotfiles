@@ -263,7 +263,6 @@ NeoBundleLazy 'kana/vim-smarttill', { 'autoload' : {
       \ }}
 " }}}
 
-NeoBundle 'rhysd/accelerated-jk'
 " search words from two spells matched
 NeoBundle 'goldfeld/vim-seek'
 
@@ -275,10 +274,10 @@ NeoBundleLazy 'sjl/gundo.vim', {
 \}
 
 NeoBundleLazy 'nathanaelkane/vim-indent-guides', {
-    \ "autoload" : {
-    \   "filetypes" : ["python", "vbnet"],
-    \ }
-    \}
+\ "autoload" : {
+\   "filetypes" : ["python", "vbnet"],
+\ }
+\}
 NeoBundleLazy 'git://github.com/vim-scripts/IndentAnything.git', {
     \ "autoload" : {
     \   "filetypes" : ["html", "xhtml", "htmldjango", "play2-html", "javascript"],
@@ -360,10 +359,6 @@ NeoBundleLazy 'Rip-Rip/clang_complete', {
     \ "autoload" : {
     \   "filetypes" : ["cpp"] }
     \}
-"NeoBundleLazy 'beyondmarc/opengl.vim', {
-"    \ "autoload" : {
-"    \   "filetypes" : ["c", "cpp"] }
-"    \}
 
 " }}}
 " -- JavaScript {{{
@@ -1084,10 +1079,6 @@ onoremap _ 0
 " カーソルを移動せずに改行 http://qiita.com/kentaro/items/42159874a0637d57ae1a
 nnoremap go :<C-u>call append('.', '')<CR>
 nnoremap gO :normal! O<ESC>j
-
-" use accelerated_jk
-nmap j <Plug>(accelerated_jk_gj)
-nmap k <Plug>(accelerated_jk_gk)
 
 "}}}
 
