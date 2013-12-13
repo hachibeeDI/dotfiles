@@ -1,0 +1,77 @@
+snippet     h1
+abbr        h1
+options     head
+	=================================================================
+	${1:#:TITLE}
+	=================================================================
+	${0}
+
+
+snippet     h2
+abbr        h2
+options     head
+	${1:#:TITLE}
+	=================================================================
+	${0}
+
+snippet     h3
+abbr        h3
+options     head
+	${1:#:TITLE}
+	-----------------------------------------------------------------
+	${0}
+
+snippet     h4
+abbr        h4
+options     head
+	${1:#:TITLE}
+	^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+	${0}
+
+
+snippet     h5
+abbr        h5
+options     head
+	${1:#:TITLE}
+	"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+	${0}
+
+snippet     toctree
+abbr        toc
+options     head
+	.. toctree::
+		:maxdepth: ${1:2}
+
+		${2:#:FILES}
+
+snippet     link
+abbr        link
+	\`${1:#:TEXT} <${2:#:URL}>\`_
+
+snippet     syntax
+abbr        syntax
+options     indent
+	.. code-block:: ${1:python}
+
+		${1:#:TERGET}
+
+
+snippet     label
+abbr        label
+options     head
+	.. _${1:#:NAME}:
+	${2:#:CURSOR}
+
+
+snippet     ref
+abbr        ref
+	:ref:\`${1:#:NAME}\`
+	${2:#:CURSOR}
+
+
+snippet     content
+abbr        cont
+options     head
+	.. contents::
+		:depth: ${1:2}
+		${2::local:}
