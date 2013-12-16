@@ -45,9 +45,13 @@ NeoBundle 'Shougo/vimproc', {
     \ },
     \}
 NeoBundleLazy 'Shougo/neocomplete.vim', {
-    \ 'autoload' : {
-    \   'insert' : 1,
-    \ }}
+\   'autoload' : {
+\     'insert' : 1,
+\ },
+\   'depends' : 'Shougo/context_filetype.vim',
+\   'disabled' : !has('lua'),
+\   'vim_version' : '7.3.885'
+\ }
 NeoBundleLazy 'Shougo/neosnippet', {
       \ 'autoload' : {
       \   'insert' : 1,
@@ -453,7 +457,7 @@ NeoBundleLazy 'hachibeeDI/vim-vbnet', {
 " -- markup {{{
 NeoBundleLazy 'mattn/emmet-vim', {
 \ "autoload" : {
-\   "filetypes" : ["html", "xhtml", "htmldjango", "play2-html",  "eruby"],
+\   "filetypes" : ["html", "xhtml", "htmldjango", "play2-html",  "eruby", "css", "stylus"],
 \ }
 \}
 
@@ -522,17 +526,14 @@ NeoBundle 'ujihisa/unite-font', {'gui': 1}
 
 NeoBundle 'sudo.vim'
 NeoBundle 'kana/vim-metarw'
-"NeoBundle 'Lokaltog/vim-powerline'
 NeoBundle 'itchyny/lightline.vim'
 NeoBundle 't9md/vim-quickhl'
 
-" enable use slime on vim
 " カッコいい言語のカッコをレインボーにする
-" g:lisp_rainbowでもいいような……
 NeoBundleLazy 'kien/rainbow_parentheses.vim', {
-    \ "autoload" : {
-    \   "filetypes" : ["scheme", "lisp", "cpp", "haxe", "javascript", "clojure", "scala"] }
-    \}
+\ "autoload" : {
+\   'commands': ['RainbowParenthesesLoadRound', 'RainbowParenthesesLoadBraces'],
+\ }}
 
 NeoBundleLazy 'mattn/gist-vim', {
     \ 'autoload' : {
@@ -1567,6 +1568,9 @@ let g:haskell_hsp = 0
 
 " emmet-vim {{{
 let g:use_emmet_complete_tag = 1
+let g:user_emmet_settings = {
+\  'indentation' : ' ',
+\}
 "}}}
 
 " vim-indentguides ------------{{{
