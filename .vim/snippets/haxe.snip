@@ -1,88 +1,103 @@
 
 snippet switch
-        switch (${1}) {
-            case ${2}: ${3}
-        }
+	switch (${1}) {
+		case ${2}: ${3}
+	}
 
 snippet case
-        case ${1}: ${2}
+	case ${1}: ${2}
 
 snippet try
-        try {
-            ${1}
-        } catch(e: ${2}) {
-          ${3:// Ignore any errors.}
-        }
+	try {
+		${1}
+	} catch(e: ${2:Dynamic}) {
+		${3:// Ignore any errors.}
+	}
 
 snippet for
-        for (${1:var} in ${2:itr}) {
-            ${3}
-        }
+	for (${1:i} in ${2:itr}) {
+		${3}
+	}
+
+snippet     if
+abbr        if
+	if (${1:#:cond}) {
+		${2}
+	}
 
 snippet class HAXE
-        class `expand('%:t:r')` {
+	class `expand('%:t:r')` {
 
-            public function new(${1}) {
-                ${2://initialize variables}
-            }
-        }
+		public function new(${1}) {
+			${2:#:initialize variables}
+		}
+	}
 
 snippet main
-        public static function main() {
-            ${1:trace("hello world");}
-        }
+	public static function main() {
+		${1:#:trace("hello world");}
+	}
 
 snippet new
-        public function new(${1:arg}) {
-            ${1:super();}
-        }
+	public function new(${1:#:arg}) {
+		${1:super();}
+	}
 
 snippet lambda
-        function(${1:arg}) {
-            ${2}
-        }
+	function(${1:#:arg}) ${0}
 
 snippet fu function
-        function ${1:name}(${2:arg}) {
-            ${3}
-        }
+	function ${1:#:name}(${2:#:arg}) {
+		${3}
+	}
 
 snippet trace
-        trace(${1});
+	trace(${1});
+	${0}
 
 snippet desc function
-        trace(${1} + " is the value for $1");
+	trace(${1} + " is the value for $1");
 
 snippet cast
-        cast(${1:cast_this}, ${2:type})
+	cast(${1:#:cast_this}, ${2:#:type})
 
 snippet interface
-        interface ${1:name}${2: implements this}${3:, implements other}{
-                ${4}
-        }
+	interface ${1:#:name}${2: implements this}${3:, implements other}{
+		${4}
+	}
 
 snippet #if
-        #if js, php, cpp, flash
-        ${1}
-        #end{2}
+	#if ${1:TARGET}
+		${2}
+	#end $1
+	${0}
 
 snippet typedef
-        typedef ${1}${2:<T>} = {
-                var ${3}:$2;
-        }${4}
+options head
+	typedef ${1} = {
+		var ${3};
+	}
+	${0}
+
+snippet gen_typedef
+options head
+	typedef ${1}<${2:T}> = {
+		var ${3}: $2;
+	}
+	${0}
 
 snippet untyped
-        untyped { ${1} } ${2}
+	untyped { ${1} } ${2}
 
 snippet enum
-        enum ${1:Name} {
-                ${2:Construct}
-        }
+	enum ${1:#:Name} {
+		${2:#:Construct}
+	}
 
 snippet     const
 options     head
-        static inline var ${1:Name} = ${2:Value};
+	static inline var ${1:Name} = ${3:Value};
 
 snippet     property
 options     head
-        var conn(${1:get}, ${2:set}): ${3:Type};
+	var conn(${1:default}, ${2:null}): ${3:#:Type};
