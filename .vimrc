@@ -1,4 +1,4 @@
-
+ = 
 " --------------------------------------------------------
 "    _                _     _ _               _
 "   | |__   __ _  ___| |__ (_) |__   ___  ___( )___
@@ -532,7 +532,7 @@ NeoBundle 't9md/vim-quickhl'
 " カッコいい言語のカッコをレインボーにする
 NeoBundleLazy 'kien/rainbow_parentheses.vim', {
 \ "autoload" : {
-\   'commands': ['RainbowParenthesesLoadRound', 'RainbowParenthesesLoadBraces'],
+\   'commands': ['RainbowParenthesesToggle', 'RainbowParenthesesLoadRound', 'RainbowParenthesesLoadBraces'],
 \ }}
 
 NeoBundleLazy 'mattn/gist-vim', {
@@ -1365,6 +1365,7 @@ function! bundle.hooks.on_source(bundle)
   \     'default': '',
   \     'java': $HOME.'/.vim/dict/java.dict',
   \     'javascript': $HOME.'/.vim/dict/javascript.dict',
+  \     'coffee': $HOME.'/.vim/dict/javascript.dict',
   \     'python': $HOME.'/.vim/dict/python.dict',
   \     'vim': $HOME.'/.vim/dict/vim.dict',
   \     'cpp': $HOME.'/.vim/dict/cpp.dict',
@@ -1402,8 +1403,8 @@ function! bundle.hooks.on_source(bundle)
   " AutoComplPop like behavior.
   "let g:neocomplete#enable_auto_select = 1
 
-  imap <expr> `  pumvisible() ?
-        \ "\<Plug>(neocomplete_start_unite_quick_match)" : '`'
+  "imap <expr> `  pumvisible() ?
+  "      \ "\<Plug>(neocomplete_start_unite_quick_match)" : '`'
   " }}}
 
   " Enable heavy omni completion.
