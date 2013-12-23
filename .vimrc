@@ -328,7 +328,10 @@ NeoBundleLazy 'jmcantrell/vim-virtualenv', {
 NeoBundleLazy 'hachibeeDI/flake8-vim', {
 \ 'autoload' : {
 \   'filetypes' : ['python'],
-\ }}
+\ },
+\ 'base': '~/Dropbox/development/viml/',
+\ 'type': 'nosync',
+\}
 NeoBundleLazy 'davidhalter/jedi-vim', {
 \ "autoload" : {
 \   "filetypes" : ["python"],
