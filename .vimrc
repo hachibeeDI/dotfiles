@@ -37,13 +37,16 @@ call neobundle#rc(s:BUNDLEPATH)
 
 "------- set plugins ------- {{{
 NeoBundle 'Shougo/vimproc', {
-    \ 'build' : {
-    \   'windows' : 'echo "X<"',
-    \   'cygwin' : 'make -f make_cygwin.mak',
-    \   'mac' : 'make -f make_mac.mak',
-    \   'unix' : 'make -f make_unix.mak',
-    \ },
-    \}
+\ 'build' : {
+\   'windows' : 'echo "X<"',
+\   'cygwin' : 'make -f make_cygwin.mak',
+\   'mac' : 'make -f make_mac.mak',
+\   'unix' : 'make -f make_unix.mak',
+\ },
+\}
+if s:is_mac
+  let g:vimproc#dll_path = s:BUNDLEPATH . '/vimproc/autoload/vimproc_mac.so'
+endif
 NeoBundleLazy 'Shougo/neocomplete.vim', {
 \   'autoload' : {
 \     'insert' : 1,
