@@ -1967,6 +1967,10 @@ autocmd MyAutoCmd
       \ call s:def_smartchar()
 
 autocmd MyAutoCmd
+      \ FileType coffee
+      \ call s:def_smartchar()
+
+autocmd MyAutoCmd
       \ FileType cpp
       \ call s:def_smartchar()
 
