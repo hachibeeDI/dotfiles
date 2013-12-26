@@ -89,13 +89,11 @@ NeoBundleLazy 'Shougo/vimshell', {
     \}
 " compile and exec the code and pop result on Quickfix-window
 NeoBundleLazy 'thinca/vim-quickrun', {
-\ 'autoload' : {
-\   'insert' : 1,
+\ 'autoload': {
+\   'commands': ["QuickRun"],
+\   'function_prefix': 'quickrun',
+\   'mappings': ['nxo', '<Plug>(quickrun)', '<Plug>(quickrun-op)', ],
 \ }}
-"    \ 'autoload' : {
-"    \   'commands' : ["QuickRun"],
-"    \ 'mappings' : ['nxo', '<Plug>(quickrun)'],
-"    \ }}
 
 " runtimepathに追加されていない？ 要調査
 NeoBundle 'tpope/vim-fugitive' ", {
@@ -592,7 +590,7 @@ NeoBundleLazy 'hachibeeDI/unite-pythonimport', {
 
 " --- default bundled plugins ---
 " enable prebundled plugin
-runtime macros/matchinit.vim
+source $VIMRUNTIME/macros/matchit.vim
 
 "Bram氏の提供する設定例をインクルードしない。Kaoriya版用
 let g:no_vimrc_example = 1
