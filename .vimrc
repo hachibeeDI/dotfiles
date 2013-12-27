@@ -326,13 +326,21 @@ NeoBundleLazy 'jmcantrell/vim-virtualenv', {
 " \ 'autoload' : {
 " \   'filetypes' : ['python'],
 " \ }}
-NeoBundleLazy 'hachibeeDI/flake8-vim', {
+NeoBundleLazy 'flake8-vim', {
 \ 'autoload' : {
 \   'filetypes' : ['python'],
 \ },
-\ 'base': '~/Dropbox/development/viml/',
+\ 'base': expand('~/Dropbox/development/viml/'),
 \ 'type': 'nosync',
 \}
+set rtp+=$HOME/Dropbox/development/viml/ropevim/
+"NeoBundleLazy 'ropevim', {
+"\ 'autoload' : {
+"\   'filetypes' : ['python'],
+"\ },
+"\ 'base': expand('~/Dropbox/development/viml/'),
+"\ 'type': 'nosync',
+"\}
 NeoBundleLazy 'davidhalter/jedi-vim', {
 \ "autoload" : {
 \   "filetypes" : ["python"],
@@ -1484,10 +1492,7 @@ let g:neosnippet#snippets_directory = '~/.vim/snippets'
 imap <C-k> <Plug>(neosnippet_expand_or_jump)
 smap <C-k> <Plug>(neosnippet_expand_or_jump)
 xmap <C-k> <Plug>(neosnippet_expand_target)
-
-"" SuperTab Like snippets behavior
-"imap <expr><TAB> neosnippet#expandable() ? "\<Plug>(neosnippet_expand_or_jump)" :pumvisible() ? "\<C-n>" : "\<TAB>"
-"smap <expr><TAB> neosnippet#expandable() ? "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
+autocmd MyAutoCmd InsertLeave * :NeoSnippetClearMarkers
 
 " }}}
 
