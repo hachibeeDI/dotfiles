@@ -1,8 +1,27 @@
+update
+upgrade
 
+# Install Extra Repositories
+tap 'homebrew/versions'
+tap 'homebrew/binary'
+tap 'phinze/homebrew-cask'
+# Install Homebrew-Cask
+brew 'brew-cask'
+
+# Install system daemons
+brew 'dnsmasq'
+
+# Install compilers
+brew 'apple-gcc42'
+
+# Common cui utilities
 brew "readline"
 brew "openssl"
 brew "gdbm"
 brew "pkg-config"
+brew 'keychain'
+brew 'mobile-shell'
+brew 'editorconfig'
 
 # lib for build
 brew "pcre"
@@ -12,12 +31,12 @@ brew "boost"
 brew "python --with-brewed-openssl"
 brew "ruby --with-doc"
 brew "lua --with-completion"
-brew "node"
+brew 'go --cross-compile-all'
 
 # programming environmets
 brew "ruby-build"
 brew "rbenv"
-brew "git"
+brew "git --with-brewed-curl --with-brewed-openssl --with-pcre"
 
 # basic tools
 brew "mercurial"
@@ -34,10 +53,18 @@ brew "tree"
 brew "ctags"
 
 # tools
-brew "vim --override-system-vi --with-lua --with-ruby --with-python"
+brew "vim --with-client-server --override-system-vi --with-lua --with-ruby --with-python"
 brew "macvim --with-luajit"
 brew "source-highlight"
 brew "reattach-to-user-namespace"
 brew "tmux"
 brew "lynx"
 brew "tig"
+
+# -- Cask --
+cask 'iterm2'
+cask 'google-chrome'
+cask 'firefox'
+cask 'vagrant'
+cask 'keyremap4macbook'
+cask 'virtualbox'
