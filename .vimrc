@@ -1,4 +1,3 @@
- = 
 " --------------------------------------------------------
 "    _                _     _ _               _
 "   | |__   __ _  ___| |__ (_) |__   ___  ___( )___
@@ -291,6 +290,17 @@ NeoBundleLazy 'git://github.com/vim-scripts/IndentAnything.git', {
 
 " complete word in English. depends on `look` command.
 NeoBundle 'ujihisa/neco-look'
+NeoBundleLazy 'koron/codic-vim', {
+\ 'autoload': {
+\   'commands': ['Codic'],
+\   'function_prefix': 'codic',
+\ }}
+NeoBundle 'rhysd/unite-codic.vim'
+call neobundle#config('unite-codic.vim', {
+\ 'lazy' : 1,
+\ 'autoload' : {
+\   'unite_sources' : 'codic'},
+\ })
 
 NeoBundleLazy 'mattn/excitetranslate-vim', {
       \ 'depends': 'mattn/webapi-vim',
@@ -333,14 +343,14 @@ NeoBundleLazy 'flake8-vim', {
 \ 'base': expand('~/Dropbox/development/viml/'),
 \ 'type': 'nosync',
 \}
-set rtp+=$HOME/Dropbox/development/viml/ropevim/
-"NeoBundleLazy 'ropevim', {
-"\ 'autoload' : {
-"\   'filetypes' : ['python'],
-"\ },
-"\ 'base': expand('~/Dropbox/development/viml/'),
-"\ 'type': 'nosync',
-"\}
+"set rtp+=$HOME/Dropbox/development/viml/ropevim/
+NeoBundleLazy 'hachibeeDI/rope-vim', {
+\ 'autoload' : {
+\   'filetypes' : ['python'],
+\ },
+\ 'base': expand('~/Dropbox/development/viml/'),
+\ 'type': 'nosync',
+\}
 NeoBundleLazy 'davidhalter/jedi-vim', {
 \ "autoload" : {
 \   "filetypes" : ["python"],
