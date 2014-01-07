@@ -343,7 +343,6 @@ NeoBundleLazy 'flake8-vim', {
 \ 'base': expand('~/Dropbox/development/viml/'),
 \ 'type': 'nosync',
 \}
-"set rtp+=$HOME/Dropbox/development/viml/ropevim/
 NeoBundleLazy 'hachibeeDI/rope-vim', {
 \ 'autoload' : {
 \   'filetypes' : ['python'],
