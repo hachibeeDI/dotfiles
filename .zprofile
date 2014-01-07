@@ -58,6 +58,8 @@ export LC_CTYPE=ja_JP.UTF-8
 # editer
 export EDITOR=vim
 
+export WORDCHARS='*?_-.[]~=&;!#$%^(){}<>'
+
 #
 export PAGER=less
 # Apply grep color automatically
