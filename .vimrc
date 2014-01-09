@@ -1833,8 +1833,8 @@ nnoremap <SID>[Show]w :<C-u>WatchdogsRunSilent<CR><Esc>
 " Flake8-vim {{{
 let g:PyFlakeOnWrite = 1
 " 無視する警告の種類
-" E501 => 行ごとの文字数制限, E121 => 次行のインデントはひとつだけ, E303 => 改行の数が多すぎる
-let g:PyFlakeDisabledMessages = 'E501,E121,E303'
+" E501 => 行ごとの文字数制限, E121 => 次行のインデントはひとつだけ, E303 => 改行の数が多すぎる, E309 => クラスの後は一行あける（コメント書けないじゃん）
+let g:PyFlakeDisabledMessages = 'E501,E121,E303,E309'
 " エラー行のマーカー。hierあればいらねー
 let g:PyFlakeSigns = 0
 " flake8-autoをかけるためのコマンド。visual-modeでの範囲選択に対応
