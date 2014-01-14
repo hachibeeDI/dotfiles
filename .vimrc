@@ -388,9 +388,13 @@ NeoBundleLazy 'Rip-Rip/clang_complete', {
 " }}}
 " -- JavaScript {{{
 NeoBundleLazy 'pangloss/vim-javascript', {
-    \ "autoload" : {
-    \   "filetypes" : ["javascript"] }
-    \}
+\ "autoload" : {
+\   "filetypes" : ["javascript"], 
+\}}
+NeoBundleLazy 'jelera/vim-javascript-syntax', {
+\ 'autoload': {
+\    'filetypes': ['javascript'], 
+\ }}
 " coffee
 NeoBundleLazy 'kchmck/vim-coffee-script', {
     \ "autoload" : {
