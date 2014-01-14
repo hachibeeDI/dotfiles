@@ -2103,7 +2103,7 @@ call smartinput#define_rule({
 \   'at'       : '\%#',
 \   'char'     : '-',
 \   'input'    : '-',
-\   'filetype': ['rst', 'markdown', 'html', 'xml', 'css'],
+\   'filetype': ['rst', 'markdown', 'html', 'xml', 'css', 'sass', 'scss', 'stylus'],
 \   })
 call smartinput#define_rule({
 \   'at'       : '\%#',
