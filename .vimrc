@@ -55,9 +55,14 @@ NeoBundleLazy 'Shougo/neocomplete.vim', {
 \   'vim_version' : '7.3.885'
 \ }
 NeoBundleLazy 'Shougo/neosnippet', {
-      \ 'autoload' : {
-      \   'insert' : 1,
-      \ }}
+\ 'autoload' : {
+\   'insert' : 1,
+\ }}
+NeoBundleLazy 'Shougo/neosnippet-snippets', {
+\ 'autoload' : {
+\   'insert' : 1,
+\ }}
+
 NeoBundleFetch 'Shougo/neobundle.vim', {
     \ 'base': '~/.vim',
     \ }
@@ -158,6 +163,13 @@ call neobundle#config('unite-quickfix', {
 \ 'autoload' : {
 \   'unite_sources' : 'quickfix'},
 \ })
+
+NeoBundleLazy 'hachibeeDI/unite-pypi-classifiers', {
+\ 'autoload' : {
+\   'unite_sources' : 'pypiclassifiers'},
+\ 'base': expand('~/Dropbox/development/viml/'),
+\ 'type': 'nosync',
+\ }
 
 " get and read referece on vim
 NeoBundleLazy 'thinca/vim-ref', { 'autoload' : {
