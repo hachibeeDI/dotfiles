@@ -220,6 +220,17 @@ nmap <silent>srr <Plug>(operator-surround-replace)<Plug>(textobj-multiblock-a)
 nmap <silent>sdb <Plug>(operator-surround-delete)<Plug>(textobj-between-a)
 nmap <silent>srb <Plug>(operator-surround-replace)<Plug>(textobj-between-a)
 " }}}
+
+NeoBundleLazy 'hachibeeDI/vim-operator-autopep8', {
+\   'autoload' : {
+\     'filetypes' : ['python'],
+\ },
+\   'depends': ['kana/vim-operator-user', 'andviro/flake8-vim'],
+\   'base': expand('~/Dropbox/development/viml/'),
+\   'type': 'nosync',
+\ }
+map ,p <Plug>(operator-autopep8)
+
 " operator-user }}}
 
 " textobj-user {{{
@@ -2468,20 +2479,5 @@ endfunction
 let g:vimrc_sid = GetScriptID(s:vimrc)
 
 source ~/.vimrc.local
-
-
-" require vim-flake8, operator-user
-map ,p <Plug>(operator-flake)
-call operator#user#define('flake', 'Op_flake8auto')
-function! Op_flake8auto(motion_wiseness)
-  let l:l = line('.')
-  let l:c = col('.')
-
-  let f_l = line("'[")
-  let e_l = line("']")
-  call flake8#auto(f_l, e_l)
-
-  call cursor(l, c)
-endfunction
 
 " vim: foldmethod=marker
