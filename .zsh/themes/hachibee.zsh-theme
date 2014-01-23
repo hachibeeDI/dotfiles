@@ -22,7 +22,7 @@ nom_prom () {
         PROMPT2="%B%{${fg[red]}%}%_#%{${reset_color}%}%b "
         SPROMPT="%{${fg[yellow]}%}correct: %R ->  %r [n,y,a,e]? %{${reset_color}%}"
         [ -n "${REMOTEHOST}${SSH_CONNECTION}" ] &&
-            PROMPT="%{${fg[cyan]}%}$(echo ${HOST%%.*} | tr '[a-z]' '[A-Z]') ${PROMPT}"
+            PROMPT="${PROMPT} %{${fg[cyan]}%}$(echo ${HOST%%.*} | tr '[a-z]' '[A-Z]'): "
         ;;
     *)
         PROMPT="%(?|${result_ok}|${result_ng})"
