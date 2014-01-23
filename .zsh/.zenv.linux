@@ -8,6 +8,7 @@ path=(
     $HOME/Dropbox/bin/linux(N-/)
     $HOME/Dropbox/bin(N-/)
     $HOME/bin(N-/)
+    $HOME/local/bin(N-/)
 
     # ディストリごとに変わりそうだけどどうしよう
     /usr/local/bin(N-/)
@@ -63,7 +64,7 @@ export VIRTUALENVWRAPPER_PYTHON=/usr/local/bin/python
 export VIRTUALENVWRAPPER_VIRTUALENV=/usr/local/share/python/virtualenv
 export WORKON_HOME=$HOME/.virtualenvs
 #source /usr/local/share/python/virtualenvwrapper.sh
-source /usr/local/share/python/virtualenvwrapper_lazy.sh
+[[ -s "/usr/local/share/python/virtualenvwrapper_lazy.sh" ]] && source /usr/local/share/python/virtualenvwrapper_lazy.sh
 # }}}
 
 echo 'done'
