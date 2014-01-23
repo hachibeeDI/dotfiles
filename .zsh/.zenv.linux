@@ -31,12 +31,16 @@ fpath=(
         $HOME/.zsh/functions/Completion(N-/)
         $HOME/.autojump/functions(N-/)
 
+        # self builded TODO:
+        $HOME/local/share/zsh/5.0.5/functions/(N-/)
+
         #zsh-completions
         /usr/local/share/zsh-completions(N-/)
         /usr/local/share/zsh-completions/src(N-/)
 
         #homebrew
         /usr/local/share/zsh/functions(N-/)
+
         )
 export fpath
 
