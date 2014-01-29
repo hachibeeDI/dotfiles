@@ -9,6 +9,7 @@ path=(
     $HOME/Dropbox/bin(N-/)
     $HOME/bin(N-/)
     $HOME/local/bin(N-/)
+    $HOME/.nodebrew(N-/)
 
     # ディストリごとに変わりそうだけどどうしよう
     /usr/local/bin(N-/)
