@@ -10,6 +10,12 @@ options     head
 
         ${1:TARGET}
 
+snippet     future
+options     head
+        from __future__ import (print_function, division, absolute_import, )
+
+        ${1:TARGET}
+
 snippet     init
 options     head
         def __init__(self${1:TARGET}):
