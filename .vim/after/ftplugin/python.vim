@@ -3,6 +3,7 @@ if exists('b:did_ftplugin_python')
 endif
 let b:did_ftplugin_python = 1
 
+setlocal tabstop=4
 setlocal foldmethod=indent
 setlocal commentstring=#%s
 
