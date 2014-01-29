@@ -9,7 +9,9 @@ path=(
     $HOME/Dropbox/bin(N-/)
     $HOME/bin(N-/)
     $HOME/local/bin(N-/)
+
     $HOME/.nodebrew(N-/)
+    $HOME/.nodebrew/current/bin(N-/)
 
     # ディストリごとに変わりそうだけどどうしよう
     /usr/local/bin(N-/)
@@ -23,6 +25,7 @@ path=(
     /usr/local/sbin(N-/)
     /usr/sbin(N-/)
     /sbin(N-/)
+    PATH
     )
 export path
 
