@@ -1,5 +1,13 @@
 # follow the locale time
 set show-date = local
+set shot-id = yes
+
+## 画面を垂直方向に分割する
+#set vertical-split = yes
+set split-view-height = 80%
+
+# 差分の前後の表示行数（diff-context)を指定 
+set diff-context = 6
 
 # disable git GC and bind to move last line
 bind generic G move-last-line
