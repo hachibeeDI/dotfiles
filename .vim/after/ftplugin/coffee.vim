@@ -7,4 +7,5 @@ setlocal tabstop=2
 setlocal softtabstop=2
 setlocal shiftwidth=2
 
-nnoremap <buffer> ,cf :<C-u>CoffeeWatch vert<CR>
+nnoremap <buffer> ,cww :<C-u>CoffeeWatch<CR>
+nnoremap <buffer> ,cwv :<C-u>CoffeeWatch vert<CR>
