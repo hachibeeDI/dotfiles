@@ -306,10 +306,14 @@ NeoBundleLazy 'nathanaelkane/vim-indent-guides', {
 \ }
 \}
 NeoBundleLazy 'git://github.com/vim-scripts/IndentAnything.git', {
-    \ "autoload" : {
-    \   "filetypes" : ["html", "xhtml", "htmldjango", "play2-html", "javascript"],
-    \ }
-    \}
+\ "autoload" : {
+\   "filetypes" : ["html", "xhtml", "htmldjango", "play2-html", "javascript"],
+\ }
+\}
+NeoBundleLazy 'othree/javascript-libraries-syntax.vim', {
+\ "autoload" : {
+\   "filetypes" : ["html", "xhtml","jinja", "coffee", "javascript", "typescript"],
+\ }}
 
 " complete word in English. depends on `look` command.
 NeoBundle 'ujihisa/neco-look'
@@ -505,13 +509,13 @@ NeoBundleLazy 'hachibeeDI/vim-vbnet', {
 " -- markup {{{
 NeoBundleLazy 'mattn/emmet-vim', {
 \ "autoload" : {
-\   "filetypes" : ["html", "xhtml", "htmldjango", "play2-html",  "eruby", "css", "stylus"],
+\   "filetypes" : ["html", "xhtml", "htmldjango", "play2-html",  "eruby", "css", "stylus", "jinja"],
 \ }
 \}
 
 NeoBundleLazy 'othree/html5.vim', {
 \ "autoload" : {
-\   "filetypes" : ["html", "xhtml", "htmldjango", "play2-html",  "eruby"],
+\   "filetypes" : ["html", "xhtml", "htmldjango", "play2-html",  "eruby", "jinja"],
 \ }
 \}
 
@@ -1607,9 +1611,14 @@ let g:haskell_hsp = 0
 " }}}
 " }}}
 
+" JavaScript ================================= {{{
+" javascript-libraries-syntax.vim = {{{
+let g:used_javascript_libs = 'angularjs'
+"}}}
 " vim-coffeescript {{{
 " in $HOME/.vim/after/ftplugin/coffee.vim
 " let coffee_make_options = '--bare'
+" }}}
 " }}}
 
 " emmet-vim {{{
