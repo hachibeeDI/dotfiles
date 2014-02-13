@@ -61,7 +61,10 @@ NeoBundleLazy 'Shougo/neosnippet', {
 NeoBundleLazy 'Shougo/neosnippet-snippets', {
 \ 'autoload' : {
 \   'insert' : 1,
-\ }}
+\ },
+\ 'base': expand('~/Dropbox/development/viml/'),
+\ 'type': 'nosync',
+\ }
 
 NeoBundleFetch 'Shougo/neobundle.vim', {
     \ 'base': '~/.vim',
@@ -1172,7 +1175,12 @@ onoremap , t,
 vnoremap , t,
 
 if has('path_extra')
-    set tags& tags+=.tags,tags
+  set tags& tags+=.tags,tags
+
+  autocmd MyAutoCmd FileType coffee
+      \ set tags+=$HOME/coffee.tags
+  autocmd MyAutoCmd FileType python
+      \ set tags+=$HOME/python.tags
 endif
 
 "command mode
