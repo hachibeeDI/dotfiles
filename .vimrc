@@ -238,9 +238,9 @@ map ,p <Plug>(operator-autopep8)
 
 " textobj-user {{{
 NeoBundle 'kana/vim-textobj-user'
-NeoBundle 'kana/vim-textobj-indent', {
-\   'depends': ['kana/vim-textobj-user']
-\ }
+NeoBundle 'kana/vim-textobj-indent'
+NeoBundle 'kana/vim-textobj-entire'
+NeoBundle 'kana/vim-textobj-jabraces'
 
 NeoBundleLazy 'osyo-manga/vim-textobj-multiblock', {
 \ 'depends': ['kana/vim-textobj-user'],
@@ -316,6 +316,12 @@ NeoBundleLazy 'git://github.com/vim-scripts/IndentAnything.git', {
 NeoBundleLazy 'othree/javascript-libraries-syntax.vim', {
 \ "autoload" : {
 \   "filetypes" : ["html", "xhtml","jinja", "coffee", "javascript", "typescript"],
+\ }}
+
+" add jasmine syntax
+NeoBundleLazy 'claco/jasmine.vim', {
+\ "autoload" : {
+\   "filetypes" : ["coffee", "javascript", "typescript"],
 \ }}
 
 " complete word in English. depends on `look` command.
@@ -1136,6 +1142,8 @@ onoremap _ 0
 nnoremap go :<C-u>call append('.', '')<CR>
 nnoremap gO :normal! O<ESC>j
 
+" Insert Space in normal-mode
+nnoremap <Space><Space> i<Space><Esc><Right>
 "}}}
 
 " ---- insert mode ---- {{{
@@ -1768,9 +1776,11 @@ let g:vimfiler_tree_opened_icon = '▾'
 let g:vimfiler_tree_closed_icon = '▸'
 let g:vimfiler_file_icon = '-'
 let g:vimfiler_marked_file_icon = '*'
+" let g:vimfiler_split_rule = 'botright'
 " Use trashbox.
 " Windows only and require latest vimproc.
 "let g:unite_kind_file_use_trashbox = 1
+let g:vimfiler_ignore_pattern = '^\%(.git\|.DS_Store\)$'
 
 "<C-u>は、Vimによって挿入される範囲指定を削除するためのもの
 "<CR>はキャリッジ・リターンを表すリテラルシーケンス
