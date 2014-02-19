@@ -275,6 +275,12 @@ NeoBundleLazy 'bps/vim-textobj-python', {
 " --- text-obj-python ---- {{{
   " in $HOME/.vim/after/ftplugin/python.vim
 " }}}
+
+NeoBundle 'hachibeeDI/vim-textobj-continuous-line', {
+\ 'base': expand('~/Dropbox/development/viml/'),
+\ 'type': 'nosync',
+\ }
+
 "textobj-user }}}
 
 NeoBundle 'kana/vim-smartinput'
