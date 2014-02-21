@@ -127,6 +127,12 @@ NeoBundleLazy 'Shougo/unite.vim' , {
 \   'commands' : ["Unite", "UniteWithBufferDir", "QuickRun"],
 \ }
 \}
+NeoBundle 'Shougo/neomru.vim'
+call neobundle#config('unite-ssh', {
+\ 'lazy' : 1,
+\ 'autoload' : {
+\   'unite_sources' : 'file_mru'},
+\ })
 
 NeoBundle 'Shougo/unite-ssh'
 call neobundle#config('unite-ssh', {
@@ -324,11 +330,11 @@ NeoBundleLazy 'othree/javascript-libraries-syntax.vim', {
 \   "filetypes" : ["html", "xhtml","jinja", "coffee", "javascript", "typescript"],
 \ }}
 
-" add jasmine syntax
-NeoBundleLazy 'claco/jasmine.vim', {
-\ "autoload" : {
-\   "filetypes" : ["coffee", "javascript", "typescript"],
-\ }}
+"" add jasmine syntax
+"NeoBundleLazy 'claco/jasmine.vim', {
+"\ "autoload" : {
+"\   "filetypes" : ["coffee", "javascript", "typescript"],
+"\ }}
 
 " complete word in English. depends on `look` command.
 NeoBundle 'ujihisa/neco-look'
