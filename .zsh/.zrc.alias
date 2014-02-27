@@ -18,6 +18,8 @@ alias diff='colordiff'
 # use vim --nopluginmode as pager
 alias vless='/usr/share/vim/vim73/macros/less.sh'
 alias ved='vim ~/.vimrc'
+# vim with no settings
+alias pvim='vim -u NONE -N'
 #alias rm='rm --verbose'
 alias mkdir='mkdir -p'
 alias ls='ls --color=auto -AF'
