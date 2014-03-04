@@ -5,3 +5,4 @@ let b:did_ftplugin_go = 1
 
 " goの標準スタイルはハードタブ
 setlocal noexpandtab
+setlocal tabstop=4
