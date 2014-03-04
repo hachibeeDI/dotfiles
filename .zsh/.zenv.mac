@@ -12,8 +12,8 @@ program_exists () {
 
 if program_exists go; then
     export GOROOT=$BREW_PATH/opt/go/libexec
+    export GOPATH=$HOME/.go:$HOME/Dropbox/development/go
 fi
-export GOPATH=$HOME/.go
 # }}}
 
 
@@ -45,7 +45,8 @@ path=(
 
     # Goの
     $GOROOT/bin(N-/)
-    $GOPATH/bin(N-/)
+    $HOME/.go/bin(N-/)
+    $HOME/Dropbox/development/go/bin(N-/)
 
     /usr/bin(N-/)
     /bin(N-/)
