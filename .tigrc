@@ -1,6 +1,6 @@
 # follow the locale time
 set show-date = local
-set shot-id = yes
+set show-id = yes
 
 ## 画面を垂直方向に分割する
 #set vertical-split = yes
@@ -14,6 +14,6 @@ bind generic G move-last-line
 
 # vim like cursor move
 bind diff l scroll-right
-bind diff h scroll-left%
+bind diff h scroll-left
 
 bind diff ; view-next
