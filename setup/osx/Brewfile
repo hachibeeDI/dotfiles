@@ -51,6 +51,7 @@ brew "wget"
 brew "sl"
 brew "tree"
 brew "ctags"
+brew "wget"
 
 # tools
 brew "vim --with-client-server --override-system-vi --with-lua --with-ruby --with-python"
