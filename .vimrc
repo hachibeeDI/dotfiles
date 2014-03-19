@@ -1087,7 +1087,8 @@ nmap spl <SID>(split-to-l)
 
 nnoremap <Esc><Esc> :<C-u>nohlsearch <Bar> cclose<CR><Esc>
 "
-set spelllang=en_us
+set spelllang+=cjk
+set spell
 " toggle set spell
 nnoremap <SID>[Show]s  :<C-u>setl spell!<CR>
 
