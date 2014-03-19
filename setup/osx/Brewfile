@@ -2,70 +2,69 @@ update
 upgrade
 
 # Install Extra Repositories
-tap 'homebrew/versions'
-tap 'homebrew/binary'
-tap 'phinze/homebrew-cask'
-# Install Homebrew-Cask
-brew 'brew-cask'
+tap homebrew/binary
+tap phinze/cask
+# Install Homeinstall-Cask
+install brew-cask
 
 # Install system daemons
-brew 'dnsmasq'
+install dnsmasq
 
 # Install compilers
-brew 'apple-gcc42'
+install apple-gcc42
 
 # Common cui utilities
-brew 'readline'
-brew 'openssl'
-brew 'gdbm'
-brew 'pkg-config'
-brew 'keychain'
-brew 'mobile-shell'
-brew 'editorconfig'
+install readline
+install openssl
+install gdbm
+install pkg-config
+install keychain
+install mobile-shell
+install editorconfig
 
 # lib for build
-brew 'pcre'
-brew 'boost'
+install pcre
+install boost
 
 # langeages
-brew 'python --with-brewed-openssl'
-brew 'ruby --with-doc'
-brew 'lua --with-completion'
-brew 'go --cross-compile-all'
+install python --with-brewed-openssl --with-poll --with-dtrace
+install ruby --with-doc
+install lua --with-completion
+install go --cross-compile-all
 
 # programming environmets
-brew 'ruby-build'
-brew 'rbenv'
-brew 'git --with-brewed-curl --with-brewed-openssl --with-pcre'
+install ruby-build
+install rbenv
+install git --with-brewed-curl --with-brewed-openssl --with-pcre
 
 # basic tools
-brew 'mercurial'
-brew '--disable-etcdir zsh'
-brew 'zsh-completions'
+install mercurial
+install --disable-etcdir zsh
+install zsh-completions
 
 # gnu tools and some
-brew 'coreutils'
-brew 'gawk'
-brew 'gnu-sed'
-brew 'wget'
-brew 'sl'
-brew 'tree'
-brew 'ctags'
-brew 'wget'
+install coreutils
+install gawk
+install gnu-sed
+install wget
+install sl
+install tree
+install ctags
+install wget
 
 # tools
-brew 'vim --with-client-server --override-system-vi --with-lua --with-ruby --with-python'
-brew 'macvim --with-luajit'
-brew 'source-highlight'
-brew 'reattach-to-user-namespace'
-brew 'tmux'
-brew 'lynx'
-brew 'tig'
+install vim --with-client-server --override-system-vi --with-lua --with-ruby --with-python
+#install macvim --with-luajit
+install source-highlight
+install reattach-to-user-namespace
+install tmux
+install lynx
+install tig
 
 # -- Cask --
-cask 'iterm2'
-cask 'google-chrome'
-cask 'firefox'
-cask 'vagrant'
-cask 'keyremap4macbook'
-cask 'virtualbox'
+cask install iterm2
+cask install google-chrome
+cask install firefox
+cask install vagrant
+cask install keyremap4macbook
+cask install virtualbox
