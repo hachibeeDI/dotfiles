@@ -15,52 +15,52 @@ brew 'dnsmasq'
 brew 'apple-gcc42'
 
 # Common cui utilities
-brew "readline"
-brew "openssl"
-brew "gdbm"
-brew "pkg-config"
+brew 'readline'
+brew 'openssl'
+brew 'gdbm'
+brew 'pkg-config'
 brew 'keychain'
 brew 'mobile-shell'
 brew 'editorconfig'
 
 # lib for build
-brew "pcre"
-brew "boost"
+brew 'pcre'
+brew 'boost'
 
 # langeages
-brew "python --with-brewed-openssl"
-brew "ruby --with-doc"
-brew "lua --with-completion"
+brew 'python --with-brewed-openssl'
+brew 'ruby --with-doc'
+brew 'lua --with-completion'
 brew 'go --cross-compile-all'
 
 # programming environmets
-brew "ruby-build"
-brew "rbenv"
-brew "git --with-brewed-curl --with-brewed-openssl --with-pcre"
+brew 'ruby-build'
+brew 'rbenv'
+brew 'git --with-brewed-curl --with-brewed-openssl --with-pcre'
 
 # basic tools
-brew "mercurial"
-brew "--disable-etcdir zsh"
-brew "zsh-completions"
+brew 'mercurial'
+brew '--disable-etcdir zsh'
+brew 'zsh-completions'
 
 # gnu tools and some
-brew "coreutils"
-brew "gawk"
-brew "gnu-sed"
-brew "wget"
-brew "sl"
-brew "tree"
-brew "ctags"
-brew "wget"
+brew 'coreutils'
+brew 'gawk'
+brew 'gnu-sed'
+brew 'wget'
+brew 'sl'
+brew 'tree'
+brew 'ctags'
+brew 'wget'
 
 # tools
-brew "vim --with-client-server --override-system-vi --with-lua --with-ruby --with-python"
-brew "macvim --with-luajit"
-brew "source-highlight"
-brew "reattach-to-user-namespace"
-brew "tmux"
-brew "lynx"
-brew "tig"
+brew 'vim --with-client-server --override-system-vi --with-lua --with-ruby --with-python'
+brew 'macvim --with-luajit'
+brew 'source-highlight'
+brew 'reattach-to-user-namespace'
+brew 'tmux'
+brew 'lynx'
+brew 'tig'
 
 # -- Cask --
 cask 'iterm2'
