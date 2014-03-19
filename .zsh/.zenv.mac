@@ -41,7 +41,8 @@ path=(
     $BREW_PATH/opt/ruby/bin(N-/)
 
     #デフォルトのコマンドをGNUコマンドで
-    $(/usr/local/bin/brew --prefix coreutils)/libexec/gnubin(N-/)
+    /usr/local/opt/coreutils/libexec/gnubin(N-/)
+    /usr/local/opt/gnu-sed/libexec/gnubin(N-/)
 
     # Goの
     $GOROOT/bin(N-/)
