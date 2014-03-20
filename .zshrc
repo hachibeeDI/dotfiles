@@ -391,7 +391,7 @@ function put_virtualenv_info {
 
 # rbenvでアクチしているRubyのversionを表示する
 function rbenv_version() {
-    if [ -n "$RBENV_ROOT" ]; then
+    if which rbenv > /dev/null; then
         _ver="$CR_cyan`rbenv version | sed -e "s/\s(.\+$//g"`"
         echo "${DELI_ST_LT}%{${fg[blue]}%}rbenv: $_ver ${DELI_ST_GT}"
     else
