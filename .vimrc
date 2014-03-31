@@ -98,7 +98,6 @@ NeoBundleLazy 'Shougo/vimshell', {
 NeoBundleLazy 'thinca/vim-quickrun', {
 \ 'autoload': {
 \   'commands': ["QuickRun"],
-\   'function_prefix': 'quickrun',
 \   'mappings': ['nxo', '<Plug>(quickrun)', '<Plug>(quickrun-op)', ],
 \ }}
 
@@ -1812,16 +1811,12 @@ function! bundle.hooks.on_source(bundle)
   " default config via http://d.hatena.ne.jp/osyo-manga/20120919/1348054752
   let g:quickrun_config = {
 \    '_': {
-\      "hook/close_unite_quickfix/enable_hook_loaded": 1
-\      , "hook/unite_quickfix/enable_failure": 1
-\      , "hook/close_quickfix/enable_exit": 1
-\      , "hook/close_quickfix/enable_success": 1
-\      , "hook/close_buffer/enable_failure": 1
-\      , "hook/close_buffer/enable_empty_data": 1
-\      , "outputter": "multi:buffer:quickfix"
+\      "hook/close_buffer/enable_empty_data": 1
 \      , "hook/inu/enable": 1
 \      , "hook/inu/wait": 20
 \      , "outputter/buffer/split": ":botright 8sp"
+\      , "outputter/error/error": "quickfix"
+\      , "outputter/error/success": "buffer"
 \      , "runner": "vimproc"
 \      , "runner/vimproc/updatetime": 40
 \    },
@@ -1881,7 +1876,8 @@ endfunction
 unlet bundle
 
 let g:quickrun_no_default_key_mappings = 1
-nmap <F5> <Plug>(quickrun)
+"nmap <F5> <Plug>(quickrun)
+nmap <Leader>q <Plug>(quickrun)
 nmap ,q <Plug>(quickrun-op)
 nnoremap <SID>[Show]w :<C-u>WatchdogsRunSilent<CR><Esc>
 " watchdog }}}
