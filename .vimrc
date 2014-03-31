@@ -1090,7 +1090,7 @@ if v:version >= 704
   set spelllang+=cjk
 else
   set spelllang=en_us
-fi
+endif
 set spell
 " toggle set spell
 nnoremap <SID>[Show]s  :<C-u>setl spell!<CR>
