@@ -1086,10 +1086,9 @@ nmap spl <SID>(split-to-l)
 
 nnoremap <Esc><Esc> :<C-u>nohlsearch <Bar> cclose<CR><Esc>
 "
+set spelllang=en_us
 if v:version >= 704
   set spelllang+=cjk
-else
-  set spelllang=en_us
 endif
 set spell
 " toggle set spell
