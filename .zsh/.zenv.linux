@@ -25,27 +25,21 @@ path=(
     /usr/local/sbin(N-/)
     /usr/sbin(N-/)
     /sbin(N-/)
-    PATH
+    $PATH
     )
 export path
 
 # setting completion's function path<<<
 fpath=(
-        #自作
-        $HOME/.zsh/functions/Completion(N-/)
-        $HOME/.autojump/functions(N-/)
+    #自作
+    $HOME/.zsh/functions/Completion(N-/)
+    $HOME/.autojump/functions(N-/)
 
-        # self builded TODO:
-        $HOME/local/share/zsh/5.0.5/functions/(N-/)
+    # Linuxでは自分でgit cloneする
+    $HOME/src/zsh-completions/src(N-/)
 
-        #zsh-completions
-        /usr/local/share/zsh-completions(N-/)
-        /usr/local/share/zsh-completions/src(N-/)
-
-        #homebrew
-        /usr/local/share/zsh/functions(N-/)
-
-        )
+    $fpath
+)
 export fpath
 
 if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
