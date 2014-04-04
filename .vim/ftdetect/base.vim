@@ -1,13 +1,14 @@
-" Scala
-autocmd BufRead,BufNewFile *.scala setf scala
-" Clojure
-autocmd BufRead,BufNewFile *.clj setf clojure
-" less
-autocmd BufRead,BufNewFile *.less setf less
-" WindowsPowershell
-autocmd BufRead,BufNewFile *.ps1 setf ps1
 
-autocmd BufRead,BufNewFile *.scss setf scss
-autocmd BufRead,BufNewFile *.go setf go
-autocmd BufRead,BufNewFile Vagrantfile setf ruby
-autocmd BufRead,BufNewFile Gruntfile setf javascript
+" Scala
+autocmd BufRead,BufNewFile *.scala setlocal filetype=scala
+" Clojure
+autocmd BufRead,BufNewFile *.clj setlocal filetype=clojure
+" less
+autocmd BufRead,BufNewFile *.less setlocal filetype=less
+" WindowsPowershell
+autocmd BufRead,BufNewFile *.ps1 setlocal filetype=ps1
+
+autocmd BufRead,BufNewFile *.scss setlocal filetype=scss
+autocmd BufRead,BufNewFile *.go setlocal filetype=go
+autocmd BufRead,BufNewFile Vagrantfile setlocal filetype=ruby
+autocmd BufRead,BufNewFile Gruntfile setlocal filetype=javascript

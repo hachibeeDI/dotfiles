@@ -1,8 +1,9 @@
 " detect filetype before default filetype detectation.
 
-if exists("did_load_filetypes")
+if exists("g:did_load_filetypes")
   finish
 endif
+
 augroup filetypedetect
   autocmd BufRead,BufNewFile *.vb setf vbnet
   " markdown
