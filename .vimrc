@@ -411,6 +411,28 @@ NeoBundleLazy 'Glench/Vim-Jinja2-Syntax', {
 \ }}
 
 " }}}
+" - - golang {{{
+if executable('go')
+  NeoBundleLazy 'Blackrush/vim-gocode', {
+  \ 'build' : {
+  \   'mac' : 'go get -u github.com/nsf/gocode && go install -v github.com/nsf/gocode',
+  \   'unix' : 'go get -u github.com/nsf/gocode && go install -v github.com/nsf/gocode', },
+  \ "autoload": {"filetypes": ['go']},
+  \ }
+  NeoBundleLazy 'dgryski/vim-godef', {
+  \ 'build' : {
+  \   'mac' : 'go get -u code.google.com/p/rog-go/exp/cmd/godef && go install -v code.google.com/p/rog-go/exp/cmd/godef',
+  \   'unix' : 'go get -u code.google.com/p/rog-go/exp/cmd/godef && go install -v code.google.com/p/rog-go/exp/cmd/godef', },
+  \ "autoload": {"filetypes": ['go']},
+  \ }
+  if $GOROOT != ''
+    " 標準でバンドルされてるプラギン
+    set rtp+=$GOROOT/misc/vim
+    autocmd MyAutoCmd BufWritePre *.go Fmt
+    autocmd MyAutoCmd BufWritePre *.go Lint
+  endif
+endif
+" }}}
 " -- haXe {{{
 NeoBundleLazy 'jdonaldson/vaxe', {
     \ "autoload" : {
@@ -729,18 +751,6 @@ if exists('+macmeta')
   set macmeta
 endif
 " }}}
-
-" Go {{{
-if $GOROOT != ''
-  " 標準でバンドルされてるプラギン
-  set rtp+=$GOROOT/misc/vim
-  " 補完してくれるやつ
-  set rtp+=$GOPATH/src/github.com/nsf/gocode/vim
-  " lint
-  set rtp+=$GOPATH/src/github.com/golang/lint/misc/vim
-  autocmd MyAutoCmd BufWritePre *.go Fmt
-endif
-"}}}
 
 "
 " common settings
@@ -1090,7 +1100,7 @@ set spelllang=en_us
 if v:version >= 704
   set spelllang+=cjk
 endif
-set spell
+"set spell
 " toggle set spell
 nnoremap <SID>[Show]s  :<C-u>setl spell!<CR>
 
