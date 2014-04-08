@@ -11,13 +11,23 @@ snippet try
 	try {
 		${1}
 	} catch(e: ${2:Dynamic}) {
-		${3:// Ignore any errors.}
+		${0:#:CURSOR}
 	}
 
 snippet for
 	for (${1:i} in ${2:itr}) {
 		${3}
 	}
+
+
+snippet     comprehension
+abbr        list_comprehension
+	[for (${1:i} in ${2:itr}) $1]
+
+
+snippet     filter
+abbr        list_comprehension_with_filter
+	[for (${1:i} in ${2:itr}) ${3:if ($1)} $1]
 
 snippet     if
 abbr        if
@@ -49,13 +59,15 @@ snippet lambda
 snippet fu function
 	function ${1:#:name}(${2:#:arg}) {
 		${3}
+		return ;
 	}
 
 snippet trace
 	trace(${1});
 	${0}
 
-snippet desc function
+snippet desc debug_trace
+abbr    debug_trace
 	trace(${1} + " is the value for $1");
 
 snippet cast
@@ -67,6 +79,7 @@ snippet interface
 	}
 
 snippet #if
+abbr    if build target
 	#if ${1:TARGET}
 		${2}
 	#end $1
@@ -96,7 +109,7 @@ snippet enum
 
 snippet     const
 options     head
-	static inline var ${1:Name} = ${3:Value};
+	static inline var ${1:#:Name} = ${3:#:Value};
 
 snippet     property
 options     head
