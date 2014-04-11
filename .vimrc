@@ -326,7 +326,7 @@ NeoBundleLazy 'git://github.com/vim-scripts/IndentAnything.git', {
 \}
 NeoBundleLazy 'othree/javascript-libraries-syntax.vim', {
 \ "autoload" : {
-\   "filetypes" : ["html", "xhtml","jinja", "coffee", "javascript", "typescript"],
+\   "filetypes" : ["html", "xhtml", "jinja", "coffee", "javascript", "typescript"],
 \ }}
 
 "" add jasmine syntax
@@ -377,7 +377,9 @@ NeoBundleLazy 'Crapworks/python_fn.vim', {
 NeoBundleLazy 'jmcantrell/vim-virtualenv', {
 \ "autoload" : {
 \   "filetypes" : ["python"],
-\ }}
+\ },
+\ 'disabled' : !has('python'),
+\ }
 " --- forked
 " NeoBundleLazy 'andviro/flake8-vim', {
 " \ 'autoload' : {
@@ -394,13 +396,16 @@ NeoBundleLazy 'hachibeeDI/rope-vim', {
 \ 'autoload' : {
 \   'filetypes' : ['python'],
 \ },
+\ 'disabled' : !has('python'),
 \ 'base': expand('~/Dropbox/development/viml/'),
 \ 'type': 'nosync',
 \}
 NeoBundleLazy 'davidhalter/jedi-vim', {
 \ "autoload" : {
 \   "filetypes" : ["python"],
-\ }}
+\ },
+\ 'disabled' : !has('python'),
+\ }
 NeoBundleLazy 'lambdalisue/vim-django-support', {
 \ "autoload" : {
 \   "filetypes" : ["python"],
@@ -458,12 +463,27 @@ NeoBundleLazy 'Rip-Rip/clang_complete', {
 " -- JavaScript {{{
 NeoBundleLazy 'pangloss/vim-javascript', {
 \ "autoload" : {
-\   "filetypes" : ["javascript"], 
+\   "filetypes" : ["javascript"],
 \}}
+NeoBundleLazy 'jiangmiao/simple-javascript-indenter', {
+\ "autoload" : {
+\   'filetypes': ['javascript'],
+\ }
+\}
+" この設定入れるとswitchのインデントがいくらかマシに
+let g:SimpleJsIndenter_CaseIndentLevel = -1
 NeoBundleLazy 'jelera/vim-javascript-syntax', {
 \ 'autoload': {
-\    'filetypes': ['javascript'], 
+\    'filetypes': ['javascript'],
 \ }}
+if has('python') && executable('npm')
+  NeoBundleLazy 'marijnh/tern_for_vim', {
+  \ 'build' : 'npm install',
+  \ 'autoload' : {
+  \   'functions': ['tern#Complete', 'tern#Enable'],
+  \   'filetypes' : 'javascript'
+  \ }}
+endif
 " coffee
 NeoBundleLazy 'kchmck/vim-coffee-script', {
     \ "autoload" : {
@@ -514,31 +534,32 @@ NeoBundleLazy 'basyura/unite-rails', {
 " -- Lisp {{{
 "}}}
 " -- Haskell {{{
-NeoBundleLazy 'dag/vim2hs', {
-    \ "autoload" : {
-    \   "filetypes" : ["haskell"] }
-    \}
-NeoBundleLazy 'pbrisbin/html-template-syntax', {
-    \ "autoload" : {
-    \   "filetypes" : ["haskell"] }
-    \}
-" NOTE: require 'ghc-mod'. install from `cabal install ghc-mod`.
-NeoBundleLazy 'ujihisa/neco-ghc', {
-    \ "autoload" : {
-    \   "filetypes" : ["haskell"] }
-    \}
-NeoBundleLazy 'eagletmt/ghcmod-vim', {
-    \ "autoload" : {
-    \   "filetypes" : ["haskell"] }
-    \}
+if executable('ghc')
+  NeoBundleLazy 'dag/vim2hs', {
+      \ "autoload" : {
+      \   "filetypes" : ["haskell"] }
+      \}
+  NeoBundleLazy 'pbrisbin/html-template-syntax', {
+      \ "autoload" : {
+      \   "filetypes" : ["haskell"] }
+      \}
+  " NOTE: require 'ghc-mod'. install from `cabal install ghc-mod`.
+  NeoBundleLazy 'ujihisa/neco-ghc', {
+      \ "autoload" : {
+      \   "filetypes" : ["haskell"] }
+      \}
+  NeoBundleLazy 'eagletmt/ghcmod-vim', {
+      \ "autoload" : {
+      \   "filetypes" : ["haskell"] }
+      \}
 
-"http://vim-users.jp/2011/12/hack241/
-" NOTE: require 'hoogle'
-NeoBundleLazy 'ujihisa/unite-haskellimport', {
-    \ "autoload" : {
-    \   "filetypes" : ["haskell"] }
-    \}
-
+  "http://vim-users.jp/2011/12/hack241/
+  " NOTE: require 'hoogle'
+  NeoBundleLazy 'ujihisa/unite-haskellimport', {
+      \ "autoload" : {
+      \   "filetypes" : ["haskell"] }
+      \}
+endif
 " }}}
 " -- VB.NET {{{
 NeoBundleLazy 'hachibeeDI/vim-vbnet', {
