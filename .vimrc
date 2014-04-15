@@ -119,6 +119,14 @@ NeoBundleLazy 'gregsexton/gitv' , {
 NeoBundle 'cohama/vim-hier'
 " quickfixの該当箇所をコマンドラインに出力
 NeoBundle 'dannyob/quickfixstatus'
+NeoBundleLazy 'airblade/vim-rooter', {
+\ 'autoload': {
+\   'mappings': ['<Plug>RooterChangeToRootDirectory'],
+\   'commands': ['Rooter'],
+\ },
+\}
+map <silent> <unique> <Leader>cd <Plug>RooterChangeToRootDirectory
+let g:rooter_patterns = ['.git', '.git/', '_darcs/', '.hg/', '.bzr/', '.svn/', 'Rakefile', 'Gruntfile.js', 'Gruntfile.coffee']
 
 "Unite
 NeoBundleLazy 'Shougo/unite.vim' , {
