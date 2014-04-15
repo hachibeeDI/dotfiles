@@ -1944,7 +1944,7 @@ let g:PyFlakeDisabledMessages = 'E501,E121,E303,E309'
 let g:PyFlakeSigns = 0
 " flake8-autoをかけるためのコマンド。visual-modeでの範囲選択に対応
 let g:PyFlakeRangeCommand = 'Q'
-let g:PyFlakeCheckers = 'pep8,mccabe,pyflakes'
+let g:PyFlakeCheckers = 'pep8,mccabe,frosted'
 " McCabe複雑度の最大値
 let g:PyFlakeDefaultComplexity=10
 " Be aggressive for autopep8
