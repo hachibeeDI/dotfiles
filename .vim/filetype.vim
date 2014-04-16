@@ -9,6 +9,8 @@ augroup filetypedetect
   " markdown
   autocmd BufRead,BufNewFile *.md setf markdown
   autocmd BufRead,BufNewFile *.mkd setf markdown
+  " Objective-C
+  autocmd BufRead,BufNewFile *.m setf objc
 augroup END
 
 " vim:sw=2

@@ -1,4 +1,3 @@
-
 " Scala
 autocmd BufRead,BufNewFile *.scala setlocal filetype=scala
 " Clojure
