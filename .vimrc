@@ -135,7 +135,7 @@ NeoBundleLazy 'Shougo/unite.vim' , {
 \ }
 \}
 NeoBundle 'Shougo/neomru.vim'
-call neobundle#config('unite-ssh', {
+call neobundle#config('neomru.vim', {
 \ 'lazy' : 1,
 \ 'autoload' : {
 \   'unite_sources' : 'file_mru'},
@@ -162,7 +162,7 @@ call neobundle#config('unite-outline', {
       \   'unite_sources' : 'outline'},
       \ })
 NeoBundle 'tsukkee/unite-tag', '', 'default'
-call neobundle#config('tsukkee/unite-tag', {
+call neobundle#config('unite-tag', {
 \ 'lazy' : 1,
 \ 'autoload' : {
 \   'unite_sources' : 'tag'},
