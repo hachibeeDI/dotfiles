@@ -463,10 +463,16 @@ NeoBundleLazy 'vim-jp/cpp-vim', {
 "https://github.com/beyondmarc/opengl.vim
 " git submodule add git://github.com/beyondmarc/opengl.vim.git bundle/syntax_opengl
 NeoBundleLazy 'Rip-Rip/clang_complete', {
-    \ "autoload" : {
-    \   "filetypes" : ["cpp"] }
-    \}
-
+\ "autoload" : {
+\   "filetypes" : ['c', "cpp", 'objc', 'objcpp'] }
+\}
+" -- Objective-C ==
+if s:is_mac
+  NeoBundleLazy 'tokorom/clang_complete-getopts-ios', {
+  \ "autoload" : {
+  \   "filetypes" : ["objc"]},
+  \}
+endif
 " }}}
 " -- JavaScript {{{
 NeoBundleLazy 'pangloss/vim-javascript', {
@@ -865,7 +871,8 @@ if v:version >= 703
     set undofile
 
   " for snippet_complete marker
-  set conceallevel=2 concealcursor=iv
+  " conceal in insert (i), normal (n) and visual (v) modes
+  set conceallevel=2 concealcursor=inv
   set colorcolumn=79
   set relativenumber
 endif
@@ -1534,13 +1541,18 @@ function! bundle.hooks.on_source(bundle)
     let g:neocomplete#sources#omni#input_patterns = {}
   endif
   let g:neocomplete#sources#omni#input_patterns.php = '[^. \t]->\h\w*\|\h\w*::'
-  " clang via - http://d.hatena.ne.jp/osyo-manga/20120911/1347354707
-  let g:neocomplete#sources#omni#input_patterns.c = '[^.[:digit:] *\t]\%(\.\|->\)'
-  let g:neocomplete#sources#omni#input_patterns.cpp = '[^.[:digit:] *\t]\%(\.\|->\)\|\h\w*::'
   let g:neocomplete#sources#omni#input_patterns.ruby = '[^. *\t]\.\w*\|\h\w*::'
   let g:neocomplete#sources#omni#input_patterns.haxe = '\v([\]''"\)]|\w|(^\s*))(\.|\()'
   let g:neocomplete#sources#omni#input_patterns.python = '[^. \t]\.\w*'
   let g:neocomplete#sources#omni#input_patterns.go = '\h\w*\.\?'
+  let g:neocomplete#sources#omni#input_patterns.c =
+  \ '[^.[:digit:] *\t]\%(\.\|->\)\w*'
+  let g:neocomplete#sources#omni#input_patterns.cpp =
+  \ '[^.[:digit:] *\t]\%(\.\|->\)\w*\|\h\w*::\w*'
+  let g:neocomplete#sources#omni#input_patterns.objc =
+  \ '[^.[:digit:] *\t]\%(\.\|->\)\w*'
+  let g:neocomplete#sources#omni#input_patterns.objcpp =
+  \ '[^.[:digit:] *\t]\%(\.\|->\)\w*\|\h\w*::\w*'
 
   " -----------------------------------------------
   " ---  NOTE: some of filetype specific settings is in
@@ -1549,6 +1561,7 @@ function! bundle.hooks.on_source(bundle)
   " -----------------------------------------------
 
   " ================ force omni patterns ======
+  let g:neocomplete#force_overwrite_completefunc = 1
   " NOTE: this fearture is heavy.
   if !exists('g:neocomplete#force_omni_input_patterns')
     let g:neocomplete#force_omni_input_patterns = {}
@@ -1560,6 +1573,14 @@ function! bundle.hooks.on_source(bundle)
   let g:neocomplete#force_omni_input_patterns.python =
   \ '\%([^. \t]\.\|^\s*@\|^\s*from\s.\+import \|^\s*from \|^\s*import \)\w*'
   let g:neocomplete#force_omni_input_patterns.go = '\h\w*\.\?'
+  let g:neocomplete#force_omni_input_patterns.c =
+  \ '[^.[:digit:] *\t]\%(\.\|->\)\w*'
+  let g:neocomplete#force_omni_input_patterns.cpp =
+  \ '[^.[:digit:] *\t]\%(\.\|->\)\w*\|\h\w*::\w*'
+  let g:neocomplete#force_omni_input_patterns.objc =
+  \ '[^.[:digit:] *\t]\%(\.\|->\)\w*'
+  let g:neocomplete#force_omni_input_patterns.objcpp =
+  \ '[^.[:digit:] *\t]\%(\.\|->\)\w*\|\h\w*::\w*'
 
   " customize sort complete candiates
   "call neocomplete#custom#source('_', 'sorters', ['sorter_length'])
@@ -1569,15 +1590,17 @@ unlet bundle
 
 " ------------------- clang_complete ------------- {{{
 " neocomplcacheとの競合を避けるため、自動呼び出しはOff
-let g:clang_complete_auto=0
-let g:clang_auto_select=0
+let g:clang_complete_auto = 0
+let g:clang_auto_select = 0
 "libclangを使う
-let g:clang_use_library=1
-let g:clang_debug=1
+let g:clang_use_library = 1
+let g:clang_debug = 1
 if s:is_mac
-  let g:clang_library_path="/usr/lib"
+  let g:clang_library_path = "/usr/lib"
 endif
-let g:clang_user_options = '-std=c++11'
+let g:clang_hl_errors = 0
+"let g:clang_snippets = "clang_complete"
+
 " }}}
 
 "キャッシュディレクトリの場所を指定
