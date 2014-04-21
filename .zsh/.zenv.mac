@@ -30,6 +30,9 @@ path=(
     #haskell packages
     $HOME/.cabal/bin(N-/)
 
+    #nodebrew
+    $HOME/.nodebrew/current/bin(N-/)
+
     # 自分のスクリプトとか、自分でビルドしたやつとか
     $HOME/Dropbox/bin/mac(N-/)
     $HOME/Dropbox/bin(N-/)
