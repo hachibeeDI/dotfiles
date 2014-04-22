@@ -1,16 +1,12 @@
 # vim:set filetype=zsh :
 
-#
 echo "load MacOSX's private settings ... ..."
 
-alias j="autojump"
-#if [ -f `brew --prefix`/etc/autojump.sh ]; then
-#    source `brew --prefix`/etc/autojump
-#fi
 alias firefox="/Applications/Firefox.app/Contents/MacOS/firefox"
 alias safari="/Applications/Safari.app/Contents/MacOS/Safari"
 alias chrome="/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome"
 
+alias j="autojump"
 [[ -f `brew --prefix`/etc/autojump.zsh ]] && . `brew --prefix`/etc/autojump.zsh
 
 echo "done."
