@@ -25,6 +25,7 @@ export RBENV_ROOT=/usr/local/var/rbenv
 path=(
     #$RBENV_ROOT/shims(N-/) rbenv init -が通してくれてるっぽい
     $RBENV_ROOT/bin(N-/)
+    $HOME/.gem/ruby/2.1.0/bin(N-/)
     $HOME/.gem/ruby/2.0.0/bin(N-/)
 
     #haskell packages
@@ -111,7 +112,7 @@ export LDFLAGS="-L/usr/local/opt/sqlite/lib"
 export CPPFLAGS="-I/usr/local/opt/sqlite/include"
 
 # Python settings for virtualenv {{{
-export PIP_REQUIRE_VIRTUALENV=true
+#export PIP_REQUIRE_VIRTUALENV=true
 export VIRTUALENVWRAPPER_PYTHON=/usr/local/bin/python
 export VIRTUALENVWRAPPER_VIRTUALENV=/usr/local/bin/virtualenv
 export WORKON_HOME=$HOME/.virtualenvs
