@@ -1,23 +1,26 @@
 # -*- encofing: utf-8 -*-
-# startup spells
-import sys
 import os
 import readline
 import atexit
 
 try:
-    import rlcompleter3
+    import readline
 except ImportError:
-    print "no rlcompleter3 module"
+    print "Module readline not available."
+else:
+    try:
+        import rlcompleter3
+    except ImportError:
+        print "Module rlcompleter3 not available."
+    else:
+        readline.parse_and_bind("tab: complete")
 
-# tab auto-complete
-readline.parse_and_bind('tab: complete')
 # historyfile
 histfile = os.path.join(os.environ['HOME'], '.pythonhistory')
 try:
     readline.read_history_file(histfile)
 except IOError:
     pass
+
 atexit.register(readline.write_history_file, histfile)
 del os, histfile, readline, rlcompleter3, atexit
-
