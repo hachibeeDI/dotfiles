@@ -6,9 +6,9 @@ import readline
 import atexit
 
 try:
-    import rlcompleter2
+    import rlcompleter3
 except ImportError:
-    print "no rlcompleter2 module"
+    print "no rlcompleter3 module"
 
 # tab auto-complete
 readline.parse_and_bind('tab: complete')
@@ -19,5 +19,5 @@ try:
 except IOError:
     pass
 atexit.register(readline.write_history_file, histfile)
-del os, histfile, readline, rlcompleter2, atexit
+del os, histfile, readline, rlcompleter3, atexit
 
