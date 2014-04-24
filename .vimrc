@@ -322,11 +322,8 @@ NeoBundleLazy 'sjl/gundo.vim', {
 \ }
 \}
 
-NeoBundleLazy 'nathanaelkane/vim-indent-guides', {
-\ "autoload" : {
-\   "filetypes" : ["python", "vbnet"],
-\ }
-\}
+NeoBundle 'Yggdroot/indentLine'
+
 NeoBundleLazy 'git://github.com/vim-scripts/IndentAnything.git', {
 \ "autoload" : {
 \   "filetypes" : ["html", "xhtml", "htmldjango", "play2-html", "javascript"],
@@ -414,10 +411,6 @@ NeoBundleLazy 'davidhalter/jedi-vim', {
 \ },
 \ 'disabled' : !has('python'),
 \ }
-NeoBundleLazy 'lambdalisue/vim-django-support', {
-\ "autoload" : {
-\   "filetypes" : ["python"],
-\ }}
 NeoBundleLazy 'Glench/Vim-Jinja2-Syntax', {
 \ "autoload" : {
 \   "filetypes" : ["html", "jinja"],
@@ -1721,12 +1714,14 @@ let g:user_emmet_settings = {
 \}
 "}}}
 
-" vim-indentguides ------------{{{
-let g:indent_guides_enable_on_vim_startup=1
-let g:indent_guides_guide_size=1
-let g:indent_guides_start_level=2
-let g:indent_guides_color_change_percent=10
-nmap <silent> <Leader>ig <Plug>IndentGuidesToggle
+" indentLine ------------{{{
+"let g:indentLine_color_term = 239
+"let g:indentLine_color_gui = '#A4E57E'
+"let g:indentLine_color_tty_dark = 2
+"let g:indentLine_char = '¦'
+"let g:indentLine_faster = 0
+let g:indentLine_fileType = ['vim', 'python', ]
+nnoremap <Leader>il :IndentLinesToggle
 "}}}
 
 "=========== =========== }}}
