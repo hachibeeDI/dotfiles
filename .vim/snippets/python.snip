@@ -22,3 +22,36 @@ snippet     open3
 abbr        open_ver3
 	with io.open(${1:#:filename}, '${2:rt}') as ${3:f}:
 		${0:TARGET}
+
+snippet     method
+abbr        method
+options     head
+	def ${1:#:methodname}(self${2:#:args}):
+		${0}
+
+snippet     property
+abbr        read only property short hand declaretion
+options     head
+	@property
+	def ${1:#:methodname}(self${2:#:args}):
+		${0}
+
+snippet     clsmethod
+abbr        class method
+options     head
+	@classmethod
+	def ${1:#:methodname}(cls${2:#:args}):
+		${0}
+
+snippet     descriptor
+abbr        descriptor
+options     head
+	class RevealAccess(${1:object}):
+		def __init__(self${2:#:args}):
+			${3:pass}
+
+		def __get__(self, instance, owner):
+			${4:pass}
+
+		def __set__(self, instance, value):
+			${5:pass}
