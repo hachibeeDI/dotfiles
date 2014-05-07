@@ -2,6 +2,9 @@
 
 # alias settings{{{
 
+alias ...='cd ../..'
+alias ....='cd ../../..'
+
 # sudo時もエイリアスが展開されるりょうに
 alias sudo='sudo '
 

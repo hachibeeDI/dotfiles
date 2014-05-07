@@ -411,3 +411,5 @@ else
 fi
 # }}}
 
+hash -d drop=~/Dropbox/
+
