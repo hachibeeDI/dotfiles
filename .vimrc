@@ -51,7 +51,7 @@ NeoBundleLazy 'Shougo/neocomplete.vim', {
 \     'insert' : 1,
 \ },
 \   'depends' : 'Shougo/context_filetype.vim',
-\   'disabled' : !has('lua'),
+\   'disabled' : !(has('lua') || has('luajit')),
 \   'vim_version' : '7.3.885'
 \ }
 NeoBundleLazy 'Shougo/neosnippet', {
