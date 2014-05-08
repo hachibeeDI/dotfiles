@@ -477,6 +477,10 @@ if s:is_mac
   \ 'depends' : 'Shougo/neocomplete.vim',
   \ 'on_source': 'neocomplete.vim',
   \ }
+  NeoBundleLazy 'b4winckler/vim-objc', {
+  \ "autoload" : {
+  \   "filetypes" : ["objc"]},
+  \}
 endif
 " }}}
 " -- JavaScript {{{
