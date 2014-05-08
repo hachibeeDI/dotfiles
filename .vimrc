@@ -465,6 +465,18 @@ if s:is_mac
   \ "autoload" : {
   \   "filetypes" : ["objc"]},
   \}
+  NeoBundleLazy 'tokorom/vim-textobj-objc', {
+  \ "autoload" : {
+  \   "filetypes" : ["objc"]},
+  \}
+  NeoBundleLazy 'tokorom/xcode-actions.vim', {
+  \ "autoload" : {
+  \   "filetypes" : ["objc"]},
+  \}
+  NeoBundleLazy 'tokorom/neocomplete-ios-dictionary', {
+  \ 'depends' : 'Shougo/neocomplete.vim',
+  \ 'on_source': 'neocomplete.vim',
+  \ }
 endif
 " }}}
 " -- JavaScript {{{
@@ -827,7 +839,7 @@ set wildignore+=*/.git/*,*/.hg/*,*/.svn/*        " Linux/MacOSX
 "}}}
 set completeopt=menuone,preview
 " Don't complete from other buffer.
-set complete=.
+set complete=.,w,b,t,i  " via: help cpt
 " Set popup menu max height.
 set pumheight=20
 " <C-a> <C-x> で英字も増減させる
@@ -1580,19 +1592,21 @@ function! bundle.hooks.on_source(bundle)
 endfunction
 unlet bundle
 " }}}
+" neocomplete-ios-dictionary {{{
+call neocomplete_ios_dictionary#configure_ios_dict()
+" }}}
 
 " ------------------- clang_complete ------------- {{{
 " neocomplcacheとの競合を避けるため、自動呼び出しはOff
 let g:clang_complete_auto = 0
 let g:clang_auto_select = 0
-"libclangを使う
-let g:clang_use_library = 1
-let g:clang_debug = 1
-if s:is_mac
-  let g:clang_library_path = "/usr/lib"
-endif
 let g:clang_hl_errors = 0
 "let g:clang_snippets = "clang_complete"
+"libclangを使う
+let g:clang_use_library = 1
+if s:is_mac
+  let g:clang_library_path = "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib"
+endif
 
 " }}}
 
@@ -2233,6 +2247,18 @@ call smartinput#define_rule({
 \   'char'     : '+',
 \   'input'    : '+',
 \   'syntax': ['Constant', 'Special'],
+\   })
+call smartinput#define_rule({
+\   'at'       : '^\%#',
+\   'char'     : '-',
+\   'input'    : '- ()<Left>',
+\   'filetype': ['objc', 'objcpp'],
+\   })
+call smartinput#define_rule({
+\   'at'       : '^\%#',
+\   'char'     : '+',
+\   'input'    : '+ ()<Left>',
+\   'filetype': ['objc', 'objcpp'],
 \   })
 
 "}}}
