@@ -1,6 +1,9 @@
-# follow the locale time
-set show-date = local
-set show-id = yes
+set blame-view = \
+        date:relative \
+        author:abbreviated \
+        file-name:auto \
+        id:yes,color \
+        line-number:yes,interval=5 text
 
 ## 画面を垂直方向に分割する
 #set vertical-split = yes
