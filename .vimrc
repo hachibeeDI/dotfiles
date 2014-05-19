@@ -157,10 +157,16 @@ call neobundle#config('unite-build', {
 " NOTE: Imploved by lua-interface
 NeoBundle 'Shougo/unite-outline', '', 'default'
 call neobundle#config('unite-outline', {
-      \ 'lazy' : 1,
-      \ 'autoload' : {
-      \   'unite_sources' : 'outline'},
-      \ })
+  \ 'lazy' : 1,
+  \ 'autoload' : {
+  \   'unite_sources' : 'outline'},
+  \ })
+NeoBundle 'ryotakato/unite-outline-objc'
+call neobundle#config('unite-outline', {
+  \ 'lazy' : 1,
+  \ 'autoload' : {
+  \   'unite_sources' : 'outline'},
+  \ })
 NeoBundle 'tsukkee/unite-tag', '', 'default'
 call neobundle#config('unite-tag', {
 \ 'lazy' : 1,
