@@ -1428,6 +1428,7 @@ function! s:open_junk_file()
 endfunction
 
 nnoremap <SID>[Show]j :<C-u>JunkFile
+" }}}
 
 " GetScriptID {{{
 " via: http://mattn.kaoriya.net/software/vim/20090826003359.htm
@@ -1447,25 +1448,40 @@ function! GetScriptID(_fname)
 endfunction
 "}}}
 
-" kobito
-function! s:open_kobito(...)
-    if a:0 == 0
-        call system('open -a Kobito '.expand('%:p'))
-    else
-        call system('open -a Kobito '.join(a:000, ' '))
+if s:is_mac
+  " kobito {{{
+  function! s:open_kobito(...)
+      if a:0 == 0
+          call system('open -a Kobito '.expand('%:p'))
+      else
+          call system('open -a Kobito '.join(a:000, ' '))
+      endif
+  endfunction
+
+  " 引数のファイル(複数指定可)を Kobitoで開く
+  " （引数無しのときはカレントバッファを開く
+  command! -nargs=* Kobito call s:open_kobito(<f-args>)
+  " Kobito を閉じる
+  command! -nargs=0 KobitoClose call system("osascript -e 'tell application \"Kobito\" to quit'")
+  " Kobito にフォーカスを移す
+  command! -nargs=0 KobitoFocus call system("osascript -e 'tell application \"Kobito\" to activate'")
+  "  }}}
+
+  " dash {{{
+  function! s:dash(...)
+    let current_ft = &filetype
+    if &filetype == 'python'
+      let current_ft = current_ft.'2'
     endif
-endfunction
+    let current_ft = current_ft.':'
+    let word = len(a:000) == 0 ? input('Dash search: ', current_ft.expand('<cword>')) : current_ft.join(a:000, ' ')
+    call system(printf("open dash://'%s'", word))
+  endfunction
 
-" 引数のファイル(複数指定可)を Kobitoで開く
-" （引数無しのときはカレントバッファを開く
-command! -nargs=* Kobito call s:open_kobito(<f-args>)
-" Kobito を閉じる
-command! -nargs=0 KobitoClose call system("osascript -e 'tell application \"Kobito\" to quit'")
-" Kobito にフォーカスを移す
-command! -nargs=0 KobitoFocus call system("osascript -e 'tell application \"Kobito\" to activate'")
-
-
-"}}}
+  command! -nargs=* Dash call <SID>dash(<f-args>)
+  nnoremap <silent> _da :<C-u>call <SID>dash(expand('<cword>'))<CR>
+  "}}}
+endif
 
 " 指定したエンコードでファイルを開き直すためのエイリアス
 command! Utf8 edit ++enc=utf-8
