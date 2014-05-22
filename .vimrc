@@ -303,6 +303,10 @@ NeoBundle 'hachibeeDI/vim-textobj-continuous-line', {
 "textobj-user }}}
 
 NeoBundle 'kana/vim-smartinput'
+NeoBundle 'hachibeeDI/smartinput-petterns', {
+\ 'base': expand('~/Dropbox/development/viml/'),
+\ 'type': 'nosync',
+\ }
 NeoBundleLazy 'kana/vim-smartchr', {
 \ 'autoload' : {
 \   'function_prefix' : 'smartchr',
@@ -1608,10 +1612,10 @@ function! bundle.hooks.on_source(bundle)
   \ '[^.[:digit:] *\t]\%(\.\|->\)\w*'
   let g:neocomplete#force_omni_input_patterns.cpp =
   \ '[^.[:digit:] *\t]\%(\.\|->\)\w*\|\h\w*::\w*'
-  let g:neocomplete#force_omni_input_patterns.objc =
-  \ '[^.[:digit:] *\t]\%(\.\|->\)\w*'
-  let g:neocomplete#force_omni_input_patterns.objcpp =
-  \ '[^.[:digit:] *\t]\%(\.\|->\)\w*\|\h\w*::\w*'
+  "let g:neocomplete#force_omni_input_patterns.objc =
+  "\ '[^.[:digit:] *\t]\%(\.\|->\)\w*'
+  "let g:neocomplete#force_omni_input_patterns.objcpp =
+  "\ '[^.[:digit:] *\t]\%(\.\|->\)\w*\|\h\w*::\w*'
 
   " customize sort complete candiates
   "call neocomplete#custom#source('_', 'sorters', ['sorter_length'])
@@ -2240,7 +2244,6 @@ call smartinput#map_to_trigger('i', '*', '\*', '\*')
 " で得られるSyntax名のみ
 " TODO: synIDattr(synID(line('.'), col('.'), 0), 'name') ではだめなのかな
 
-
 "" via: http://rhysd.hatenablog.com/entry/20121017/1350444269
 call smartinput#define_rule({
 \   'at': '\s\+\%#$',
@@ -2272,19 +2275,7 @@ call smartinput#define_rule({
 \   'at'       : '\%#',
 \   'char'     : '+',
 \   'input'    : '+',
-\   'syntax': ['Constant', 'Special'],
-\   })
-call smartinput#define_rule({
-\   'at'       : '^\%#',
-\   'char'     : '-',
-\   'input'    : '- ()<Left>',
-\   'filetype': ['objc', 'objcpp'],
-\   })
-call smartinput#define_rule({
-\   'at'       : '^\%#',
-\   'char'     : '+',
-\   'input'    : '+ ()<Left>',
-\   'filetype': ['objc', 'objcpp'],
+\   'syntax': ['Constant', 'Special', 'Comment'],
 \   })
 
 "}}}
@@ -2310,97 +2301,6 @@ call smartinput#define_rule({
 \   'input'    : '=<Space>',
 \   })
 
-
-" Python専用 ------------------ {{{
-" classとかの定義時に:までを入れる
-call smartinput#define_rule({
-\   'at'       : '^\s*\%(\<def\>\|\<if\>\|\<for\>\|\<while\>\|\<class\>\|\<with\>\)\s*\w\+.*\%#',
-\   'char'     : '(',
-\   'input'    : '():<Left><Left>',
-\   'filetype' : ['python'],
-\   })
-" が、すでに:がある場合は重複させない. (smartinputでは、atの定義が長いほど適用の優先度が高くなる)
-call smartinput#define_rule({
-\   'at'       : '^\s*\%(\<def\>\|\<if\>\|\<for\>\|\<while\>\|\<class\>\|\<with\>\)\s*\w\+.*\%#.*:',
-\   'char'     : '(',
-\   'input'    : '()<Left>',
-\   'filetype' : ['python'],
-\   })
-
-call smartinput#define_rule({
-\   'at'       : '^\s*\%(\<def\>\|\<if\>\|\<for\>\|\<while\>\|\<class\>\|\<with\>\)\s*\w\+.*\%#:$',
-\   'char'     : ':',
-\   'input'    : '<Right><CR>',
-\   'filetype' : ['python'],
-\   })
-call smartinput#define_rule({
-\   'at'       : '^\s*\%(\<def\>\|\<if\>\|\<for\>\|\<while\>\|\<class\>\|\<with\>\)\s*\w\+.*\%#:$',
-\   'char'     : '<CR>',
-\   'input'    : '<Right><CR>',
-\   'filetype' : ['python'],
-\   })
-" 辞書の宣言なことが明らかなケースではsmartchrを呼び出す
-call smartinput#define_rule({
-\   'at'       : '{.\+\%#',
-\   'char'     : ':',
-\   'input'    : "<C-R>=smartchr#loop(': ', ':')<CR>",
-\   'filetype' : ['python'],
-\   })
-" docstringとかのsphinx形式のアレ
-call smartinput#define_rule({
-\   'at'       : '^\s*\%#',
-\   'char'     : ':',
-\   'input'    : "::<Left>",
-\   'syntax'   : ["Constant"],
-\   'filetype' : ['python'],
-\   })
-call smartinput#define_rule({
-\   'at'       : '^\s*:\%#:',
-\   'char'     : '<BS>',
-\   'input'    : "<BS><Del>",
-\   'syntax'   : ["Constant"],
-\   'filetype' : ['python'],
-\   })
-call smartinput#define_rule({
-\   'at'       : '^\s*:.*\%#:',
-\   'char'     : ':',
-\   'input'    : '<Right>',
-\   'syntax'   : ["Constant"],
-\   'filetype' : ['python'],
-\   })
-" ---- }}}
-
-" its in examples in smartinput. insert #{} in a string literal.
-call smartinput#define_rule({
-\   'at': '\%#',
-\   'char': '#',
-\   'input': '#{}<Left>',
-\   'filetype': ['ruby'],
-\   'syntax': ['Constant', 'Special'],
-\ })
-
-" add bar(`|`) in smartinput definitions and define input rule. {{{
-call smartinput#define_rule({
-\   'at': '\%#',
-\   'char': '<Bar>',
-\   'input': '<Bar><Bar><Left>',
-\   'filetype': ['ruby'],
-\ })
-call smartinput#define_rule({
-\   'at': '|\%#|',
-\   'char': '<BS>',
-\   'input': '<BS><Del>',
-\   'filetype': ['ruby'],
-\ })
-"}}}
-
-" insert <bar> on both side of block argsments.
-call smartinput#define_rule({
-\   'at': '\({\|\<do\>\)\s*\%#',
-\   'char': '<Bar>',
-\   'input': '<Bar><Bar><Left>',
-\   'filetype': ['ruby'],
-\ })
 
 " html and markdown like that -----
 call smartinput#define_rule({
@@ -2533,24 +2433,6 @@ call smartinput#define_rule({
 \   'at': '\s\%#=\s',
 \   'char': '<BS>',
 \   'input': '<BS><Right><Del><Left>',
-\ })
-
-" haxe
-" synIDattr(synID(line('.'), col('.'), 0), 'name') == 'haxeSString' ? '${}<Left>' : '$' みたいにしたい
-call smartinput#define_rule({
-\   'at': '\%#',
-\   'char': '$',
-\   'input': '${}<Left>',
-\   'filetype': ['haxe'],
-\   'syntax': ['Constant'],
-\ })
-" ダブルコーテーションの時はsmartしないように(応急処置)
-call smartinput#define_rule({
-\   'at': '\".*\%#',
-\   'char': '$',
-\   'input': '$',
-\   'filetype': ['haxe'],
-\   'syntax': ['Constant'],
 \ })
 "---- }}}
 
