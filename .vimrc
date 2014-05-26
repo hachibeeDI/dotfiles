@@ -565,6 +565,22 @@ NeoBundleLazy 'basyura/unite-rails', {
 "}}}
 
 " -- Lisp {{{
+if executable('lein')
+  " via: http://blog.ieknir.com/blog/beginning-clojure-with-vim/
+  NeoBundleLazy 'guns/vim-clojure-static', {
+  \ "autoload" : {
+  \   "filetypes" : ["clojure"] }
+  \}
+  NeoBundleLazy 'tpope/vim-fireplace', {
+  \ "autoload" : {
+  \   "filetypes" : ["clojure"] }
+  \}
+  NeoBundleLazy 'tpope/vim-classpath', {
+  \ "autoload" : {
+  \   "filetypes" : ["clojure"] }
+  \}
+
+endif
 "}}}
 " -- Haskell {{{
 if executable('ghc')
@@ -680,7 +696,7 @@ NeoBundle 't9md/vim-quickhl'
 " カッコいい言語のカッコをレインボーにする
 NeoBundleLazy 'kien/rainbow_parentheses.vim', {
 \ "autoload" : {
-\   'commands': ['RainbowParenthesesToggle', 'RainbowParenthesesLoadRound', 'RainbowParenthesesLoadBraces'],
+\   'commands': ['RainbowParenthesesToggle', 'RainbowParenthesesLoadRound', 'RainbowParenthesesLoadBraces', 'RainbowParenthesesActivate', ],
 \ }}
 
 NeoBundleLazy 'mattn/gist-vim', {
@@ -1207,6 +1223,7 @@ nnoremap <Up> <C-w>+
 nnoremap <Down> <C-w>-
 nnoremap <Left> <C-w>>
 nnoremap <Right> <C-w><
+
 
 " Ctrl + C は、`insert modeの強制終了`なので微妙に挙動がかわる。うざいので置き換える
 inoremap <C-c> <Esc>
@@ -2034,8 +2051,14 @@ let g:rbpt_colorpairs = [
     \ ]
 let g:rbpt_max = 15
 let g:rbpt_loadcmd_toggle = 0
+" enable at startup
+:RainbowParenthesesActivate
 " ハイライトを切り替えるキーマップ
 nnoremap <silent> <SID>[Show]rr :RainbowParenthesesToggle<CR>
+
+autocmd MyAutoCmd Syntax *.clj RainbowParenthesesLoadRound
+autocmd MyAutoCmd Syntax *.clj,*.m RainbowParenthesesLoadSquare
+autocmd MyAutoCmd Syntax *.m,*.hx,*.cpp,*.scala RainbowParenthesesLoadBraces
 
 " ------ TweetVim {{{
 let g:tweetvim_async_post = 1
