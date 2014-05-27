@@ -618,6 +618,23 @@ NeoBundleLazy 'hachibeeDI/vim-vbnet', {
 \ "stay_same" : 1,
 \}
 " }}}
+" == PHP {{{
+if executable('php-cs-fixer')
+  NeoBundleLazy 'stephpy/vim-php-cs-fixer', {
+  \ "autoload" : {
+  \   "filetypes" : ["php"],
+  \   },
+  \}
+  NeoBundleLazy 'shawncplus/phpcomplete.vim', {
+  \ "autoload" : {
+  \   "filetypes" : ["php"],
+  \   },
+  \}
+  autocmd MyAutoCmd Filetype php setl makeprg=php\ -l\ %
+  autocmd MyAutoCmd Filetype php setl errorformat=%m\ in\ %f\ on\ line\ %l
+  autocmd MyAutoCmd BufWritePost *.php silent make | if len(getqflist()) != 1 | copen | else | cclose | endif
+endif
+"}}}
 " -- markup {{{
 NeoBundleLazy 'mattn/emmet-vim', {
 \ "autoload" : {
@@ -878,8 +895,7 @@ set nrformats=alpha,octal,hex
 set backspace=eol,indent,start
 
 " Disable automatically insert comment.
-autocmd MyAutoCmd FileType *
-      \ setl formatoptions-=ro | setl formatoptions+=mM
+autocmd MyAutoCmd FileType * setl formatoptions-=ro | setl formatoptions+=mM
 "autocmd MyAutoCmd InsertEnter,CmdwinEnter * set noimdisable
 "autocmd MyAutoCmd InsertLeave,CmdwinLeave * set imdisable
 " ======== edit }}}
@@ -1553,6 +1569,7 @@ function! bundle.hooks.on_source(bundle)
   \     'vimshell': $HOME.'/.vimshell_hist',
   \     'scheme': $HOME.'/.gosh_completions',
   \     'scala': s:BUNDLEPATH.'/vim-scala/dict/scala.dict',
+  \     'php': $HOME.'/.vim/dict/php.dict',
   \ }
 
   "initialize
@@ -1592,7 +1609,10 @@ function! bundle.hooks.on_source(bundle)
   if !exists('g:neocomplete#sources#omni#input_patterns')
     let g:neocomplete#sources#omni#input_patterns = {}
   endif
-  let g:neocomplete#sources#omni#input_patterns.php = '[^. \t]->\h\w*\|\h\w*::'
+  let g:neocomplete#sources#omni#input_patterns.php =
+		\ '[^. \t]->\%(\h\w*\)\?\|\h\w*::\%(\h\w*\)\?'
+  "let g:neocomplete#sources#omni#input_patterns.php =
+  "              \ '\h\w*\|[^. \t]->\%(\h\w*\)\?\|\h\w*::\%(\h\w*\)\?'
   let g:neocomplete#sources#omni#input_patterns.ruby = '[^. *\t]\.\w*\|\h\w*::'
   let g:neocomplete#sources#omni#input_patterns.haxe = '\v([\]''"\)]|\w|(^\s*))(\.|\()'
   let g:neocomplete#sources#omni#input_patterns.python = '[^. \t]\.\w*'
