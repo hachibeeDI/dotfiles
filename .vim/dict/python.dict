@@ -18,6 +18,8 @@ __ge__
 __gt__
 __nonzero__
 __len__
+__getattr__
+__getattribute__
 
 @property
 @classmethod

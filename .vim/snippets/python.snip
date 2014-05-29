@@ -46,8 +46,8 @@ options     head
 snippet     descriptor
 abbr        descriptor
 options     head
-	class RevealAccess(${1:object}):
-		def __init__(self${2:#:args}):
+	class ${1:#:Name}(${2:object}):
+		def __init__(self${3:#:args}):
 			${3:pass}
 
 		def __get__(self, instance, owner):
