@@ -192,6 +192,22 @@ NeoBundleLazy 'hachibeeDI/unite-pypi-classifiers', {
 \ 'base': expand('~/Dropbox/development/viml/'),
 \ 'type': 'nosync',
 \ }
+NeoBundleLazy 'hachibeeDI/python_hl_lvar.vim', {
+\ 'autoload' : {
+\     'filetypes' : ['python'],
+\ },
+\ 'base': expand('~/Dropbox/development/viml/'),
+\ 'type': 'nosync',
+\ }
+let g:enable_python_hl_lvar = 1
+autocmd MyAutoCmd BufWinEnter  *.py PyHlLVar
+autocmd MyAutoCmd BufWinLeave  *.py PyHlLVar
+autocmd MyAutoCmd WinEnter     *.py PyHlLVar
+autocmd MyAutoCmd BufWritePost *.py PyHlLVar
+autocmd MyAutoCmd WinLeave     *.py PyHlLVar
+autocmd MyAutoCmd TabEnter     *.py PyHlLVar
+autocmd MyAutoCmd TabLeave     *.py PyHlLVar
+
 
 " get and read referece on vim
 NeoBundleLazy 'thinca/vim-ref', { 'autoload' : {
@@ -762,6 +778,21 @@ NeoBundleLazy 'hachibeeDI/unite-pythonimport', {
 \   },
 \ "stay_same" : 1,
 \ }
+
+NeoBundleLazy 'LeafCage/yankround.vim', {
+\   'autoload': {
+\     'mappings' : ['<Plug>(yankround-p)',
+\                   '<Plug>(yankround-P)',
+\                   '<Plug>(yankround-gp)',
+\                   '<Plug>(yankround-gP)',
+\                   '<Plug>(yankround-prev)',
+\                   '<Plug>(yankround-next)', ], }}
+nmap p <Plug>(yankround-p)
+nmap P <Plug>(yankround-P)
+nmap gp <Plug>(yankround-gp)
+nmap gP <Plug>(yankround-gP)
+nmap <C-p> <Plug>(yankround-prev)
+nmap <C-n> <Plug>(yankround-next)
 
 "}}}
 
