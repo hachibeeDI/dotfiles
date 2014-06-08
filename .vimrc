@@ -507,6 +507,7 @@ if s:is_mac
   \ "autoload" : {
   \   "filetypes" : ["objc"]},
   \}
+  NeoBundle 'toyamarinyon/vim-swift'
 endif
 " }}}
 " -- JavaScript {{{
