@@ -787,14 +787,18 @@ NeoBundleLazy 'LeafCage/yankround.vim', {
 \                   '<Plug>(yankround-gp)',
 \                   '<Plug>(yankround-gP)',
 \                   '<Plug>(yankround-prev)',
-\                   '<Plug>(yankround-next)', ], }}
+\                   '<Plug>(yankround-next)', ],
+\   'unite_sources' : 'yankround',
+\}}
 nmap p <Plug>(yankround-p)
+xmap p <Plug>(yankround-p)
 nmap P <Plug>(yankround-P)
 nmap gp <Plug>(yankround-gp)
+xmap gp <Plug>(yankround-gp)
 nmap gP <Plug>(yankround-gP)
 nmap <C-p> <Plug>(yankround-prev)
 nmap <C-n> <Plug>(yankround-next)
-
+nnoremap <silent> <C-y> :<C-u>Unite yankround<CR>
 "}}}
 
 " --- default bundled plugins ---
@@ -1919,7 +1923,7 @@ nnoremap <silent> <SID>[Unite]b :<C-u>Unite buffer<CR>
 " ファイル一覧
 nnoremap <silent> <SID>[Unite]f :<C-u>UniteWithBufferDir -buffer-name=files file<CR>
 " .gitを基準にしたプロジェクト一覧 (ctrlp的な)
-nnoremap <silent> <C-p>  :<C-u>Unite file_rec/async:!<CR>
+nnoremap <silent> <SID>[Unite]p  :<C-u>Unite file_rec/async:!<CR>
 " レジスタ一覧
 nnoremap <silent> <SID>[Unite]r :<C-u>Unite -buffer-name=register register<CR>
 " 最近使用したファイル一覧
@@ -1930,8 +1934,8 @@ nnoremap <silent> <SID>[Unite]u :<C-u>Unite buffer file_mru<CR>
 nnoremap <silent> <SID>[Unite]t :<C-u>Unite tab<CR>
 " 全部乗せ
 nnoremap <silent> <SID>[Unite]a :<C-u>UniteWithBufferDir -buffer-name=files buffer file_mru bookmark file<CR>
-" output
-nnoremap <silent> <SID>[Unite]p :<C-u>Unite menu<CR>
+"" output
+"nnoremap <silent> <SID>[Unite]p :<C-u>Unite menu<CR>
 
 " その他
 nnoremap <silent> <SID>[Unite]` :<C-u>Unite -auto-quit neobundle/update<CR>
