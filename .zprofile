@@ -82,8 +82,10 @@ export PYTHONSTARTUP=~/.pythonstartup
 JAVA_HOME=/Library/Java/Home
 export JAVA_HOME
 
-# load pythonbrew environments
-[[ -s "$HOME/.pythonbrew/etc/bashrc" ]] && source "$HOME/.pythonbrew/etc/bashrc"
+# load pyenv environments
+if which pyenv > /dev/null; then eval "$(pyenv init -)"; fi
+## To use Homebrew's directories rather than ~/.pyenv add to your profile:
+#export PYENV_ROOT=/usr/local/opt/pyenv
 
 ## Load RVM into a shell session *as a function*
 #[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"
