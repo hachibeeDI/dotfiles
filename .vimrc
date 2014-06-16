@@ -200,6 +200,8 @@ NeoBundleLazy 'hachibeeDI/python_hl_lvar.vim', {
 \ 'type': 'nosync',
 \ }
 let g:enable_python_hl_lvar = 1
+let g:python_hl_lvar_highlight_color = 'guifg=palegreen2 gui=NONE ctermfg=110 cterm=NONE'
+"let g:python_hl_lvar_verbose = 1  for debug
 autocmd MyAutoCmd BufWinEnter  *.py PyHlLVar
 autocmd MyAutoCmd BufWinLeave  *.py PyHlLVar
 autocmd MyAutoCmd WinEnter     *.py PyHlLVar
@@ -799,6 +801,18 @@ nmap gP <Plug>(yankround-gP)
 nmap <C-p> <Plug>(yankround-prev)
 nmap <C-n> <Plug>(yankround-next)
 nnoremap <silent> <C-y> :<C-u>Unite yankround<CR>
+
+NeoBundleLazy 'LeafCage/vimhelpgenerator', {
+\ 'autoload' : {
+\   "filetypes" : ["vim"],
+\   },}
+let g:vimhelpgenerator_version = ''
+let g:vimhelpgenerator_author = 'Author  : OGURA_Daiki <8hachibee125+vim @ gmail.com>'
+let g:vimhelpgenerator_contents = {
+\ 'contents': 1, 'introduction': 1, 'usage': 1, 'interface': 1,
+\ 'variables': 1, 'commands': 1, 'key-mappings': 1, 'functions': 1,
+\ 'setting': 0, 'todo': 1, 'changelog': 0
+\ }
 "}}}
 
 " --- default bundled plugins ---
