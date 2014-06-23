@@ -56,7 +56,9 @@ NeoBundleLazy 'Shougo/neocomplete.vim', {
 \ }
 NeoBundleLazy 'Shougo/neosnippet', {
 \ 'autoload' : {
-\   'insert' : 1,
+\   'mappings' : ['<Plug>(neosnippet_'],
+\   'commands' : ['NeoSnippetClearMarkers', ],
+\   'function_prefix' : 'neosnippet',
 \ }}
 NeoBundleLazy 'Shougo/neosnippet-snippets', {
 \ 'autoload' : {
@@ -306,7 +308,7 @@ xmap i_ <Plug>(textobj-between-i)
 NeoBundleLazy 'bps/vim-textobj-python', {
 \ 'depends': ['kana/vim-textobj-user'],
 \ 'autoload': {
-\   'mappings': ['<Plug>(textobj-python-function-a)', '<Plug>(textobj-python-function-i)'],
+\   'mappings': ['<Plug>(textobj-python-function', ],
 \   }
 \ }
 " --- text-obj-python ---- {{{
