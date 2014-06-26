@@ -36,6 +36,7 @@ ln -s "$dotfile_path"/git_globalconfig ~/.gitconfig
 touch ~/.gitconfig.local
 
 ln -s "$dotfile_path"/.vim ~/.vim
+ln -s "$dotfile_path"/.peco/ ~/.config/peco
 
 ln -s "$dotfile_path"/.zsh/modules/LS_COLORS/LS_COLORS ~/.dircolors
 
