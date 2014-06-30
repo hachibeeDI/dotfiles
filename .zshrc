@@ -249,6 +249,11 @@ source ~/.zsh/modules/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 if which peco > /dev/null; then
     echo 'use peco'
     source ~/.zsh/.zrc.peco.zsh
+    function _insert_pecopipe() {
+        LBUFFER=${LBUFFER}" | peco"
+    }
+    zle -N _insert_pecopipe
+    bindkey '^[p' _insert_pecopipe
 else
     echo 'use zaw'
     source ~/.zsh/modules/zaw/zaw.zsh
