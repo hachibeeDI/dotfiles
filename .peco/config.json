@@ -1,4 +1,9 @@
 {
+  "Style": {
+    "Basic": ["on_default", "default"],
+    "Selected": ["underline", "white", "cyan"],
+    "Query": ["white", "bold"]
+  },
   "Keymap": {
     "C-f": "peco.ForwardChar",
     "C-b": "peco.BackwardChar",
