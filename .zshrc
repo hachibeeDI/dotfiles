@@ -83,8 +83,8 @@ zstyle ':completion:*' ignore-parents parent pwd ..
 ### }}}
 
 ### Set shell options{{{
-# カレントディレクトリにサブディレクトリが見つからない場合にcdが検索する場所
-cdpath=($HOME)
+## カレントディレクトリにサブディレクトリが見つからない場合にcdが検索する場所
+#cdpath=($HOME)
 
 setopt no_beep
 
