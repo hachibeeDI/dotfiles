@@ -229,8 +229,8 @@ bindkey -e
 bindkey '^U' backward-kill-line
 # Ctrl-u delete word before cursor
 bindkey "^[h" backward-kill-word
-bindkey "^[u" undo
-bindkey "^[r" redo
+bindkey "^c^u" undo
+bindkey "^c^r" redo
 
 # }}}
 
