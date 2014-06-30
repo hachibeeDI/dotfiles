@@ -247,19 +247,30 @@ source ~/.zsh/modules/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 # -- zaw.zsh -------- (pecoが入んない環境のみ)
 if which peco > /dev/null; then
+    echo 'use peco'
+    source ~/.zsh/.zrc.peco.zsh
+else
+    echo 'use zaw'
     source ~/.zsh/modules/zaw/zaw.zsh
     source ~/.zsh/.zrc.zaw.zsh
-else
-    source ~/.zsh/.zrc.peco.zsh
 fi
 
 # -- notify if command takes long time
 source ~/.zsh/functions/notify_wlonger.zsh
 # }}}
 # -------------------- settings for plugins ------------ {{{
-# --- cdd ---
-typeset -ga chpwd_functions
-chpwd_functions+=_cdd_chpwd
+# {{{
+function _delete-char-or-list-expand() {
+    if [[ -z "${RBUFFER}" ]]; then
+        # the cursor is at the end of the line
+        zle list-expand
+    else
+        zle delete-char
+    fi
+}
+zle -N _delete-char-or-list-expand
+bindkey '^D' _delete-char-or-list-expand
+# }}}
 
 # }}}
 # move dotfiles in Dropbox{{{
