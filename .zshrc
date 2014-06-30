@@ -14,6 +14,13 @@ colors
 ## Enable zmv command
 autoload zmv
 alias zmv='noglob zmv -W'
+# enable cdr {{{
+autoload -Uz chpwd_recent_dirs cdr add-zsh-hook
+add-zsh-hook chpwd chpwd_recent_dirs
+zstyle ':chpwd:*' recent-dirs-max 5000
+zstyle ':chpwd:*' recent-dirs-default yes
+zstyle ':completion:*' recent-dirs-insert both
+# }}}
 ## call version check function
 autoload -Uz is-at-least
 ## zsh editor
@@ -237,8 +244,7 @@ bindkey "^c^r" redo
 # ------------------- load plugins ---------------- {{{
 # -- zsh syntax highlight ---
 source ~/.zsh/modules/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-# -- cdd --
-source ~/.zsh/modules/cdd/cdd
+
 # -- zaw.zsh -------- (pecoが入んない環境のみ)
 if which peco > /dev/null; then
     source ~/.zsh/modules/zaw/zaw.zsh
