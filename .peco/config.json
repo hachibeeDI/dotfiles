@@ -42,6 +42,7 @@
     "C-j": "peco.Finish",
 
     "C-g": "peco.Cancel",
-    "Esc": "peco.Cancel"
+    "Esc": "peco.Cancel",
+    "C-c": "peco.Cancel"
   }
 }
