@@ -93,4 +93,4 @@
     hist = log --pretty=format:\"%C(yellow)%h %C(White)%ad | %C(White)%s%C(Green)%d %C(Red)[%an]\" --graph --date=short
     shit = log --pretty=format:\"%C(yellow)%h %C(White)%ad | %C(White)%s%C(Green)%d %C(Red)[%an]\" --graph --date=short
     chspace = diff --check
-
+    chbr = !git checkout $(git branch | peco)
