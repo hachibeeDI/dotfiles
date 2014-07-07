@@ -1,3 +1,4 @@
+
 function peco-select-history() {
     local tac
     if which tac > /dev/null; then
@@ -13,6 +14,8 @@ function peco-select-history() {
 zle -N peco-select-history
 bindkey '^r' peco-select-history
 
+
+# 移動系 {{{
 function peco-cdr () {
     local selected_dir=$(cdr -l | awk '{ print $2 }' | peco)
     if [ -n "$selected_dir" ]; then
@@ -22,9 +25,9 @@ function peco-cdr () {
     zle clear-screen
 }
 zle -N peco-cdr
-bindkey '^[cd]' peco-cdr
+bindkey '^gcd' peco-cdr
 
-# peco-src-gitdir {{{
+
 function peco-src-gitdir () {
     _dir=$(git rev-parse --show-cdup 2>/dev/null)
     if [ $? -eq 0 ]; then
@@ -40,6 +43,8 @@ zle -N peco-src-gitdir
 bindkey '^ggd' peco-src-gitdir
 # }}}
 
+
+# 検索系 {{{
 function agedit () {
   if [ $# -eq 0 ]; then
       echo "you should appoint query pattern"
@@ -69,3 +74,4 @@ function ggre () {
 
   eval "${EDITOR} ${TARG}"
 }
+# }}}
