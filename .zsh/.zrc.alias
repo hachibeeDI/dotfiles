@@ -88,7 +88,7 @@ alias gbr='git branch -a'
 alias gdif='git diff'
 # alias gst='git status -sb'
 alias gamend='git commit --amend -C HEAD --date='
-alias ggre='git grep -Hi --heading --break'
+alias ggrep='git grep -Hi --heading --break'
 
 #}}}
 #}}}

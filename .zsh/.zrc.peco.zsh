@@ -9,7 +9,6 @@ function peco-select-history() {
         eval $tac | \
         peco --query "$LBUFFER")
     CURSOR=$#BUFFER
-    zle clear-screen
 }
 zle -N peco-select-history
 bindkey '^r' peco-select-history
@@ -40,3 +39,33 @@ function peco-src-gitdir () {
 zle -N peco-src-gitdir
 bindkey '^ggd' peco-src-gitdir
 # }}}
+
+function agedit () {
+  if [ $# -eq 0 ]; then
+      echo "you should appoint query pattern"
+      return 0
+  fi
+
+  TARG=$(ag $@ | peco --query "$LBUFFER" | awk -F : '{print "+"$2 " " $1}')
+  if [ $? = 1 -o "$TARG" = "" ]; then
+    echo "no pattern was matched"
+    return 1
+  fi
+
+  eval "${EDITOR} ${TARG}"
+}
+
+function ggre () {
+  if [ $# -eq 0 ]; then
+      echo "you should appoint query pattern"
+      return 0
+  fi
+
+  TARG=$(git grep -In "$1" | peco --query "$LBUFFER" | awk -F : '{print "-c " $2 " " $1}')
+  if [ $? = 1 -o "$TARG" = "" ]; then
+    echo "no pattern was matched"
+    return 1
+  fi
+
+  eval "${EDITOR} ${TARG}"
+}
