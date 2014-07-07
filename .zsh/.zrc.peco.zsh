@@ -74,4 +74,14 @@ function ggre () {
 
   eval "${EDITOR} ${TARG}"
 }
+
+function glsv () {
+  TARG=$(git ls-files "$1" | peco --query "$LBUFFER")
+  if [ $? = 1 -o "$TARG" = "" ]; then
+    echo "no pattern was matched"
+    return 1
+  fi
+
+  eval "${EDITOR} ${TARG}"
+}
 # }}}
