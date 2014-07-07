@@ -94,4 +94,4 @@ if which pyenv > /dev/null; then eval "$(pyenv init -)"; fi
 
 export JAVA_OPTS="-Dswank.encoding=utf-8-unix"
 
-
+export HAXE_STD_PATH='/usr/lib/haxe/std/'
