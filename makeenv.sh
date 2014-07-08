@@ -17,6 +17,10 @@ mkdir -p ~/.vimcache/bak/
 mkdir ~/.vimcache/vimswap/
 mkdir ~/.vimcache/undo/
 
+# for cdr is contlib script of zsh
+mkdir -p ~/.cache/shell
+
+
 # 汚い…
 ln -s "$dotfile_path"/.vimrc ~/.vimrc
 touch ~/.vimrc.local
