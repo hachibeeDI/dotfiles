@@ -15,6 +15,9 @@ zle -N peco-select-history
 bindkey '^r' peco-select-history
 
 
+alias ls-ps='ps aux |peco | awk '\''{print $2}'\'' '
+
+
 # 移動系 {{{
 function peco-cdr () {
     local selected_dir=$(cdr -l | awk '{ print $2 }' | peco)
@@ -64,6 +67,12 @@ function git-del-merged () {
 
   eval "git branch -d $TARG"
 }
+
+alias -g GF='`git ls-files | peco `'
+alias -g GB='`git branch | peco | sed -e "s/^\*//g"`'
+# get commit hash -> ex: git rebase -i GLo
+alias -g GLo='`git log --oneline | peco | awk '\''{print $1}'\'' `'
+
 # }}}
 
 
@@ -96,5 +105,15 @@ function ggre () {
   fi
 
   eval "${EDITOR} ${TARG}"
+}
+
+function codic() {
+  TARG=$(cat ~/.neobundle/codic-vim/dict/naming-entry.csv | peco --query "$LBUFFER" | awk -F , '{print $1}')
+  if [ $? = 1 -o "$TARG" = "" ]; then
+    echo "no pattern was matched"
+    return 1
+  fi
+
+  cat ~/.neobundle/codic-vim/dict/naming-translation.csv | grep "$TARG" | awk -F , '{print "parts: " $3; print "mean: " $4; print "comment: " $5 "\n";}'
 }
 # }}}
