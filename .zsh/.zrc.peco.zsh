@@ -44,6 +44,29 @@ bindkey '^ggd' peco-src-gitdir
 # }}}
 
 
+# git utils {{{
+function git-ls-file-edit () {
+  TARG=$(git ls-files "$1" | peco --query "$LBUFFER")
+  if [ $? = 1 -o "$TARG" = "" ]; then
+    echo "no pattern was matched"
+    return 1
+  fi
+
+  eval "${EDITOR} ${TARG}"
+}
+
+function git-del-merged () {
+  TARG=$(git branch --merged | awk '/^[^*]/' | peco --query "$LBUFFER")
+  if [ $? = 1 -o "$TARG" = "" ]; then
+    echo "no pattern was matched"
+    return 1
+  fi
+
+  eval "git branch -d $TARG"
+}
+# }}}
+
+
 # 検索系 {{{
 function agedit () {
   if [ $# -eq 0 ]; then
@@ -67,16 +90,6 @@ function ggre () {
   fi
 
   TARG=$(git grep -In "$1" | peco --query "$LBUFFER" | awk -F : '{print "-c " $2 " " $1}')
-  if [ $? = 1 -o "$TARG" = "" ]; then
-    echo "no pattern was matched"
-    return 1
-  fi
-
-  eval "${EDITOR} ${TARG}"
-}
-
-function glsv () {
-  TARG=$(git ls-files "$1" | peco --query "$LBUFFER")
   if [ $? = 1 -o "$TARG" = "" ]; then
     echo "no pattern was matched"
     return 1
