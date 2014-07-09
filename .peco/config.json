@@ -1,4 +1,10 @@
 {
+  "CustomMatcher": {
+      "Migemo": [
+          "migemogrep",
+          "$QUERY"
+      ]
+    },
   "Style": {
     "Basic": ["on_default", "default"],
     "Selected": ["underline", "white", "cyan"],
