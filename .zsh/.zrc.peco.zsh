@@ -107,13 +107,7 @@ function ggre () {
   eval "${EDITOR} ${TARG}"
 }
 
-function codic() {
-  TARG=$(cat ~/.neobundle/codic-vim/dict/naming-entry.csv | peco --query "$LBUFFER" | awk -F , '{print $1}')
-  if [ $? = 1 -o "$TARG" = "" ]; then
-    echo "no pattern was matched"
-    return 1
-  fi
+# https://github.com/hachibeeDI/util-cmdtoolsに移動した
+#function codic() {}
 
-  cat ~/.neobundle/codic-vim/dict/naming-translation.csv | grep "$TARG" | awk -F , '{print "parts: " $3; print "mean: " $4; print "comment: " $5 "\n";}'
-}
 # }}}
