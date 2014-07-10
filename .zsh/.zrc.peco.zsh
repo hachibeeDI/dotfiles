@@ -68,6 +68,7 @@ function git-del-merged () {
   eval "git branch -d $TARG"
 }
 
+alias -g GS='`git status -s | peco | awk '\''{print $2}'\'' `'
 alias -g GF='`git ls-files | peco `'
 alias -g GB='`git branch | peco | sed -e "s/^\*//g"`'
 # get commit hash -> ex: git rebase -i GLo
