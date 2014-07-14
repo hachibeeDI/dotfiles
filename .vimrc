@@ -461,11 +461,17 @@ if executable('go')
   \   'unix' : 'go get -u code.google.com/p/rog-go/exp/cmd/godef && go install -v code.google.com/p/rog-go/exp/cmd/godef', },
   \ "autoload": {"filetypes": ['go']},
   \ }
+  NeoBundleLazy 'fatih/vim-go', {
+  \   "autoload": {"filetypes": ['go']},
+  \ }
+  let g:go_bin_path = expand("~/.go/bin")
+  let g:go_fmt_fail_silently = 1
+  let g:go_fmt_autosave = 1
+  let g:go_disable_autoinstall = 1
+  let g:go_snippet_engine = "neosnippet"
   if $GOROOT != ''
-    " 標準でバンドルされてるプラギン
-    set rtp+=$GOROOT/misc/vim
-    autocmd MyAutoCmd BufWritePre *.go Fmt
-    autocmd MyAutoCmd BufWritePre *.go Lint
+    " 標準でバンドルされてるプラギン set rtp+=$GOROOT/misc/vim は使わない
+    "autocmd MyAutoCmd BufWritePre *.go GoLint
   endif
 endif
 " }}}
@@ -1606,7 +1612,7 @@ function! bundle.hooks.on_source(bundle)
   "let g:neocomplete#auto_completion_start_length = 2
   "" Set minimum syntax keyword length. default is 4
   "let g:neocomplete#sources#syntax#min_keyword_length = 4
-  let g:neocomplete#skip_auto_completion_time = '1'
+  let g:neocomplete#skip_auto_completion_time = '0.5'
   let g:neocomplete#lock_buffer_name_pattern = '\*ku\*'
 
   " Define dictionary.
