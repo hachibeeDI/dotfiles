@@ -143,6 +143,13 @@ call neobundle#config('neomru.vim', {
 \   'unite_sources' : 'file_mru'},
 \ })
 
+NeoBundle 'sgur/unite-git_grep'
+call neobundle#config('unite-ssh', {
+  \ 'lazy' : 1,
+  \ 'autoload' : {
+  \   'unite_sources' : 'vcs_grep'},
+  \ })
+
 NeoBundle 'Shougo/unite-ssh'
 call neobundle#config('unite-ssh', {
       \ 'lazy' : 1,
