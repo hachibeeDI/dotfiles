@@ -1969,7 +1969,7 @@ nnoremap <silent> <SID>[Unite]t :<C-u>Unite tab<CR>
 " 全部乗せ
 nnoremap <silent> <SID>[Unite]a :<C-u>UniteWithBufferDir -buffer-name=files buffer file_mru bookmark file<CR>
 "" output
-"nnoremap <silent> <SID>[Unite]p :<C-u>Unite menu<CR>
+nnoremap <silent> <SID>[Unite]p :<C-u>Unite menu<CR>
 
 " その他
 nnoremap <silent> <SID>[Unite]` :<C-u>Unite -auto-quit neobundle/update<CR>
@@ -2333,20 +2333,15 @@ call smartinput#map_to_trigger('i', '<Plug>(smartinput_CR)',
       \                        '<CR>',
       \                        '<CR>')
 
-call smartinput#map_to_trigger('i', '<CR>', '<CR>', '<CR>')
 call smartinput#map_to_trigger('i', '<C-j>', '<C-j>', '<C-j>')
-call smartinput#map_to_trigger('i', ':', ':', ':')
-call smartinput#map_to_trigger('i', '#', '#', '#')
 call smartinput#map_to_trigger('i', '<Bar>', '<Bar>', '<Bar>')
 call smartinput#map_to_trigger('i', '-', '-', "<C-R>=smartchr#loop(' - ', '-')<CR>")
 call smartinput#map_to_trigger('i', '+', '+', "<C-R>=smartchr#loop(' + ', '+')<CR>")
 call smartinput#map_to_trigger('i', '<', '<', '<')
 call smartinput#map_to_trigger('i', '>', '>', '>')
-call smartinput#map_to_trigger('i', '%', '%', '%')
 call smartinput#map_to_trigger('i', '$', '\$', '\$')
-call smartinput#map_to_trigger('i', '/', '/', '/')
-call smartinput#map_to_trigger('i', '*', '\*', '\*')
 " }}}
+
 " smartinputとsmartchrの連携tips
 "  -> [http://ac-mopp.blogspot.jp/2013/07/vim-smart-input.html]
 
@@ -2382,7 +2377,7 @@ call smartinput#define_rule({
 \   'at'       : '\%#',
 \   'char'     : '-',
 \   'input'    : '-',
-\   'filetype': ['rst', 'markdown', 'html', 'xml', 'css', 'sass', 'scss', 'stylus'],
+\   'filetype': ['rst', 'markdown', 'html', 'xml', 'css', 'sass', 'scss', 'stylus', 'bash'],
 \   })
 call smartinput#define_rule({
 \   'at'       : '\%#',
@@ -2449,63 +2444,6 @@ call smartinput#define_rule({
 \   'input': '<Right>',
 \   'filetype': ['xml', 'html', 'eruby', 'java', 'cpp', 'cs', 'haxe'],
 \ })
-
-" C系syntaxのcomment挿入のスマート {{{
-call smartinput#define_rule({
-\   'at': '/\%#',
-\   'char': '/',
-\   'input': '/<Space>',
-\   'filetype': ['java', 'cpp', 'cs', 'haxe'],
-\ })
-call smartinput#define_rule({
-\   'at': '// \%#',
-\   'char': '<BS>',
-\   'input': '<BS><BS>',
-\   'filetype': ['java', 'cpp', 'cs', 'haxe'],
-\ })
-" css用 {{{
-call smartinput#define_rule({
-\   'at': '/\%#',
-\   'char': '/',
-\   'input': '*<Space><Space>*/<Left><Left><Left>',
-\   'filetype': ['css'],
-\ })
-" }}}
-" one lineコメント後も / 入力でmultiline化
-call smartinput#define_rule({
-\   'at': '// \%#',
-\   'char': '/',
-\   'input': '<BS><BS>*<Space><Space>*/<Left><Left><Left>',
-\   'filetype': ['java', 'cpp', 'cs', 'haxe'],
-\ })
-call smartinput#define_rule({
-\   'at': '/\%#',
-\   'char': '*',
-\   'input': '*<Space><Space>*/<Left><Left><Left>',
-\   'filetype': ['java', 'cpp', 'cs', 'haxe', 'css'],
-\ })
-call smartinput#define_rule({
-\   'at': '/\* \%# \*/',
-\   'char': '<BS>',
-\   'input': '<BS><BS><Del><Del><Del>',
-\   'filetype': ['java', 'cpp', 'cs', 'haxe', 'css'],
-\ })
-" javadocっぽい感じに展開してくれる
-call smartinput#define_rule({
-\   'at': '/\* \%# \*/',
-\   'char': '<CR>',
-\   'input': '<Del><BS>*<CR><Space>*<CR><Up><End><Space>',
-\   'filetype': ['java', 'cpp', 'cs', 'haxe', 'css'],
-\ })
-" multiline commentの中では改行ごとに頭に*をつけてくれる
-call smartinput#define_rule({
-\   'at': '^\s*\*\s\+.*\%#$',
-\   'char': '<CR>',
-\   'input': '<CR>*<Space>',
-\   'filetype': ['java', 'cpp', 'cs', 'haxe'],
-\   'syntax': ['Comment'],
-\ })
-" }}}
 
 " セミコロンを要求するうんこシンタックス対応 {{{
 call smartinput#define_rule({
