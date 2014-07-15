@@ -136,6 +136,7 @@ NeoBundleLazy 'Shougo/unite.vim' , {
 \   'commands' : ["Unite", "UniteWithBufferDir", "QuickRun"],
 \ }
 \}
+" unite source {{{
 NeoBundle 'Shougo/neomru.vim'
 call neobundle#config('neomru.vim', {
 \ 'lazy' : 1,
@@ -144,7 +145,7 @@ call neobundle#config('neomru.vim', {
 \ })
 
 NeoBundle 'sgur/unite-git_grep'
-call neobundle#config('unite-ssh', {
+call neobundle#config('unite-git_grep', {
   \ 'lazy' : 1,
   \ 'autoload' : {
   \   'unite_sources' : 'vcs_grep'},
@@ -162,14 +163,14 @@ call neobundle#config('unite-build', {
       \ 'autoload' : {
       \   'unite_sources' : 'build'},
       \ })
-" NeoBundle 'h1mesuke/unite-outline'
-" NOTE: Imploved by lua-interface
+
 NeoBundle 'Shougo/unite-outline', '', 'default'
 call neobundle#config('unite-outline', {
   \ 'lazy' : 1,
   \ 'autoload' : {
   \   'unite_sources' : 'outline'},
   \ })
+
 NeoBundle 'ryotakato/unite-outline-objc'
 call neobundle#config('unite-outline', {
   \ 'lazy' : 1,
@@ -182,6 +183,7 @@ call neobundle#config('unite-tag', {
 \ 'autoload' : {
 \   'unite_sources' : 'tag'},
 \ })
+
 NeoBundleLazy 'majutsushi/tagbar', {
 \ 'autoload' : {
 \   'commands' : ["TagbarToggle"],
@@ -201,23 +203,7 @@ NeoBundleLazy 'hachibeeDI/unite-pypi-classifiers', {
 \ 'base': expand('~/Dropbox/development/viml/'),
 \ 'type': 'nosync',
 \ }
-NeoBundleLazy 'hachibeeDI/python_hl_lvar.vim', {
-\ 'autoload' : {
-\     'filetypes' : ['python'],
-\ },
-\ 'base': expand('~/Dropbox/development/viml/'),
-\ 'type': 'nosync',
-\ }
-let g:enable_python_hl_lvar = 1
-let g:python_hl_lvar_highlight_color = 'guifg=palegreen2 gui=NONE ctermfg=110 cterm=NONE'
-"let g:python_hl_lvar_verbose = 1  for debug
-autocmd MyAutoCmd BufWinEnter  *.py PyHlLVar
-autocmd MyAutoCmd BufWinLeave  *.py PyHlLVar
-autocmd MyAutoCmd WinEnter     *.py PyHlLVar
-autocmd MyAutoCmd BufWritePost *.py PyHlLVar
-autocmd MyAutoCmd WinLeave     *.py PyHlLVar
-autocmd MyAutoCmd TabEnter     *.py PyHlLVar
-autocmd MyAutoCmd TabLeave     *.py PyHlLVar
+" }}}
 
 
 " get and read referece on vim
@@ -442,6 +428,7 @@ NeoBundleLazy 'hachibeeDI/rope-vim', {
 \ 'base': expand('~/Dropbox/development/viml/'),
 \ 'type': 'nosync',
 \}
+
 NeoBundleLazy 'davidhalter/jedi-vim', {
 \ "autoload" : {
 \   "filetypes" : ["python"],
@@ -452,6 +439,24 @@ NeoBundleLazy 'Glench/Vim-Jinja2-Syntax', {
 \ "autoload" : {
 \   "filetypes" : ["html", "jinja"],
 \ }}
+
+NeoBundleLazy 'hachibeeDI/python_hl_lvar.vim', {
+\ 'autoload' : {
+\     'filetypes' : ['python'],
+\ },
+\ 'base': expand('~/Dropbox/development/viml/'),
+\ 'type': 'nosync',
+\ }
+let g:enable_python_hl_lvar = 1
+let g:python_hl_lvar_highlight_color = 'guifg=palegreen2 gui=NONE ctermfg=110 cterm=NONE'
+"let g:python_hl_lvar_verbose = 1  for debug
+autocmd MyAutoCmd BufWinEnter  *.py PyHlLVar
+autocmd MyAutoCmd BufWinLeave  *.py PyHlLVar
+autocmd MyAutoCmd WinEnter     *.py PyHlLVar
+autocmd MyAutoCmd BufWritePost *.py PyHlLVar
+autocmd MyAutoCmd WinLeave     *.py PyHlLVar
+autocmd MyAutoCmd TabEnter     *.py PyHlLVar
+autocmd MyAutoCmd TabLeave     *.py PyHlLVar
 
 " }}}
 " - - golang {{{
@@ -482,7 +487,7 @@ if executable('go')
   endif
 endif
 " }}}
-" -- haXe {{{
+" -- Haxe {{{
 NeoBundleLazy 'jdonaldson/vaxe', {
     \ "autoload" : {
     \   "filetypes" : ["haxe", "hxml", "nmml.xml"],
