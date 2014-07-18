@@ -98,6 +98,7 @@ zstyle ':completion:*' ignore-parents parent pwd ..
 #cdpath=($HOME)
 
 setopt no_beep
+setopt no_flow_control
 
 setopt auto_menu
 setopt auto_list
