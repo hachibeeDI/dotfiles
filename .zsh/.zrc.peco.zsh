@@ -108,6 +108,28 @@ function ggre () {
   eval "${EDITOR} ${TARG}"
 }
 
+function peco-installed-pip-open() {
+  PIP_MODULE=$(pip freeze | peco | sed -e "s/==.\+$//g")
+  if [ "$PIP_MODULE" = "" ]; then
+    return 1
+  fi
+
+  PKG_LOCATION=$(pip show ${PIP_MODULE} | grep '^Location:\s' | sed -e "s/^Location:\s//g")
+  if [ "$PKG_LOCATION" = "" ]; then
+    return 1
+  fi
+
+  PATH_TO_PKG_DIR="${PKG_LOCATION}/${PIP_MODULE}"
+  if [ -e ${PATH_TO_PKG_DIR} ]; then
+    BUFFER="${EDITOR} ${PATH_TO_PKG_DIR}"
+  else
+    BUFFER="${EDITOR} ${PATH_TO_PKG_DIR}.py"
+  fi
+  zle accept-line
+}
+zle -N peco-installed-pip-open
+bindkey '^[;p' peco-installed-pip-open  # Meta-; p
+
 # https://github.com/hachibeeDI/util-cmdtoolsに移動した
 #function codic() {}
 
