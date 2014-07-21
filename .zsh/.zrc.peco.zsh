@@ -44,7 +44,7 @@ bindkey '^gh' peco-ghq
 
 
 function peco-src-gitdir () {
-    _dir=$(git rev-parse --show-cdup 2>/dev/null)
+    local _dir=$(git rev-parse --show-cdup 2>/dev/null)
     if [ $? -eq 0 ]; then
         BUF=$(
             git ls-files | xargs dirname | sed '/^\.$/d' | sort | uniq | peco
@@ -61,7 +61,7 @@ bindkey '^ggd' peco-src-gitdir
 
 # git utils {{{
 function git-ls-file-edit () {
-  TARG=$(git ls-files "$1" | peco --query "$LBUFFER")
+  local TARG=$(git ls-files "$1" | peco --query "$LBUFFER")
   if [ $? = 1 -o "$TARG" = "" ]; then
     echo "no pattern was matched"
     return 1
@@ -71,7 +71,7 @@ function git-ls-file-edit () {
 }
 
 function git-del-merged () {
-  TARG=$(git branch --merged | awk '/^[^*]/' | peco --query "$LBUFFER")
+  local TARG=$(git branch --merged | awk '/^[^*]/' | peco --query "$LBUFFER")
   if [ $? = 1 -o "$TARG" = "" ]; then
     echo "no pattern was matched"
     return 1
@@ -121,17 +121,17 @@ function ggre () {
 }
 
 function peco-installed-pip-open() {
-  PIP_MODULE=$(pip freeze | peco | sed -e "s/==.\+$//g")
+  local PIP_MODULE=$(pip freeze | peco | sed -e "s/==.\+$//g")
   if [ "$PIP_MODULE" = "" ]; then
     return 1
   fi
 
-  PKG_LOCATION=$(pip show ${PIP_MODULE} | grep '^Location:\s' | sed -e "s/^Location:\s//g")
+  local PKG_LOCATION=$(pip show ${PIP_MODULE} | grep '^Location:\s' | sed -e "s/^Location:\s//g")
   if [ "$PKG_LOCATION" = "" ]; then
     return 1
   fi
 
-  PATH_TO_PKG_DIR="${PKG_LOCATION}/${PIP_MODULE}"
+  local PATH_TO_PKG_DIR="${PKG_LOCATION}/${PIP_MODULE}"
   if [ -e ${PATH_TO_PKG_DIR} ]; then
     BUFFER="${EDITOR} ${PATH_TO_PKG_DIR}"
   else
