@@ -31,6 +31,18 @@ zle -N peco-cdr
 bindkey '^gcd' peco-cdr
 
 
+function peco-ghq () {
+    local selected_dir=$(ghq list -p | peco)
+    if [ -n "$selected_dir" ]; then
+        BUFFER="cd ${selected_dir}"
+        zle accept-line
+    fi
+    zle clear-screen
+}
+zle -N peco-ghq
+bindkey '^gh' peco-ghq
+
+
 function peco-src-gitdir () {
     _dir=$(git rev-parse --show-cdup 2>/dev/null)
     if [ $? -eq 0 ]; then
