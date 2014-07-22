@@ -405,6 +405,11 @@ NeoBundleLazy 'Crapworks/python_fn.vim', {
 NeoBundleLazy 'jmcantrell/vim-virtualenv', {
 \ "autoload" : {
 \   "filetypes" : ["python"],
+\   'commands': [
+\     'VirtualEnvDeactivate',
+\     'VirtualEnvList',
+\     {'name': 'VirtualEnvActivate', 'complete': 'customlist,virtualenv#names'},
+\   ],
 \ },
 \ 'disabled' : !has('python'),
 \ }
@@ -2497,7 +2502,7 @@ nnoremap <SID>[Show]t  :<C-u>TagbarToggle<CR>
 " --- lightline -- {{{
 let g:lightline = {
 \   'component': {
-\     'virtualenv': '%{&filetype=="python"?"":virtualenv#statusline()}',
+\     'virtualenv': 'venv => %{&filetype=="python"?"":virtualenv#statusline()}',
 \     'readonly': '%{&readonly?"ro":""}',
 \     'cursorsyntax': '%{synIDattr(synID(line("."), col("."), 0), "name")}'
 \   },
