@@ -1,7 +1,7 @@
-if exists('b:did_ftplugin_ryby')
+if exists('b:did_ftplugin_ruby')
     finish
 endif
-let b:did_ftplugin_ryby = 1
+let b:did_ftplugin_ruby = 1
 
 setlocal softtabstop=2 shiftwidth=2
 
