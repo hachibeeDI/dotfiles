@@ -798,7 +798,6 @@ NeoBundleLazy 'glidenote/memolist.vim', {
 \ 'commands' : ["MemoNew", "MemoList", "MemoGrep"],
 \ }
 \}
-
 " developping
 NeoBundleLazy 'hachibeeDI/unite-pythonimport', {
 \ 'autoload' : {
@@ -838,6 +837,7 @@ let g:vimhelpgenerator_contents = {
 \ 'variables': 1, 'commands': 1, 'key-mappings': 1, 'functions': 1,
 \ 'setting': 0, 'todo': 1, 'changelog': 0
 \ }
+NeoBundleLazy 'ompugao/uncrustify-vim'
 "}}}
 
 " --- default bundled plugins ---
@@ -1625,6 +1625,8 @@ function! bundle.hooks.on_source(bundle)
 
   " Use smartcase.
   let g:neocomplete#enable_smart_case = 1
+  " Set minimum syntax keyword length.
+  let g:neocomplete#sources#syntax#min_keyword_length = 3
   "" default
   "let g:neocomplete#auto_completion_start_length = 2
   "" Set minimum syntax keyword length. default is 4
