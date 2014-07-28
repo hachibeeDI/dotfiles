@@ -19,22 +19,35 @@ let s:is_windows = has('win16') || has('win32') || has('win64')
 let s:is_cygwin = has('win32unix')
 let s:is_mac = has('mac') || has('macunix') || has('gui_macvim')
 
-
 "set autogroup
 augroup MyAutoCmd
   autocmd!
 augroup END
 
+" Neobundle {{{
 if has('vim_starting')
   set runtimepath& runtimepath+=~/.vim/neobundle.vim/
 endif
-call neobundle#rc(s:BUNDLEPATH)
+call neobundle#begin(s:BUNDLEPATH)
+
+NeoBundleFetch 'Shougo/neobundle.vim', {
+\   'base': '~/.vim',
+\ }
+let g:neobundle#log_filename = expand('~/_vim/bundle/.neobundle/neobundle.log')
+"let g:neobundle#install_max_processes = 4
+let g:neobundle#install_process_timeout = 180
+let g:neobundle#types#git#enable_submodule = 1
+
+if neobundle#has_cache()
+  NeoBundleLoadCache
+else
+  NeoBundleSaveCache
+endif
 
 
 " gitプロトコルよりもhttpsのほうが高速
 "let g:neobundle_default_git_protocol = 'https'
 
-"------- set plugins ------- {{{
 NeoBundle 'Shougo/vimproc', {
 \ 'build' : {
 \   'windows' : 'echo "X<"',
@@ -67,10 +80,6 @@ NeoBundleLazy 'Shougo/neosnippet-snippets', {
 \ 'base': expand('~/Dropbox/development/viml/'),
 \ 'type': 'nosync',
 \ }
-
-NeoBundleFetch 'Shougo/neobundle.vim', {
-    \ 'base': '~/.vim',
-    \ }
 
 NeoBundle 'Shougo/vimfiler', '', 'default'
 call neobundle#config('vimfiler', {
@@ -798,6 +807,8 @@ NeoBundleLazy 'glidenote/memolist.vim', {
 \ 'commands' : ["MemoNew", "MemoList", "MemoGrep"],
 \ }
 \}
+" }}}
+
 " developping
 NeoBundleLazy 'hachibeeDI/unite-pythonimport', {
 \ 'autoload' : {
@@ -831,14 +842,17 @@ NeoBundleLazy 'LeafCage/vimhelpgenerator', {
 \   "filetypes" : ["vim"],
 \   },}
 let g:vimhelpgenerator_version = ''
-let g:vimhelpgenerator_author = 'Author  : OGURA_Daiki <8hachibee125+vim @ gmail.com>'
+let g:vimhelpgenerator_author = 'Author : OGURA_Daiki <8hachibee125+vim @ gmail.com>'
 let g:vimhelpgenerator_contents = {
 \ 'contents': 1, 'introduction': 1, 'usage': 1, 'interface': 1,
 \ 'variables': 1, 'commands': 1, 'key-mappings': 1, 'functions': 1,
 \ 'setting': 0, 'todo': 1, 'changelog': 0
 \ }
+
 NeoBundleLazy 'ompugao/uncrustify-vim'
-"}}}
+
+call neobundle#end()
+" Neobundle }}}
 
 " --- default bundled plugins ---
 " enable prebundled plugin
