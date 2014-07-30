@@ -885,6 +885,9 @@ let g:netrw_localcopycmd=''
 
 " python.vim (default bundled syntax plugin)
 let g:python_highlight_all = 1
+" .h で @interfaceのあるファイルをobjcppではなくobjcとして検出してくれる
+" ($VIMRUNTIME/filetype.vim)
+let g:c_syntax_for_h = 1
 
 filetype plugin indent on
 syntax enable
