@@ -27,11 +27,10 @@ set guioptions=Mac
 if has('mac')
   colorscheme desertEx
   set transparency=5 " 透明度を指定
-  set guifont=Ricty\ Discord:h19
-  set guifontwide=Ricty\ Discord:h19
+  set guifont=Ricty\ Discord:h18
+  set guifontwide=Ricty\ Discord:h18
 elseif has('win32')
     colorscheme desertEx
-    "set shell='C:/cygwin/bin/zsh.exe'
     set guifont=MeiryoKe_Gothic:h12
     set guifontwide=MeiryoKe_Gothic:h12
     source $VIMRUNTIME/delmenu.vim
