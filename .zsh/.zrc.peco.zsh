@@ -86,6 +86,24 @@ alias -g GB='`git branch | peco | sed -e "s/^\*//g"`'
 # get commit hash -> ex: git rebase -i GLo
 alias -g GLo='`git log --oneline | peco | awk '\''{print $1}'\'' `'
 
+function git-operation-modified () {
+  local TARG=$(git status -s | peco --query "$LBUFFER" --prompt='File>' | awk '{print $2}')
+  if [ $? = 1 -o "$TARG" = "" ]; then
+    echo "no pattern was matched"
+    return 1
+  fi
+
+  # .gitconfigに edit = "!f () { mvim $1; }; f" しておくことで、git edit でMacVimが立ち上がる
+  local ACTION=$(printf "add\ndiff\nedit\nrm"| peco --prompt='Action>')
+  if [ "$ACTION" = "" ]; then
+    ACTION="diff"
+  fi
+  BUFFER="git ${ACTION} ${TARG}"
+  zle accept-line
+}
+zle -N git-operation-modified
+bindkey '^g^o' git-operation-modified
+
 # }}}
 
 
