@@ -1736,8 +1736,8 @@ function! bundle.hooks.on_source(bundle)
   \ '[^. *\t]\.\w*\|\h\w*::'
   let g:neocomplete#force_omni_input_patterns.haxe =
   \ '\v([\]''"\)]|\w|(^\s*))(\.|\()'
-  let g:neocomplete#force_omni_input_patterns.python =
-  \ '\%([^. \t]\.\|^\s*@\|^\s*from\s.\+import \|^\s*from \|^\s*import \)\w*'
+  "let g:neocomplete#force_omni_input_patterns.python =
+  "\ '\%([^. \t]\.\|^\s*@\|^\s*from\s.\+import \|^\s*from \|^\s*import \)\w*'
   let g:neocomplete#force_omni_input_patterns.go = '\h\w*\.\?'
   let g:neocomplete#force_omni_input_patterns.c =
   \ '[^.[:digit:] *\t]\%(\.\|->\)\w*'
