@@ -1,5 +1,5 @@
 if exists('b:did_ftplugin_ruby')
-    finish
+  finish
 endif
 let b:did_ftplugin_ruby = 1
 
