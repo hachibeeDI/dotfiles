@@ -551,6 +551,7 @@ NeoBundleLazy 'pangloss/vim-javascript', {
 \ "autoload" : {
 \   "filetypes" : ["javascript"],
 \}}
+let g:javascript_enable_domhtmlcss = 1
 NeoBundleLazy 'jiangmiao/simple-javascript-indenter', {
 \ "autoload" : {
 \   'filetypes': ['javascript'],
@@ -575,6 +576,12 @@ NeoBundleLazy 'kchmck/vim-coffee-script', {
     \ "autoload" : {
     \   "filetypes" : ["coffee"] }
     \}
+" TypeScript
+NeoBundleLazy 'leafgarland/typescript-vim', {
+\ "autoload" : {
+\   "filetypes" : ["typescript"] }
+\}
+
 " }}}
 " -- Scala {{{
 NeoBundleLazy 'yuroyoro/vim-scala', {
