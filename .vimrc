@@ -1027,7 +1027,7 @@ if v:version >= 703
   set relativenumber
 endif
 set number
-set history=100000
+" set history=100000
 
 set foldmethod=marker
 set foldenable
@@ -1716,7 +1716,7 @@ function! bundle.hooks.on_source(bundle)
   "              \ '\h\w*\|[^. \t]->\%(\h\w*\)\?\|\h\w*::\%(\h\w*\)\?'
   let g:neocomplete#sources#omni#input_patterns.ruby = '[^. *\t]\.\w*\|\h\w*::'
   let g:neocomplete#sources#omni#input_patterns.haxe = '\v([\]''"\)]|\w|(^\s*))(\.|\()'
-  let g:neocomplete#sources#omni#input_patterns.python = '[^. \t]\.\w*'
+  " let g:neocomplete#sources#omni#input_patterns.python = '[^. \t]\.\w*'
   let g:neocomplete#sources#omni#input_patterns.go = '\h\w*\.\?'
   let g:neocomplete#sources#omni#input_patterns.c =
   \ '[^.[:digit:] *\t]\%(\.\|->\)\w*'
@@ -2336,6 +2336,7 @@ function! s:def_smartchar()
 
   elseif l:lang == 'haxe'
     inoremap <buffer> <expr> = smartchr#one_of(' = ', ' == ', '=')
+    inoremap <buffer> <expr> \ smartchr#one_of('\', ' -> ')
     "inoremap <buffer> <expr> + smartchr#loop(' + ', '+')
     "inoremap <buffer> <expr> - smartchr#loop(' - ', '-')
     "inoremap <buffer> <expr> * smartchr#loop(' * ', '*')
