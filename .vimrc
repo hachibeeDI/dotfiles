@@ -2593,4 +2593,17 @@ let g:vimrc_sid = GetScriptID(s:vimrc)
 
 source ~/.vimrc.local
 
+
+let g:is_dvorak = 0
+function! ToggleDvorakMode()
+  if g:is_dvorak
+    let g:is_dvorak = 0
+    set keymap=
+  else
+    let g:is_dvorak = 1
+    set keymap=dvorak
+  endif
+endfunction
+command! ToggleDovorakMode call ToggleDvorakMode()
+
 " vim: foldmethod=marker
