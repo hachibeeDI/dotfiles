@@ -45,6 +45,11 @@ options     head
 
 		${2:#:FILES}
 
+snippet     link_external
+abbr        external link
+	\`${1:link_text:} <${2:#:url}>\`_ ${0:#:TARGET}
+
+
 
 snippet     link_doc
 abbr        link_to_doc
