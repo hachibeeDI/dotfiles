@@ -15,13 +15,12 @@ else:
         print("Module rlcompleter3 not available.")
     else:
         readline.parse_and_bind("tab: complete")
+        # historyfile
+        histfile = os.path.join(os.environ['HOME'], '.pythonhistory')
+        try:
+            readline.read_history_file(histfile)
+        except IOError:
+            pass
 
-# historyfile
-histfile = os.path.join(os.environ['HOME'], '.pythonhistory')
-try:
-    readline.read_history_file(histfile)
-except IOError:
-    pass
-
-atexit.register(readline.write_history_file, histfile)
-del histfile, readline, rlcompleter3, atexit
+        atexit.register(readline.write_history_file, histfile)
+        del rlcompleter3, readline, atexit, histfile
