@@ -698,7 +698,7 @@ endif
 " -- markup {{{
 NeoBundleLazy 'mattn/emmet-vim', {
 \ "autoload" : {
-\   "filetypes" : ["html", "xhtml", "htmldjango", "play2-html",  "eruby", "css", "stylus", "jinja"],
+\   "filetypes" : ["html", "xhtml", "htmldjango", "play2-html",  "eruby", "css", "sass", "scss",  "stylus", "jinja"],
 \ }
 \}
 
