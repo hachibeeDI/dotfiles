@@ -354,6 +354,12 @@ NeoBundleLazy 'sjl/gundo.vim', {
 \ }
 \}
 
+NeoBundleLazy 'tpope/vim-classpath', {
+\ "autoload" : {
+\   "filetypes" : ['scala', 'clojure', 'java', ],
+\ }
+\}
+
 NeoBundle 'Yggdroot/indentLine'
 
 NeoBundleLazy 'git://github.com/vim-scripts/IndentAnything.git', {
