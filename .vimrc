@@ -1899,6 +1899,12 @@ let g:used_javascript_libs = 'angularjs'
 let g:use_emmet_complete_tag = 1
 let g:user_emmet_settings = {
 \  'indentation' : ' ',
+\  'stylus': {
+\    'extends': 'sass',
+\    'snippets': {
+\      'abc': 'ababababa',
+\    }
+\  },
 \}
 "}}}
 
