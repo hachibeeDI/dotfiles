@@ -33,7 +33,7 @@ call neobundle#begin(s:BUNDLEPATH)
 NeoBundleFetch 'Shougo/neobundle.vim', {
 \   'base': '~/.vim',
 \ }
-let g:neobundle#log_filename = expand('~/.vim/.neobundle/.neobundle/neobundle.log')
+let g:neobundle#log_filename = expand('~/.neobundle/.neobundle/neobundle.log')
 "let g:neobundle#install_max_processes = 4
 let g:neobundle#install_process_timeout = 180
 let g:neobundle#types#git#enable_submodule = 1
