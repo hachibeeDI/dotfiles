@@ -2356,6 +2356,8 @@ function! s:def_smartchar()
     inoremap <buffer> <expr> = smartchr#one_of(' = ', ' := ', ' == ', '=')
     inoremap <buffer> <expr> ! smartchr#one_of(' !', ' != ', '!')
     inoremap <buffer> <expr> < smartchr#one_of('<', '<-')
+  elseif l:lang == 'clojure'
+    inoremap <buffer> <expr> . smartchr#loop('.', '..', '->', '-->')
   endif
 endfunction
 "  }}}
@@ -2421,7 +2423,7 @@ call smartinput#define_rule({
 \   'at'       : '\%#',
 \   'char'     : '-',
 \   'input'    : '-',
-\   'filetype': ['rst', 'markdown', 'html', 'xml', 'css', 'sass', 'scss', 'stylus', 'bash'],
+\   'filetype': ['rst', 'markdown', 'html', 'xml', 'css', 'sass', 'scss', 'stylus', 'bash', 'clojure', ],
 \   })
 call smartinput#define_rule({
 \   'at'       : '\%#',
