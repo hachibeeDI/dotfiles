@@ -52,10 +52,14 @@
 
     # rebase
     rb = rebase
+    rbom = rebase origin/master
+    rbum = rebase upstream/master
 
     # merge
-    mer = merge
     merege = merge
+    mg = merge
+    mgom = rebase origin/master
+    mgum = rebase upstream/master
 
     #diff
     dm = diff master
@@ -84,7 +88,7 @@
 
     # stash
     sth = stash
-    shp = stash pop
+    pop = stash pop
     shl = stash list
 
     # utils
