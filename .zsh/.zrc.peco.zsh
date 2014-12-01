@@ -80,11 +80,15 @@ function git-del-merged () {
   eval "git branch -d $TARG"
 }
 
+function git-show-hash() {
+   git --no-pager log --oneline --branches | peco | awk '{print $1}'
+ }
+
 alias -g GS='`git status -s | peco | awk '\''{print $2}'\'' `'
 alias -g GF='`git ls-files | peco `'
 alias -g GB='`git branch | peco | sed -e "s/^\*//g"`'
 # get commit hash -> ex: git rebase -i GLo
-alias -g GLo='`git log --oneline | peco | awk '\''{print $1}'\'' `'
+alias -g GH='$(git-show-hash)'
 
 function git-operation-modified () {
   local TARG=$(git status -s | peco --query "$LBUFFER" --prompt='File>' | awk '{print $2}')
