@@ -508,11 +508,19 @@ if executable('go')
 endif
 " }}}
 " -- Haxe {{{
-NeoBundleLazy 'jdonaldson/vaxe', {
-    \ "autoload" : {
-    \   "filetypes" : ["haxe", "hxml", "nmml.xml"],
-    \ }
-    \}
+if executable('haxe')
+  NeoBundleLazy 'jdonaldson/vaxe', {
+      \ "autoload" : {
+      \   "filetypes" : ["haxe", "hxml", "nmml.xml"],
+      \ }
+      \}
+  NeoBundleLazy 'hachibeeDI/unite-vaxe', {
+  \ 'autoload' : {
+  \   "filetypes" : ["haxe", "hxml", "nmml.xml"],
+  \   'unite_sources' : 'vaxe'},
+  \ }
+endif
+
 "  }}}
 " -- C++ {{{
 " clang
@@ -1838,13 +1846,6 @@ unlet bundle
 "}}}
 " vaxe(haXe's omnicompletion plugin) {{{
 
-"autocmd MyAutoCmd FileType haxe  # move $HOME/.vim/after/ftplugin/haxe.vim
-"      \ setl autowrite
-autocmd MyAutoCmd FileType hxml
-      \ setl autowrite
-autocmd MyAutoCmd FileType nmml.xml
-      \ setl autowrite
-
 let bundle = neobundle#get('vaxe')
 function! bundle.hooks.on_source(bundle)
   let g:vaxe_default_parent_search_patterns = ["project.xml", "*.nmml", "build.hxml"]
@@ -1862,6 +1863,13 @@ function! bundle.hooks.on_source(bundle)
   autocmd MyAutoCmd FileType haxe call s:init_vaxe_keymap()
   autocmd MyAutoCmd FileType hxml call s:init_vaxe_keymap()
   autocmd MyAutoCmd FileType nmml.xml call s:init_vaxe_keymap()
+
+  "autocmd MyAutoCmd FileType haxe  # move $HOME/.vim/after/ftplugin/haxe.vim
+  "      \ setl autowrite
+  autocmd MyAutoCmd FileType hxml
+        \ setl autowrite
+  autocmd MyAutoCmd FileType nmml.xml
+        \ setl autowrite
 endfunction
 
 unlet bundle
