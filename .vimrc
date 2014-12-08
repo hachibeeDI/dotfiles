@@ -123,6 +123,7 @@ NeoBundleLazy 'gregsexton/gitv' , {
 \   'commands' : ['Gitv', 'Gitv!'],
 \   }
 \}
+NeoBundle 'rhysd/committia.vim'
 
 "" Quickfixの内容を使ってエラー表示をハイライトしてくれる
 "NeoBundleLazy 'jceb/vim-hier'
