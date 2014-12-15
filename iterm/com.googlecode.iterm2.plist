@@ -27,7 +27,7 @@
 	<key>CopyLastNewline</key>
 	<false/>
 	<key>CopySelection</key>
-	<true/>
+	<false/>
 	<key>Custom Color Presets</key>
 	<dict>
 		<key>Desert</key>
@@ -455,7 +455,7 @@
 	<key>NSWindow Frame Preferences</key>
 	<string>350 502 924 485 0 0 2560 1418 </string>
 	<key>NSWindow Frame iTerm Window 0</key>
-	<string>50 8 2510 1406 0 0 2560 1418 </string>
+	<string>0 12 2540 1406 0 0 2560 1418 </string>
 	<key>NSWindow Frame iTerm Window 1</key>
 	<string>84 12 2510 1406 0 0 2560 1418 </string>
 	<key>NSWindow Frame iTerm Window 2</key>
@@ -1985,7 +1985,7 @@
 	<key>SUHasLaunchedBefore</key>
 	<true/>
 	<key>SULastCheckTime</key>
-	<date>2014-04-30T04:24:01Z</date>
+	<date>2014-11-26T02:42:59Z</date>
 	<key>SavePasteHistory</key>
 	<false/>
 	<key>ShowBookmarkName</key>
@@ -2031,6 +2031,6 @@
 	<key>findRegex_iTerm</key>
 	<false/>
 	<key>iTerm Version</key>
-	<string>1.0.0.20140112</string>
+	<string>1.0.0.20140629</string>
 </dict>
 </plist>
