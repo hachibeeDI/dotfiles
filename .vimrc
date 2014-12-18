@@ -502,7 +502,7 @@ if executable('go')
   let g:go_fmt_autosave = 1
   let g:go_disable_autoinstall = 1
   let g:go_snippet_engine = 'neosnippet'
-  if $GOROOT != ''
+  if $GOROOT !=# ''
     " 標準でバンドルされてるプラギン set rtp+=$GOROOT/misc/vim は使わない
     "autocmd MyAutoCmd BufWritePre *.go GoLint
   endif
@@ -1092,7 +1092,7 @@ autocmd MyAutoCmd QuickfixCmdPost make call <SID>auto_ccl()
 nnoremap <silent> <leader>m :<C-u>silent make<CR>
 
 function! s:auto_ccl()
-  if &filetype != 'qf'
+  if &filetype !=# 'qf'
     return
   endif
 
@@ -1108,7 +1108,7 @@ endfunction
 
 " Auto-close if quickfix or quickrun window is only in buffer
 autocmd MyAutoCmd WinEnter *
-\   if (winnr('$') == 1) &&
+\   if (winnr('$') ==# 1) &&
 \      (getbufvar(winbufnr(0), '&filetype')) =~? 'qf\|quickrun'
 \         | quit | endif
 
@@ -1212,7 +1212,7 @@ function! s:tabpage_label(n)
   let fname = pathshorten(bufname(selected_buffer))
   let label = is_modified . spacer . fname
 
-  if &filetype == 'unite'
+  if &filetype ==# 'unite'
     return hightlight_start . a:n . ':[unite] ' . unite#get_status_string() . '%T%#TabLineFill#'
   else
     return hightlight_start . a:n . ':< %' . a:n . 'T' . label . '%T%#TabLineFill#'
@@ -1360,7 +1360,7 @@ inoremap <C-c> <Esc>
 
 " 行頭と空白抜きの先頭をトグルする
 nnoremap <expr> 0
-\         col('.') == 1 ? '^' : '0'
+\         col('.') ==# 1 ? '^' : '0'
 "nnoremap _ 0
 onoremap 0 ^
 onoremap _ 0
@@ -1497,13 +1497,13 @@ nnoremap <expr>* ':<C-u>VimGrepCurrent ' . expand('<cword>') . '<CR>'
 " via: <http://vim-users.jp/2009/09/hack69/> {{{
 command! -nargs=? -complete=dir -bang CD  call s:ChangeCurrentDir('<args>', '<bang>')
 function! s:ChangeCurrentDir(directory, bang)
-    if a:directory == ''
+    if a:directory ==# ''
         lcd %:p:h
     else
         execute 'lcd' . a:directory
     endif
 
-    if a:bang == ''
+    if a:bang ==# ''
         pwd
     endif
 endfunction
@@ -1573,7 +1573,7 @@ function! s:open_junk_file()
   endif
 
   let l:filename = input('Junk Code: ', l:junk_dir.strftime('/%Y-%m-%d-%H%M%S.'))
-  if l:filename != ''
+  if l:filename !=# ''
     execute 'edit ' . l:filename
   endif
 endfunction
@@ -1602,7 +1602,7 @@ endfunction
 if s:is_mac
   " kobito {{{
   function! s:open_kobito(...)
-      if a:0 == 0
+      if a:0 ==# 0
           call system('open -a Kobito '.expand('%:p'))
       else
           call system('open -a Kobito '.join(a:000, ' '))
@@ -1621,11 +1621,11 @@ if s:is_mac
   " dash {{{
   function! s:dash(...)
     let current_ft = &filetype
-    if &filetype == 'python'
+    if &filetype ==# 'python'
       let current_ft = current_ft.'2'
     endif
     let current_ft = current_ft.':'
-    let word = len(a:000) == 0 ? input('Dash search: ', current_ft.expand('<cword>')) : current_ft.join(a:000, ' ')
+    let word = len(a:000) ==# 0 ? input('Dash search: ', current_ft.expand('<cword>')) : current_ft.join(a:000, ' ')
     call system(printf("open dash://'%s'", word))
   endfunction
 
@@ -2341,39 +2341,39 @@ function! s:def_smartchar()
   let l:lang = &filetype
 
   " NOTE: 辞書とかを駆使した方が高速かな？
-  if l:lang == 'ruby'
+  if l:lang ==# 'ruby'
     inoremap <buffer> <expr> = smartchr#one_of(' = ', ' == ', '=')
 
-  elseif l:lang == 'python'
+  elseif l:lang ==# 'python'
     inoremap <buffer> <expr> = smartchr#one_of(' = ', ' == ', '=')
     inoremap <buffer> <expr> # smartchr#one_of('# ', '#')
     inoremap <buffer> <expr> & smartchr#loop('&', ' and ')
     inoremap <buffer> <expr> <Bar> smartchr#loop('\|', ' or ')
     inoremap <buffer> <expr> \ smartchr#loop('\', 'lambda ')
 
-  elseif l:lang == 'javascript'
+  elseif l:lang ==# 'javascript'
     inoremap <buffer> <expr> = smartchr#one_of(' = ', ' == ', ' === ', '=')
     inoremap <buffer> <expr> -> smartchr#one_of('function', '->')
 
-  elseif l:lang == 'coffee'
+  elseif l:lang ==# 'coffee'
     inoremap <buffer> <expr> = smartchr#one_of(' = ', ' == ', '=')
     inoremap <buffer> <expr> \ smartchr#one_of('\', ' -> ', ' => ')
 
-  elseif l:lang == 'cpp'
+  elseif l:lang ==# 'cpp'
     inoremap <buffer> <expr> : smartchr#loop(': ', '::', ':')
     inoremap <buffer> <expr> . smartchr#loop('.', '->')
 
-  elseif l:lang == 'haxe'
+  elseif l:lang ==# 'haxe'
     inoremap <buffer> <expr> = smartchr#one_of(' = ', ' == ', '=')
     inoremap <buffer> <expr> \ smartchr#one_of('\', ' -> ')
     "inoremap <buffer> <expr> + smartchr#loop(' + ', '+')
     "inoremap <buffer> <expr> - smartchr#loop(' - ', '-')
     "inoremap <buffer> <expr> * smartchr#loop(' * ', '*')
-  elseif l:lang == 'go'
+  elseif l:lang ==# 'go'
     inoremap <buffer> <expr> = smartchr#one_of(' = ', ' := ', ' == ', '=')
     inoremap <buffer> <expr> ! smartchr#one_of(' !', ' != ', '!')
     inoremap <buffer> <expr> < smartchr#one_of('<', '<-')
-  elseif l:lang == 'clojure'
+  elseif l:lang ==# 'clojure'
     inoremap <buffer> <expr> . smartchr#loop('.', '..', '->', '-->')
   endif
 endfunction
@@ -2582,7 +2582,7 @@ let g:lightline = {
 \ }
 
 function! MyModified()
-  return &filetype =~ 'help\|vimfiler\|gundo\|qf' ? '' : &modified ? '+' : &modifiable ? '' : '-'
+  return &filetype =~# 'help\|vimfiler\|gundo\|qf' ? '' : &modified ? '+' : &modifiable ? '' : '-'
 endfunction
 
 function! MyReadonly()
@@ -2590,13 +2590,13 @@ function! MyReadonly()
 endfunction
 
 function! MyFilename()
-  return ('' != MyReadonly() ? MyReadonly() . ' ' : '') .
-        \ (&filetype == 'vimfiler' ? vimfiler#get_status_string() :
-        \  &filetype == 'unite' ? unite#get_status_string() :
-        \  &filetype == 'qf' ? 'quickfix' :
-        \  &filetype == 'vimshell' ? substitute(b:vimshell.current_dir,expand('~'),'~','') :
-        \ '' != expand('%:t') ? expand('%:t') : '[No Name]') .
-        \ ('' != MyModified() ? ' ' . MyModified() : '')
+  return ('' !=# MyReadonly() ? MyReadonly() . ' ' : '') .
+        \ (&filetype ==# 'vimfiler' ? vimfiler#get_status_string() :
+        \  &filetype ==# 'unite' ? unite#get_status_string() :
+        \  &filetype ==# 'qf' ? 'quickfix' :
+        \  &filetype ==# 'vimshell' ? substitute(b:vimshell.current_dir,expand('~'),'~','') :
+        \ '' !=? expand('%:t') ? expand('%:t') : '[No Name]') .
+        \ ('' !=# MyModified() ? ' ' . MyModified() : '')
 endfunction
 
 function! MyFugitive()
@@ -2611,7 +2611,7 @@ function! MyFugitive()
 endfunction
 
 function! MyVaxe()
-  if &filetype == 'haxe'
+  if &filetype ==# 'haxe'
     return pathshorten(fnamemodify(vaxe#CurrentBuild(), ':p:.')) . ' =>[' . vaxe#CurrentBuildPlatform() . ']'
   else
     return ''
