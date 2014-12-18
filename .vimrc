@@ -2126,6 +2126,13 @@ function! bundle.hooks.on_source(bundle)
 \    'go/watchdogs_checker': {
 \      'type': 'watchdogs_checker/go_build'
 \    },
+\    'vim/watchdogs_checker': {
+\       'type': 'watchdogs_checker/vint'
+\    },
+\    "watchdogs_checker/vint" : {
+\       "command"   : "vint",
+\       "exec"      : "%c %o %s:p ",
+\   },
 \ }
 
 " < " http://d.hatena.ne.jp/osyo-manga/20120924/1348473304
@@ -2143,6 +2150,7 @@ let g:quickrun_no_default_key_mappings = 1
 nmap <Leader>q <Plug>(quickrun)
 nmap ,q <Plug>(quickrun-op)
 nnoremap <SID>[Show]w :<C-u>WatchdogsRunSilent<CR><Esc>
+autocmd MyAutoCmd BufWritePost .vimrc,*.vim WatchdogsRunSilent
 " watchdog }}}
 " quickrun }}}
 
