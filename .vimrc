@@ -1832,7 +1832,7 @@ function! bundle.hooks.on_source(bundle)
   let g:jedi#completions_enabled = 0
   let g:jedi#popup_on_dot = 0
   let g:jedi#popup_select_first = 0
-  let g:jedi#show_call_signatures = "1"
+  let g:jedi#show_call_signatures = '1'
 
   " command mappings
   let g:jedi#goto_assignments_command = '<leader>g'
