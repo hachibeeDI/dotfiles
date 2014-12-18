@@ -7,8 +7,6 @@
 " vimrc
 " --------------------------------------------------------
 
-set nocompatible
-
 " variables ----
 
 let s:MY_VIMRUNTIME = expand('~/.vim')
@@ -26,6 +24,8 @@ augroup END
 
 " Neobundle {{{
 if has('vim_starting')
+  " via: https://twitter.com/ShougoMatsu/status/541718069010128896
+  " set nocompatible
   set runtimepath& runtimepath+=~/.vim/neobundle.vim/
 endif
 call neobundle#begin(s:BUNDLEPATH)
