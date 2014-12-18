@@ -11,7 +11,7 @@
 
 let s:MY_VIMRUNTIME = expand('~/.vim')
 let s:BUNDLEPATH = expand('~/.neobundle')
-let s:vimrc = "~/.vimrc"
+let s:vimrc = '~/.vimrc'
 
 let s:is_windows = has('win16') || has('win32') || has('win64')
 let s:is_cygwin = has('win32unix')
@@ -102,20 +102,20 @@ call neobundle#config('vimfiler', {
       \ })
 NeoBundleLazy 'Shougo/vimshell', {
     \ 'autoload' : {
-    \   'commands' : ["VimShellPop", "VimShell"],
+    \   'commands' : ['VimShellPop', 'VimShell'],
     \   }
     \}
 " compile and exec the code and pop result on Quickfix-window
 NeoBundleLazy 'thinca/vim-quickrun', {
 \ 'autoload': {
-\   'commands': ["QuickRun"],
+\   'commands': ['QuickRun'],
 \   'mappings': ['nxo', '<Plug>(quickrun)', '<Plug>(quickrun-op)', ],
 \ }}
 
 " runtimepathに追加されていない？ 要調査
 NeoBundle 'tpope/vim-fugitive' ", {
 "\ 'autoload': {
-"\   'commands': ["Git", "Gstatus", "Gcommit", "Gedit", "Gwrite", "Ggrep", "Glog", "Gdiff"],
+"\   'commands': ['Git', 'Gstatus', 'Gcommit', 'Gedit', 'Gwrite', 'Ggrep', 'Glog', 'Gdiff'],
 "\ }
 "\}
 NeoBundleLazy 'gregsexton/gitv' , {
@@ -143,7 +143,7 @@ let g:rooter_patterns = ['.git', '.git/', '_darcs/', '.hg/', '.bzr/', '.svn/', '
 "Unite
 NeoBundleLazy 'Shougo/unite.vim' , {
 \ 'autoload' : {
-\   'commands' : ["Unite", "UniteWithBufferDir", "QuickRun"],
+\   'commands' : ['Unite', 'UniteWithBufferDir', 'QuickRun'],
 \ }
 \}
 " unite source {{{
@@ -196,7 +196,7 @@ call neobundle#config('unite-tag', {
 
 NeoBundleLazy 'majutsushi/tagbar', {
 \ 'autoload' : {
-\   'commands' : ["TagbarToggle"],
+\   'commands' : ['TagbarToggle'],
 \ }
 \}
 
@@ -351,32 +351,32 @@ NeoBundle 'goldfeld/vim-seek'
 " undo history visualizer
 NeoBundleLazy 'sjl/gundo.vim', {
 \ 'autoload' : {
-\   'commands' : ["GundoToggle"],
+\   'commands' : ['GundoToggle'],
 \ }
 \}
 
 NeoBundleLazy 'tpope/vim-classpath', {
-\ "autoload" : {
-\   "filetypes" : ['scala', 'clojure', 'java', ],
+\ 'autoload' : {
+\   'filetypes' : ['scala', 'clojure', 'java', ],
 \ }
 \}
 
 NeoBundle 'Yggdroot/indentLine'
 
 NeoBundleLazy 'git://github.com/vim-scripts/IndentAnything.git', {
-\ "autoload" : {
-\   "filetypes" : ["html", "xhtml", "htmldjango", "play2-html", "javascript"],
+\ 'autoload' : {
+\   'filetypes' : ['html', 'xhtml', 'htmldjango', 'play2-html', 'javascript'],
 \ }
 \}
 NeoBundleLazy 'othree/javascript-libraries-syntax.vim', {
-\ "autoload" : {
-\   "filetypes" : ["html", "xhtml", "jinja", "coffee", "javascript", "typescript"],
+\ 'autoload' : {
+\   'filetypes' : ['html', 'xhtml', 'jinja', 'coffee', 'javascript', 'typescript'],
 \ }}
 
 "" add jasmine syntax
 "NeoBundleLazy 'claco/jasmine.vim', {
-"\ "autoload" : {
-"\   "filetypes" : ["coffee", "javascript", "typescript"],
+"\ 'autoload' : {
+"\   'filetypes' : ['coffee', 'javascript', 'typescript'],
 "\ }}
 
 " complete word in English. depends on `look` command.
@@ -401,7 +401,7 @@ xnoremap E :ExciteTranslate<CR>
 
 NeoBundleLazy 'LeafCage/foldCC', {
 \ 'autoload' : {
-\   'functions' : ["FoldCCtext"],
+\   'functions' : ['FoldCCtext'],
 \ }
 \}
 " via: http://d.hatena.ne.jp/leafcage/20111223/1324705686
@@ -419,8 +419,8 @@ NeoBundleLazy 'Crapworks/python_fn.vim', {
 \   'filetypes' : ['python'],
 \ }}
 NeoBundleLazy 'jmcantrell/vim-virtualenv', {
-\ "autoload" : {
-\   "filetypes" : ["python"],
+\ 'autoload' : {
+\   'filetypes' : ['python'],
 \   'commands': [
 \     'VirtualEnvDeactivate',
 \     'VirtualEnvList',
@@ -451,14 +451,14 @@ NeoBundleLazy 'hachibeeDI/rope-vim', {
 \}
 
 NeoBundleLazy 'davidhalter/jedi-vim', {
-\ "autoload" : {
-\   "filetypes" : ["python"],
+\ 'autoload' : {
+\   'filetypes' : ['python'],
 \ },
 \ 'disabled' : !has('python'),
 \ }
 NeoBundleLazy 'Glench/Vim-Jinja2-Syntax', {
-\ "autoload" : {
-\   "filetypes" : ["html", "jinja"],
+\ 'autoload' : {
+\   'filetypes' : ['html', 'jinja'],
 \ }}
 
 NeoBundleLazy 'hachibeeDI/python_hl_lvar.vim', {
@@ -486,22 +486,22 @@ if executable('go')
   \ 'build' : {
   \   'mac' : 'go get -u github.com/nsf/gocode && go install -v github.com/nsf/gocode',
   \   'unix' : 'go get -u github.com/nsf/gocode && go install -v github.com/nsf/gocode', },
-  \ "autoload": {"filetypes": ['go']},
+  \ 'autoload': {'filetypes': ['go']},
   \ }
   NeoBundleLazy 'dgryski/vim-godef', {
   \ 'build' : {
   \   'mac' : 'go get -u code.google.com/p/rog-go/exp/cmd/godef && go install -v code.google.com/p/rog-go/exp/cmd/godef',
   \   'unix' : 'go get -u code.google.com/p/rog-go/exp/cmd/godef && go install -v code.google.com/p/rog-go/exp/cmd/godef', },
-  \ "autoload": {"filetypes": ['go']},
+  \ 'autoload': {'filetypes': ['go']},
   \ }
   NeoBundleLazy 'fatih/vim-go', {
-  \   "autoload": {"filetypes": ['go']},
+  \   'autoload': {'filetypes': ['go']},
   \ }
-  let g:go_bin_path = expand("~/.go/bin")
+  let g:go_bin_path = expand('~/.go/bin')
   let g:go_fmt_fail_silently = 1
   let g:go_fmt_autosave = 1
   let g:go_disable_autoinstall = 1
-  let g:go_snippet_engine = "neosnippet"
+  let g:go_snippet_engine = 'neosnippet'
   if $GOROOT != ''
     " 標準でバンドルされてるプラギン set rtp+=$GOROOT/misc/vim は使わない
     "autocmd MyAutoCmd BufWritePre *.go GoLint
@@ -511,13 +511,13 @@ endif
 " -- Haxe {{{
 if executable('haxe')
   NeoBundleLazy 'jdonaldson/vaxe', {
-      \ "autoload" : {
-      \   "filetypes" : ["haxe", "hxml", "nmml.xml"],
+      \ 'autoload' : {
+      \   'filetypes' : ['haxe', 'hxml', 'nmml.xml'],
       \ }
       \}
   NeoBundleLazy 'hachibeeDI/unite-vaxe', {
   \ 'autoload' : {
-  \   "filetypes" : ["haxe", "hxml", "nmml.xml"],
+  \   'filetypes' : ['haxe', 'hxml', 'nmml.xml'],
   \   'unite_sources' : 'vaxe'},
   \ }
 endif
@@ -527,48 +527,48 @@ endif
 " clang
 " C++11's syntax
 NeoBundleLazy 'vim-jp/cpp-vim', {
-\ "autoload" : {
-\   "filetypes" : ["cpp"] }
+\ 'autoload' : {
+\   'filetypes' : ['cpp'] }
 \}
 "https://github.com/beyondmarc/opengl.vim
 " git submodule add git://github.com/beyondmarc/opengl.vim.git bundle/syntax_opengl
 NeoBundleLazy 'Rip-Rip/clang_complete', {
-\ "autoload" : {
-\   "filetypes" : ['c', "cpp", 'objc', 'objcpp'] }
+\ 'autoload' : {
+\   'filetypes' : ['c', 'cpp', 'objc', 'objcpp'] }
 \}
 " -- Objective-C ==
 if s:is_mac
   NeoBundleLazy 'tokorom/clang_complete-getopts-ios', {
-  \ "autoload" : {
-  \   "filetypes" : ["objc"]},
+  \ 'autoload' : {
+  \   'filetypes' : ['objc']},
   \}
   NeoBundleLazy 'tokorom/vim-textobj-objc', {
-  \ "autoload" : {
-  \   "filetypes" : ["objc"]},
+  \ 'autoload' : {
+  \   'filetypes' : ['objc']},
   \}
   NeoBundleLazy 'tokorom/xcode-actions.vim', {
-  \ "autoload" : {
-  \   "filetypes" : ["objc"]},
+  \ 'autoload' : {
+  \   'filetypes' : ['objc']},
   \}
   NeoBundleLazy 'tokorom/neocomplete-ios-dictionary', {
   \ 'depends' : 'Shougo/neocomplete.vim',
   \ 'on_source': 'neocomplete.vim',
   \ }
   NeoBundleLazy 'b4winckler/vim-objc', {
-  \ "autoload" : {
-  \   "filetypes" : ["objc"]},
+  \ 'autoload' : {
+  \   'filetypes' : ['objc']},
   \}
   NeoBundle 'toyamarinyon/vim-swift'
 endif
 " }}}
 " -- JavaScript {{{
 NeoBundleLazy 'pangloss/vim-javascript', {
-\ "autoload" : {
-\   "filetypes" : ["javascript"],
+\ 'autoload' : {
+\   'filetypes' : ['javascript'],
 \}}
 let g:javascript_enable_domhtmlcss = 1
 NeoBundleLazy 'jiangmiao/simple-javascript-indenter', {
-\ "autoload" : {
+\ 'autoload' : {
 \   'filetypes': ['javascript'],
 \ }
 \}
@@ -588,25 +588,25 @@ if has('python') && executable('npm')
 endif
 " coffee
 NeoBundleLazy 'kchmck/vim-coffee-script', {
-    \ "autoload" : {
-    \   "filetypes" : ["coffee"] }
+    \ 'autoload' : {
+    \   'filetypes' : ['coffee'] }
     \}
 " TypeScript
 NeoBundleLazy 'leafgarland/typescript-vim', {
-\ "autoload" : {
-\   "filetypes" : ["typescript"] }
+\ 'autoload' : {
+\   'filetypes' : ['typescript'] }
 \}
 
 " }}}
 " -- Scala {{{
 NeoBundleLazy 'yuroyoro/vim-scala', {
-    \ "autoload" : {
-    \   "filetypes" : ["scala"] }
+    \ 'autoload' : {
+    \   'filetypes' : ['scala'] }
     \}
 " Play2のテンプレートとかのシンタックス
 NeoBundleLazy 'gre/play2vim', {
-\ "autoload" : {
-\   "filetypes" : ["scala"] }
+\ 'autoload' : {
+\   'filetypes' : ['scala'] }
 \}
 " }}}
 
@@ -625,17 +625,17 @@ NeoBundleLazy 'skwp/vim-rspec', {
 \    'filetypes': ['ruby', 'eruby', 'haml'] }}
 
 NeoBundleLazy 'tpope/vim-rails', {
-\  "autoload" : {
-\    "filetypes" : ["ruby"] }}
+\  'autoload' : {
+\    'filetypes' : ['ruby'] }}
 
 NeoBundleLazy 'ujihisa/unite-rake', {
 \  'autoload' : {
-\    "filetypes" : ["ruby"] }
+\    'filetypes' : ['ruby'] }
 \ }
 
 NeoBundleLazy 'basyura/unite-rails', {
 \  'autoload' : {
-\    "filetypes" : ["ruby"] }
+\    'filetypes' : ['ruby'] }
 \ }
 "}}}
 
@@ -643,16 +643,16 @@ NeoBundleLazy 'basyura/unite-rails', {
 if executable('lein')
   " via: http://blog.ieknir.com/blog/beginning-clojure-with-vim/
   NeoBundleLazy 'guns/vim-clojure-static', {
-  \ "autoload" : {
-  \   "filetypes" : ["clojure"] }
+  \ 'autoload' : {
+  \   'filetypes' : ['clojure'] }
   \}
   NeoBundleLazy 'tpope/vim-fireplace', {
-  \ "autoload" : {
-  \   "filetypes" : ["clojure"] }
+  \ 'autoload' : {
+  \   'filetypes' : ['clojure'] }
   \}
   NeoBundleLazy 'tpope/vim-classpath', {
-  \ "autoload" : {
-  \   "filetypes" : ["clojure"] }
+  \ 'autoload' : {
+  \   'filetypes' : ['clojure'] }
   \}
 
 endif
@@ -660,49 +660,49 @@ endif
 " -- Haskell {{{
 if executable('ghc')
   NeoBundleLazy 'dag/vim2hs', {
-      \ "autoload" : {
-      \   "filetypes" : ["haskell"] }
+      \ 'autoload' : {
+      \   'filetypes' : ['haskell'] }
       \}
   NeoBundleLazy 'pbrisbin/html-template-syntax', {
-      \ "autoload" : {
-      \   "filetypes" : ["haskell"] }
+      \ 'autoload' : {
+      \   'filetypes' : ['haskell'] }
       \}
   " NOTE: require 'ghc-mod'. install from `cabal install ghc-mod`.
   NeoBundleLazy 'ujihisa/neco-ghc', {
-      \ "autoload" : {
-      \   "filetypes" : ["haskell"] }
+      \ 'autoload' : {
+      \   'filetypes' : ['haskell'] }
       \}
   NeoBundleLazy 'eagletmt/ghcmod-vim', {
-      \ "autoload" : {
-      \   "filetypes" : ["haskell"] }
+      \ 'autoload' : {
+      \   'filetypes' : ['haskell'] }
       \}
 
   "http://vim-users.jp/2011/12/hack241/
   " NOTE: require 'hoogle'
   NeoBundleLazy 'ujihisa/unite-haskellimport', {
-      \ "autoload" : {
-      \   "filetypes" : ["haskell"] }
+      \ 'autoload' : {
+      \   'filetypes' : ['haskell'] }
       \}
 endif
 " }}}
 " -- VB.NET {{{
 NeoBundleLazy 'hachibeeDI/vim-vbnet', {
-\ "autoload" : {
-\   "filetypes" : ["vbnet"],
+\ 'autoload' : {
+\   'filetypes' : ['vbnet'],
 \   },
-\ "stay_same" : 1,
+\ 'stay_same' : 1,
 \}
 " }}}
 " == PHP {{{
 if executable('php-cs-fixer')
   NeoBundleLazy 'stephpy/vim-php-cs-fixer', {
-  \ "autoload" : {
-  \   "filetypes" : ["php"],
+  \ 'autoload' : {
+  \   'filetypes' : ['php'],
   \   },
   \}
   NeoBundleLazy 'shawncplus/phpcomplete.vim', {
-  \ "autoload" : {
-  \   "filetypes" : ["php"],
+  \ 'autoload' : {
+  \   'filetypes' : ['php'],
   \   },
   \}
   autocmd MyAutoCmd Filetype php setl makeprg=php\ -l\ %
@@ -712,14 +712,14 @@ endif
 "}}}
 " -- markup {{{
 NeoBundleLazy 'mattn/emmet-vim', {
-\ "autoload" : {
-\   "filetypes" : ["html", "xhtml", "htmldjango", "play2-html",  "eruby", "css", "sass", "scss",  "stylus", "jinja"],
+\ 'autoload' : {
+\   'filetypes' : ['html', 'xhtml', 'htmldjango', 'play2-html',  'eruby', 'css', 'sass', 'scss',  'stylus', 'jinja'],
 \ }
 \}
 
 NeoBundleLazy 'othree/html5.vim', {
-\ "autoload" : {
-\   "filetypes" : ["html", "xhtml", "htmldjango", "play2-html",  "eruby", "jinja"],
+\ 'autoload' : {
+\   'filetypes' : ['html', 'xhtml', 'htmldjango', 'play2-html',  'eruby', 'jinja'],
 \ }
 \}
 
@@ -729,24 +729,24 @@ NeoBundleLazy 'othree/html5.vim', {
 " css_color is too heavy... ...
 "" seems more useful then css_color.vim
 "NeoBundleLazy 'skammer/vim-css-color', {
-"    \ "autoload" : {
-"    \   "filetypes" : ["css", "less", "scss", "sass"] }
+"    \ 'autoload' : {
+"    \   'filetypes' : ['css', 'less', 'scss', 'sass'] }
 "    \}
 
 NeoBundleLazy 'cakebaker/scss-syntax.vim', {
-\ "autoload" : {
-\   "filetypes" : ["scss", "sass"] }
+\ 'autoload' : {
+\   'filetypes' : ['scss', 'sass'] }
 \ }
 
 " もう少しscssとcompassへの理解を深めてから使う
 "NeoBundleLazy 'AtsushiM/sass-compile.vim', {
-"\ "autoload" : {
-"\   "filetypes" : ["scss", "sass"] }
+"\ 'autoload' : {
+"\   'filetypes' : ['scss', 'sass'] }
 "\ }
 
 NeoBundleLazy 'groenewege/vim-less', {
-\ "autoload" : {
-\   "filetypes" : ["less"] }
+\ 'autoload' : {
+\   'filetypes' : ['less'] }
 \ }
 NeoBundleLazy 'wavded/vim-stylus', {
 \ 'autoload' : {
@@ -763,13 +763,13 @@ NeoBundleLazy 'duganchen/vim-soy', {
 NeoBundleLazy 'SQLUtilities', {
     \ 'depends' :
     \   ['vim-scripts/Align'],
-    \ "autoload" : {
-    \   "filetypes" : ["sql", "sqloracle", "sqlserver"] }
+    \ 'autoload' : {
+    \   'filetypes' : ['sql', 'sqloracle', 'sqlserver'] }
     \}
 
 NeoBundleLazy 'timcharper/textile.vim', {
-\ "autoload" : {
-\   "filetypes" : ["textile"] }
+\ 'autoload' : {
+\   'filetypes' : ['textile'] }
 \ }
 
 NeoBundle 'godlygeek/tabular'
@@ -787,20 +787,20 @@ NeoBundle 't9md/vim-quickhl'
 
 " カッコいい言語のカッコをレインボーにする
 NeoBundleLazy 'kien/rainbow_parentheses.vim', {
-\ "autoload" : {
+\ 'autoload' : {
 \   'commands': ['RainbowParenthesesToggle', 'RainbowParenthesesLoadRound', 'RainbowParenthesesLoadBraces', 'RainbowParenthesesActivate', ],
 \ }}
 
 NeoBundleLazy 'mattn/gist-vim', {
     \ 'autoload' : {
-    \   'commands' : [ "Gist" ]}
+    \   'commands' : [ 'Gist' ]}
     \}
 NeoBundle 'mattn/webapi-vim'
 NeoBundleLazy 'tyru/open-browser.vim', {
     \ 'autoload' : {
-    \     'functions' : "OpenBrowser",
-    \     'commands'  : ["OpenBrowser", "OpenBrowserSearch", "OpenBrowserSmartSearch"],
-    \     'mappings'  : ["<Plug>(openbrowser-smart-search)", "<Plug>(openbrowser-open)"],
+    \     'functions' : 'OpenBrowser',
+    \     'commands'  : ['OpenBrowser', 'OpenBrowserSearch', 'OpenBrowserSmartSearch'],
+    \     'mappings'  : ['<Plug>(openbrowser-smart-search)', '<Plug>(openbrowser-open)'],
     \ },
     \}
 
@@ -808,7 +808,7 @@ NeoBundleLazy 'osyo-manga/vim-watchdogs', {
     \ 'depends' :
     \       ['osyo-manga/shabadou.vim'],
     \ 'autoload' : {
-    \   'commands' : ["WatchdogsRun", "WatchdogsRunSilent", "QuickRun"],
+    \   'commands' : ['WatchdogsRun', 'WatchdogsRunSilent', 'QuickRun'],
     \   'mappings' : ['nxo', '<Plug>(quickrun)'],
     \}}
 NeoBundle 'osyo-manga/shabadou.vim'
@@ -821,12 +821,12 @@ NeoBundleLazy 'basyura/TweetVim', {
     \       , 'tyru/open-browser.vim'
     \       ],
     \ 'autoload' : {
-    \   'commands' : ["TweetVimSay", "TweetVimHomeTimeline", "TweetVimMentions", "TweetVimSearch"],
+    \   'commands' : ['TweetVimSay', 'TweetVimHomeTimeline', 'TweetVimMentions', 'TweetVimSearch'],
     \ }
     \}
 NeoBundleLazy 'glidenote/memolist.vim', {
 \ 'autoload' : {
-\ 'commands' : ["MemoNew", "MemoList", "MemoGrep"],
+\ 'commands' : ['MemoNew', 'MemoList', 'MemoGrep'],
 \ }
 \}
 " }}}
@@ -834,9 +834,9 @@ NeoBundleLazy 'glidenote/memolist.vim', {
 " developping
 NeoBundleLazy 'hachibeeDI/unite-pythonimport', {
 \ 'autoload' : {
-\   "filetypes" : ["python"],
+\   'filetypes' : ['python'],
 \   },
-\ "stay_same" : 1,
+\ 'stay_same' : 1,
 \ }
 
 NeoBundleLazy 'LeafCage/yankround.vim', {
@@ -861,7 +861,7 @@ nnoremap <silent> <C-y> :<C-u>Unite yankround<CR>
 
 NeoBundleLazy 'LeafCage/vimhelpgenerator', {
 \ 'autoload' : {
-\   "filetypes" : ["vim"],
+\   'filetypes' : ['vim'],
 \   },}
 let g:vimhelpgenerator_version = ''
 let g:vimhelpgenerator_author = 'Author : OGURA_Daiki <8hachibee125+vim @ gmail.com>'
@@ -1327,7 +1327,7 @@ nmap , <SID>[EditSupport]
 
 " substitute word is under cursor
 nnoremap <expr> <SID>[EditSupport]s* ':%substitute/\<' . expand('<cword>') . '\>/'
-nnoremap <expr> <SID>[EditSupport]e* ':' . line(".") . ',$s/\<' . expand('<cword>') . '\>/'
+nnoremap <expr> <SID>[EditSupport]e* ':' . line('.') . ',$s/\<' . expand('<cword>') . '\>/'
 
 " ---- nomal mode ----{{{
 ":はコマンドモードへの移行、;はfind時に次の該当単語へジャンプする
@@ -1427,7 +1427,7 @@ endif
 " and do inputsave()/inputrestore() before/after getchar().
 function! s:getchar_safe(...)
   let c = s:input_helper('getchar', a:000)
-  return type(c) == type("") ? c : nr2char(c)
+  return type(c) == type('') ? c : nr2char(c)
 endfunction
 
 " Like builtin getchar() but
@@ -1784,11 +1784,11 @@ call neocomplete_ios_dictionary#configure_ios_dict()
 let g:clang_complete_auto = 0
 let g:clang_auto_select = 0
 let g:clang_hl_errors = 0
-"let g:clang_snippets = "clang_complete"
+"let g:clang_snippets = 'clang_complete'
 "libclangを使う
 let g:clang_use_library = 1
 if s:is_mac
-  let g:clang_library_path = "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib"
+  let g:clang_library_path = '/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib'
 endif
 
 " }}}
@@ -1835,12 +1835,12 @@ function! bundle.hooks.on_source(bundle)
   let g:jedi#show_call_signatures = "1"
 
   " command mappings
-  let g:jedi#goto_assignments_command = "<leader>g"
-  let g:jedi#goto_definitions_command = "<leader>d"
-  let g:jedi#documentation_command = "K"
-  let g:jedi#rename_command = "<leader>r"
-  let g:jedi#usages_command = "<leader>n"
-  let g:jedi#completions_command = "<C-Space>"
+  let g:jedi#goto_assignments_command = '<leader>g'
+  let g:jedi#goto_definitions_command = '<leader>d'
+  let g:jedi#documentation_command = 'K'
+  let g:jedi#rename_command = '<leader>r'
+  let g:jedi#usages_command = '<leader>n'
+  let g:jedi#completions_command = '<C-Space>'
 endfunction
 
 unlet bundle
@@ -1849,7 +1849,7 @@ unlet bundle
 
 let bundle = neobundle#get('vaxe')
 function! bundle.hooks.on_source(bundle)
-  let g:vaxe_default_parent_search_patterns = ["project.xml", "*.nmml", "build.hxml"]
+  let g:vaxe_default_parent_search_patterns = ['project.xml', '*.nmml', 'build.hxml']
   let g:vaxe_haxe_version = 3
   let g:vaxe_completion_write_compiler_output = 1
 
@@ -1958,17 +1958,17 @@ function! bundle.hooks.on_source(bundle)
 
   " unite-shortcut
   let g:unite_source_menu_menus.shortcut = {
-  \   "description" : "shortcut"
+  \   'description' : 'shortcut'
   \}
 
   let g:unite_source_menu_menus.shortcut.candidates = [
-  \   [ "vimrc"  , s:vimrc ],
-  \   [ "bundles", fnamemodify(s:vimrc, ":h")."/bundles.vim" ],
-  \   [ "after ft plugin",   s:MY_VIMRUNTIME."/.vim/after/ftplugin/"],
-  \   [ "My Blog", "OpenBrowser http://hachibeechan.hateblo.jp" ],
-  \   [ "github", "https://github.com/hachibeeDI" ],
-  \   [ "neobundles", s:BUNDLEPATH ],
-  \   [ "AllMap", "Unite output:AllMap" ],
+  \   [ 'vimrc'  , s:vimrc ],
+  \   [ 'bundles', fnamemodify(s:vimrc, ':h').'/bundles.vim' ],
+  \   [ 'after ft plugin',   s:MY_VIMRUNTIME.'/.vim/after/ftplugin/'],
+  \   [ 'My Blog', 'OpenBrowser http://hachibeechan.hateblo.jp' ],
+  \   [ 'github', 'https://github.com/hachibeeDI' ],
+  \   [ 'neobundles', s:BUNDLEPATH ],
+  \   [ 'AllMap', 'Unite output:AllMap' ],
   \ ]
 
   function! g:unite_source_menu_menus.shortcut.map(key, value)
@@ -1976,22 +1976,22 @@ function! bundle.hooks.on_source(bundle)
 
       if isdirectory(value)
           return {
-  \               "word" : "[directory] ".word,
-  \               "kind" : "directory",
-  \               "action__directory" : value
+  \               'word' : '[directory] '.word,
+  \               'kind' : 'directory',
+  \               'action__directory' : value
   \           }
       elseif !empty(glob(value))
           return {
-  \               "word" : "[file] ".word,
-  \               "kind" : "file",
-  \               "default_action" : "tabdrop",
-  \               "action__path" : value,
+  \               'word' : '[file] '.word,
+  \               'kind' : 'file',
+  \               'default_action' : 'tabdrop',
+  \               'action__path' : value,
   \           }
       else
           return {
-  \               "word" : "[command] ".word,
-  \               "kind" : "command",
-  \               "action__command" : value
+  \               'word' : '[command] '.word,
+  \               'kind' : 'command',
+  \               'action__command' : value
   \           }
       endif
   endfunction
@@ -2074,32 +2074,32 @@ function! bundle.hooks.on_source(bundle)
   " default config via http://d.hatena.ne.jp/osyo-manga/20120919/1348054752
   let g:quickrun_config = {
 \    '_': {
-\      "hook/close_buffer/enable_empty_data": 1
-\      , "hook/inu/enable": 1
-\      , "hook/inu/wait": 20
-\      , "outputter/buffer/split": ":botright 8sp"
-\      , "outputter/error/error": "quickfix"
-\      , "outputter/error/success": "buffer"
-\      , "runner": "vimproc"
-\      , "runner/vimproc/updatetime": 40
+\      'hook/close_buffer/enable_empty_data': 1
+\      , 'hook/inu/enable': 1
+\      , 'hook/inu/wait': 20
+\      , 'outputter/buffer/split': ':botright 8sp'
+\      , 'outputter/error/error': 'quickfix'
+\      , 'outputter/error/success': 'buffer'
+\      , 'runner': 'vimproc'
+\      , 'runner/vimproc/updatetime': 40
 \    },
 \    'run/vimproc': {
-\      "exec": "%s:p:r %a"
-\      , "output_encode": "utf-8"
-\      , "runner": "vimproc"
-\      , "outputter": "buffer"
+\      'exec': '%s:p:r %a'
+\      , 'output_encode': 'utf-8'
+\      , 'runner': 'vimproc'
+\      , 'outputter': 'buffer'
 \    },
-\    "run/vimproc/pause": {
-\      "exec": "%s:p:r %a && pause"
-\      , "output_encode": "utf-8"
-\      , "runner": "shell"
-\      , "outputter": "buffer"
+\    'run/vimproc/pause': {
+\      'exec': '%s:p:r %a && pause'
+\      , 'output_encode': 'utf-8'
+\      , 'runner': 'shell'
+\      , 'outputter': 'buffer'
 \    },
 \    'run/system': {
-\      "exec": "%s:p:r %a"
-\      , "output_encode": "utf-8"
-\      , "runner": "system"
-\      , "outputter": "buffer"
+\      'exec': '%s:p:r %a'
+\      , 'output_encode': 'utf-8'
+\      , 'runner': 'system'
+\      , 'outputter': 'buffer'
 \    },
 \    'markdown': {
 \      'type': 'markdown/pandoc'
@@ -2129,9 +2129,9 @@ function! bundle.hooks.on_source(bundle)
 \    'vim/watchdogs_checker': {
 \       'type': 'watchdogs_checker/vint'
 \    },
-\    "watchdogs_checker/vint" : {
-\       "command"   : "vint",
-\       "exec"      : "%c %o %s:p ",
+\    'watchdogs_checker/vint' : {
+\       'command'   : 'vint',
+\       'exec'      : '%c %o %s:p ',
 \   },
 \ }
 
@@ -2228,15 +2228,15 @@ nnoremap <silent> ,tp :<C-u>TweetVimSay<CR>
 "
 " --- MemoList {{{
 let g:memolist_memo_suffix = "markdown"
-let g:memolist_memo_suffix = "markdown"
-let g:memolist_memo_date = "%Y-%m-%d %H:%M"
-let g:memolist_memo_date = "epoch"
-let g:memolist_memo_date = "%D %T"
+let g:memolist_memo_suffix = 'markdown'
+let g:memolist_memo_date = '%Y-%m-%d %H:%M'
+let g:memolist_memo_date = 'epoch'
+let g:memolist_memo_date = '%D %T'
 let g:memolist_prompt_tags = 1
 let g:memolist_prompt_categories = 1
 let g:memolist_qfixgrep = 1
 let g:memolist_vimfiler = 1
-let g:memolist_path = "~/Dropbox/memolist"
+let g:memolist_path = '~/Dropbox/memolist'
 "let g:memolist_template_dir_path =
 "}}}
 " ------ OpenBrowser {{{
@@ -2273,10 +2273,10 @@ function! bundle.hooks.on_source(bundle)
 
     if has('win32') || has('win64')
       " Display user name on Windows.
-      let g:vimshell_prompt = $USERNAME."% "
+      let g:vimshell_prompt = $USERNAME.'% '
     else
       " Display user name on Linux.
-      let g:vimshell_prompt = $USER."% "
+      let g:vimshell_prompt = $USER.'% '
 
       call vimshell#set_execute_file('bmp,jpg,png,gif', 'gexe eog')
       call vimshell#set_execute_file('mp3,m4a,ogg', 'gexe amarok')
@@ -2398,8 +2398,8 @@ call smartinput#map_to_trigger('i', '<Plug>(smartinput_CR)',
 
 call smartinput#map_to_trigger('i', '<C-j>', '<C-j>', '<C-j>')
 call smartinput#map_to_trigger('i', '<Bar>', '<Bar>', '<Bar>')
-call smartinput#map_to_trigger('i', '-', '-', "<C-R>=smartchr#loop(' - ', '-')<CR>")
-call smartinput#map_to_trigger('i', '+', '+', "<C-R>=smartchr#loop(' + ', '+')<CR>")
+call smartinput#map_to_trigger('i', '-', '-', '<C-R>=smartchr#loop(' - ', '-')<CR>')
+call smartinput#map_to_trigger('i', '+', '+', '<C-R>=smartchr#loop(' + ', '+')<CR>')
 call smartinput#map_to_trigger('i', '<', '<', '<')
 call smartinput#map_to_trigger('i', '>', '>', '>')
 call smartinput#map_to_trigger('i', '$', '\$', '\$')
