@@ -1092,7 +1092,7 @@ autocmd MyAutoCmd QuickfixCmdPost make call <SID>auto_ccl()
 nnoremap <silent> <leader>m :<C-u>silent make<CR>
 
 function! s:auto_ccl()
-  if &ft != 'qf'
+  if &filetype != 'qf'
     return
   endif
 
@@ -1212,7 +1212,7 @@ function! s:tabpage_label(n)
   let fname = pathshorten(bufname(selected_buffer))
   let label = is_modified . spacer . fname
 
-  if &ft == 'unite'
+  if &filetype == 'unite'
     return hightlight_start . a:n . ':[unite] ' . unite#get_status_string() . '%T%#TabLineFill#'
   else
     return hightlight_start . a:n . ':< %' . a:n . 'T' . label . '%T%#TabLineFill#'
@@ -2582,26 +2582,26 @@ let g:lightline = {
 \ }
 
 function! MyModified()
-  return &ft =~ 'help\|vimfiler\|gundo\|qf' ? '' : &modified ? '+' : &modifiable ? '' : '-'
+  return &filetype =~ 'help\|vimfiler\|gundo\|qf' ? '' : &modified ? '+' : &modifiable ? '' : '-'
 endfunction
 
 function! MyReadonly()
-  return &ft !~? 'help\|vimfiler\|gundo\|qf' && &ro ? '錠' : ''
+  return &filetype !~? 'help\|vimfiler\|gundo\|qf' && &ro ? '錠' : ''
 endfunction
 
 function! MyFilename()
   return ('' != MyReadonly() ? MyReadonly() . ' ' : '') .
-        \ (&ft == 'vimfiler' ? vimfiler#get_status_string() :
-        \  &ft == 'unite' ? unite#get_status_string() :
-        \  &ft == 'qf' ? 'quickfix' :
-        \  &ft == 'vimshell' ? substitute(b:vimshell.current_dir,expand('~'),'~','') :
+        \ (&filetype == 'vimfiler' ? vimfiler#get_status_string() :
+        \  &filetype == 'unite' ? unite#get_status_string() :
+        \  &filetype == 'qf' ? 'quickfix' :
+        \  &filetype == 'vimshell' ? substitute(b:vimshell.current_dir,expand('~'),'~','') :
         \ '' != expand('%:t') ? expand('%:t') : '[No Name]') .
         \ ('' != MyModified() ? ' ' . MyModified() : '')
 endfunction
 
 function! MyFugitive()
   try
-    if &ft !~? 'vimfiler\|gundo\|qf' && exists('*fugitive#head')
+    if &filetype !~? 'vimfiler\|gundo\|qf' && exists('*fugitive#head')
       let _ = fugitive#head()
       return strlen(_) ? '梗'._ : ''
     endif
@@ -2611,7 +2611,7 @@ function! MyFugitive()
 endfunction
 
 function! MyVaxe()
-  if &ft == 'haxe'
+  if &filetype == 'haxe'
     return pathshorten(fnamemodify(vaxe#CurrentBuild(), ':p:.')) . ' =>[' . vaxe#CurrentBuildPlatform() . ']'
   else
     return ''
