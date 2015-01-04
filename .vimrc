@@ -1847,33 +1847,35 @@ unlet bundle
 "}}}
 " vaxe(haXe's omnicompletion plugin) {{{
 
-let bundle = neobundle#get('vaxe')
-function! bundle.hooks.on_source(bundle)
-  let g:vaxe_default_parent_search_patterns = ['project.xml', '*.nmml', 'build.hxml']
-  let g:vaxe_haxe_version = 3
-  let g:vaxe_completion_write_compiler_output = 1
+if executable('haxe')
+  let bundle = neobundle#get('vaxe')
+  function! bundle.hooks.on_source(bundle)
+    let g:vaxe_default_parent_search_patterns = ['project.xml', '*.nmml', 'build.hxml']
+    let g:vaxe_haxe_version = 3
+    let g:vaxe_completion_write_compiler_output = 1
 
-  function! s:init_vaxe_keymap()
-    nnoremap <buffer> ,vo :<C-u>call vaxe#OpenHxml()<CR>
-    nnoremap <buffer> ,vc :<C-u>call vaxe#Ctags()<CR>
-    nnoremap <buffer> ,vi :<C-u>call vaxe#ImportClass()<CR>
-    nnoremap <buffer> ,vx :<C-u>call vaxe#ProjectHxml()<CR>
-    nnoremap <buffer> ,vj :<C-u>call vaxe#JumpToDefinition()<CR>
+    function! s:init_vaxe_keymap()
+      nnoremap <buffer> ,vo :<C-u>call vaxe#OpenHxml()<CR>
+      nnoremap <buffer> ,vc :<C-u>call vaxe#Ctags()<CR>
+      nnoremap <buffer> ,vi :<C-u>call vaxe#ImportClass()<CR>
+      nnoremap <buffer> ,vx :<C-u>call vaxe#ProjectHxml()<CR>
+      nnoremap <buffer> ,vj :<C-u>call vaxe#JumpToDefinition()<CR>
+    endfunction
+
+    autocmd MyAutoCmd FileType haxe call s:init_vaxe_keymap()
+    autocmd MyAutoCmd FileType hxml call s:init_vaxe_keymap()
+    autocmd MyAutoCmd FileType nmml.xml call s:init_vaxe_keymap()
+
+    "autocmd MyAutoCmd FileType haxe  # move $HOME/.vim/after/ftplugin/haxe.vim
+    "      \ setl autowrite
+    autocmd MyAutoCmd FileType hxml
+          \ setl autowrite
+    autocmd MyAutoCmd FileType nmml.xml
+          \ setl autowrite
   endfunction
 
-  autocmd MyAutoCmd FileType haxe call s:init_vaxe_keymap()
-  autocmd MyAutoCmd FileType hxml call s:init_vaxe_keymap()
-  autocmd MyAutoCmd FileType nmml.xml call s:init_vaxe_keymap()
-
-  "autocmd MyAutoCmd FileType haxe  # move $HOME/.vim/after/ftplugin/haxe.vim
-  "      \ setl autowrite
-  autocmd MyAutoCmd FileType hxml
-        \ setl autowrite
-  autocmd MyAutoCmd FileType nmml.xml
-        \ setl autowrite
-endfunction
-
-unlet bundle
+  unlet bundle
+endif
 "}}}
 
 " haskell -----------------{{{
