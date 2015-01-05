@@ -2128,20 +2128,25 @@ function! bundle.hooks.on_source(bundle)
 \    'go/watchdogs_checker': {
 \      'type': 'watchdogs_checker/go_build'
 \    },
+\   'vim/watchdogs_checker': {
+\     'type': executable('vint') ? 'watchdogs_checker/vint' : '',
+\   },
+\   'watchdogs_checker/vint': {
+\     'command'   : 'vint',
+\     'exec'      : '%c %o %s:p ',
+\   },
+\   'sh/watchdogs_checker': {
+\     'type': executable('shellcheck') ? 'watchdogs_checker/shellcheck' : '',
+\   },
+\   'watchdogs_checker/shellcheck': {
+\     'command'   : 'shellcheck',
+\     'cmdopt': '-f gcc',
+\     'exec'      : '%c %o %s:p ',
+\   },
 \ }
 
-if executable('vint')
-  let g:quickrun_config['vim/watchdogs_checker'] = {
-  \   'type': 'watchdogs_checker/vint'
-  \ }
-  let g:quickrun_config['watchdogs_checker/vint'] = {
-  \   'command'   : 'vint',
-  \   'exec'      : '%c %o %s:p ',
-  \ }
-endif
-
-" < " http://d.hatena.ne.jp/osyo-manga/20120924/1348473304
-" < " ---- vim-watchdog --- : {{{
+  " < " http://d.hatena.ne.jp/osyo-manga/20120924/1348473304
+  " < " ---- vim-watchdog --- : {{{
   call watchdogs#setup(g:quickrun_config)
   " 書き込み後にシンタックスチェックを行うかどうか
   let g:watchdogs_check_BufWritePost_enable = 0
