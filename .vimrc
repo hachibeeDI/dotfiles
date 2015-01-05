@@ -924,7 +924,7 @@ endif
 " vital.vim --- {{{
 let g:Vit = vital#of('vital')
 "call extend(s:, g:Vit, 'keep') " スクリプトローカルに展開したくなったら
-call g:Vit.load('Data.List').load('Data.String').load("Math")
+call g:Vit.load('Data.List').load('Data.String').load('Math')
 
 "}}}
 "}}}
@@ -2128,14 +2128,17 @@ function! bundle.hooks.on_source(bundle)
 \    'go/watchdogs_checker': {
 \      'type': 'watchdogs_checker/go_build'
 \    },
-\    'vim/watchdogs_checker': {
-\       'type': 'watchdogs_checker/vint'
-\    },
-\    'watchdogs_checker/vint' : {
-\       'command'   : 'vint',
-\       'exec'      : '%c %o %s:p ',
-\   },
 \ }
+
+if executable('vint')
+  let g:quickrun_config['vim/watchdogs_checker'] = {
+  \   'type': 'watchdogs_checker/vint'
+  \ }
+  let g:quickrun_config['watchdogs_checker/vint'] = {
+  \   'command'   : 'vint',
+  \   'exec'      : '%c %o %s:p ',
+  \ }
+endif
 
 " < " http://d.hatena.ne.jp/osyo-manga/20120924/1348473304
 " < " ---- vim-watchdog --- : {{{
@@ -2229,7 +2232,7 @@ nnoremap <silent> ,tp :<C-u>TweetVimSay<CR>
 " }}}
 "
 " --- MemoList {{{
-let g:memolist_memo_suffix = "markdown"
+let g:memolist_memo_suffix = 'markdown'
 let g:memolist_memo_suffix = 'markdown'
 let g:memolist_memo_date = '%Y-%m-%d %H:%M'
 let g:memolist_memo_date = 'epoch'
