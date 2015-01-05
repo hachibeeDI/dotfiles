@@ -37,6 +37,7 @@ path=(
     # 自分のスクリプトとか、自分でビルドしたやつとか
     $HOME/Dropbox/bin/mac(N-/)
     $HOME/Dropbox/bin(N-/)
+    $HOME/.local/bin(N-/)
     $HOME/bin(N-/)
 
     # 標準のツールとかもhomebrewで導入したのを優先させる
