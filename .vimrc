@@ -1634,15 +1634,28 @@ if s:is_mac
   "}}}
 endif
 
+function! ConvertFileEncode(encoding, ...)
+  exec('setl fileencoding='.a:encoding)
+  exec('setl fileformat='.get(a:, 2, 'unix'))
+endfunction
 " 指定したエンコードでファイルを開き直すためのエイリアス
-command! Utf8 edit ++enc=utf-8
-command! Cp932 edit ++enc=cp932
-command! Sjis Cp932
-command! Utf16b edit ++enc=utf-16
-command! Utf16l edit ++enc=utf-16le
-command! Iso2022jp edit ++enc=iso-2022-jp
-command! Jis Iso2022jp
-command! Eucjp edit ++enc=euc-jp
+command! Utf8      call ConvertFileEncode('utf-8')
+command! Cp932     call ConvertFileEncode('cp932')
+command! Sjis      Cp932
+command! Utf16b    call ConvertFileEncode('utf-16')
+command! Utf16l    call ConvertFileEncode('utf-16le')
+command! Iso2022jp call ConvertFileEncode('iso-2022-jp')
+command! Jis       Iso2022jp
+command! Eucjp     call ConvertFileEncode('euc-jp')
+
+" command! Utf8 edit ++enc=utf-8
+" command! Cp932 edit ++enc=cp932
+" command! Sjis Cp932
+" command! Utf16b edit ++enc=utf-16
+" command! Utf16l edit ++enc=utf-16le
+" command! Iso2022jp edit ++enc=iso-2022-jp
+" command! Jis Iso2022jp
+" command! Eucjp edit ++enc=euc-jp
 "
 " ============= }}}
 
