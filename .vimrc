@@ -2421,8 +2421,8 @@ call smartinput#map_to_trigger('i', '<Plug>(smartinput_CR)',
 
 call smartinput#map_to_trigger('i', '<C-j>', '<C-j>', '<C-j>')
 call smartinput#map_to_trigger('i', '<Bar>', '<Bar>', '<Bar>')
-call smartinput#map_to_trigger('i', '-', '-', '<C-R>=smartchr#loop(' - ', '-')<CR>')
-call smartinput#map_to_trigger('i', '+', '+', '<C-R>=smartchr#loop(' + ', '+')<CR>')
+call smartinput#map_to_trigger('i', '-', '-', "<C-R>=smartchr#loop(' - ', '-')<CR>")
+call smartinput#map_to_trigger('i', '+', '+', "<C-R>=smartchr#loop(' + ', '+')<CR>")
 call smartinput#map_to_trigger('i', '<', '<', '<')
 call smartinput#map_to_trigger('i', '>', '>', '>')
 call smartinput#map_to_trigger('i', '$', '\$', '\$')
