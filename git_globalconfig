@@ -16,6 +16,8 @@
     autocrlf = false
 [grep]
     lineNumber = true
+[log]
+    decorate = true
 [push]
     default = upstream
 [commit]
@@ -24,6 +26,8 @@
     log = /usr/local/share/git-core/contrib/diff-highlight/diff-highlight | less
     show = /usr/local/share/git-core/contrib/diff-highlight/diff-highlight | less
     diff = /usr/local/share/git-core/contrib/diff-highlight/diff-highlight | less
+[diff "sqlite3"]
+    textconv = echo .dump|sqlite3
 [alias]
     # common
     st = status
@@ -94,8 +98,7 @@
     # utils
     showremote = remote -v
     info = config --list
-    hist = log --pretty=format:\"%C(yellow)%h %C(White)%ad | %C(White)%s%C(Green)%d %C(Red)[%an]\" --graph --date=short
-    shit = log --pretty=format:\"%C(yellow)%h %C(White)%ad | %C(White)%s%C(Green)%d %C(Red)[%an]\" --graph --date=short
+    hist = log --pretty=format:\"%C(yellow)%h %C(White)%ad | %C(White)%s%C(Green)%d %C(Red)[%an]\" --graph --date=short --decorate=full
     chspace = diff --check
     chbr = !git checkout $(git branch | peco)
     edit = "!f () { mvim $1; }; f"
