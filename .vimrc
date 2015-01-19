@@ -765,6 +765,11 @@ NeoBundleLazy 'duganchen/vim-soy', {
 
 " }}}
 
+NeoBundleLazy 'chrisbra/csv.vim', {
+\ 'autoload' : {
+\   'filetypes' : ['csv', ] }
+\ }
+
 " === }}}
 NeoBundleLazy 'SQLUtilities', {
     \ 'depends' :
