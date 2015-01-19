@@ -385,6 +385,7 @@ NeoBundleLazy 'koron/codic-vim', {
 \ 'autoload': {
 \   'commands': ['Codic'],
 \   'function_prefix': 'codic',
+\   'mappings' : ['<Plug>(operator-codic)'],
 \ }}
 NeoBundle 'rhysd/unite-codic.vim'
 call neobundle#config('unite-codic.vim', {
@@ -392,6 +393,11 @@ call neobundle#config('unite-codic.vim', {
 \ 'autoload' : {
 \   'unite_sources' : 'codic'},
 \ })
+NeoBundleLazy 'hachibeeDI/vim-operator-codic', {
+\ 'autoload': {
+\   'mappings' : ['<Plug>(operator-codic)'],
+\ }}
+nmap 9 <Plug>(operator-codic)
 
 NeoBundleLazy 'mattn/excitetranslate-vim', {
       \ 'depends': 'mattn/webapi-vim',
