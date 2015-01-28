@@ -241,9 +241,9 @@ bindkey -e
 bindkey '^U' backward-kill-line
 # Ctrl-u delete word before cursor
 bindkey "^[h" backward-kill-word
-bindkey "^c^u" undo
-bindkey "^c^r" redo
 
+bindkey "^[u" undo
+bindkey "^[r" redo
 # }}}
 
 # ------------------- load plugins ---------------- {{{
