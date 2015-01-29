@@ -395,9 +395,9 @@ call neobundle#config('unite-codic.vim', {
 \ })
 NeoBundleLazy 'hachibeeDI/vim-operator-codic', {
 \ 'autoload': {
-\   'mappings' : ['<Plug>(operator-codic)'],
+\   'mappings' : '<Plug>',
 \ }}
-nmap 9 <Plug>(operator-codic)
+map x <Plug>(operator-codic)
 
 NeoBundleLazy 'mattn/excitetranslate-vim', {
       \ 'depends': 'mattn/webapi-vim',
@@ -1351,10 +1351,11 @@ nnoremap <Backspace> :%s/
 nnoremap Y y$
 
 " x,y,cで削除した文字はblack holeに行ってもらう.
-nnoremap x "_x
+" NOTE: xはいらないので別のkeymapで使う
+" nnoremap x "_x
 nnoremap s "_s
 nnoremap c "_c
-vnoremap x "_x
+" vnoremap x "_x
 vnoremap s "_s
 vnoremap c "_c
 onoremap c "_c
