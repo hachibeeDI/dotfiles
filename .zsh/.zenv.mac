@@ -12,7 +12,7 @@ program_exists () {
 
 if program_exists go; then
     export GOROOT=$BREW_PATH/opt/go/libexec
-    export GOPATH=$HOME/.go:$HOME/Dropbox/development/go
+    export GOPATH=$HOME/.go
 fi
 # }}}
 
