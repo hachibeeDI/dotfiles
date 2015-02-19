@@ -372,6 +372,12 @@ NeoBundleLazy 'othree/javascript-libraries-syntax.vim', {
 \ 'autoload' : {
 \   'filetypes' : ['html', 'xhtml', 'jinja', 'coffee', 'javascript', 'typescript'],
 \ }}
+NeoBundleLazy 'mxw/vim-jsx', {
+\ 'autoload' : {
+\   'filetypes' : ['jsx', 'javascript', ],
+\ }}
+let g:jsx_pragma_required = 1
+
 
 "" add jasmine syntax
 "NeoBundleLazy 'claco/jasmine.vim', {
