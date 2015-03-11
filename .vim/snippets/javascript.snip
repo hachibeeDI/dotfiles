@@ -1,0 +1,21 @@
+snippet     module-exports
+abbr        module
+options     head
+	module.exports = ${0:TARGET}
+
+
+snippet     global-wrapper
+abbr        global
+options     head
+	(function(global) {
+	  'use strict';
+	  ${0:TARGET}
+	})((this || 0).self || global);
+
+
+snippet     domcontentloaded-event
+abbr        domloadev
+options     head
+	document.addEventListener('DOMContentLoaded', function() {
+	  ${0:TARGET}
+	});
