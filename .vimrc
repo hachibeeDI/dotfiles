@@ -368,21 +368,6 @@ NeoBundleLazy 'git://github.com/vim-scripts/IndentAnything.git', {
 \   'filetypes' : ['html', 'xhtml', 'htmldjango', 'play2-html', 'javascript'],
 \ }
 \}
-NeoBundleLazy 'othree/javascript-libraries-syntax.vim', {
-\ 'autoload' : {
-\   'filetypes' : ['html', 'xhtml', 'jinja', 'coffee', 'javascript', 'typescript'],
-\ }}
-" javascript-libraries-syntax.vim = {{{
-let g:used_javascript_libs = 'jquery,underscore,requirejs'
-"}}}
-
-NeoBundleLazy 'mxw/vim-jsx', {
-\ 'autoload' : {
-\   'filetypes' : ['jsx', 'javascript', ],
-\ }}
-let g:jsx_pragma_required = 1
-
-
 "" add jasmine syntax
 "NeoBundleLazy 'claco/jasmine.vim', {
 "\ 'autoload' : {
@@ -583,17 +568,23 @@ NeoBundleLazy 'pangloss/vim-javascript', {
 \   'filetypes' : ['javascript'],
 \}}
 let g:javascript_enable_domhtmlcss = 1
-NeoBundleLazy 'jiangmiao/simple-javascript-indenter', {
+
+
+NeoBundleLazy 'othree/javascript-libraries-syntax.vim', {
 \ 'autoload' : {
-\   'filetypes': ['javascript'],
-\ }
-\}
-" この設定入れるとswitchのインデントがいくらかマシに
-let g:SimpleJsIndenter_CaseIndentLevel = -1
-NeoBundleLazy 'jelera/vim-javascript-syntax', {
-\ 'autoload': {
-\    'filetypes': ['javascript'],
+\   'filetypes' : ['html', 'xhtml', 'jinja', 'coffee', 'javascript', 'typescript'],
 \ }}
+" javascript-libraries-syntax.vim = {{{
+let g:used_javascript_libs = 'jquery,underscore,requirejs'
+"}}}
+
+NeoBundleLazy 'mxw/vim-jsx', {
+\ 'autoload' : {
+\   'filetypes' : ['jsx', 'javascript', ],
+\ }}
+let g:jsx_pragma_required = 1
+
+
 if has('python') && executable('npm')
   NeoBundleLazy 'marijnh/tern_for_vim', {
   \ 'build' : 'npm install',
