@@ -372,6 +372,10 @@ NeoBundleLazy 'othree/javascript-libraries-syntax.vim', {
 \ 'autoload' : {
 \   'filetypes' : ['html', 'xhtml', 'jinja', 'coffee', 'javascript', 'typescript'],
 \ }}
+" javascript-libraries-syntax.vim = {{{
+let g:used_javascript_libs = 'jquery,underscore,requirejs'
+"}}}
+
 NeoBundleLazy 'mxw/vim-jsx', {
 \ 'autoload' : {
 \   'filetypes' : ['jsx', 'javascript', ],
@@ -598,6 +602,11 @@ if has('python') && executable('npm')
   \   'filetypes' : 'javascript'
   \ }}
 endif
+
+NeoBundleLazy 'digitaltoad/vim-jade', {
+\ 'autoload': {
+\    'filetypes': ['jade'],
+\ }}
 " coffee
 NeoBundleLazy 'kchmck/vim-coffee-script', {
     \ 'autoload' : {
@@ -605,6 +614,11 @@ NeoBundleLazy 'kchmck/vim-coffee-script', {
     \}
 " TypeScript
 NeoBundleLazy 'leafgarland/typescript-vim', {
+\ 'autoload' : {
+\   'filetypes' : ['typescript'] }
+\}
+
+NeoBundleLazy 'clausreinke/typescript-tools', {
 \ 'autoload' : {
 \   'filetypes' : ['typescript'] }
 \}
@@ -1928,9 +1942,6 @@ let g:haskell_hsp = 0
 " }}}
 
 " JavaScript ================================= {{{
-" javascript-libraries-syntax.vim = {{{
-let g:used_javascript_libs = 'angularjs'
-"}}}
 " vim-coffeescript {{{
 " in $HOME/.vim/after/ftplugin/coffee.vim
 " let coffee_make_options = '--bare'
