@@ -569,6 +569,12 @@ NeoBundleLazy 'pangloss/vim-javascript', {
 \}}
 let g:javascript_enable_domhtmlcss = 1
 
+NeoBundleLazy 'jason0x43/vim-js-indent', {
+\ 'autoload' : {
+\   'filetypes' : ['javascript', 'typescript', 'html'],
+\}}
+let g:js_indent_typescript = 1
+
 
 NeoBundleLazy 'othree/javascript-libraries-syntax.vim', {
 \ 'autoload' : {
@@ -2182,7 +2188,7 @@ function! bundle.hooks.on_source(bundle)
   " < " ---- vim-watchdog --- : {{{
   call watchdogs#setup(g:quickrun_config)
   " 書き込み後にシンタックスチェックを行うかどうか
-  let g:watchdogs_check_BufWritePost_enable = 0
+  let g:watchdogs_check_BufWritePost_enable = 1
 
 endfunction
 
