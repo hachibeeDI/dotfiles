@@ -562,7 +562,22 @@ if s:is_mac
   NeoBundle 'toyamarinyon/vim-swift'
 endif
 " }}}
+"
+" }}}
 " -- JavaScript {{{
+" TypeScript
+NeoBundleLazy 'leafgarland/typescript-vim', {
+\ 'autoload' : {
+\   'filetypes' : ['typescript'] }
+\}
+
+" should exec `npm install -g`
+" I dont wanna use 'build' sentence
+NeoBundleLazy 'clausreinke/typescript-tools', {
+\ 'autoload' : {
+\   'filetypes' : ['typescript'] }
+\}
+
 NeoBundleLazy 'pangloss/vim-javascript', {
 \ 'autoload' : {
 \   'filetypes' : ['javascript'],
@@ -609,18 +624,6 @@ NeoBundleLazy 'kchmck/vim-coffee-script', {
     \ 'autoload' : {
     \   'filetypes' : ['coffee'] }
     \}
-" TypeScript
-NeoBundleLazy 'leafgarland/typescript-vim', {
-\ 'autoload' : {
-\   'filetypes' : ['typescript'] }
-\}
-
-NeoBundleLazy 'clausreinke/typescript-tools', {
-\ 'autoload' : {
-\   'filetypes' : ['typescript'] }
-\}
-
-" }}}
 " -- Scala {{{
 NeoBundleLazy 'yuroyoro/vim-scala', {
     \ 'autoload' : {
