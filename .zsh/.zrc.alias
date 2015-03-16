@@ -83,7 +83,7 @@ alias gcmm='git commit -m'
 alias gbr='git branch -a'
 alias gdif='git diff'
 # alias gst='git status -sb'
-alias gamend='git commit --amend -C HEAD --date='
+alias gamend='git commit --amend --no-edit'
 alias ggrep='git grep -Hi --heading --break'
 
 #}}}
