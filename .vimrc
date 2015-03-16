@@ -1723,6 +1723,7 @@ function! bundle.hooks.on_source(bundle)
   \     'default': '',
   \     'java': $HOME.'/.vim/dict/java.dict',
   \     'javascript': $HOME.'/.vim/dict/javascript.dict',
+  \     'typescript': $HOME.'/.vim/dict/javascript.dict',
   \     'coffee': $HOME.'/.vim/dict/javascript.dict',
   \     'python': $HOME.'/.vim/dict/python.dict',
   \     'vim': $HOME.'/.vim/dict/vim.dict',
@@ -1814,6 +1815,8 @@ function! bundle.hooks.on_source(bundle)
   "\ '[^.[:digit:] *\t]\%(\.\|->\)\w*'
   "let g:neocomplete#force_omni_input_patterns.objcpp =
   "\ '[^.[:digit:] *\t]\%(\.\|->\)\w*\|\h\w*::\w*'
+
+  let g:neocomplete#sources#omni#input_patterns.typescript = '\h\w*\|[^. \t]\.\w*'
 
   " customize sort complete candiates
   "call neocomplete#custom#source('_', 'sorters', ['sorter_length'])
