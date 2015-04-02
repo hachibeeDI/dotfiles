@@ -11,7 +11,6 @@ program_exists () {
 }
 
 if program_exists go; then
-    export GOROOT=$BREW_PATH/opt/go/libexec
     export GOPATH=$HOME/.go
 fi
 # }}}
@@ -50,9 +49,7 @@ path=(
     /usr/local/opt/gnu-sed/libexec/gnubin(N-/)
 
     # Goの
-    $GOROOT/bin(N-/)
     $HOME/.go/bin(N-/)
-    $HOME/Dropbox/development/go/bin(N-/)
 
     /usr/bin(N-/)
     /bin(N-/)
