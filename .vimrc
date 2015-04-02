@@ -483,18 +483,6 @@ autocmd MyAutoCmd TabLeave     *.py PyHlLVar
 " }}}
 " - - golang {{{
 if executable('go')
-  NeoBundleLazy 'Blackrush/vim-gocode', {
-  \ 'build' : {
-  \   'mac' : 'go get -u github.com/nsf/gocode && go install -v github.com/nsf/gocode',
-  \   'unix' : 'go get -u github.com/nsf/gocode && go install -v github.com/nsf/gocode', },
-  \ 'autoload': {'filetypes': ['go']},
-  \ }
-  NeoBundleLazy 'dgryski/vim-godef', {
-  \ 'build' : {
-  \   'mac' : 'go get -u code.google.com/p/rog-go/exp/cmd/godef && go install -v code.google.com/p/rog-go/exp/cmd/godef',
-  \   'unix' : 'go get -u code.google.com/p/rog-go/exp/cmd/godef && go install -v code.google.com/p/rog-go/exp/cmd/godef', },
-  \ 'autoload': {'filetypes': ['go']},
-  \ }
   NeoBundleLazy 'fatih/vim-go', {
   \   'autoload': {'filetypes': ['go']},
   \ }
@@ -503,10 +491,6 @@ if executable('go')
   let g:go_fmt_autosave = 1
   let g:go_disable_autoinstall = 1
   let g:go_snippet_engine = 'neosnippet'
-  if $GOROOT !=# ''
-    " 標準でバンドルされてるプラギン set rtp+=$GOROOT/misc/vim は使わない
-    "autocmd MyAutoCmd BufWritePre *.go GoLint
-  endif
 endif
 " }}}
 " -- Haxe {{{
@@ -1806,7 +1790,7 @@ function! bundle.hooks.on_source(bundle)
   \ '\v([\]''"\)]|\w|(^\s*))(\.|\()'
   "let g:neocomplete#force_omni_input_patterns.python =
   "\ '\%([^. \t]\.\|^\s*@\|^\s*from\s.\+import \|^\s*from \|^\s*import \)\w*'
-  let g:neocomplete#force_omni_input_patterns.go = '\h\w*\.\?'
+  let g:neocomplete#force_omni_input_patterns.go = '\h\w\.\w*'
   let g:neocomplete#force_omni_input_patterns.c =
   \ '[^.[:digit:] *\t]\%(\.\|->\)\w*'
   let g:neocomplete#force_omni_input_patterns.cpp =
