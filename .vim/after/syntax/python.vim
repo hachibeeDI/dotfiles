@@ -1,7 +1,7 @@
 
 if version < 600
   syntax clear
-elseif exists("b:current_after_syntax")
+elseif exists('b:current_after_syntax')
   finish
 endif
 
@@ -22,7 +22,7 @@ hi link pythonSpecialMethod  Structure
 hi link pythonSpecialWord    Special
 hi link pythonDelimiter      Special
 
-let b:current_after_syntax = "python"
+let b:current_after_syntax = 'python'
 
 let &cpo = s:cpo_save
 unlet s:cpo_save
