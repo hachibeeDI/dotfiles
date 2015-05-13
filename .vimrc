@@ -38,12 +38,7 @@ let g:neobundle#log_filename = expand('~/.neobundle/.neobundle/neobundle.log')
 let g:neobundle#install_process_timeout = 180
 let g:neobundle#types#git#enable_submodule = 1
 
-if neobundle#has_cache()
-  NeoBundleLoadCache
-else
-  NeoBundleSaveCache
-endif
-
+call neobundle#load_cache()
 
 " gitプロトコルよりもhttpsのほうが高速
 "let g:neobundle_default_git_protocol = 'https'
@@ -385,8 +380,7 @@ NeoBundleLazy 'koron/codic-vim', {
 NeoBundle 'rhysd/unite-codic.vim'
 call neobundle#config('unite-codic.vim', {
 \ 'lazy' : 1,
-\ 'autoload' : {
-\   'unite_sources' : 'codic'},
+\ 'autoload' : {'unite_sources' : 'codic'},
 \ })
 NeoBundleLazy 'hachibeeDI/vim-operator-codic', {
 \ 'autoload': {
