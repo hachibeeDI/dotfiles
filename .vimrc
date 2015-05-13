@@ -483,8 +483,14 @@ if executable('go')
   let g:go_bin_path = expand('~/.go/bin')
   let g:go_fmt_fail_silently = 1
   let g:go_fmt_autosave = 1
-  let g:go_disable_autoinstall = 1
+  " let g:go_disable_autoinstall = 1
   let g:go_snippet_engine = 'neosnippet'
+
+  let g:go_highlight_functions = 1
+  let g:go_highlight_methods = 1
+  let g:go_highlight_structs = 1
+  let g:go_highlight_operators = 1
+  let g:go_highlight_build_constraints = 1
 endif
 " }}}
 " -- Haxe {{{
@@ -568,6 +574,8 @@ NeoBundleLazy 'jason0x43/vim-js-indent', {
 \}}
 let g:js_indent_typescript = 1
 
+NeoBundleLazy 'elzr/vim-json', {'autoload': {'filetypes': ['json']}, }
+let g:vim_json_syntax_conceal = 0
 
 NeoBundleLazy 'othree/javascript-libraries-syntax.vim', {
 \ 'autoload' : {
@@ -2135,14 +2143,6 @@ function! bundle.hooks.on_source(bundle)
 \      'command': 'clang++'
 \      , 'cmdopt': '-std=c++11 -stdlib=libc++'
 \    },
-\    'watchdogs_checker/pychecker': {
-\      'command': 'pychecker'
-\      , 'exec': '%c %o %s:p'
-\      , 'quickfix/errorformat': '%f:%l:%m'
-\    },
-\    'python/watchdogs_checker': {
-\      'type': 'watchdogs_checker/pychecker'
-\    },
 \    'watchdogs_checker/go_build': {
 \      'command': 'go'
 \      , 'exec': '%c build %s:p'
@@ -2160,6 +2160,9 @@ function! bundle.hooks.on_source(bundle)
 \   },
 \   'sh/watchdogs_checker': {
 \     'type': executable('shellcheck') ? 'watchdogs_checker/shellcheck' : '',
+\   },
+\   'ruby/watchdogs_checker': {
+\     'type': executable('rubocop') ? 'watchdogs_checker/rubocop' : 'watchdogs_checker/ruby',
 \   },
 \   'watchdogs_checker/shellcheck': {
 \     'command'   : 'shellcheck',
@@ -2581,6 +2584,16 @@ call smartinput#define_rule({
 \   'char': '<BS>',
 \   'input': '<BS><Right><Del><Left>',
 \ })
+
+" Golang {{{
+
+call smartinput#define_rule({
+\   'at': '[^[:alnum:]]json\%#',
+\   'char': ':',
+\   'input': '""<Left>',
+\ })
+" }}}
+"
 "---- }}}
 
 " --- gist-vim -----{{{
