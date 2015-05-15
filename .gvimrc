@@ -27,8 +27,8 @@ set guioptions=Mac
 if has('mac')
   colorscheme desertEx
   set transparency=5 " 透明度を指定
-  set guifont=Ricty\ Discord:h18
-  set guifontwide=Ricty\ Discord:h18
+  set guifont=Ricty\ Diminished\ Discord:h18
+  set guifontwide=Ricty\ Diminished\ Discord:h18
 elseif has('win32')
     colorscheme desertEx
     set guifont=MeiryoKe_Gothic:h12
@@ -47,8 +47,8 @@ elseif has('win64')
 elseif has('unix')
     colorscheme desertEx
     set transparency=5 " 透明度を指定
-    set guifont=Ricty\ Discord\ h20
-    set guifontwide=Ricty\ Discord\ h20
+    set guifont=Ricty\ Diminished\ Discord\ h20
+    set guifontwide=Ricty\ Diminished\ Discord\ h20
     set background=dark
 endif
 
