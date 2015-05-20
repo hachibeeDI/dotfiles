@@ -6,13 +6,7 @@ BREW_PATH=`/usr/local/bin/brew --prefix`
 export BREW_PATH
 
 # Go {{{
-program_exists () {
-    type "$1" &> /dev/null ;
-}
-
-if program_exists go; then
-    export GOPATH=$HOME/.go
-fi
+export GOPATH=$HOME/.go
 # }}}
 
 
