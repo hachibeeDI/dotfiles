@@ -1985,50 +1985,6 @@ function! bundle.hooks.on_source(bundle)
       let g:unite_source_grep_max_candidates = 200
   endif
 
-  " --- Unite menu --- {{{
-  " http://d.hatena.ne.jp/osyo-manga/20130225/1361794133
-  let g:unite_source_menu_menus = get(g:, 'unite_source_menu_menus', {})
-
-  " unite-shortcut
-  let g:unite_source_menu_menus.shortcut = {
-  \   'description' : 'shortcut'
-  \}
-
-  let g:unite_source_menu_menus.shortcut.candidates = [
-  \   [ 'vimrc'  , s:vimrc ],
-  \   [ 'bundles', fnamemodify(s:vimrc, ':h').'/bundles.vim' ],
-  \   [ 'after ft plugin',   s:MY_VIMRUNTIME.'/.vim/after/ftplugin/'],
-  \   [ 'My Blog', 'OpenBrowser http://hachibeechan.hateblo.jp' ],
-  \   [ 'github', 'https://github.com/hachibeeDI' ],
-  \   [ 'neobundles', s:BUNDLEPATH ],
-  \   [ 'AllMap', 'Unite output:AllMap' ],
-  \ ]
-
-  function! g:unite_source_menu_menus.shortcut.map(key, value)
-      let [word, value] = a:value
-
-      if isdirectory(value)
-          return {
-  \               'word' : '[directory] '.word,
-  \               'kind' : 'directory',
-  \               'action__directory' : value
-  \           }
-      elseif !empty(glob(value))
-          return {
-  \               'word' : '[file] '.word,
-  \               'kind' : 'file',
-  \               'default_action' : 'tabdrop',
-  \               'action__path' : value,
-  \           }
-      else
-          return {
-  \               'word' : '[command] '.word,
-  \               'kind' : 'command',
-  \               'action__command' : value
-  \           }
-      endif
-  endfunction
-  " --- menu }}}
 endfunction
 
 unlet bundle
@@ -2042,7 +1998,7 @@ nnoremap <silent> <SID>[Unite]b :<C-u>Unite buffer<CR>
 " ファイル一覧
 nnoremap <silent> <SID>[Unite]f :<C-u>UniteWithBufferDir -buffer-name=files file<CR>
 " .gitを基準にしたプロジェクト一覧 (ctrlp的な)
-nnoremap <silent> <SID>[Unite]p  :<C-u>Unite file_rec/async:!<CR>
+nnoremap <silent> <SID>[Unite]p :<C-u>Unite file_rec/async:!<CR>
 " レジスタ一覧
 nnoremap <silent> <SID>[Unite]r :<C-u>Unite -buffer-name=register register<CR>
 " 最近使用したファイル一覧
@@ -2053,8 +2009,6 @@ nnoremap <silent> <SID>[Unite]u :<C-u>Unite buffer file_mru<CR>
 nnoremap <silent> <SID>[Unite]t :<C-u>Unite tab<CR>
 " 全部乗せ
 nnoremap <silent> <SID>[Unite]a :<C-u>UniteWithBufferDir -buffer-name=files buffer file_mru bookmark file<CR>
-"" output
-nnoremap <silent> <SID>[Unite]p :<C-u>Unite menu<CR>
 
 " その他
 nnoremap <silent> <SID>[Unite]` :<C-u>Unite -auto-quit neobundle/update<CR>
