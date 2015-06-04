@@ -7,12 +7,6 @@
 [submodule ".zsh/modules/LS_COLORS"]
 	path = .zsh/modules/LS_COLORS
 	url = git://github.com/trapd00r/LS_COLORS.git
-[submodule ".zsh/modules/cdd"]
-	path = .zsh/modules/cdd
-	url = https://github.com/m4i/cdd.git
 [submodule ".zsh/modules/zsh-context-sensitive-alias"]
 	path = .zsh/modules/zsh-context-sensitive-alias
 	url = https://github.com/uasi/zsh-context-sensitive-alias.git
-[submodule ".zsh/modules/zaw"]
-	path = .zsh/modules/zaw
-	url = https://github.com/zsh-users/zaw.git
