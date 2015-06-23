@@ -2399,7 +2399,7 @@ for [begin, end] in [['(', ')'], ['{', '}'], ['[', ']']]
     call s:set_basic_rule({'at': '\%#'.end, 'char': begin, 'input': begin})
 
     call s:set_basic_rule({'at': begin.'\%#'.end, 'char': end,   'leave': 1})
-    call s:set_basic_rule({'at': begin.'\%#'.end, 'char': begin, 'input': bracket, 'input_after': end})
+    call s:set_basic_rule({'at': begin.'\%#'.end, 'char': begin, 'input': begin, 'input_after': end})
     call s:set_basic_rule({'at': begin.'\%#'.end, 'char': '<BS>', 'input': '<BS>', 'delete': 1})
 endfor
 
@@ -2413,7 +2413,7 @@ for opr in ['+', '-', '=', '*']
   call s:set_basic_rule({'at': '\%# '.opr.' ', 'char': '<Del>', 'input': '<Del><Right><Del><Left>'},
         \ {'filetype': s:template_filetypes})
 endfor
-call s:set_basic_rule({'at': ' = \%#', 'char': '=', 'input': '<Left>=', 'leave': 1})
+call s:set_basic_rule({'at': ' = \%#', 'char': '=', 'input': '<Left>=', 'leave': 1}, {'filetype': s:template_filetypes})
 
 call lexima#add_rule({
 \   'at'       : '\s===\s\%#',
@@ -2429,6 +2429,12 @@ call lexima#add_rule({
 \   'at'       : '\s=\%#',
 \   'char'     : '=',
 \   'input'    : '=<Space>',
+\   })
+call lexima#add_rule({
+\   'at'       : '\\\%#',
+\   'char'     : '\',
+\   'input'    : '<BS> => ',
+\   'filetype': 'typescript',
 \   })
 
 
