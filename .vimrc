@@ -313,10 +313,10 @@ NeoBundleLazy 'bps/vim-textobj-python', {
   " in $HOME/.vim/after/ftplugin/python.vim
 " }}}
 
-NeoBundle 'hachibeeDI/vim-textobj-continuous-line', {
-\ 'base': expand('~/Dropbox/development/viml/'),
-\ 'type': 'nosync',
-\ }
+" NeoBundle 'hachibeeDI/vim-textobj-continuous-line', {
+" \ 'base': expand('~/Dropbox/development/viml/'),
+" \ 'type': 'nosync',
+" \ }
 
 "textobj-user }}}
 
@@ -558,10 +558,15 @@ NeoBundleLazy 'leafgarland/typescript-vim', {
 
 " should exec `npm install -g`
 " I dont wanna use 'build' sentence
-NeoBundleLazy 'clausreinke/typescript-tools', {
+" NeoBundleLazy 'clausreinke/typescript-tools', {
+" \ 'autoload' : {
+" \   'filetypes' : ['typescript'] }
+" \}
+NeoBundleLazy 'Quramy/tsuquyomi', {
 \ 'autoload' : {
 \   'filetypes' : ['typescript'] }
 \}
+
 
 NeoBundleLazy 'pangloss/vim-javascript', {
 \ 'autoload' : {
@@ -588,7 +593,7 @@ let g:used_javascript_libs = 'jquery,underscore,requirejs'
 
 NeoBundleLazy 'mxw/vim-jsx', {
 \ 'autoload' : {
-\   'filetypes' : ['jsx', 'javascript', ],
+\   'filetypes' : ['jsx', ],
 \ }}
 let g:jsx_pragma_required = 1
 
