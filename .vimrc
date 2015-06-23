@@ -1804,7 +1804,7 @@ function! bundle.hooks.on_source(bundle)
   "\ '[^.[:digit:] *\t]\%(\.\|->\)\w*\|\h\w*::\w*'
   let g:neocomplete#force_omni_input_patterns.go = '\h\w\.\w*'
 
-  let g:neocomplete#sources#omni#input_patterns.typescript = '\h\w*\|[^. \t]\.\w*'
+  " let g:neocomplete#sources#omni#input_patterns.typescript = '\h\w*\|[^. \t]\.\w*'
 
   " customize sort complete candiates
   "call neocomplete#custom#source('_', 'sorters', ['sorter_length'])
