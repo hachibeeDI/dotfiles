@@ -2545,6 +2545,7 @@ call lexima#add_rule({
 " }}}
 "
 " omni rules
+let s:filetypes_with_omnifunc = ['python', 'typescript', 'javascript']
 call lexima#add_rule({
 \   'at': '^\s*from\%#',
 \   'char': '<Space>',
@@ -2566,9 +2567,10 @@ call lexima#add_rule({
 call s:set_basic_rule({
 \   'at' : '\w\%#',
 \   'char': '.',
-\   'input': '.<C-x><C-f>',
-\   'filetype': 'python',
-\})
+\   'input': '.<C-x><C-o><C-p>',
+\   'filetype': s:filetypes_with_omnifunc,
+\ },
+\ )
 
 "---- }}}
 
