@@ -320,7 +320,11 @@ NeoBundleLazy 'bps/vim-textobj-python', {
 
 "textobj-user }}}
 
-NeoBundle 'cohama/lexima.vim'
+NeoBundleLazy 'cohama/lexima.vim', {
+\   'autoload' : {
+\     'insert' : 1,
+\ },
+\}
 " NeoBundle 'kana/vim-smartinput'
 " NeoBundle 'hachibeeDI/smartinput-petterns', {
 " \ 'base': expand('~/Dropbox/development/viml/'),
@@ -2368,8 +2372,8 @@ endfunction
 "  }}}
 
 " --- smartinput --- {{{
-let bundle = neobundle#get('lexima.vim')
-function! bundle.hooks.on_source(bundle)
+let s:bundle = neobundle#get('lexima.vim')
+function! s:bundle.hooks.on_source(bundle)
   let g:lexima_no_default_rules = 1
   call lexima#set_default_rules()
 
@@ -2431,7 +2435,7 @@ function! bundle.hooks.on_source(bundle)
   \   'char'     : '=',
   \   'input'    : '=<Space>',
   \   })
-  call lexima#add_rule({
+  call s:set_basic_rule({
   \   'at'       : '\\\%#',
   \   'char'     : '\',
   \   'input'    : '<BS> => ',
@@ -2573,6 +2577,7 @@ function! bundle.hooks.on_source(bundle)
   \ },
   \ )
 endfunction
+unlet s:bundle
 "---- }}}
 
 " --- gist-vim -----{{{
