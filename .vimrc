@@ -1106,7 +1106,7 @@ set formatoptions& formatoptions-=ro
 " display settings
 "---------
 
-" enable cursorline only forcused buffer.
+" enable cursorline only focused buffer.
 setlocal cursorline
 autocmd MyAutoCmd WinEnter * setlocal cursorline
 autocmd MyAutoCmd WinLeave * setlocal nocursorline
