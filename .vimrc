@@ -901,6 +901,8 @@ let g:vimhelpgenerator_contents = {
 NeoBundleLazy 'ompugao/uncrustify-vim'
 
 call neobundle#end()
+" Installation check.
+NeoBundleCheck
 " Neobundle }}}
 
 " --- default bundled plugins ---
@@ -941,8 +943,6 @@ let g:c_syntax_for_h = 1
 filetype plugin indent on
 syntax enable
 
-" Installation check.
-NeoBundleCheck
 if !has('vim_starting')
   " Call on_source hook when reloading .vimrc.
   call neobundle#call_hook('on_source')
