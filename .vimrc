@@ -1383,7 +1383,7 @@ nnoremap <Left> <C-w>>
 nnoremap <Right> <C-w><
 
 
-" Ctrl + C は、`insert modeの強制終了`なので微妙に挙動がかわる。うざいので置き換える
+" Ctrl + C は、`insert modeの強制終了`なので微妙に挙動が変わる。直感に反するので統一
 inoremap <C-c> <Esc>
 
 " 行頭と空白抜きの先頭をトグルする
@@ -1421,7 +1421,7 @@ cnoremap <C-d> <Del>
 cnoremap <C-k> <Del><Del><Del><Del><Del><Del><Del><Del><Del><Del><Del><Del><Del><Del><Del>
 
 " ----------- operation
-" http://vim-users.jp/2011/04/hack214/
+" http://vim-jp.org/vim-users-jp/2011/04/21/Hack-214.html
 onoremap ) t)
 onoremap ( t(
 vnoremap ) t)
