@@ -696,6 +696,7 @@ if executable('ghc')
       \   'filetypes' : ['haskell'] }
       \}
 endif
+
 " }}}
 " -- VB.NET {{{
 NeoBundleLazy 'hachibeeDI/vim-vbnet', {
@@ -770,11 +771,11 @@ NeoBundleLazy 'duganchen/vim-soy', {
 \ }
 
 " }}}
-
-NeoBundleLazy 'chrisbra/csv.vim', {
-\ 'autoload' : {
-\   'filetypes' : ['csv', ] }
-\ }
+"
+" NeoBundleLazy 'chrisbra/csv.vim', {
+" \ 'autoload' : {
+" \   'filetypes' : ['csv', ] }
+" \ }
 
 " === }}}
 NeoBundleLazy 'SQLUtilities', {
