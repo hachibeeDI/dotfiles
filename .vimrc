@@ -72,9 +72,10 @@ NeoBundleLazy 'Shougo/neosnippet-snippets', {
 \ 'autoload' : {
 \   'insert' : 1,
 \ },
-\ 'base': expand('~/Dropbox/development/viml/'),
-\ 'type': 'nosync',
 \ }
+" \ 'base': expand('~/Dropbox/development/viml/'),
+" \ 'type': 'nosync',
+" \ }
 
 NeoBundle 'Shougo/vimfiler', '', 'default'
 call neobundle#config('vimfiler', {
@@ -205,8 +206,6 @@ call neobundle#config('unite-quickfix', {
 NeoBundleLazy 'hachibeeDI/unite-pypi-classifiers', {
 \ 'autoload' : {
 \   'unite_sources' : 'pypiclassifiers'},
-\ 'base': expand('~/Dropbox/development/viml/'),
-\ 'type': 'nosync',
 \ }
 " }}}
 
@@ -264,10 +263,8 @@ nmap <silent>srb <Plug>(operator-surround-replace)<Plug>(textobj-between-a)
 NeoBundleLazy 'hachibeeDI/vim-operator-autopep8', {
 \   'autoload' : {
 \     'filetypes' : ['python'],
-\ },
+\   },
 \   'depends': ['kana/vim-operator-user', 'andviro/flake8-vim'],
-\   'base': expand('~/Dropbox/development/viml/'),
-\   'type': 'nosync',
 \ }
 map ,p <Plug>(operator-autopep8)
 
@@ -430,17 +427,17 @@ NeoBundleLazy 'jmcantrell/vim-virtualenv', {
 \ 'disabled' : !has('python'),
 \ }
 " --- forked
-" NeoBundleLazy 'andviro/flake8-vim', {
-" \ 'autoload' : {
-" \   'filetypes' : ['python'],
-" \ }}
-NeoBundleLazy 'flake8-vim', {
+NeoBundleLazy 'andviro/flake8-vim', {
 \ 'autoload' : {
 \   'filetypes' : ['python'],
-\ },
-\ 'base': expand('~/Dropbox/development/viml/'),
-\ 'type': 'nosync',
-\}
+\ }}
+" NeoBundleLazy 'flake8-vim', {
+" \ 'autoload' : {
+" \   'filetypes' : ['python'],
+" \ },
+" \ 'base': expand('~/Dropbox/development/viml/'),
+" \ 'type': 'nosync',
+" \}
 NeoBundleLazy 'hachibeeDI/rope-vim', {
 \ 'autoload' : {
 \   'filetypes' : ['python'],
@@ -465,9 +462,10 @@ NeoBundleLazy 'hachibeeDI/python_hl_lvar.vim', {
 \ 'autoload' : {
 \     'filetypes' : ['python'],
 \ },
-\ 'base': expand('~/Dropbox/development/viml/'),
-\ 'type': 'nosync',
 \ }
+" \ 'base': expand('~/Dropbox/development/viml/'),
+" \ 'type': 'nosync',
+" \ }
 let g:enable_python_hl_lvar = 1
 let g:python_hl_lvar_highlight_color = 'guifg=palegreen2 gui=NONE ctermfg=110 cterm=NONE'
 "let g:python_hl_lvar_verbose = 1  for debug
