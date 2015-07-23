@@ -313,18 +313,23 @@ NeoBundleLazy 'bps/vim-textobj-python', {
   " in $HOME/.vim/after/ftplugin/python.vim
 " }}}
 
-NeoBundle 'hachibeeDI/vim-textobj-continuous-line', {
-\ 'base': expand('~/Dropbox/development/viml/'),
-\ 'type': 'nosync',
-\ }
+" NeoBundle 'hachibeeDI/vim-textobj-continuous-line', {
+" \ 'base': expand('~/Dropbox/development/viml/'),
+" \ 'type': 'nosync',
+" \ }
 
 "textobj-user }}}
 
-NeoBundle 'kana/vim-smartinput'
-NeoBundle 'hachibeeDI/smartinput-petterns', {
-\ 'base': expand('~/Dropbox/development/viml/'),
-\ 'type': 'nosync',
-\ }
+NeoBundleLazy 'cohama/lexima.vim', {
+\   'autoload' : {
+\     'insert' : 1,
+\ },
+\}
+" NeoBundle 'kana/vim-smartinput'
+" NeoBundle 'hachibeeDI/smartinput-petterns', {
+" \ 'base': expand('~/Dropbox/development/viml/'),
+" \ 'type': 'nosync',
+" \ }
 NeoBundleLazy 'kana/vim-smartchr', {
 \ 'autoload' : {
 \   'function_prefix' : 'smartchr',
@@ -557,10 +562,15 @@ NeoBundleLazy 'leafgarland/typescript-vim', {
 
 " should exec `npm install -g`
 " I dont wanna use 'build' sentence
-NeoBundleLazy 'clausreinke/typescript-tools', {
+" NeoBundleLazy 'clausreinke/typescript-tools', {
+" \ 'autoload' : {
+" \   'filetypes' : ['typescript'] }
+" \}
+NeoBundleLazy 'Quramy/tsuquyomi', {
 \ 'autoload' : {
 \   'filetypes' : ['typescript'] }
 \}
+
 
 NeoBundleLazy 'pangloss/vim-javascript', {
 \ 'autoload' : {
@@ -587,7 +597,7 @@ let g:used_javascript_libs = 'jquery,underscore,requirejs'
 
 NeoBundleLazy 'mxw/vim-jsx', {
 \ 'autoload' : {
-\   'filetypes' : ['jsx', 'javascript', ],
+\   'filetypes' : ['jsx', ],
 \ }}
 let g:jsx_pragma_required = 1
 
@@ -892,6 +902,8 @@ let g:vimhelpgenerator_contents = {
 NeoBundleLazy 'ompugao/uncrustify-vim'
 
 call neobundle#end()
+" Installation check.
+NeoBundleCheck
 " Neobundle }}}
 
 " --- default bundled plugins ---
@@ -932,8 +944,6 @@ let g:c_syntax_for_h = 1
 filetype plugin indent on
 syntax enable
 
-" Installation check.
-NeoBundleCheck
 if !has('vim_starting')
   " Call on_source hook when reloading .vimrc.
   call neobundle#call_hook('on_source')
@@ -1097,7 +1107,7 @@ set formatoptions& formatoptions-=ro
 " display settings
 "---------
 
-" enable cursorline only forcused buffer.
+" enable cursorline only focused buffer.
 setlocal cursorline
 autocmd MyAutoCmd WinEnter * setlocal cursorline
 autocmd MyAutoCmd WinLeave * setlocal nocursorline
@@ -1374,7 +1384,7 @@ nnoremap <Left> <C-w>>
 nnoremap <Right> <C-w><
 
 
-" Ctrl + C は、`insert modeの強制終了`なので微妙に挙動がかわる。うざいので置き換える
+" Ctrl + C は、`insert modeの強制終了`なので微妙に挙動が変わる。直感に反するので統一
 inoremap <C-c> <Esc>
 
 " 行頭と空白抜きの先頭をトグルする
@@ -1412,7 +1422,7 @@ cnoremap <C-d> <Del>
 cnoremap <C-k> <Del><Del><Del><Del><Del><Del><Del><Del><Del><Del><Del><Del><Del><Del><Del>
 
 " ----------- operation
-" http://vim-users.jp/2011/04/hack214/
+" http://vim-jp.org/vim-users-jp/2011/04/21/Hack-214.html
 onoremap ) t)
 onoremap ( t(
 vnoremap ) t)
@@ -1732,17 +1742,18 @@ function! bundle.hooks.on_source(bundle)
   inoremap <expr><C-g>     neocomplete#undo_completion()
   inoremap <expr><C-l>     neocomplete#complete_common_string()
 
-  imap <expr> <CR> pumvisible() ?
-\     neocomplete#close_popup() : "\<Plug>(smartinput_CR)"
+  inoremap <expr> <CR> pumvisible() ?
+  \     neocomplete#close_popup() : "\<CR>"
+" \     neocomplete#close_popup() : "\<Plug>(smartinput_CR)"
 
   " <TAB>: completion.
   inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
 
   " <C-h>, <BS>: close popup and delete backword char.
-  "inoremap <expr><C-h> neocomplete#smart_close_popup()."\<C-h>"
-  "inoremap <expr><BS> neocomplete#smart_close_popup()."\<C-h>"
-  imap <expr><C-h> neocomplete#smart_close_popup()."\<Plug>(smartinput_C-h)"
-  imap <expr><BS> neocomplete#smart_close_popup()."\<Plug>(smartinput_C-h)"
+  inoremap <expr><C-h> neocomplete#smart_close_popup()."\<C-h>"
+  inoremap <expr><BS> neocomplete#smart_close_popup()."\<C-h>"
+  " imap <expr><C-h> neocomplete#smart_close_popup()."\<Plug>(smartinput_C-h)"
+  " imap <expr><BS> neocomplete#smart_close_popup()."\<Plug>(smartinput_C-h)"
 
   inoremap <expr><C-y>  neocomplete#close_popup()
   inoremap <expr><C-e> pumvisible() ? neocomplete#cancel_popup() : "\<End>"
@@ -1760,9 +1771,6 @@ function! bundle.hooks.on_source(bundle)
   endif
   let g:neocomplete#sources#omni#input_patterns.php =
 		\ '[^. \t]->\%(\h\w*\)\?\|\h\w*::\%(\h\w*\)\?'
-  "let g:neocomplete#sources#omni#input_patterns.php =
-  "              \ '\h\w*\|[^. \t]->\%(\h\w*\)\?\|\h\w*::\%(\h\w*\)\?'
-  " let g:neocomplete#sources#omni#input_patterns.ruby = '[^. *\t]\.\w*\|\h\w*::'
   let g:neocomplete#sources#omni#input_patterns.haxe = '\v([\]''"\)]|\w|(^\s*))(\.|\()'
   " let g:neocomplete#sources#omni#input_patterns.python = '[^. \t]\.\w*'
   let g:neocomplete#sources#omni#input_patterns.go = '\h\w*\.\?'
@@ -1791,9 +1799,6 @@ function! bundle.hooks.on_source(bundle)
   "\ '[^. *\t]\.\w*\|\h\w*::'
   let g:neocomplete#force_omni_input_patterns.haxe =
   \ '\v([\]''"\)]|\w|(^\s*))(\.|\()'
-  "let g:neocomplete#force_omni_input_patterns.python =
-  "\ '\%([^. \t]\.\|^\s*@\|^\s*from\s.\+import \|^\s*from \|^\s*import \)\w*'
-  let g:neocomplete#force_omni_input_patterns.go = '\h\w\.\w*'
   let g:neocomplete#force_omni_input_patterns.c =
   \ '[^.[:digit:] *\t]\%(\.\|->\)\w*'
   let g:neocomplete#force_omni_input_patterns.cpp =
@@ -1803,7 +1808,7 @@ function! bundle.hooks.on_source(bundle)
   "let g:neocomplete#force_omni_input_patterns.objcpp =
   "\ '[^.[:digit:] *\t]\%(\.\|->\)\w*\|\h\w*::\w*'
 
-  let g:neocomplete#sources#omni#input_patterns.typescript = '\h\w*\|[^. \t]\.\w*'
+  " let g:neocomplete#sources#omni#input_patterns.typescript = '\h\w*\|[^. \t]\.\w*'
 
   " customize sort complete candiates
   "call neocomplete#custom#source('_', 'sorters', ['sorter_length'])
@@ -2357,9 +2362,6 @@ function! s:def_smartchar()
   elseif l:lang ==# 'haxe'
     inoremap <buffer> <expr> = smartchr#one_of(' = ', ' == ', '=')
     inoremap <buffer> <expr> \ smartchr#one_of('\', ' -> ')
-    "inoremap <buffer> <expr> + smartchr#loop(' + ', '+')
-    "inoremap <buffer> <expr> - smartchr#loop(' - ', '-')
-    "inoremap <buffer> <expr> * smartchr#loop(' * ', '*')
   elseif l:lang ==# 'go'
     inoremap <buffer> <expr> = smartchr#one_of(' = ', ' := ', ' == ', '=')
     inoremap <buffer> <expr> ! smartchr#one_of(' !', ' != ', '!')
@@ -2371,184 +2373,212 @@ endfunction
 "  }}}
 
 " --- smartinput --- {{{
+let s:bundle = neobundle#get('lexima.vim')
+function! s:bundle.hooks.on_source(bundle)
+  let g:lexima_no_default_rules = 1
+  call lexima#set_default_rules()
 
-" --------------- trigger definitions ------------------{{{
-" 以下、neocompleteなどの主要キーマップを書き換えるプラグインとの衝突に留意すること
+  let s:defailt_ignore_syntax = ["String", "Comment"]
 
-" 他プラグインへの<BS>や<CR>マッピング時に、smartinputの機能を含むソレを提供させる
-" via: http://qiita.com/todashuta@github/items/bdad8e28843bfb3cd8bf
-call smartinput#map_to_trigger('i', '<Plug>(smartinput_BS)',
-      \                        '<BS>',
-      \                        '<BS>')
-call smartinput#map_to_trigger('i', '<Plug>(smartinput_C-h)',
-      \                        '<BS>',
-      \                        '<C-h>')
-call smartinput#map_to_trigger('i', '<Plug>(smartinput_CR)',
-      \                        '<CR>',
-      \                        '<CR>')
-
-call smartinput#map_to_trigger('i', '<C-j>', '<C-j>', '<C-j>')
-call smartinput#map_to_trigger('i', '<Bar>', '<Bar>', '<Bar>')
-call smartinput#map_to_trigger('i', '-', '-', "<C-R>=smartchr#loop(' - ', '-')<CR>")
-call smartinput#map_to_trigger('i', '+', '+', "<C-R>=smartchr#loop(' + ', '+')<CR>")
-call smartinput#map_to_trigger('i', '<', '<', '<')
-call smartinput#map_to_trigger('i', '>', '>', '>')
-call smartinput#map_to_trigger('i', '$', '\$', '\$')
-" }}}
-
-" smartinputとsmartchrの連携tips
-"  -> [http://ac-mopp.blogspot.jp/2013/07/vim-smart-input.html]
-
-"     Note: that only "wide" syntax items are effective.  In other words,
-"     syntax items which is linked to another is not effective, and they
-"     will never be matched.  For example:
-" map(synstack(line('.'), col('.')), 'synIDattr(synIDtrans(v:val), "name")')
-" で得られるSyntax名のみ
-" TODO: synIDattr(synID(line('.'), col('.'), 0), 'name') ではだめなのかな
-
-"" via: http://rhysd.hatenablog.com/entry/20121017/1350444269
-call smartinput#define_rule({
-\   'at': '\s\+\%#$',
-\   'char': '<CR>',
-\   'input': "<C-o>:call setline('.', substitute(getline('.'), '\\s\\+$', '', ''))<CR><CR>",
-\   })
-
-call smartinput#define_rule({
-\   'at'       : '\%(\<struct\>\|\<class\>\|\<enum\>\)\s*\w\+.*\%#',
-\   'char'     : '{',
-\   'input'    : '{};<Left><Left>',
-\   'filetype' : ['cpp'],
-\   })
-
-" 演算子でsmartchrを適用したくない条件を書いていく {{{
-call smartinput#define_rule({
-\   'at'       : '\%#',
-\   'char'     : '-',
-\   'input'    : '-',
-\   'syntax': ['Constant', 'Special', 'Comment'],
-\   })
-call smartinput#define_rule({
-\   'at'       : '\%#',
-\   'char'     : '-',
-\   'input'    : '-',
-\   'filetype': ['rst', 'markdown', 'html', 'xml', 'css', 'sass', 'scss', 'stylus', 'bash', 'clojure', ],
-\   })
-call smartinput#define_rule({
-\   'at'       : '\%#',
-\   'char'     : '+',
-\   'input'    : '+',
-\   'syntax': ['Constant', 'Special', 'Comment'],
-\   })
-
-"}}}
-
-call smartinput#define_rule({
-\   'at'       : '\s===\s\%#',
-\   'char'     : '<BS>',
-\   'input'    : '<Left><BS><Right>',
-\   })
-call smartinput#define_rule({
-\   'at'       : '\s==\s\%#',
-\   'char'     : '<BS>',
-\   'input'    : '<Left><BS><Right>',
-\   })
-call smartinput#define_rule({
-\   'at'       : '\s=\s\%#',
-\   'char'     : '<BS>',
-\   'input'    : '<BS><Left><BS><Right>',
-\   })
-call smartinput#define_rule({
-\   'at'       : '\s=\%#',
-\   'char'     : '=',
-\   'input'    : '=<Space>',
-\   })
+  function! s:set_basic_rule(rule, ...)
+    call lexima#add_rule(a:rule)
+    if a:0 == 0
+      let ignore_rule = {'at': a:rule.at, 'char': a:rule.char, 'syntax': s:defailt_ignore_syntax, 'input': a:rule.char}
+      call lexima#add_rule(ignore_rule)
+    else
+      let ignore_rule = a:1
+      " ファイルタイプがあるなら、ファイルタイプを優先させる
+      if !(has_key(ignore_rule, 'syntax') || has_key(ignore_rule, 'filetype'))
+        let ignore_rule.syntax = s:defailt_ignore_syntax
+      endif
+      let ignore_rule.at = a:rule.at
+      let ignore_rule.char = a:rule.char
+      let ignore_rule.input = a:rule.char
+      call lexima#add_rule(ignore_rule)
+    endif
+  endfunction
 
 
-" html and markdown like that -----
-call smartinput#define_rule({
-\   'at': '\%#',
-\   'char': '<',
-\   'input': '<><Left>',
-\   'filetype': ['xml', 'html', 'eruby'],
-\ })
-" 前が空白以外なら型パラメータ、空白なら演算子だと考えさせる
-call smartinput#define_rule({
-\   'at': '[^[:blank:]]\%#',
-\   'char': '<',
-\   'input': '<><Left>',
-\   'filetype': ['java', 'cpp', 'cs', 'haxe'],
-\ })
-call smartinput#define_rule({
-\   'at': '[:blank:]\%#',
-\   'char': '<',
-\   'input': "<C-R>=smartchr#one_of('< ', '<')<CR>",
-\   'filetype': ['java', 'cpp', 'cs', 'haxe'],
-\ })
+  for [begin, end] in [['(', ')'], ['{', '}'], ['[', ']']]
+      let bracket = begin.end
+      call s:set_basic_rule({'at': '\%#',     'char': begin, 'input': begin, 'input_after': end})
+      call s:set_basic_rule({'at': '\%#'.end, 'char': begin, 'input': begin})
 
-call smartinput#define_rule({
-\   'at': '<\%#>',
-\   'char': '<BS>',
-\   'input': '<Del><BS>',
-\   'filetype': ['xml', 'html', 'eruby', 'java', 'cpp', 'cs', 'haxe'],
-\ })
+      call s:set_basic_rule({'at': begin.'\%#'.end, 'char': end,   'leave': 1})
+      call s:set_basic_rule({'at': begin.'\%#'.end, 'char': begin, 'input': begin, 'input_after': end})
+      call s:set_basic_rule({'at': begin.'\%#'.end, 'char': '<BS>', 'input': '<BS>', 'delete': 1})
+  endfor
 
-call smartinput#define_rule({
-\   'at': '<.*\%#>',
-\   'char': '>',
-\   'input': '<Right>',
-\   'filetype': ['xml', 'html', 'eruby', 'java', 'cpp', 'cs', 'haxe'],
-\ })
 
-" セミコロンを要求するうんこシンタックス対応 {{{
-call smartinput#define_rule({
-\   'at': '\%#;$',
-\   'char': ';',
-\   'input': '<Right>',
-\   'filetype': ['java', 'cpp', 'cs', 'haxe'],
-\ })
-call smartinput#define_rule({
-\   'at': '\%#;$',
-\   'char': '<CR>',
-\   'input': '<Right><CR>',
-\   'filetype': ['java', 'cpp', 'cs', 'haxe'],
-\ })
-call smartinput#define_rule({
-\   'at': '(\%#;$',
-\   'char': '<CR>',
-\   'input': ')<Left><CR><BS><CR><Up><End><Tab>',
-\   'filetype': ['java', 'cpp', 'cs', 'haxe'],
-\ })
-" }}}
+  let s:template_filetypes = ['rst', 'markdown', 'html', 'xml', 'css', 'sass', 'scss', 'stylus', 'bash', 'clojure', ]
+  for opr in ['+', '-', '=', '*']
+    call s:set_basic_rule({'at': '\%#', 'char': opr, 'input': '<Space>'.opr.'<Space>'},
+          \ {'filetype': s:template_filetypes})
+    call s:set_basic_rule({'at': ' '.opr.' '.'\%#', 'char': '<BS>', 'input': '<BS><Left><BS>', 'leave': 1},
+          \ {'filetype': s:template_filetypes})
+    call s:set_basic_rule({'at': '\%# '.opr.' ', 'char': '<Del>', 'input': '<Del><Right><Del><Left>'},
+          \ {'filetype': s:template_filetypes})
+  endfor
+  call s:set_basic_rule({'at': ' = \%#', 'char': '=', 'input': '<Left>=', 'leave': 1}, {'filetype': s:template_filetypes})
 
-" ERB
-call smartinput#define_rule({
-\   'at': '<\%#',
-\   'char': '%',
-\   'input': '%%<Left>',
-\   'filetype': ['eruby'],
-\ })
-call smartinput#define_rule({
-\   'at': '%.*\%#%',
-\   'char': '%',
-\   'input': '',
-\   'filetype': ['eruby'],
-\ })
+  call lexima#add_rule({
+  \   'at'       : '\s===\s\%#',
+  \   'char'     : '<BS>',
+  \   'input'    : '<Left><BS><Right>',
+  \   })
+  call lexima#add_rule({
+  \   'at'       : '\s==\s\%#',
+  \   'char'     : '<BS>',
+  \   'input'    : '<Left><BS><Right>',
+  \   })
+  call lexima#add_rule({
+  \   'at'       : '\s=\%#',
+  \   'char'     : '=',
+  \   'input'    : '=<Space>',
+  \   })
+  call s:set_basic_rule({
+  \   'at'       : '\\\%#',
+  \   'char'     : '\',
+  \   'input'    : '<BS> => ',
+  \   'filetype': 'typescript',
+  \   })
 
-call smartinput#define_rule({
-\   'at': '\s\%#=\s',
-\   'char': '<BS>',
-\   'input': '<BS><Right><Del><Left>',
-\ })
 
-" Golang {{{
+  " smartinputとsmartchrの連携tips
+  "  -> [http://ac-mopp.blogspot.jp/2013/07/vim-smart-input.html]
 
-call smartinput#define_rule({
-\   'at': '[^[:alnum:]]json\%#',
-\   'char': ':',
-\   'input': '""<Left>',
-\ })
-" }}}
-"
+  "     Note: that only "wide" syntax items are effective.  In other words,
+  "     syntax items which is linked to another is not effective, and they
+  "     will never be matched.  For example:
+  " map(synstack(line('.'), col('.')), 'synIDattr(synIDtrans(v:val), "name")')
+  " で得られるSyntax名のみ
+  " TODO: synIDattr(synID(line('.'), col('.'), 0), 'name') ではだめなのかな
+
+  "" via: http://rhysd.hatenablog.com/entry/20121017/1350444269
+  call lexima#add_rule({
+  \   'at': '\s\+\%#$',
+  \   'char': '<CR>',
+  \   'input': "<C-o>:call setline('.', substitute(getline('.'), '\\s\\+$', '', ''))<CR><CR>",
+  \   })
+
+  call lexima#add_rule({
+  \   'at'       : '\%(\<struct\>\|\<class\>\|\<enum\>\)\s*\w\+.*\%#',
+  \   'char'     : '{',
+  \   'input'    : '{};<Left><Left>',
+  \   'filetype' : ['cpp'],
+  \   })
+
+  "}}}
+
+
+  " html and markdown like that -----
+  call lexima#add_rule({
+  \   'at': '\%#',
+  \   'char': '<',
+  \   'input': '<><Left>',
+  \   'filetype': ['xml', 'html', 'eruby'],
+  \ })
+  " 前が空白以外なら型パラメータ、空白なら演算子だと考えさせる
+  call lexima#add_rule({
+  \   'at': '[^[:blank:]]\%#',
+  \   'char': '<',
+  \   'input': '<><Left>',
+  \   'filetype': ['java', 'cpp', 'cs', 'haxe'],
+  \ })
+  call lexima#add_rule({
+  \   'at': '[:blank:]\%#',
+  \   'char': '<',
+  \   'input': "<C-R>=smartchr#one_of('< ', '<')<CR>",
+  \   'filetype': ['java', 'cpp', 'cs', 'haxe'],
+  \ })
+
+  call lexima#add_rule({
+  \   'at': '<\%#>',
+  \   'char': '<BS>',
+  \   'input': '<Del><BS>',
+  \   'filetype': ['xml', 'html', 'eruby', 'java', 'cpp', 'cs', 'haxe'],
+  \ })
+
+  call lexima#add_rule({
+  \   'at': '<.*\%#>',
+  \   'char': '>',
+  \   'input': '<Right>',
+  \   'filetype': ['xml', 'html', 'eruby', 'java', 'cpp', 'cs', 'haxe'],
+  \ })
+
+  " セミコロンを要求するうんこシンタックス対応 {{{
+  call lexima#add_rule({
+  \   'at': '\%#;$',
+  \   'char': ';',
+  \   'input': '<Right>',
+  \   'filetype': ['java', 'cpp', 'cs', 'haxe'],
+  \ })
+  call lexima#add_rule({
+  \   'at': '\%#;$',
+  \   'char': '<CR>',
+  \   'input': '<Right><CR>',
+  \   'filetype': ['java', 'cpp', 'cs', 'haxe'],
+  \ })
+  call lexima#add_rule({
+  \   'at': '(\%#;$',
+  \   'char': '<CR>',
+  \   'input': ')<Left><CR><BS><CR><Up><End><Tab>',
+  \   'filetype': ['java', 'cpp', 'cs', 'haxe'],
+  \ })
+  " }}}
+
+  " ERB
+  call lexima#add_rule({
+  \   'at': '<\%#',
+  \   'char': '%',
+  \   'input': '%%<Left>',
+  \   'filetype': ['eruby'],
+  \ })
+  call lexima#add_rule({
+  \   'at': '%.*\%#%',
+  \   'char': '%',
+  \   'input': '',
+  \   'filetype': ['eruby'],
+  \ })
+
+  " Golang {{{
+
+  call lexima#add_rule({
+  \   'at': '[^[:alnum:]]json\%#',
+  \   'char': ':',
+  \   'input': '""<Left>',
+  \ })
+  " }}}
+  "
+  " omni rules
+  let s:filetypes_with_omnifunc = ['python', 'typescript', 'javascript', 'go']
+  call lexima#add_rule({
+  \   'at': '^\s*from\%#',
+  \   'char': '<Space>',
+  \   'input': '<Space><C-x><C-o>',
+  \   'filetype': 'python',
+  \ })
+  call lexima#add_rule({
+  \   'at': '^\s*from\s.\+ import\%#',
+  \   'char': '<Space>',
+  \   'input': '<Space><C-x><C-o>',
+  \   'filetype': 'python',
+  \ })
+  call lexima#add_rule({
+  \   'at': '^\s*import\%#',
+  \   'char': '<Space>',
+  \   'input': '<Space><C-x><C-o>',
+  \   'filetype': 'python',
+  \ })
+  call s:set_basic_rule({
+  \   'at' : '\w\%#',
+  \   'char': '.',
+  \   'input': '<C-x><C-o><C-p>',
+  \   'filetype': s:filetypes_with_omnifunc,
+  \ },
+  \ )
+endfunction
+unlet s:bundle
 "---- }}}
 
 " --- gist-vim -----{{{
