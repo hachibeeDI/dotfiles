@@ -1,9 +1,9 @@
 {
-  "CustomMatcher": {
-      "Migemo": [
-          "migemogrep",
-          "$QUERY"
-      ]
+  "CustomFilter": {
+      "Migemo": {
+          "Cmd": "migemogrep",
+          "Args": ["$QUERY"]
+      }
     },
   "Style": {
     "Basic": ["on_default", "default"],
