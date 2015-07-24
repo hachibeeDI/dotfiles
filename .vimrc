@@ -1331,7 +1331,7 @@ endif
 " toggle set spell
 nnoremap <SID>[Show]s  :<C-u>setl spell!<CR>
 
-if version >= 703
+if v:version >= 703
   nnoremap <silent> <SID>[Show]n :<C-u>ToggleNumber<CR>
 
   command! -nargs=0 ToggleNumber call ToggleNumberOption()
@@ -1543,7 +1543,7 @@ command! DeleteTrail call s:DeleteTrailingSpaces()
 function! s:DeleteTrailingSpaces()
     let l:l = line('.')
     let l:c = col('.')
-    %s/\s\+$//g
+    execute ':%s/\s\+$//g'
     nohl
     call cursor(l, c)
     echo 'delete trail'
@@ -2377,7 +2377,7 @@ function! s:bundle.hooks.on_source(bundle)
   let g:lexima_no_default_rules = 1
   call lexima#set_default_rules()
 
-  let s:defailt_ignore_syntax = ["String", "Comment"]
+  let s:defailt_ignore_syntax = ['String', 'Comment']
 
   function! s:set_basic_rule(rule, ...)
     call lexima#add_rule(a:rule)
