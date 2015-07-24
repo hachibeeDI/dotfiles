@@ -1486,7 +1486,7 @@ nnoremap <expr><silent> T '?\V'.<SID>getchar_safe().'\v\zs.'."\<CR>:nohlsearch\<
 nnoremap <C-j> *
 nnoremap <C-k> #
 
-" <expr>は副作用(カーソルの移動とか)を許可しないので使えない
+" NOTE: <expr>は副作用(カーソルの移動とか)を許可しないので使えない
 " preview error line in quickfix
 nnoremap <M-p> :<C-u>call <SID>loop_qfpreview()<CR>
 function! s:loop_qfpreview()
@@ -2571,7 +2571,7 @@ function! s:bundle.hooks.on_source(bundle)
   call s:set_basic_rule({
   \   'at' : '\w\%#',
   \   'char': '.',
-  \   'input': '<C-x><C-o><C-p>',
+  \   'input': '.<C-x><C-o><C-p>',
   \   'filetype': s:filetypes_with_omnifunc,
   \ },
   \ )
