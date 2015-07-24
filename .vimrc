@@ -2370,7 +2370,8 @@ function! s:def_smartchar()
 endfunction
 "  }}}
 
-" --- smartinput --- {{{
+" --- smartinput → lexima --- {{{
+" NOTE: http://secret-garden.hatenablog.com/entry/2015/05/06/211712 がいけてたのでleximaに乗り換え実験
 let s:bundle = neobundle#get('lexima.vim')
 function! s:bundle.hooks.on_source(bundle)
   let g:lexima_no_default_rules = 1
