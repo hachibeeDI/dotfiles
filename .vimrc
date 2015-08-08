@@ -2375,72 +2375,80 @@ endfunction
 let s:bundle = neobundle#get('lexima.vim')
 function! s:bundle.hooks.on_source(bundle)
   let g:lexima_no_default_rules = 1
-  call lexima#set_default_rules()
+  call g:lexima#set_default_rules()
 
-  let s:defailt_ignore_syntax = ['String', 'Comment']
+  let s:defailt_ignore_rule = {'syntax': ['String', 'Comment']}
+  
+  function! s:as_list(a)
+      return type(a:a) == type([]) ? a:a : [a:a]
+  endfunction
 
-  function! s:set_basic_rule(rule, ...)
-    call lexima#add_rule(a:rule)
-    if a:0 == 0
-      let ignore_rule = {'at': a:rule.at, 'char': a:rule.char, 'syntax': s:defailt_ignore_syntax, 'input': a:rule.char}
-      call lexima#add_rule(ignore_rule)
-    else
-      let ignore_rule = a:1
-      " ファイルタイプがあるなら、ファイルタイプを優先させる
-      if !(has_key(ignore_rule, 'syntax') || has_key(ignore_rule, 'filetype'))
-        let ignore_rule.syntax = s:defailt_ignore_syntax
-      endif
-      let ignore_rule.at = a:rule.at
-      let ignore_rule.char = a:rule.char
-      let ignore_rule.input = a:rule.char
-      call lexima#add_rule(ignore_rule)
-    endif
+  function! s:add_ignore_rule(rule)
+      let l:cp_rule = copy(a:rule)
+      let l:cp_rule.input = l:cp_rule.char
+      let l:cp_rule.input_after = ''
+      call g:lexima#add_rule(l:cp_rule)
   endfunction
 
 
-  for [begin, end] in [['(', ')'], ['{', '}'], ['[', ']']]
-      let bracket = begin.end
-      call s:set_basic_rule({'at': '\%#',     'char': begin, 'input': begin, 'input_after': end})
-      call s:set_basic_rule({'at': '\%#'.end, 'char': begin, 'input': begin})
+  function! s:add_rule_with_ignores(rule, ...)
+      call g:lexima#add_rule(a:rule)
+      if a:0 == 0
+          return
+      endif
 
-      call s:set_basic_rule({'at': begin.'\%#'.end, 'char': end,   'leave': 1})
-      call s:set_basic_rule({'at': begin.'\%#'.end, 'char': begin, 'input': begin, 'input_after': end})
-      call s:set_basic_rule({'at': begin.'\%#'.end, 'char': '<BS>', 'input': '<BS>', 'delete': 1})
+      for l:ignore in s:as_list(a:1)
+          call s:add_ignore_rule(extend(copy(a:rule), l:ignore))
+      endfor
+  endfunction
+
+
+  for [l:begin, l:end] in [['(', ')'], ['{', '}'], ['[', ']']]
+      let l:bracket = l:begin.end
+      call s:add_rule_with_ignores({'at': '\%#',     'char': l:begin, 'input': l:begin, 'input_after': l:end}, s:defailt_ignore_rule)
+      call s:add_rule_with_ignores({'at': '\%#'.l:end, 'char': l:begin, 'input': l:begin}, s:defailt_ignore_rule)
+
+      call s:add_rule_with_ignores({'at': l:begin.'\%#'.l:end, 'char': l:end,   'leave': 1}, s:defailt_ignore_rule)
+      call s:add_rule_with_ignores({'at': l:begin.'\%#'.l:end, 'char': l:begin, 'input': l:begin, 'input_after': l:end}, s:defailt_ignore_rule)
+      call s:add_rule_with_ignores({'at': l:begin.'\%#'.l:end, 'char': '<BS>', 'input': '<BS>', 'delete': 1}, s:defailt_ignore_rule)
   endfor
 
 
   let s:template_filetypes = ['rst', 'markdown', 'html', 'xml', 'css', 'sass', 'scss', 'stylus', 'bash', 'clojure', ]
-  for opr in ['+', '-', '=', '*']
-    call s:set_basic_rule({'at': '\%#', 'char': opr, 'input': '<Space>'.opr.'<Space>'},
-          \ {'filetype': s:template_filetypes})
-    call s:set_basic_rule({'at': ' '.opr.' '.'\%#', 'char': '<BS>', 'input': '<BS><Left><BS>', 'leave': 1},
-          \ {'filetype': s:template_filetypes})
-    call s:set_basic_rule({'at': '\%# '.opr.' ', 'char': '<Del>', 'input': '<Del><Right><Del><Left>'},
-          \ {'filetype': s:template_filetypes})
+  for l:opr in ['+', '-', '=', '*']
+    call s:add_rule_with_ignores({'at': '\%#', 'char': l:opr, 'input': '<Space>'.l:opr.'<Space>'},
+          \ {'filetype': s:template_filetypes},
+          \ s:defailt_ignore_rule)
+    call s:add_rule_with_ignores({'at': ' '.l:opr.' '.'\%#', 'char': '<BS>', 'input': '<BS><Left><BS>', 'leave': 1},
+          \ {'filetype': s:template_filetypes},
+          \ s:defailt_ignore_rule)
+    call s:add_rule_with_ignores({'at': '\%# '.l:opr.' ', 'char': '<Del>', 'input': '<Del><Right><Del><Left>'},
+          \ {'filetype': s:template_filetypes},
+          \ s:defailt_ignore_rule)
   endfor
-  call s:set_basic_rule({'at': ' = \%#', 'char': '=', 'input': '<Left>=', 'leave': 1}, {'filetype': s:template_filetypes})
+  call s:add_rule_with_ignores({'at': ' = \%#', 'char': '=', 'input': '<Left>=', 'leave': 1}, {'filetype': s:template_filetypes})
 
-  call lexima#add_rule({
+  call g:lexima#add_rule({
   \   'at'       : '\s===\s\%#',
   \   'char'     : '<BS>',
   \   'input'    : '<Left><BS><Right>',
   \   })
-  call lexima#add_rule({
+  call g:lexima#add_rule({
   \   'at'       : '\s==\s\%#',
   \   'char'     : '<BS>',
   \   'input'    : '<Left><BS><Right>',
   \   })
-  call lexima#add_rule({
+  call g:lexima#add_rule({
   \   'at'       : '\s=\%#',
   \   'char'     : '=',
   \   'input'    : '=<Space>',
   \   })
-  call s:set_basic_rule({
+  call s:add_rule_with_ignores({
   \   'at'       : '\\\%#',
   \   'char'     : '\',
   \   'input'    : '<BS> => ',
   \   'filetype': 'typescript',
-  \   })
+  \   }, s:defailt_ignore_rule)
 
 
   " smartinputとsmartchrの連携tips
@@ -2454,13 +2462,13 @@ function! s:bundle.hooks.on_source(bundle)
   " TODO: synIDattr(synID(line('.'), col('.'), 0), 'name') ではだめなのかな
 
   "" via: http://rhysd.hatenablog.com/entry/20121017/1350444269
-  call lexima#add_rule({
+  call g:lexima#add_rule({
   \   'at': '\s\+\%#$',
   \   'char': '<CR>',
   \   'input': "<C-o>:call setline('.', substitute(getline('.'), '\\s\\+$', '', ''))<CR><CR>",
   \   })
 
-  call lexima#add_rule({
+  call g:lexima#add_rule({
   \   'at'       : '\%(\<struct\>\|\<class\>\|\<enum\>\)\s*\w\+.*\%#',
   \   'char'     : '{',
   \   'input'    : '{};<Left><Left>',
@@ -2471,34 +2479,34 @@ function! s:bundle.hooks.on_source(bundle)
 
 
   " html and markdown like that -----
-  call lexima#add_rule({
+  call g:lexima#add_rule({
   \   'at': '\%#',
   \   'char': '<',
   \   'input': '<><Left>',
   \   'filetype': ['xml', 'html', 'eruby'],
   \ })
   " 前が空白以外なら型パラメータ、空白なら演算子だと考えさせる
-  call lexima#add_rule({
+  call g:lexima#add_rule({
   \   'at': '[^[:blank:]]\%#',
   \   'char': '<',
   \   'input': '<><Left>',
   \   'filetype': ['java', 'cpp', 'cs', 'haxe'],
   \ })
-  call lexima#add_rule({
+  call g:lexima#add_rule({
   \   'at': '[:blank:]\%#',
   \   'char': '<',
   \   'input': "<C-R>=smartchr#one_of('< ', '<')<CR>",
   \   'filetype': ['java', 'cpp', 'cs', 'haxe'],
   \ })
 
-  call lexima#add_rule({
+  call g:lexima#add_rule({
   \   'at': '<\%#>',
   \   'char': '<BS>',
   \   'input': '<Del><BS>',
   \   'filetype': ['xml', 'html', 'eruby', 'java', 'cpp', 'cs', 'haxe'],
   \ })
 
-  call lexima#add_rule({
+  call g:lexima#add_rule({
   \   'at': '<.*\%#>',
   \   'char': '>',
   \   'input': '<Right>',
@@ -2506,19 +2514,19 @@ function! s:bundle.hooks.on_source(bundle)
   \ })
 
   " セミコロンを要求するうんこシンタックス対応 {{{
-  call lexima#add_rule({
+  call g:lexima#add_rule({
   \   'at': '\%#;$',
   \   'char': ';',
   \   'input': '<Right>',
   \   'filetype': ['java', 'cpp', 'cs', 'haxe'],
   \ })
-  call lexima#add_rule({
+  call g:lexima#add_rule({
   \   'at': '\%#;$',
   \   'char': '<CR>',
   \   'input': '<Right><CR>',
   \   'filetype': ['java', 'cpp', 'cs', 'haxe'],
   \ })
-  call lexima#add_rule({
+  call g:lexima#add_rule({
   \   'at': '(\%#;$',
   \   'char': '<CR>',
   \   'input': ')<Left><CR><BS><CR><Up><End><Tab>',
@@ -2527,13 +2535,13 @@ function! s:bundle.hooks.on_source(bundle)
   " }}}
 
   " ERB
-  call lexima#add_rule({
+  call g:lexima#add_rule({
   \   'at': '<\%#',
   \   'char': '%',
   \   'input': '%%<Left>',
   \   'filetype': ['eruby'],
   \ })
-  call lexima#add_rule({
+  call g:lexima#add_rule({
   \   'at': '%.*\%#%',
   \   'char': '%',
   \   'input': '',
@@ -2542,7 +2550,7 @@ function! s:bundle.hooks.on_source(bundle)
 
   " Golang {{{
 
-  call lexima#add_rule({
+  call g:lexima#add_rule({
   \   'at': '[^[:alnum:]]json\%#',
   \   'char': ':',
   \   'input': '""<Left>',
@@ -2551,30 +2559,31 @@ function! s:bundle.hooks.on_source(bundle)
   "
   " omni rules
   let s:filetypes_with_omnifunc = ['python', 'typescript', 'javascript', 'go']
-  call lexima#add_rule({
+  call g:lexima#add_rule({
   \   'at': '^\s*from\%#',
   \   'char': '<Space>',
   \   'input': '<Space><C-x><C-o>',
   \   'filetype': 'python',
   \ })
-  call lexima#add_rule({
+  call g:lexima#add_rule({
   \   'at': '^\s*from\s.\+ import\%#',
   \   'char': '<Space>',
   \   'input': '<Space><C-x><C-o>',
   \   'filetype': 'python',
   \ })
-  call lexima#add_rule({
+  call g:lexima#add_rule({
   \   'at': '^\s*import\%#',
   \   'char': '<Space>',
   \   'input': '<Space><C-x><C-o>',
   \   'filetype': 'python',
   \ })
-  call s:set_basic_rule({
+  call s:add_rule_with_ignores({
   \   'at' : '\w\%#',
   \   'char': '.',
   \   'input': '.<C-x><C-o><C-p>',
   \   'filetype': s:filetypes_with_omnifunc,
   \ },
+  \ s:defailt_ignore_rule
   \ )
 endfunction
 unlet s:bundle
