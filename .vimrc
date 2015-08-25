@@ -2386,7 +2386,8 @@ function! s:bundle.hooks.on_source(bundle)
   function! s:add_ignore_rule(rule)
       let l:cp_rule = copy(a:rule)
       let l:cp_rule.input = l:cp_rule.char
-      let l:cp_rule.input_after = ''
+      call filter(l:cp_rule, 'v:key != "input_after" || v:key != "leave" || v:key != "delete"')
+      let l:cp_rule.priority = 999
       call g:lexima#add_rule(l:cp_rule)
   endfunction
 
