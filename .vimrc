@@ -120,6 +120,11 @@ NeoBundleLazy 'gregsexton/gitv' , {
 \   }
 \}
 NeoBundle 'rhysd/committia.vim'
+NeoBundleLazy 'rhysd/github-complete.vim', {
+\ 'autoload' : {
+\   'filetypes' : ['markdown', 'gitcommit'],
+\ }
+\}
 
 "" Quickfixの内容を使ってエラー表示をハイライトしてくれる
 "NeoBundleLazy 'jceb/vim-hier'
