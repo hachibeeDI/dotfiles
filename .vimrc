@@ -28,7 +28,7 @@ if has('vim_starting')
   " set nocompatible
   set runtimepath& runtimepath+=~/.vim/neobundle.vim/
 endif
-call neobundle#begin(s:BUNDLEPATH)
+call g:neobundle#begin(s:BUNDLEPATH)
 
 NeoBundleFetch 'Shougo/neobundle.vim', {
 \   'base': '~/.vim',
@@ -38,7 +38,7 @@ let g:neobundle#log_filename = expand('~/.neobundle/.neobundle/neobundle.log')
 let g:neobundle#install_process_timeout = 180
 let g:neobundle#types#git#enable_submodule = 1
 
-call neobundle#load_cache()
+call g:neobundle#load_cache()
 
 " gitプロトコルよりもhttpsのほうが高速
 "let g:neobundle_default_git_protocol = 'https'
@@ -78,7 +78,7 @@ NeoBundleLazy 'Shougo/neosnippet-snippets', {
 " \ }
 
 NeoBundle 'Shougo/vimfiler', '', 'default'
-call neobundle#config('vimfiler', {
+call g:neobundle#config('vimfiler', {
       \ 'lazy' : 1,
       \ 'depends' : 'Shougo/unite.vim',
       \ 'autoload' : {
@@ -149,47 +149,47 @@ NeoBundleLazy 'Shougo/unite.vim' , {
 \}
 " unite source {{{
 NeoBundle 'Shougo/neomru.vim'
-call neobundle#config('neomru.vim', {
+call g:neobundle#config('neomru.vim', {
 \ 'lazy' : 1,
 \ 'autoload' : {
 \   'unite_sources' : 'file_mru'},
 \ })
 
 NeoBundle 'sgur/unite-git_grep'
-call neobundle#config('unite-git_grep', {
+call g:neobundle#config('unite-git_grep', {
   \ 'lazy' : 1,
   \ 'autoload' : {
   \   'unite_sources' : 'vcs_grep'},
   \ })
 
 NeoBundle 'Shougo/unite-ssh'
-call neobundle#config('unite-ssh', {
+call g:neobundle#config('unite-ssh', {
       \ 'lazy' : 1,
       \ 'autoload' : {
       \   'unite_sources' : 'ssh'},
       \ })
 NeoBundle 'Shougo/unite-build'
-call neobundle#config('unite-build', {
+call g:neobundle#config('unite-build', {
       \ 'lazy' : 1,
       \ 'autoload' : {
       \   'unite_sources' : 'build'},
       \ })
 
 NeoBundle 'Shougo/unite-outline', '', 'default'
-call neobundle#config('unite-outline', {
+call g:neobundle#config('unite-outline', {
   \ 'lazy' : 1,
   \ 'autoload' : {
   \   'unite_sources' : 'outline'},
   \ })
 
 NeoBundle 'ryotakato/unite-outline-objc'
-call neobundle#config('unite-outline', {
+call g:neobundle#config('unite-outline', {
   \ 'lazy' : 1,
   \ 'autoload' : {
   \   'unite_sources' : 'outline'},
   \ })
 NeoBundle 'tsukkee/unite-tag', '', 'default'
-call neobundle#config('unite-tag', {
+call g:neobundle#config('unite-tag', {
 \ 'lazy' : 1,
 \ 'autoload' : {
 \   'unite_sources' : 'tag'},
@@ -202,7 +202,7 @@ NeoBundleLazy 'majutsushi/tagbar', {
 \}
 
 NeoBundle 'osyo-manga/unite-quickfix'
-call neobundle#config('unite-quickfix', {
+call g:neobundle#config('unite-quickfix', {
 \ 'lazy' : 1,
 \ 'autoload' : {
 \   'unite_sources' : 'quickfix'},
@@ -385,7 +385,7 @@ NeoBundleLazy 'koron/codic-vim', {
 \   'mappings' : ['<Plug>(operator-codic)'],
 \ }}
 NeoBundle 'rhysd/unite-codic.vim'
-call neobundle#config('unite-codic.vim', {
+call g:neobundle#config('unite-codic.vim', {
 \ 'lazy' : 1,
 \ 'autoload' : {'unite_sources' : 'codic'},
 \ })
@@ -904,7 +904,7 @@ let g:vimhelpgenerator_contents = {
 
 NeoBundleLazy 'ompugao/uncrustify-vim'
 
-call neobundle#end()
+call g:neobundle#end()
 " Installation check.
 NeoBundleCheck
 " Neobundle }}}
@@ -949,7 +949,7 @@ syntax enable
 
 if !has('vim_starting')
   " Call on_source hook when reloading .vimrc.
-  call neobundle#call_hook('on_source')
+  call g:neobundle#call_hook('on_source')
 endif
 
 " vital.vim --- {{{
@@ -1702,7 +1702,7 @@ command! Eucjp     call ConvertFileEncode('euc-jp')
 " Disable AutoComplPop.
 let g:acp_enableAtStartup = 0
 
-let bundle = neobundle#get('neocomplete.vim')
+let bundle = g:neobundle#get('neocomplete.vim')
 function! bundle.hooks.on_source(bundle)
   " Use neocomplete.
   let g:neocomplete#enable_at_startup = 1
@@ -1863,7 +1863,7 @@ autocmd MyAutoCmd InsertLeave * :NeoSnippetClearMarkers
 " }}}
 
 " =============== jedi-vim =============== {{{
-let bundle = neobundle#get('jedi-vim')
+let bundle = g:neobundle#get('jedi-vim')
 function! bundle.hooks.on_source(bundle)
   let g:jedi#squelch_py_warning = 1
 
@@ -1891,7 +1891,7 @@ unlet bundle
 " vaxe(haXe's omnicompletion plugin) {{{
 
 if executable('haxe')
-  let bundle = neobundle#get('vaxe')
+  let bundle = g:neobundle#get('vaxe')
   function! bundle.hooks.on_source(bundle)
     let g:vaxe_default_parent_search_patterns = ['project.xml', '*.nmml', 'build.hxml']
     let g:vaxe_haxe_version = 3
@@ -1975,7 +1975,7 @@ nnoremap <Leader>il :IndentLinesToggle
 " ---------Unite.vim--------- {{{
 " buffer local keymap is in s:MY_VIMRUNTIME/after/ftplugin/unite.vim
 
-let bundle = neobundle#get('unite.vim')
+let bundle = g:neobundle#get('unite.vim')
 function! bundle.hooks.on_source(bundle)
   " common settings {{{
   " 入力モードで開始する
@@ -2062,7 +2062,7 @@ nnoremap <silent> ,fb :<C-u>VimFilerBufferDir<CR>
 
 " --- quickrun -----{{{
 " url:http://d.hatena.ne.jp/osyo-manga/20111014/1318586711
-let bundle = neobundle#get('vim-quickrun')
+let bundle = g:neobundle#get('vim-quickrun')
 function! bundle.hooks.on_source(bundle)
   "設定の初期化
   let g:quickrun_config = get(g:, 'quickrun_config', {})
@@ -2267,7 +2267,7 @@ nnoremap U :<C-u>GundoToggle<CR>
 " This go along with vimshell doc's sample.
 " My purpose of using VimShell is lessen stress of Windows and its terrible terminal-emulator!
 
-let bundle = neobundle#get('vimshell')
+let bundle = g:neobundle#get('vimshell')
 function! bundle.hooks.on_source(bundle)
 
     if has('win32') || has('win64')
@@ -2377,13 +2377,13 @@ endfunction
 
 " --- smartinput → lexima --- {{{
 " NOTE: http://secret-garden.hatenablog.com/entry/2015/05/06/211712 がいけてたのでleximaに乗り換え実験
-let s:bundle = neobundle#get('lexima.vim')
+let s:bundle = g:neobundle#get('lexima.vim')
 function! s:bundle.hooks.on_source(bundle)
   let g:lexima_no_default_rules = 1
   call g:lexima#set_default_rules()
 
   let s:defailt_ignore_rule = {'syntax': ['String', 'Comment']}
-  
+
   function! s:as_list(a)
       return type(a:a) == type([]) ? a:a : [a:a]
   endfunction
