@@ -2414,7 +2414,10 @@ function! s:bundle.hooks.on_source(bundle)
       call s:add_rule_with_ignores({'at': '\%#',     'char': l:begin, 'input': l:begin, 'input_after': l:end}, s:defailt_ignore_rule)
       call s:add_rule_with_ignores({'at': '\%#'.l:end, 'char': l:begin, 'input': l:begin}, s:defailt_ignore_rule)
 
-      call s:add_rule_with_ignores({'at': l:begin.'\%#'.l:end, 'char': l:end,   'leave': 1}, s:defailt_ignore_rule)
+      " TODO: inputが空の状態でleaveは効かない？ はっきりしたらissueを出そう
+      " call s:add_rule_with_ignores({'at': l:begin.'\%#'.l:end, 'char': l:end, 'leave': 1}, s:defailt_ignore_rule)
+      call s:add_rule_with_ignores({'at':         '\%#'.l:end, 'char': l:end, 'input': '<Right>'}, s:defailt_ignore_rule)
+
       call s:add_rule_with_ignores({'at': l:begin.'\%#'.l:end, 'char': l:begin, 'input': l:begin, 'input_after': l:end}, s:defailt_ignore_rule)
       call s:add_rule_with_ignores({'at': l:begin.'\%#'.l:end, 'char': '<BS>', 'input': '<BS>', 'delete': 1}, s:defailt_ignore_rule)
   endfor
