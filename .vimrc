@@ -1994,13 +1994,54 @@ function! bundle.hooks.on_source(bundle)
       let g:unite_source_grep_max_candidates = 200
   endif
 
+  " menu for git {{{
+  let g:unite_source_menu_menus.git = {
+    \ 'description' : '            gestionar repositorios git
+        \                            ⌘ [espacio]g',
+    \}
+  let g:unite_source_menu_menus.git.command_candidates = [
+    \['▷ tig                                                        ⌘ ,gt',
+        \'normal ,gt'],
+    \['▷ git status       (Fugitive)                                ⌘ ,gs',
+        \'Gstatus'],
+    \['▷ git diff         (Fugitive)                                ⌘ ,gd',
+        \'Gdiff'],
+    \['▷ git commit       (Fugitive)                                ⌘ ,gc',
+        \'Gcommit'],
+    \['▷ git log          (Fugitive)                                ⌘ ,gl',
+        \'exe "silent Glog | Unite quickfix"'],
+    \['▷ git blame        (Fugitive)                                ⌘ ,gb',
+        \'Gblame'],
+    \['▷ git stage        (Fugitive)                                ⌘ ,gw',
+        \'Gwrite'],
+    \['▷ git checkout     (Fugitive)                                ⌘ ,go',
+        \'Gread'],
+    \['▷ git rm           (Fugitive)                                ⌘ ,gr',
+        \'Gremove'],
+    \['▷ git mv           (Fugitive)                                ⌘ ,gm',
+        \'exe "Gmove " input("destino: ")'],
+    \['▷ git push         (Fugitive, salida por buffer)             ⌘ ,gp',
+        \'Git! push'],
+    \['▷ git pull         (Fugitive, salida por buffer)             ⌘ ,gP',
+        \'Git! pull'],
+    \['▷ git prompt       (Fugitive, salida por buffer)             ⌘ ,gi',
+        \'exe "Git! " input("comando git: ")'],
+    \['▷ git cd           (Fugitive)',
+        \'Gcd'],
+    \]
+  " }}}
 endfunction
-
 unlet bundle
+
+
 
 " --- key maps {{{
 nnoremap <SID>[Unite] <Nop>
 nmap ,u <SID>[Unite]
+nnoremap <SID>[UMenu] <Nop>
+nmap [Unite]t <SID>[UMenu]
+
+nnoremap <silent>[UMenu]g :Unite -silent -start-insert menu:git<CR>
 
 " バッファ一覧
 nnoremap <silent> <SID>[Unite]b :<C-u>Unite buffer<CR>
@@ -2411,7 +2452,7 @@ function! s:bundle.hooks.on_source(bundle)
 
   for [l:begin, l:end] in [['(', ')'], ['{', '}'], ['[', ']']]
       let l:bracket = l:begin.end
-      call s:add_rule_with_ignores({'at': '\%#',     'char': l:begin, 'input': l:begin, 'input_after': l:end}, s:defailt_ignore_rule)
+      call s:add_rule_with_ignores({'at': '\%#',       'char': l:begin, 'input': l:begin, 'input_after': l:end}, s:defailt_ignore_rule)
       call s:add_rule_with_ignores({'at': '\%#'.l:end, 'char': l:begin, 'input': l:begin}, s:defailt_ignore_rule)
 
       " TODO: inputが空の状態でleaveは効かない？ はっきりしたらissueを出そう
@@ -2425,17 +2466,25 @@ function! s:bundle.hooks.on_source(bundle)
 
   let s:template_filetypes = ['rst', 'markdown', 'html', 'xml', 'css', 'sass', 'scss', 'stylus', 'bash', 'clojure', ]
   for l:opr in ['+', '-', '=', '*']
-    call s:add_rule_with_ignores({'at': '\%#', 'char': l:opr, 'input': '<Space>'.l:opr.'<Space>'},
+    call s:add_rule_with_ignores(
+          \ {'at': '\%#',               'char': l:opr, 'input': '<Space>'.l:opr.'<Space>'},
           \ {'filetype': s:template_filetypes},
           \ s:defailt_ignore_rule)
-    call s:add_rule_with_ignores({'at': ' '.l:opr.' '.'\%#', 'char': '<BS>', 'input': '<BS><Left><BS>', 'leave': 1},
+    " BSした時に両端のスペースを消すやつ
+    call s:add_rule_with_ignores(
+          \ {'at': ' '.l:opr.' \%#',    'char': '<BS>', 'input': '<BS><Left><BS>', 'leave': 1},
           \ {'filetype': s:template_filetypes},
           \ s:defailt_ignore_rule)
-    call s:add_rule_with_ignores({'at': '\%# '.l:opr.' ', 'char': '<Del>', 'input': '<Del><Right><Del><Left>'},
+
+    call s:add_rule_with_ignores(
+          \ {'at': '\%# '.l:opr.' ',    'char': '<Del>', 'input': '<Del><Right><Del><Left>'},
           \ {'filetype': s:template_filetypes},
           \ s:defailt_ignore_rule)
   endfor
-  call s:add_rule_with_ignores({'at': ' = \%#', 'char': '=', 'input': '<Left>=', 'leave': 1}, {'filetype': s:template_filetypes})
+
+  call s:add_rule_with_ignores({'at': '=\%#',   'char': '=', 'input': '='}, {'filetype': s:template_filetypes})
+  call s:add_rule_with_ignores({'at': ' = \%#', 'char': '=', 'input': '<Left>='}, {'filetype': s:template_filetypes})
+  call s:add_rule_with_ignores({'at': ' = \%#', 'char': '<BS>', 'input': '<BS><Left><BS><Right>'}, {'filetype': s:template_filetypes})
 
   call g:lexima#add_rule({
   \   'at'       : '\s===\s\%#',
@@ -2447,16 +2496,11 @@ function! s:bundle.hooks.on_source(bundle)
   \   'char'     : '<BS>',
   \   'input'    : '<Left><BS><Right>',
   \   })
-  call g:lexima#add_rule({
-  \   'at'       : '\s=\%#',
-  \   'char'     : '=',
-  \   'input'    : '=<Space>',
-  \   })
   call s:add_rule_with_ignores({
   \   'at'       : '\\\%#',
   \   'char'     : '\',
   \   'input'    : '<BS> => ',
-  \   'filetype': 'typescript',
+  \   'filetype': ['javascript', 'typescript', ],
   \   }, s:defailt_ignore_rule)
 
 
