@@ -213,7 +213,7 @@ if g:neobundle#tap('vimshell')
   nnoremap <silent> ,vp :<C-u>VimShellPop<CR>
   nnoremap <silent> ,cvp :<C-u>VimShellPop %:p:h<CR>
   nnoremap <silent> ,cvs :<C-u>VimShell %:p:h<CR>
-  g:neobundle#untap()
+  call g:neobundle#untap()
 end
 
 
