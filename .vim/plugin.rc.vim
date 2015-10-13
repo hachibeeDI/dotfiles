@@ -117,15 +117,19 @@ if g:neobundle#tap('neocomplete.vim')
 
     " customize sort complete candiates
     " call neocomplete#custom#source('_', 'sorters', ['sorter_length'])
-    if g:neobundle#tap('neocomplete-ios-dictionary')
-      call neocomplete_ios_dictionary#configure_ios_dict()
-    end
   endfunction
   " }}}
 
   call g:neobundle#untap()
 end
 
+
+if g:neobundle#tap('neocomplete-ios-dictionary')
+  function! g:neobundle#hooks.on_source(bundle)
+    call g:neocomplete_ios_dictionary#configure_ios_dict()
+  endfunction
+  call g:neobundle#untap()
+end
 
 
 if g:neobundle#tap('clang_complete')
