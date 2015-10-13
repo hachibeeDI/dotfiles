@@ -294,10 +294,11 @@ NeoBundleLazy 'cohama/lexima.vim', {
 \ },
 \}
 " NeoBundle 'kana/vim-smartinput'
-" NeoBundle 'hachibeeDI/smartinput-petterns', {
-" \ 'base': expand('~/Dropbox/development/viml/'),
-" \ 'type': 'nosync',
-" \ }
+NeoBundle 'hachibeeDI/smartinput-patterns', {
+\ 'type': 'nosync',
+\ 'depends': 'cohama/lexima.vim',
+\ 'autoload' : {'insert' : 1, },
+\ }
 NeoBundleLazy 'kana/vim-smartchr', {
 \ 'autoload' : {
 \   'function_prefix' : 'smartchr',
