@@ -520,11 +520,16 @@ NeoBundleLazy 'Quramy/tsuquyomi', {
 \}
 
 
-NeoBundleLazy 'pangloss/vim-javascript', {
-\ 'autoload' : {
-\   'filetypes' : ['javascript'],
+" NeoBundleLazy 'pangloss/vim-javascript', {
+" \ 'autoload' : {
+" \   'filetypes' : ['javascript'],
+" \}}
+" let g:javascript_enable_domhtmlcss = 1
+
+NeoBundleLazy 'othree/yajs.vim', {
+\ 'autoload': {
+\   'filetypes' : ['javascript', 'jsx'],
 \}}
-let g:javascript_enable_domhtmlcss = 1
 
 NeoBundleLazy 'jason0x43/vim-js-indent', {
 \ 'autoload' : {
@@ -540,7 +545,7 @@ NeoBundleLazy 'othree/javascript-libraries-syntax.vim', {
 \   'filetypes' : ['html', 'xhtml', 'jinja', 'coffee', 'javascript', 'typescript'],
 \ }}
 " javascript-libraries-syntax.vim = {{{
-let g:used_javascript_libs = 'jquery,underscore,requirejs'
+let g:used_javascript_libs = 'jquery,underscore,requirejs,react,flux'
 "}}}
 
 NeoBundleLazy 'mxw/vim-jsx', {
@@ -555,7 +560,7 @@ if has('python') && executable('npm')
   \ 'build' : 'npm install',
   \ 'autoload' : {
   \   'functions': ['tern#Complete', 'tern#Enable'],
-  \   'filetypes' : 'javascript'
+  \   'filetypes' : ['javascript', 'jsx']
   \ }}
 endif
 
