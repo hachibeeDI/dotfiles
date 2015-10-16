@@ -9,4 +9,20 @@ alias chrome="/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome"
 alias j="autojump"
 [[ -f `brew --prefix`/etc/autojump.zsh ]] && . `brew --prefix`/etc/autojump.zsh
 
+
+# 辞書を引く
+function dict {
+  if [ $# -eq 0 ]; then
+    echo "Usage: dict WORD" 1>&2
+    return 1
+  fi
+  open dict://$1
+}
+
+function searchword {
+  dict $1
+  say -v Alex $@
+}
+
+
 echo "done."
