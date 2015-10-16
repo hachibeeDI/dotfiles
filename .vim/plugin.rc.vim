@@ -707,19 +707,19 @@ if g:neobundle#tap('lexima.vim')
     \   'at': '\%#;$',
     \   'char': ';',
     \   'input': '<Right>',
-    \   'filetype': ['java', 'cpp', 'cs', 'haxe'],
+    \   'filetype': ['java', 'cpp', 'cs', 'haxe', 'javascript', 'jsx'],
     \ })
     call g:lexima#add_rule({
     \   'at': '\%#;$',
     \   'char': '<CR>',
     \   'input': '<Right><CR>',
-    \   'filetype': ['java', 'cpp', 'cs', 'haxe'],
+    \   'filetype': ['java', 'cpp', 'cs', 'haxe', 'javascript', 'jsx'],
     \ })
     call g:lexima#add_rule({
     \   'at': '(\%#;$',
     \   'char': '<CR>',
     \   'input': ')<Left><CR><BS><CR><Up><End><Tab>',
-    \   'filetype': ['java', 'cpp', 'cs', 'haxe'],
+    \   'filetype': ['java', 'cpp', 'cs', 'haxe', 'javascript', 'jsx'],
     \ })
     " }}}
 
@@ -748,24 +748,6 @@ if g:neobundle#tap('lexima.vim')
     "
     " omni rules
     let s:filetypes_with_omnifunc = ['python', 'typescript', 'javascript', 'go']
-    call g:lexima#add_rule({
-    \   'at': '^\s*from\%#',
-    \   'char': '<Space>',
-    \   'input': '<Space><C-x><C-o>',
-    \   'filetype': 'python',
-    \ })
-    call g:lexima#add_rule({
-    \   'at': '^\s*from\s.\+ import\%#',
-    \   'char': '<Space>',
-    \   'input': '<Space><C-x><C-o>',
-    \   'filetype': 'python',
-    \ })
-    call g:lexima#add_rule({
-    \   'at': '^\s*import\%#',
-    \   'char': '<Space>',
-    \   'input': '<Space><C-x><C-o>',
-    \   'filetype': 'python',
-    \ })
     call s:add_rule_with_ignores({
     \   'at' : '\w\%#',
     \   'char': '.',
