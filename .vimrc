@@ -614,6 +614,13 @@ NeoBundleLazy 'basyura/unite-rails', {
 "}}}
 
 " -- Lisp {{{
+NeoBundleLazy "elixir-lang/vim-elixir", {
+\  'autoload' : {
+\    'filetypes' : ['elixir'] }
+\ }
+" }}}
+
+" -- Lisp {{{
 if executable('lein')
   " via: http://blog.ieknir.com/blog/beginning-clojure-with-vim/
   NeoBundleLazy 'guns/vim-clojure-static', {
