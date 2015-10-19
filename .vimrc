@@ -42,18 +42,16 @@ call g:neobundle#load_cache()
 
 " gitプロトコルよりもhttpsのほうが高速
 "let g:neobundle_default_git_protocol = 'https'
+NeoBundle 'Shougo/vimproc.vim', {
+\   'build' : {
+\     'windows' : 'tools\\update-dll-mingw',
+\     'cygwin' : 'make -f make_cygwin.mak',
+\     'mac' : 'make -f make_mac.mak',
+\     'linux' : 'make',
+\     'unix' : 'gmake',
+\   }
+\ }
 
-NeoBundle 'Shougo/vimproc', {
-\ 'build' : {
-\   'windows' : 'echo "X<"',
-\   'cygwin' : 'make -f make_cygwin.mak',
-\   'mac' : 'make -f make_mac.mak',
-\   'unix' : 'make -f make_unix.mak',
-\ },
-\}
-if g:is_mac
-  let g:vimproc#dll_path = s:BUNDLEPATH . '/vimproc/autoload/vimproc_mac.so'
-endif
 NeoBundleLazy 'Shougo/neocomplete.vim', {
 \   'autoload' : {
 \     'insert' : 1,
