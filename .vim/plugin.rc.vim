@@ -756,6 +756,12 @@ if g:neobundle#tap('lexima.vim')
     \ },
     \ s:defailt_ignore_rule
     \ )
+
+
+    if g:neobundle#tap('smartinput-patterns')
+      call lexima_patterns#init()
+    endif
+
   endfunction
   "}}}
   call g:neobundle#untap()
