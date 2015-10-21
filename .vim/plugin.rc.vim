@@ -69,6 +69,7 @@ if g:neobundle#tap('neocomplete.vim')
     "imap <expr> `  pumvisible() ?
     "      \ "\<Plug>(neocomplete_start_unite_quick_match)" : '`'
     " }}}
+    "
 
     " Enable heavy omni completion.
     if !exists('g:neocomplete#sources#omni#input_patterns')
