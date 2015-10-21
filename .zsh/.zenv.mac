@@ -67,6 +67,7 @@ fpath=(
 
         #homebrew
         /usr/local/share/zsh/functions(N-/)
+        $HOME/.go/src/github.com/mattn/gom/misc/zsh(N-/)
         )
 export fpath
 
