@@ -8,3 +8,4 @@ setlocal noexpandtab
 setlocal tabstop=4
 
 setlocal errorformat=File\ %f,(%l\\,%c):%m
+

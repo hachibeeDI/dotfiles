@@ -27,6 +27,12 @@ if has('vim_starting')
   " via: https://twitter.com/ShougoMatsu/status/541718069010128896
   " set nocompatible
   set runtimepath& runtimepath+=~/.vim/neobundle.vim/
+
+  if executable('gom')
+    set rtp+=$HOME/.go/src/github.com/mattn/gom/misc/vim
+    autocmd MyAutoCmd Filetype go SetGomEnv
+  endif
+
 endif
 call g:neobundle#begin(s:BUNDLEPATH)
 
