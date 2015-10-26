@@ -31,6 +31,9 @@ if has('vim_starting')
   if executable('gom')
     set rtp+=$HOME/.go/src/github.com/mattn/gom/misc/vim
     autocmd MyAutoCmd Filetype go SetGomEnv
+    if &ft == 'go'
+      :SetGomEnv
+    endif
   endif
 
 endif
