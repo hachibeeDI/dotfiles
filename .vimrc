@@ -339,7 +339,7 @@ NeoBundleLazy 'tpope/vim-classpath', {
 
 NeoBundle 'Yggdroot/indentLine'
 
-NeoBundleLazy 'git://github.com/vim-scripts/IndentAnything.git', {
+NeoBundleLazy 'vim-scripts/IndentAnything', {
 \ 'autoload' : {
 \   'filetypes' : ['html', 'xhtml', 'htmldjango', 'play2-html', 'javascript'],
 \ }
