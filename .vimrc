@@ -341,7 +341,7 @@ NeoBundle 'Yggdroot/indentLine'
 
 NeoBundleLazy 'vim-scripts/IndentAnything', {
 \ 'autoload' : {
-\   'filetypes' : ['html', 'xhtml', 'htmldjango', 'play2-html', 'javascript'],
+\   'filetypes' : ['html', 'xhtml', 'htmldjango', 'play2-html'],
 \ }
 \}
 "" add jasmine syntax
@@ -539,18 +539,22 @@ NeoBundleLazy 'othree/yajs.vim', {
 \   'filetypes' : ['javascript', 'jsx'],
 \}}
 
-NeoBundleLazy 'jason0x43/vim-js-indent', {
+NeoBundleLazy 'isRuslan/vim-es6', {
 \ 'autoload' : {
 \   'filetypes' : ['javascript', 'typescript', 'html'],
 \}}
-let g:js_indent_typescript = 1
+" NeoBundleLazy 'jason0x43/vim-js-indent', {
+" \ 'autoload' : {
+" \   'filetypes' : ['javascript', 'typescript', 'html'],
+" \}}
+" let g:js_indent_typescript = 1
 
 NeoBundleLazy 'elzr/vim-json', {'autoload': {'filetypes': ['json']}, }
 let g:vim_json_syntax_conceal = 0
 
 NeoBundleLazy 'othree/javascript-libraries-syntax.vim', {
 \ 'autoload' : {
-\   'filetypes' : ['html', 'xhtml', 'jinja', 'coffee', 'javascript', 'typescript'],
+\   'filetypes' : ['html', 'xhtml', 'jinja', 'coffee', 'javascript', 'jsx', 'typescript'],
 \ }}
 " javascript-libraries-syntax.vim = {{{
 let g:used_javascript_libs = 'jquery,underscore,requirejs,react,flux'
@@ -558,9 +562,10 @@ let g:used_javascript_libs = 'jquery,underscore,requirejs,react,flux'
 
 NeoBundleLazy 'mxw/vim-jsx', {
 \ 'autoload' : {
-\   'filetypes' : ['jsx', ],
+\   'filetypes' : ['javascript', 'jsx', ],
 \ }}
-let g:jsx_pragma_required = 1
+let g:jsx_ext_required = 0
+let g:jsx_pragma_required = 0
 
 
 if has('python') && executable('npm')
