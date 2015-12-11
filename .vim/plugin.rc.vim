@@ -636,12 +636,18 @@ if g:neobundle#tap('lexima.vim')
     \   'char'     : '<BS>',
     \   'input'    : '<Left><BS><Right>',
     \   })
-    call s:add_rule_with_ignores({
+    call g:lexima#add_rule({
+    \   'at'       : 'aa\%#',
+    \   'char'     : 'a',
+    \   'input'    : '<BS> => ',
+    \   'filetype': ['javascript', 'typescript', 'javascript.jsx'],
+    \   })
+    call g:lexima#add_rule({
     \   'at'       : '\\\%#',
     \   'char'     : '\',
     \   'input'    : '<BS> => ',
-    \   'filetype': ['javascript', 'typescript', ],
-    \   }, s:defailt_ignore_rule)
+    \   'filetype': ['javascript', 'typescript', 'javascript.jsx'],
+    \   })
 
 
     " smartinputとsmartchrの連携tips
@@ -708,19 +714,19 @@ if g:neobundle#tap('lexima.vim')
     \   'at': '\%#;$',
     \   'char': ';',
     \   'input': '<Right>',
-    \   'filetype': ['java', 'cpp', 'cs', 'haxe', 'javascript', 'jsx'],
+    \   'filetype': ['java', 'cpp', 'cs', 'haxe', 'javascript', 'javascript.jsx'],
     \ })
     call g:lexima#add_rule({
     \   'at': '\%#;$',
     \   'char': '<CR>',
     \   'input': '<Right><CR>',
-    \   'filetype': ['java', 'cpp', 'cs', 'haxe', 'javascript', 'jsx'],
+    \   'filetype': ['java', 'cpp', 'cs', 'haxe', 'javascript', 'javascript.jsx'],
     \ })
     call g:lexima#add_rule({
     \   'at': '(\%#;$',
     \   'char': '<CR>',
     \   'input': ')<Left><CR><BS><CR><Up><End><Tab>',
-    \   'filetype': ['java', 'cpp', 'cs', 'haxe', 'javascript', 'jsx'],
+    \   'filetype': ['java', 'cpp', 'cs', 'haxe', 'javascript', 'javascript.jsx'],
     \ })
     " }}}
 

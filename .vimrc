@@ -536,7 +536,7 @@ NeoBundleLazy 'Quramy/tsuquyomi', {
 
 NeoBundleLazy 'othree/yajs.vim', {
 \ 'autoload': {
-\   'filetypes' : ['javascript', 'jsx'],
+\   'filetypes' : ['javascript', 'jsx', 'javascript.jsx'],
 \}}
 
 NeoBundleLazy 'isRuslan/vim-es6', {
@@ -554,7 +554,7 @@ let g:vim_json_syntax_conceal = 0
 
 NeoBundleLazy 'othree/javascript-libraries-syntax.vim', {
 \ 'autoload' : {
-\   'filetypes' : ['html', 'xhtml', 'jinja', 'coffee', 'javascript', 'jsx', 'typescript'],
+\   'filetypes' : ['html', 'xhtml', 'jinja', 'coffee', 'javascript', 'jsx', 'javascript.jsx', 'typescript'],
 \ }}
 " javascript-libraries-syntax.vim = {{{
 let g:used_javascript_libs = 'jquery,underscore,requirejs,react,flux'
@@ -562,7 +562,7 @@ let g:used_javascript_libs = 'jquery,underscore,requirejs,react,flux'
 
 NeoBundleLazy 'mxw/vim-jsx', {
 \ 'autoload' : {
-\   'filetypes' : ['javascript', 'jsx', ],
+\   'filetypes' : ['javascript', 'jsx', 'javascript.jsx', ],
 \ }}
 let g:jsx_ext_required = 0
 let g:jsx_pragma_required = 0
@@ -573,7 +573,7 @@ if has('python') && executable('npm')
   \ 'build' : 'npm install',
   \ 'autoload' : {
   \   'functions': ['tern#Complete', 'tern#Enable'],
-  \   'filetypes' : ['javascript', 'jsx']
+  \   'filetypes' : ['javascript', 'jsx', 'javascript.jsx']
   \ }}
 endif
 
@@ -709,7 +709,7 @@ endif
 " -- markup {{{
 NeoBundleLazy 'mattn/emmet-vim', {
 \ 'autoload' : {
-\   'filetypes' : ['html', 'xhtml', 'htmldjango', 'play2-html',  'eruby', 'css', 'sass', 'scss',  'stylus', 'jinja'],
+\   'filetypes' : ['html', 'xhtml', 'htmldjango', 'play2-html',  'eruby', 'css', 'sass', 'scss',  'stylus', 'jinja', 'jsx', 'javascript.jsx'],
 \ }
 \}
 
@@ -1910,9 +1910,9 @@ function! s:def_smartchar()
     inoremap <buffer> <expr> <Bar> smartchr#loop('\|', ' or ')
     inoremap <buffer> <expr> \ smartchr#loop('\', 'lambda ')
 
-  elseif l:lang ==# 'javascript'
+  elseif l:lang ==# 'javascript' || l:lang ==# 'javascript.jsx'
     inoremap <buffer> <expr> = smartchr#one_of(' = ', ' == ', ' === ', '=')
-    inoremap <buffer> <expr> -> smartchr#one_of('function', '->')
+    inoremap <buffer> <expr> -> smartchr#one_of('function', '=>')
 
   elseif l:lang ==# 'coffee'
     inoremap <buffer> <expr> = smartchr#one_of(' = ', ' == ', '=')
