@@ -295,13 +295,11 @@ NeoBundleLazy 'bps/vim-textobj-python', {
 
 "textobj-user }}}
 
-NeoBundle 'cohama/lexima.vim' ", {
-" \   'autoload' : {
-" \     'insert' : 1,
-" \ },
-" \}
+NeoBundleLazy 'cohama/lexima.vim', {
+\   'autoload' : {'insert' : 1, },
+\}
 " NeoBundle 'kana/vim-smartinput'
-NeoBundle 'hachibeeDI/smartinput-patterns', {
+NeoBundleLazy 'hachibeeDI/smartinput-patterns', {
 \ 'type': 'nosync',
 \ 'depends': 'cohama/lexima.vim',
 \ 'autoload' : {'insert' : 1, },
