@@ -115,7 +115,14 @@ NeoBundleLazy 'thinca/vim-quickrun', {
 \   'mappings': ['nxo', '<Plug>(quickrun)', '<Plug>(quickrun-op)', ],
 \ }}
 
+" Git {{{
 " runtimepathに追加されていない？ 要調査
+NeoBundle 'kmnk/vim-unite-giti'
+call g:neobundle#config('vim-unite-giti', {
+  \ 'lazy' : 1,
+  \ 'autoload' : {
+  \   'unite_sources' : 'giti'},
+  \ })
 NeoBundle 'tpope/vim-fugitive' ", {
 "\ 'autoload': {
 "\   'commands': ['Git', 'Gstatus', 'Gcommit', 'Gedit', 'Gwrite', 'Ggrep', 'Glog', 'Gdiff'],
@@ -132,6 +139,7 @@ NeoBundleLazy 'rhysd/github-complete.vim', {
 \   'filetypes' : ['markdown', 'gitcommit'],
 \ }
 \}
+" }}}
 
 "" Quickfixの内容を使ってエラー表示をハイライトしてくれる
 "NeoBundleLazy 'jceb/vim-hier'
