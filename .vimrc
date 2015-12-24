@@ -123,12 +123,9 @@ call g:neobundle#config('vim-unite-giti', {
   \ 'autoload' : {
   \   'unite_sources' : 'giti'},
   \ })
-NeoBundle 'tpope/vim-fugitive' ", {
-"\ 'autoload': {
-"\   'commands': ['Git', 'Gstatus', 'Gcommit', 'Gedit', 'Gwrite', 'Ggrep', 'Glog', 'Gdiff'],
-"\ }
-"\}
+NeoBundle 'tpope/vim-fugitive'
 NeoBundleLazy 'gregsexton/gitv' , {
+\ 'depends' : 'tpope/vim-fugitive',
 \ 'autoload' : {
 \   'commands' : ['Gitv', 'Gitv!'],
 \   }
@@ -1755,7 +1752,9 @@ nnoremap <silent> <SID>[Unite]` :<C-u>Unite -auto-quit neobundle/update<CR>
 " Outline
 nnoremap <silent> <SID>[Unite]o :<C-u>Unite -vertical outline<CR>
 " grep
-nnoremap <silent> <SID>[Unite]g :<C-u>Unite grep<CR>
+nnoremap <silent> <SID>[Unite]gg :<C-u>Unite giti<CR>
+nnoremap <silent> <SID>[Unite]gs :<C-u>Unite giti/status<CR>
+nnoremap <silent> <SID>[Unite]gb :<C-u>Unite giti/branch<CR>
 " quickfix
 nnoremap <silent> <SID>[Unite]q :<C-u>Unite -no-quit -direction=botright quickfix
 
