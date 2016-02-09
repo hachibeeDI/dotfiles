@@ -31,7 +31,7 @@ if has('vim_starting')
   if executable('gom')
     set rtp+=$HOME/.go/src/github.com/mattn/gom/misc/vim
     autocmd MyAutoCmd Filetype go SetGomEnv
-    if &ft == 'go'
+    if &ft ==# 'go'
       :SetGomEnv
     endif
   endif
@@ -150,6 +150,9 @@ NeoBundleLazy 'airblade/vim-rooter', {
 \   'commands': ['Rooter'],
 \ },
 \}
+let g:rooter_manual_only = 1
+let g:rooter_disable_map = 1
+nmap <silent> <unique> <Space>rt <Plug>RooterChangeToRootDirectory
 
 "Unite
 NeoBundleLazy 'Shougo/unite.vim' , {
