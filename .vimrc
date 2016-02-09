@@ -458,6 +458,10 @@ if executable('go')
   NeoBundleLazy 'fatih/vim-go', {
   \   'autoload': {'filetypes': ['go']},
   \ }
+  au MyAutoCmd FileType go nmap <Leader>s <Plug>(go-implements)
+  au MyAutoCmd FileType go nmap <Leader>i <Plug>(go-info)
+  let g:go_auto_type_info = 1
+  let g:go_fmt_command = 'goimports'
 endif
 " }}}
 " -- Haxe {{{
