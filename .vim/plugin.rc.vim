@@ -618,6 +618,11 @@ if g:neobundle#tap('lexima.vim')
             \ {'filetype': s:template_filetypes},
             \ s:defailt_ignore_rule)
     endfor
+    call g:lexima#add_rule({
+    \   'at'       : ' - \%#',
+    \   'char'     : '>',
+    \   'input'    : '<BS>><Space>',
+    \   })
 
     call s:add_rule_with_ignores({'at': '=\%#',   'char': '=', 'input': '='}, {'filetype': s:template_filetypes})
     call s:add_rule_with_ignores({'at': ' = \%#', 'char': '=', 'input': '<Left>='}, {'filetype': s:template_filetypes})
