@@ -345,9 +345,6 @@ if g:neobundle#tap('vim-quickrun')
     \   'sh/watchdogs_checker': {
     \     'type': executable('shellcheck') ? 'watchdogs_checker/shellcheck' : '',
     \   },
-    \   'ruby/watchdogs_checker': {
-    \     'type': executable('rubocop') ? 'watchdogs_checker/rubocop' : 'watchdogs_checker/ruby',
-    \   },
     \   'watchdogs_checker/shellcheck': {
     \     'command'   : 'shellcheck',
     \     'cmdopt': '-f gcc',
