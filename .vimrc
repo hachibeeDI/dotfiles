@@ -548,6 +548,11 @@ NeoBundleLazy 'othree/yajs.vim', {
 \ 'autoload': {
 \   'filetypes' : ['javascript', 'jsx', 'javascript.jsx'],
 \}}
+NeoBundleLazy 'othree/es.next.syntax.vim', {
+\ 'autoload': {
+\   'filetypes' : ['javascript', 'jsx', 'javascript.jsx'],
+\}}
+
 
 NeoBundleLazy 'isRuslan/vim-es6', {
 \ 'autoload' : {
