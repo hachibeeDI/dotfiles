@@ -43,7 +43,13 @@
     bnm = branch --no-merged
 
     # checkout
-    co = checkout
+    co = "!f () {\
+      if [ $# -eq 0 ]; then\
+        git checkout `git branch | peco`;\
+      elif [ $# -ge 1 ]; then\
+        git checkout ${@};\
+      fi;\
+    };f"
 
     # to operate branch
     rmbr = branch -d
