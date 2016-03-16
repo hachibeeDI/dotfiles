@@ -1085,6 +1085,7 @@ set splitright
 set previewheight=30
 " ウィンドウのリサイズを抑える
 set noequalalways
+set winheight=8
 " disable auto comment when start a new line
 set formatoptions& formatoptions-=ro
 
