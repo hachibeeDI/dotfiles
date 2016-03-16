@@ -1144,10 +1144,6 @@ set ambiwidth=double
 set lazyredraw
 "高速ターミナル接続を行う
 set ttyfast
-" 読み込んでいるファイルが変更された時自動で読み直す
-set autoread
-" No equal window size.
-set noequalalways
 
 set showmode
 set showcmd
