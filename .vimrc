@@ -991,7 +991,7 @@ set showmatch
 " 括弧を入力した時にカーソルが移動しないように設定
 set matchtime=0
 " 常にカーソルが真ん中
-set scrolloff=999
+set scrolloff=10
 " set default register is unnamed register. (same as OS's clipboard)
 set clipboard=unnamed
 " mouse surport
