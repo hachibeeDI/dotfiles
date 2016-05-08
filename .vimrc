@@ -162,18 +162,16 @@ NeoBundleLazy 'Shougo/unite.vim' , {
 \}
 " unite source {{{
 NeoBundle 'Shougo/neomru.vim'
-call g:neobundle#config('neomru.vim', {
-\ 'lazy' : 1,
-\ 'autoload' : {
-\   'unite_sources' : 'file_mru'},
-\ })
+" call g:neobundle#config('neomru.vim', {
+" \ 'lazy' : 1,
+" \ 'autoload' : {
+" \   'unite_sources' : 'file_mru'},
+" \ })
 
-NeoBundle 'sgur/unite-git_grep'
-call g:neobundle#config('unite-git_grep', {
-  \ 'lazy' : 1,
-  \ 'autoload' : {
-  \   'unite_sources' : 'vcs_grep'},
-  \ })
+NeoBundleLazy 'lambdalisue/unite-grep-vcs', {
+    \ 'autoload': {
+    \    'unite_sources': ['grep/git', 'grep/hg'],
+    \}}
 
 NeoBundle 'Shougo/unite-ssh'
 call g:neobundle#config('unite-ssh', {
