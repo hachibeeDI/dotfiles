@@ -24,9 +24,6 @@ if g:neobundle#tap('neocomplete.vim')
     let g:neocomplete#sources#dictionary#dictionaries = {
     \     'default': '',
     \     'java': $HOME.'/.vim/dict/java.dict',
-    \     'javascript': $HOME.'/.vim/dict/javascript.dict',
-    \     'typescript': $HOME.'/.vim/dict/javascript.dict',
-    \     'coffee': $HOME.'/.vim/dict/javascript.dict',
     \     'python': $HOME.'/.vim/dict/python.dict',
     \     'vim': $HOME.'/.vim/dict/vim.dict',
     \     'cpp': $HOME.'/.vim/dict/cpp.dict',
