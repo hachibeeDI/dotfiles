@@ -168,6 +168,14 @@ stashow() {
         echo 'you should appoint number of stash'
     fi
 }
+ged() {
+    if [ $# -le 1 ]; then
+        echo "you should appoint the words to flip"
+        return 0
+    fi
+    git grep --name-only $1 | xargs -0 sed -i -e "s/$1/$2/g"
+}
+
 # --- }}}
 
 # context seinsitive alias
