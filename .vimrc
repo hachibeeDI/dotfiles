@@ -84,6 +84,8 @@ NeoBundleLazy 'Shougo/neosnippet-snippets', {
 " \ 'type': 'nosync',
 " \ }
 
+NeoBundle 'editorconfig/editorconfig-vim'
+
 NeoBundle 'Shougo/vimfiler', '', 'default'
 call g:neobundle#config('vimfiler', {
       \ 'lazy' : 1,
