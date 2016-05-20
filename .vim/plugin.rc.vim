@@ -595,10 +595,11 @@ if g:neobundle#tap('lexima.vim')
 
         call s:add_rule_with_ignores({'at': l:begin.'\%#'.l:end, 'char': l:begin, 'input': l:begin, 'input_after': l:end}, s:defailt_ignore_rule)
         call s:add_rule_with_ignores({'at': l:begin.'\%#'.l:end, 'char': '<BS>', 'input': '<BS>', 'delete': 1}, s:defailt_ignore_rule)
+        call s:add_rule_with_ignores({'at': l:begin.'\%#'.l:end, 'char': '<Enter>', 'input': '<Enter><Enter><Up><Tab>'}, s:defailt_ignore_rule)
     endfor
 
 
-    let s:template_filetypes = ['rst', 'markdown', 'html', 'xml', 'css', 'sass', 'scss', 'stylus', 'bash', 'clojure', ]
+    let s:template_filetypes = ['rst', 'markdown', 'html', 'jinja', 'json', 'yaml', 'xml', 'css', 'sass', 'scss', 'stylus', 'bash', 'clojure', 'gitcommit']
     for l:opr in ['+', '-', '=', '*']
       call s:add_rule_with_ignores(
             \ {'at': '\%#',               'char': l:opr, 'input': '<Space>'.l:opr.'<Space>'},
