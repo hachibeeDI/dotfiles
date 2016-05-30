@@ -79,4 +79,7 @@ if filereadable(g:save_window_file)
 endif
 
 
+source ~/.gvimrc.local
+
+
 " vim:ft=vim:fdm=marker:
