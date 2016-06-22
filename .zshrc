@@ -33,9 +33,6 @@ autoload -Uz is-at-least
 autoload predict-on
 # predict-off
 
-# load alias
-source ~/.zsh/.zrc.alias
-
 # OS ごとのfunction, プラグイン {{{
 case "${OSTYPE}" in
 freebsd*|darwin*)
@@ -376,3 +373,6 @@ fi
 
 hash -d drop=~/Dropbox/
 
+
+# load alias
+source ~/.zsh/.zrc.alias
