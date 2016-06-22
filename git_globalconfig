@@ -23,9 +23,13 @@
 [commit]
     template = ~/.gitmsgtemplate.txt
 [pager]
-    log = /usr/local/share/git-core/contrib/diff-highlight/diff-highlight | less
-    show = /usr/local/share/git-core/contrib/diff-highlight/diff-highlight | less
-    diff = /usr/local/share/git-core/contrib/diff-highlight/diff-highlight | less
+    log  = (diff-highlight 2>/dev/null || cat) | ${PAGER:-less}
+    show = (diff-highlight 2>/dev/null || cat) | ${PAGER:-less}
+    diff = (diff-highlight 2>/dev/null || cat) | ${PAGER:-less}
+[interactive]
+    diffFilter = (diff-highlight 2>/dev/null || cat)
+[diff]
+    compactionHeuristic = true
 [diff "sqlite3"]
     textconv = echo .dump|sqlite3
 [alias]
