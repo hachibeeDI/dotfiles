@@ -1741,10 +1741,13 @@ nnoremap <silent>[UMenu]g :Unite -silent -start-insert menu:git<CR>
 
 " バッファ一覧
 nnoremap <silent> <SID>[Unite]b :<C-u>Unite buffer<CR>
+
 " ファイル一覧
 nnoremap <silent> <SID>[Unite]f :<C-u>UniteWithBufferDir -buffer-name=files file<CR>
 " .gitを基準にしたプロジェクト一覧 (ctrlp的な)
 nnoremap <silent> <SID>[Unite]p :<C-u>Unite file_rec/async:!<CR>
+nnoremap <silent> <D-p> :<C-u>Unite file_rec/async:!<CR>
+
 " レジスタ一覧
 nnoremap <silent> <SID>[Unite]r :<C-u>Unite -buffer-name=register register<CR>
 " 最近使用したファイル一覧

@@ -43,6 +43,34 @@ zle -N peco-ghq
 bindkey '^gh' peco-ghq
 
 
+# }}}
+
+
+# git utils {{{
+function peco-git-co () {
+    local selected_dir=$(git branch | grep -v "*" | peco)
+    if [ -n "$selected_dir" ]; then
+        BUFFER="git checkout ${selected_dir}"
+        zle accept-line
+    fi
+    zle clear-screen
+}
+zle -N peco-git-co
+bindkey '^go' peco-git-co
+
+
+# function peco-hub-co () {
+#     local selected_dir=$(hub issue | grep -v "*" | peco)
+#     if [ -n "$selected_dir" ]; then
+#         BUFFER="git checkout ${selected_dir}"
+#         zle accept-line
+#     fi
+#     zle clear-screen
+# }
+# zle -N peco-hub-co
+# bindkey '^ho' peco-hub-co
+
+
 function peco-src-gitdir () {
     local _dir=$(git rev-parse --show-cdup 2>/dev/null)
     if [ $? -eq 0 ]; then
@@ -56,10 +84,8 @@ function peco-src-gitdir () {
 }
 zle -N peco-src-gitdir
 bindkey '^ggd' peco-src-gitdir
-# }}}
 
 
-# git utils {{{
 function git-ls-file-edit () {
   local TARG=$(git ls-files "$1" | peco --query "$LBUFFER")
   if [ $? = 1 -o "$TARG" = "" ]; then
