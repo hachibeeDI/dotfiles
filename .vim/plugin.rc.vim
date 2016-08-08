@@ -557,7 +557,7 @@ if g:neobundle#tap('lexima.vim')
     let g:lexima_no_default_rules = 1
     call g:lexima#set_default_rules()
 
-    let s:defailt_ignore_rule = {'syntax': ['String', 'Comment']}
+    let s:default_ignore_rule = {'syntax': ['String', 'Comment']}
 
     function! s:as_list(a)
         return type(a:a) == type([]) ? a:a : [a:a]
@@ -586,35 +586,36 @@ if g:neobundle#tap('lexima.vim')
 
     for [l:begin, l:end] in [['(', ')'], ['{', '}'], ['[', ']']]
         let l:bracket = l:begin.end
-        call s:add_rule_with_ignores({'at': '\%#',       'char': l:begin, 'input': l:begin, 'input_after': l:end}, s:defailt_ignore_rule)
-        call s:add_rule_with_ignores({'at': '\%#'.l:end, 'char': l:begin, 'input': l:begin}, s:defailt_ignore_rule)
+        call s:add_rule_with_ignores({'at': '\%#',       'char': l:begin, 'input': l:begin, 'input_after': l:end}, s:default_ignore_rule)
+        call s:add_rule_with_ignores({'at': '\%#'.l:end, 'char': l:begin, 'input': l:begin}, s:default_ignore_rule)
 
         " TODO: inputが空の状態でleaveは効かない？ はっきりしたらissueを出そう
-        " call s:add_rule_with_ignores({'at': l:begin.'\%#'.l:end, 'char': l:end, 'leave': 1}, s:defailt_ignore_rule)
-        call s:add_rule_with_ignores({'at':         '\%#'.l:end, 'char': l:end, 'input': '<Right>'}, s:defailt_ignore_rule)
+        " call s:add_rule_with_ignores({'at': l:begin.'\%#'.l:end, 'char': l:end, 'leave': 1}, s:default_ignore_rule)
+        call s:add_rule_with_ignores({'at':         '\%#'.l:end, 'char': l:end, 'input': '<Right>'}, s:default_ignore_rule)
 
-        call s:add_rule_with_ignores({'at': l:begin.'\%#'.l:end, 'char': l:begin, 'input': l:begin, 'input_after': l:end}, s:defailt_ignore_rule)
-        call s:add_rule_with_ignores({'at': l:begin.'\%#'.l:end, 'char': '<BS>', 'input': '<BS>', 'delete': 1}, s:defailt_ignore_rule)
-        call s:add_rule_with_ignores({'at': l:begin.'\%#'.l:end, 'char': '<Enter>', 'input': '<Enter><Enter><Up><Tab>'}, s:defailt_ignore_rule)
+        call s:add_rule_with_ignores({'at': l:begin.'\%#'.l:end, 'char': l:begin, 'input': l:begin, 'input_after': l:end}, s:default_ignore_rule)
+        call s:add_rule_with_ignores({'at': l:begin.'\%#'.l:end, 'char': '<BS>', 'input': '<BS>', 'delete': 1}, s:default_ignore_rule)
+        call s:add_rule_with_ignores({'at': l:begin.'\%#'.l:end, 'char': '<Enter>', 'input': '<Enter><Enter><Up><Tab>'}, s:default_ignore_rule)
     endfor
 
 
-    let s:template_filetypes = ['rst', 'markdown', 'html', 'jinja', 'json', 'yaml', 'xml', 'css', 'sass', 'scss', 'stylus', 'bash', 'clojure', 'gitcommit']
+    let s:ignore_for_operator = [
+    \   s:default_ignore_rule,
+    \   {'filetype': ['rst', 'markdown', 'html', 'jinja', 'json', 'yaml', 'xml', 'css', 'sass', 'scss', 'stylus', 'bash', 'clojure', 'gitcommit']}
+    \]
     for l:opr in ['+', '-', '=', '*']
       call s:add_rule_with_ignores(
             \ {'at': '\%#',               'char': l:opr, 'input': '<Space>'.l:opr.'<Space>'},
-            \ {'filetype': s:template_filetypes},
-            \ s:defailt_ignore_rule)
+            \ s:ignore_for_operator)
+
       " BSした時に両端のスペースを消すやつ
       call s:add_rule_with_ignores(
             \ {'at': ' '.l:opr.' \%#',    'char': '<BS>', 'input': '<BS><Left><BS>', 'leave': 1},
-            \ {'filetype': s:template_filetypes},
-            \ s:defailt_ignore_rule)
+            \ s:ignore_for_operator)
 
       call s:add_rule_with_ignores(
             \ {'at': '\%# '.l:opr.' ',    'char': '<Del>', 'input': '<Del><Right><Del><Left>'},
-            \ {'filetype': s:template_filetypes},
-            \ s:defailt_ignore_rule)
+            \ s:ignore_for_operator)
     endfor
     call g:lexima#add_rule({
     \   'at'       : ' - \%#',
@@ -622,9 +623,9 @@ if g:neobundle#tap('lexima.vim')
     \   'input'    : '<BS>><Space>',
     \   })
 
-    call s:add_rule_with_ignores({'at': '=\%#',   'char': '=', 'input': '='}, {'filetype': s:template_filetypes})
-    call s:add_rule_with_ignores({'at': ' = \%#', 'char': '=', 'input': '<Left>='}, {'filetype': s:template_filetypes})
-    call s:add_rule_with_ignores({'at': ' = \%#', 'char': '<BS>', 'input': '<BS><Left><BS><Right>'}, {'filetype': s:template_filetypes})
+    call s:add_rule_with_ignores({'at': '=\%#',   'char': '=', 'input': '='}, s:ignore_for_operator)
+    call s:add_rule_with_ignores({'at': ' = \%#', 'char': '=', 'input': '<Left>='}, s:ignore_for_operator)
+    call s:add_rule_with_ignores({'at': ' = \%#', 'char': '<BS>', 'input': '<BS><Left><BS><Right>'}, s:ignore_for_operator)
 
     call g:lexima#add_rule({
     \   'at'       : '\s===\s\%#',
@@ -761,7 +762,7 @@ if g:neobundle#tap('lexima.vim')
     \   'input': '.<C-x><C-o><C-p>',
     \   'filetype': s:filetypes_with_omnifunc,
     \ },
-    \ s:defailt_ignore_rule
+    \ s:default_ignore_rule
     \ )
 
 
