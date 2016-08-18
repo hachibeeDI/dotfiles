@@ -557,7 +557,7 @@ if g:neobundle#tap('lexima.vim')
     let g:lexima_no_default_rules = 1
     call g:lexima#set_default_rules()
 
-    let s:default_ignore_rule = {'syntax': ['String', 'Comment']}
+    let s:default_ignore_rule = {'syntax': ['String', 'Comment', 'xmlString', 'jsxRegion']}
 
     function! s:as_list(a)
         return type(a:a) == type([]) ? a:a : [a:a]
