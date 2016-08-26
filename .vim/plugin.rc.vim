@@ -347,6 +347,9 @@ if g:neobundle#tap('vim-quickrun')
     \     'cmdopt': '-f gcc',
     \     'exec'      : '%c %o %s:p ',
     \   },
+    \   "javascript.jsx/watchdogs_checker" : {
+    \     'type': executable('eslint') ? 'watchdogs_checker/eslint' : '',
+    \   },
     \ }
     " }}}
 
