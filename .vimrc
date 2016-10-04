@@ -704,23 +704,7 @@ NeoBundleLazy 'hachibeeDI/vim-vbnet', {
 \ 'stay_same' : 1,
 \}
 " }}}
-" == PHP {{{
-if executable('php-cs-fixer')
-  NeoBundleLazy 'stephpy/vim-php-cs-fixer', {
-  \ 'autoload' : {
-  \   'filetypes' : ['php'],
-  \   },
-  \}
-  NeoBundleLazy 'shawncplus/phpcomplete.vim', {
-  \ 'autoload' : {
-  \   'filetypes' : ['php'],
-  \   },
-  \}
-  autocmd MyAutoCmd Filetype php setl makeprg=php\ -l\ %
-  autocmd MyAutoCmd Filetype php setl errorformat=%m\ in\ %f\ on\ line\ %l
-  autocmd MyAutoCmd BufWritePost *.php silent make | if len(getqflist()) != 1 | copen | else | cclose | endif
-endif
-"}}}
+
 " -- markup {{{
 NeoBundleLazy 'mattn/emmet-vim', {
 \ 'autoload' : {
