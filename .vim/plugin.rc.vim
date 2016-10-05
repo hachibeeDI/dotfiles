@@ -596,7 +596,10 @@ if g:neobundle#tap('lexima.vim')
         " call s:add_rule_with_ignores({'at': l:begin.'\%#'.l:end, 'char': l:end, 'leave': 1}, s:default_ignore_rule)
         call s:add_rule_with_ignores({'at':         '\%#'.l:end, 'char': l:end, 'input': '<Right>'}, s:default_ignore_rule)
 
-        call s:add_rule_with_ignores({'at': l:begin.'\%#'.l:end, 'char': l:begin, 'input': l:begin, 'input_after': l:end}, s:default_ignore_rule)
+        call s:add_rule_with_ignores(
+        \  {'at': l:begin.'\%#'.l:end, 'char': l:begin, 'input': l:begin, 'input_after': l:end},
+        \  s:default_ignore_rule
+        \)
         call s:add_rule_with_ignores({'at': l:begin.'\%#'.l:end, 'char': '<BS>', 'input': '<BS>', 'delete': 1}, s:default_ignore_rule)
         call s:add_rule_with_ignores({'at': l:begin.'\%#'.l:end, 'char': '<Enter>', 'input': '<Enter><Enter><Up><Tab>'}, s:default_ignore_rule)
     endfor
