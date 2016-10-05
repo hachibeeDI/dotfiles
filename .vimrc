@@ -929,6 +929,9 @@ call g:Vit.load('Data.List').load('Data.String').load('Math')
 
 
 source ~/.vim/common.rc.vim
+if has('unix')
+    set swapsync=
+endif
 
 
 " 各コマンド後の結果をquickfixへ出力させる

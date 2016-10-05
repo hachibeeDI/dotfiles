@@ -1,3 +1,6 @@
+filetype plugin indent on
+syntax enable
+
 let s:is_windows = has('win16') || has('win32') || has('win64')
 
 " encoding ------ {{{
@@ -100,16 +103,15 @@ if has('unix')
 endif
 set backupdir=~/.vimcache/bak
 set viminfo& viminfo+=n~/.vimcache/viminfo
-if v:version >= 703
-    set undodir=~/.vimcache/undo
-    set undofile
+set undodir=~/.vimcache/undo
+set undofile
 
-  " for snippet_complete marker
-  " conceal in insert (i), normal (n) and visual (v) modes
-  set conceallevel=2 concealcursor=inv
-  set colorcolumn=79
-  set relativenumber
-endif
+" for snippet_complete marker
+" conceal in insert (i), normal (n) and visual (v) modes
+set conceallevel=2 concealcursor=inv
+set colorcolumn=79
+
+set relativenumber
 set number
 " set history=100000
 
