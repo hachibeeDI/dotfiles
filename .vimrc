@@ -555,7 +555,7 @@ NeoBundleLazy 'othree/es.next.syntax.vim', {
 
 NeoBundleLazy 'isRuslan/vim-es6', {
 \ 'autoload' : {
-\   'filetypes' : ['javascript', 'typescript', 'html'],
+\   'filetypes' : ['javascript', 'javascript.jsx', 'typescript', 'html'],
 \}}
 " NeoBundleLazy 'jason0x43/vim-js-indent', {
 " \ 'autoload' : {
