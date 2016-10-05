@@ -1,3 +1,4 @@
+set termguicolors
 "set autogroup
 augroup MyAutoCmd
   autocmd!
