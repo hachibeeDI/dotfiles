@@ -1,6 +1,5 @@
 #!/bin/sh
 
-#動作テストしてないよてへぺろ☆
 dotfile_path=`pwd`
 echo "$dotfile_path"
 
@@ -21,8 +20,9 @@ mkdir ~/.vimcache/undo/
 mkdir -p ~/.cache/shell
 
 
-# 汚い…
 ln -s "$dotfile_path"/.vimrc ~/.vimrc
+mkdir -p ~/.config/nvim
+ln -s "$dotfile_path"/nvim ~/.config/nvim
 touch ~/.vimrc.local
 ln -s "$dotfile_path"/.gvimrc ~/.gvimrc
 ln -s "$dotfile_path"/.zsh ~/.zsh
