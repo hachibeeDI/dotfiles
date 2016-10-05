@@ -99,7 +99,6 @@ set t_Co=256
 set noswapfile
 if has('unix')
     set nofsync
-    set swapsync=
 endif
 set backupdir=~/.vimcache/bak
 set viminfo& viminfo+=n~/.vimcache/viminfo
