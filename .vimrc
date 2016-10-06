@@ -932,6 +932,8 @@ source ~/.vim/common.rc.vim
 if has('unix')
     set swapsync=
 endif
+" viminfo binary doesn't seems have compatility with plain vim
+set viminfo& viminfo+=n~/.vimcache/viminfo
 
 
 " 各コマンド後の結果をquickfixへ出力させる
