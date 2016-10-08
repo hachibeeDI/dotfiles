@@ -7,13 +7,14 @@
 " vimrc
 " --------------------------------------------------------
 
+source ~/.vim/environments.rc.vim
+
 " variables ----
 
 let s:MY_VIMRUNTIME = expand('~/.vim')
 let s:vimrc = '~/.vimrc'
 
 let s:is_cygwin = has('win32unix')
-let g:is_mac = has('mac') || has('macunix') || has('gui_macvim')
 
 "set autogroup
 augroup MyAutoCmd
