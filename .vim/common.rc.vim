@@ -1,3 +1,6 @@
+" python.vim (default bundled syntax plugin)
+let g:python_highlight_all = 1
+
 filetype plugin indent on
 syntax enable
 

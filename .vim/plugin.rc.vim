@@ -1,3 +1,8 @@
+" If there is vimfiler, disable netrw
+let g:loaded_netrwPlugin = 1
+" do not show note
+let g:netrw_localcopycmd=''
+
 
 " completions {{{
 " TODO: neobundle#hooks.on_source = 'dir/to/rcfile' 方式に書き換える
