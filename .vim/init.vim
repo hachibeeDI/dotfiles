@@ -13,3 +13,4 @@ source ~/.vim/common.rc.vim
 set viminfo& viminfo+=n~/.vimcache/nviminfo
 
 source ~/.vim/keymap.rc.vim
+source ~/.vim/keymap.unite.vim
