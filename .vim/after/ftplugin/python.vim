@@ -27,6 +27,8 @@ omap <buffer> ac <Plug>(textobj-python-class-a)
 xmap <buffer> ic <Plug>(textobj-python-class-i)
 omap <buffer> ic <Plug>(textobj-python-class-i)
 
-call function("<SNR>".g:vimrc_sid."_def_smartchar")()
+if has_key(g:, 'vimrc_sid')
+  call function("<SNR>".g:vimrc_sid."_def_smartchar")()
+endif
 
 setlocal omnifunc=jedi#completions
