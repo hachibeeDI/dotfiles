@@ -159,8 +159,6 @@ setlocal cursorline
 autocmd MyAutoCmd WinEnter * setlocal cursorline
 autocmd MyAutoCmd WinLeave * setlocal nocursorline
 
-set background=dark
-
 "colorscheme solarized
 let g:solarized_termcolors=256
 let g:solarized_termtrans = 1
@@ -204,5 +202,12 @@ set ignorecase
 set smartcase
 set wrapscan
 set hlsearch
-" ------------ }}}
 
+set grepprg=git\ grep\ --no-index\ -I\ --line-number  " TODO: consider about --no-color option
+autocmd MyAutoCmd QuickfixCmdPost vimgrep copen
+autocmd MyAutoCmd QuickfixCmdPost grep copen
+" I prefer to use external grep
+nnoremap <expr> <Space>G ':vimgrep /\<' . expand('<cword>') . '\>/j **/*.' . expand('%:e')
+nnoremap <expr> <Space>gg ':grep ' . expand('<cword>') . ' **.' . expand('%:e')
+nnoremap <expr><silent> <Space>gp ':grep ' . expand('<cword>') . ' **/*.' . expand('%:e') . '<CR>'
+" ------------ }}}
