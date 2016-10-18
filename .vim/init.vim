@@ -24,4 +24,5 @@ source ~/.vim/keymap.unite.vim
 if exists('g:nyaovim_version')
   " Write NyaoVim specific code here
   colorscheme hazard
+  inoremap <D-v> <C-r>"
 endif
