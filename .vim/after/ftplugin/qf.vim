@@ -14,10 +14,10 @@ function! s:tb_loop(motion)
     let list = getqflist()
   endif
   let cur = line('.') - 1
-  let pos = g:Vit.Math.modulo(cur + a:motion, max)
+  let pos = cur + a:motion % max
   let m = 0 < a:motion ? 1 : -1
   while cur != pos && list[pos].bufnr == 0
-    let pos = g:Vit.Math.modulo(pos + m, max)
+    let pos = pos + m % max
   endwhile
   return (pos + 1) . 'G'
 endfunction

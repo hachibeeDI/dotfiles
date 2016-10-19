@@ -56,13 +56,6 @@ let g:c_syntax_for_h = 1
 filetype plugin indent on
 syntax enable
 
-" vital.vim --- {{{
-let g:Vit = vital#of('vital')
-"call extend(s:, g:Vit, 'keep') " スクリプトローカルに展開したくなったら
-call g:Vit.load('Data.List').load('Data.String').load('Math')
-"}}}
-
-
 source ~/.vim/common.rc.vim
 if has('unix')
     set swapsync=
