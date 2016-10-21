@@ -453,6 +453,27 @@ if g:neobundle#tap('python_hl_lvar.vim')
 end
 
 
+if g:neobundle#tap('vim-quickhl')
+  nmap <Space>m <Plug>(quickhl-manual-this)
+  xmap <Space>m <Plug>(quickhl-manual-this)
+
+  nmap <Space>M <Plug>(quickhl-manual-reset)
+  xmap <Space>M <Plug>(quickhl-manual-reset)
+
+  nmap <F9>     <Plug>(quickhl-manual-toggle)
+  xmap <F9>     <Plug>(quickhl-manual-toggle)
+
+  nmap <Space>j <Plug>(quickhl-cword-toggle)
+
+  nmap <Space>] <Plug>(quickhl-tag-toggle)
+
+  map H <Plug>(operator-quickhl-manual-this-motion)
+end
+
+
+
+
+
 if g:neobundle#tap('vim-go') && executable('go')
   let g:go_bin_path = expand('~/.go/bin')
   let g:go_fmt_fail_silently = 1

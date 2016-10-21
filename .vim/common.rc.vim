@@ -211,3 +211,55 @@ nnoremap <expr> <Space>G ':vimgrep /\<' . expand('<cword>') . '\>/j **/*.' . exp
 nnoremap <expr> <Space>gg ':grep ' . expand('<cword>') . ' **.' . expand('%:e')
 nnoremap <expr><silent> <Space>gp ':grep ' . expand('<cword>') . ' **/*.' . expand('%:e') . '<CR>'
 " ------------ }}}
+
+
+if has('path_extra')
+  set tags& tags+=.tags,tags
+
+  autocmd MyAutoCmd FileType coffee
+      \ set tags+=$HOME/coffee.tags
+  autocmd MyAutoCmd FileType python
+      \ set tags+=$HOME/python.tags
+endif
+
+
+command! DeleteTrail call s:DeleteTrailingSpaces()
+function! s:DeleteTrailingSpaces()
+    let l:l = line('.')
+    let l:c = col('.')
+    execute ':%s/\s\+$//g'
+    nohl
+    call cursor(l, c)
+    echo 'delete trail'
+endfunction
+
+
+" 各コマンド後の結果をquickfixへ出力させる
+function! s:auto_ccl()
+  if &filetype !=# 'qf'
+    return
+  endif
+
+  " リストが空ならそのまま閉じる
+  if getqflist() == []
+    :QuickfixStatusDisable
+    :cclose
+  else
+    :QuickfixStatusEnable
+  endif
+  :HierUpdate
+endfunction
+
+
+autocmd MyAutoCmd QuickfixCmdPost make,grep,grepadd,vimgrep copen
+autocmd MyAutoCmd QuickfixCmdPost make call <SID>auto_ccl()
+" qf系 -> $HOME/.vim/after/ftplugin/qf.vim
+" make時に、shellに戻ったりとか余計な表示を出さない
+nnoremap <silent> <leader>m :<C-u>silent make<CR>
+" Auto-close if quickfix or quickrun window is only in buffer
+autocmd MyAutoCmd WinEnter *
+\   if (winnr('$') ==# 1) &&
+\      (getbufvar(winbufnr(0), '&filetype')) =~? 'qf\|quickrun'
+\         | quit | endif
+
+

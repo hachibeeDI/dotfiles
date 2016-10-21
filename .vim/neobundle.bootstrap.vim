@@ -305,6 +305,19 @@ NeoBundleLazy 'kana/vim-smarttill', { 'autoload' : {
       \ 'mappings' : [
       \   '<Plug>(smarttill-t)', '<Plug>(smarttill-T)']
       \ }}
+" smartword.vim"{{{
+" Replace w and others with smartword-mappings
+nmap w  <Plug>(smartword-w)
+nmap b  <Plug>(smartword-b)
+nmap ge  <Plug>(smartword-ge)
+xmap w  <Plug>(smartword-w)
+xmap b  <Plug>(smartword-b)
+" Operator pending mode.
+omap <Leader>w  <Plug>(smartword-w)
+omap <Leader>b  <Plug>(smartword-b)
+omap <Leader>ge  <Plug>(smartword-ge)
+"}}}
+
 " }}}
 
 " search words from two spells matched
@@ -316,6 +329,9 @@ NeoBundleLazy 'sjl/gundo.vim', {
 \   'commands' : ['GundoToggle'],
 \ }
 \}
+" ----- Gundo.vim --- {{{
+nnoremap U :<C-u>GundoToggle<CR>
+" ---- }}}
 
 NeoBundleLazy 'tpope/vim-classpath', {
 \ 'autoload' : {
@@ -396,6 +412,22 @@ NeoBundleLazy 'andviro/flake8-vim', {
 \ 'autoload' : {
 \   'filetypes' : ['python'],
 \ }}
+
+" Flake8-vim {{{
+let g:PyFlakeOnWrite = 1
+" 無視する警告の種類
+" E501 => 行ごとの文字数制限, E121 => 次行のインデントはひとつだけ, E303 => 改行の数が多すぎる, E309 => クラスの後は一行あける（コメント書けないじゃん）
+let g:PyFlakeDisabledMessages = 'E501,E121,E303,E309'
+" エラー行のマーカー。hierあればいらねー
+let g:PyFlakeSigns = 0
+" flake8-autoをかけるためのコマンド。visual-modeでの範囲選択に対応
+let g:PyFlakeRangeCommand = 'Q'
+let g:PyFlakeCheckers = 'pep8,mccabe,frosted'
+" McCabe複雑度の最大値
+let g:PyFlakeDefaultComplexity=10
+" Be aggressive for autopep8
+let g:PyFlakeAggressive = 1
+" }}}
 " NeoBundleLazy 'flake8-vim', {
 " \ 'autoload' : {
 " \   'filetypes' : ['python'],
@@ -403,6 +435,7 @@ NeoBundleLazy 'andviro/flake8-vim', {
 " \ 'base': expand('~/Dropbox/development/viml/'),
 " \ 'type': 'nosync',
 " \}
+
 NeoBundleLazy 'hachibeeDI/rope-vim', {
 \ 'autoload' : {
 \   'filetypes' : ['python'],
@@ -768,7 +801,69 @@ NeoBundle 'ujihisa/unite-font', {'gui': 1}
 
 NeoBundle 'sudo.vim'
 NeoBundle 'kana/vim-metarw'
+" --- lightline -- {{{
 NeoBundle 'itchyny/lightline.vim'
+let g:lightline = {
+\   'component': {
+\     'virtualenv': 'venv => %{&filetype=="python"?"":virtualenv#statusline()}',
+\     'readonly': '%{&readonly?"ro":""}',
+\     'cursorsyntax': '%{synIDattr(synID(line("."), col("."), 0), "name")}'
+\   },
+\   'component_function': {
+\     'fugitive': 'MyFugitive',
+\     'filename': 'MyFilename',
+\     'vaxe': 'MyVaxe',
+\   },
+\   'separator': {'left': '', 'right': '' },
+\   'subseparator': {'left': '|', 'right': '|'},
+\   'active': {
+\     'left': [
+\           ['mode', 'paste'], ['readonly', 'filename', 'modified'], ['vaxe', 'virtualenv']],
+\     'right': [['percent', 'lineinfo'], ['fileformat', 'fileencoding', 'filetype'], ['cursorsyntax']],
+\   },
+\   'enable': {
+\     'tabline': 0
+\   },
+\ }
+
+function! MyModified()
+  return &filetype =~# 'help\|vimfiler\|gundo\|qf' ? '' : &modified ? '+' : &modifiable ? '' : '-'
+endfunction
+
+function! MyReadonly()
+  return &filetype !~? 'help\|vimfiler\|gundo\|qf' && &ro ? '錠' : ''
+endfunction
+
+function! MyFilename()
+  return ('' !=# MyReadonly() ? MyReadonly() . ' ' : '') .
+        \ (&filetype ==# 'vimfiler' ? vimfiler#get_status_string() :
+        \  &filetype ==# 'unite' ? unite#get_status_string() :
+        \  &filetype ==# 'qf' ? 'quickfix' :
+        \  &filetype ==# 'vimshell' ? substitute(b:vimshell.current_dir,expand('~'),'~','') :
+        \ '' !=? expand('%:t') ? expand('%:t') : '[No Name]') .
+        \ ('' !=# MyModified() ? ' ' . MyModified() : '')
+endfunction
+
+function! MyFugitive()
+  try
+    if &filetype !~? 'vimfiler\|gundo\|qf' && exists('*fugitive#head')
+      let _ = fugitive#head()
+      return strlen(_) ? '梗'._ : ''
+    endif
+  catch
+  endtry
+  return ''
+endfunction
+
+function! MyVaxe()
+  if &filetype ==# 'haxe'
+    return pathshorten(fnamemodify(vaxe#CurrentBuild(), ':p:.')) . ' =>[' . vaxe#CurrentBuildPlatform() . ']'
+  else
+    return ''
+  endif
+endfunction
+" lightline }}}
+
 NeoBundle 't9md/vim-quickhl'
 
 " カッコいい言語のカッコをレインボーにする

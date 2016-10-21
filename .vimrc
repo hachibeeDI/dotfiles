@@ -64,35 +64,6 @@ endif
 set viminfo& viminfo+=n~/.vimcache/viminfo
 
 
-" 各コマンド後の結果をquickfixへ出力させる
-function! s:auto_ccl()
-  if &filetype !=# 'qf'
-    return
-  endif
-
-  " リストが空ならそのまま閉じる
-  if getqflist() == []
-    :QuickfixStatusDisable
-    :cclose
-  else
-    :QuickfixStatusEnable
-  endif
-  :HierUpdate
-endfunction
-
-
-autocmd MyAutoCmd QuickfixCmdPost make,grep,grepadd,vimgrep copen
-autocmd MyAutoCmd QuickfixCmdPost make call <SID>auto_ccl()
-" qf系 -> $HOME/.vim/after/ftplugin/qf.vim
-" make時に、shellに戻ったりとか余計な表示を出さない
-nnoremap <silent> <leader>m :<C-u>silent make<CR>
-" Auto-close if quickfix or quickrun window is only in buffer
-autocmd MyAutoCmd WinEnter *
-\   if (winnr('$') ==# 1) &&
-\      (getbufvar(winbufnr(0), '&filetype')) =~? 'qf\|quickrun'
-\         | quit | endif
-
-
 " ---------- Cursor -------- {{{
 " via: http://blog.remora.cx/2012/10/spotlight-cursor-line.html
 "let &t_SI = "\e]50;CursorShape = 1\x7"
@@ -197,27 +168,6 @@ source ~/.vim/keymap.rc.vim
 source ~/.vim/keymap.unite.vim
 
 " ----------- operation
-
-if has('path_extra')
-  set tags& tags+=.tags,tags
-
-  autocmd MyAutoCmd FileType coffee
-      \ set tags+=$HOME/coffee.tags
-  autocmd MyAutoCmd FileType python
-      \ set tags+=$HOME/python.tags
-endif
-
-
-command! DeleteTrail call s:DeleteTrailingSpaces()
-function! s:DeleteTrailingSpaces()
-    let l:l = line('.')
-    let l:c = col('.')
-    execute ':%s/\s\+$//g'
-    nohl
-    call cursor(l, c)
-    echo 'delete trail'
-endfunction
-
 
 " chmod a+xするコマンド
 if executable('chmod')
@@ -418,22 +368,6 @@ nnoremap <Leader>il :IndentLinesToggle
 
 " --- key maps {{{
 
-" Flake8-vim {{{
-let g:PyFlakeOnWrite = 1
-" 無視する警告の種類
-" E501 => 行ごとの文字数制限, E121 => 次行のインデントはひとつだけ, E303 => 改行の数が多すぎる, E309 => クラスの後は一行あける（コメント書けないじゃん）
-let g:PyFlakeDisabledMessages = 'E501,E121,E303,E309'
-" エラー行のマーカー。hierあればいらねー
-let g:PyFlakeSigns = 0
-" flake8-autoをかけるためのコマンド。visual-modeでの範囲選択に対応
-let g:PyFlakeRangeCommand = 'Q'
-let g:PyFlakeCheckers = 'pep8,mccabe,frosted'
-" McCabe複雑度の最大値
-let g:PyFlakeDefaultComplexity=10
-" Be aggressive for autopep8
-let g:PyFlakeAggressive = 1
-" }}}
-
 " ------ RainbowParentTheses
 let g:rbpt_colorpairs = [
     \ ['brown',       'RoyalBlue3'],
@@ -496,41 +430,6 @@ let g:memolist_path = '~/Dropbox/memolist'
 " ------ OpenBrowser {{{
 nmap <Space>w <Plug>(openbrowser-smart-search)
 " ----}}}
-
-" --------- quickhl {{{
-nmap <Space>m <Plug>(quickhl-manual-this)
-xmap <Space>m <Plug>(quickhl-manual-this)
-
-nmap <Space>M <Plug>(quickhl-manual-reset)
-xmap <Space>M <Plug>(quickhl-manual-reset)
-
-nmap <F9>     <Plug>(quickhl-manual-toggle)
-xmap <F9>     <Plug>(quickhl-manual-toggle)
-
-nmap <Space>j <Plug>(quickhl-cword-toggle)
-
-nmap <Space>] <Plug>(quickhl-tag-toggle)
-
-map H <Plug>(operator-quickhl-manual-this-motion)
-" ----- }}}
-
-" ----- Gundo.vim --- {{{
-nnoremap U :<C-u>GundoToggle<CR>
-" ---- }}}
-
-
-" smartword.vim"{{{
-" Replace w and others with smartword-mappings
-nmap w  <Plug>(smartword-w)
-nmap b  <Plug>(smartword-b)
-nmap ge  <Plug>(smartword-ge)
-xmap w  <Plug>(smartword-w)
-xmap b  <Plug>(smartword-b)
-" Operator pending mode.
-omap <Leader>w  <Plug>(smartword-w)
-omap <Leader>b  <Plug>(smartword-b)
-omap <Leader>ge  <Plug>(smartword-ge)
-"}}}
 
 " --- smartchr ---- {{{
 " commons {{{
@@ -607,68 +506,6 @@ let g:gist_use_password_in_gitconfig = 1
 " --- Tagbar --- {{{
 nnoremap <SID>[Show]t  :<C-u>TagbarToggle<CR>
 "}}}
-
-" --- lightline -- {{{
-let g:lightline = {
-\   'component': {
-\     'virtualenv': 'venv => %{&filetype=="python"?"":virtualenv#statusline()}',
-\     'readonly': '%{&readonly?"ro":""}',
-\     'cursorsyntax': '%{synIDattr(synID(line("."), col("."), 0), "name")}'
-\   },
-\   'component_function': {
-\     'fugitive': 'MyFugitive',
-\     'filename': 'MyFilename',
-\     'vaxe': 'MyVaxe',
-\   },
-\   'separator': {'left': '', 'right': '' },
-\   'subseparator': {'left': '|', 'right': '|'},
-\   'active': {
-\     'left': [
-\           ['mode', 'paste'], ['readonly', 'filename', 'modified'], ['vaxe', 'virtualenv']],
-\     'right': [['percent', 'lineinfo'], ['fileformat', 'fileencoding', 'filetype'], ['cursorsyntax']],
-\   },
-\   'enable': {
-\     'tabline': 0
-\   },
-\ }
-
-function! MyModified()
-  return &filetype =~# 'help\|vimfiler\|gundo\|qf' ? '' : &modified ? '+' : &modifiable ? '' : '-'
-endfunction
-
-function! MyReadonly()
-  return &filetype !~? 'help\|vimfiler\|gundo\|qf' && &ro ? '錠' : ''
-endfunction
-
-function! MyFilename()
-  return ('' !=# MyReadonly() ? MyReadonly() . ' ' : '') .
-        \ (&filetype ==# 'vimfiler' ? vimfiler#get_status_string() :
-        \  &filetype ==# 'unite' ? unite#get_status_string() :
-        \  &filetype ==# 'qf' ? 'quickfix' :
-        \  &filetype ==# 'vimshell' ? substitute(b:vimshell.current_dir,expand('~'),'~','') :
-        \ '' !=? expand('%:t') ? expand('%:t') : '[No Name]') .
-        \ ('' !=# MyModified() ? ' ' . MyModified() : '')
-endfunction
-
-function! MyFugitive()
-  try
-    if &filetype !~? 'vimfiler\|gundo\|qf' && exists('*fugitive#head')
-      let _ = fugitive#head()
-      return strlen(_) ? '梗'._ : ''
-    endif
-  catch
-  endtry
-  return ''
-endfunction
-
-function! MyVaxe()
-  if &filetype ==# 'haxe'
-    return pathshorten(fnamemodify(vaxe#CurrentBuild(), ':p:.')) . ' =>[' . vaxe#CurrentBuildPlatform() . ']'
-  else
-    return ''
-  endif
-endfunction
-" lightline }}}
 
 
 let g:vimrc_sid = GetScriptID(s:vimrc)
