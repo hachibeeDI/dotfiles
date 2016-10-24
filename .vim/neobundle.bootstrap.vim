@@ -190,9 +190,10 @@ call g:neobundle#config('unite-tag', {
 
 NeoBundleLazy 'majutsushi/tagbar', {
 \ 'autoload' : {
-\   'commands' : ['TagbarToggle'],
+\   'commands' : ['Tagbar', 'TagbarToggle'],
 \ }
 \}
+nnoremap <Space>T :<C-u>Tagbar<CR>
 
 NeoBundle 'osyo-manga/unite-quickfix'
 call g:neobundle#config('unite-quickfix', {
