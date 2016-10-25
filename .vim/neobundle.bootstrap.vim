@@ -69,7 +69,6 @@ NeoBundle 'editorconfig/editorconfig-vim'
 NeoBundle 'Shougo/vimfiler', '', 'default'
 call g:neobundle#config('vimfiler', {
       \ 'lazy' : 1,
-      \ 'depends' : 'Shougo/unite.vim',
       \ 'autoload' : {
       \    'commands' : [
       \                  { 'name' : 'VimFiler',
@@ -99,12 +98,6 @@ NeoBundleLazy 'thinca/vim-quickrun', {
 
 " Git {{{
 " runtimepathに追加されていない？ 要調査
-NeoBundle 'kmnk/vim-unite-giti'
-call g:neobundle#config('vim-unite-giti', {
-  \ 'lazy' : 1,
-  \ 'autoload' : {
-  \   'unite_sources' : 'giti'},
-  \ })
 NeoBundle 'tpope/vim-fugitive'
 NeoBundleLazy 'gregsexton/gitv' , {
 \ 'depends' : 'tpope/vim-fugitive',
@@ -137,56 +130,92 @@ let g:rooter_disable_map = 1
 nmap <silent> <unique> <Space>rt <Plug>RooterChangeToRootDirectory
 
 "Unite
-NeoBundleLazy 'Shougo/unite.vim' , {
-\ 'autoload' : {
-\   'commands' : ['Unite', 'UniteWithBufferDir', 'QuickRun'],
-\ }
-\}
-" unite source {{{
-NeoBundle 'Shougo/neomru.vim'
-" call g:neobundle#config('neomru.vim', {
-" \ 'lazy' : 1,
-" \ 'autoload' : {
-" \   'unite_sources' : 'file_mru'},
-" \ })
+" if has('nvim')
+if 0
+  NeoBundle 'Shougo/denite.nvim'
 
-NeoBundleLazy 'lambdalisue/unite-grep-vcs', {
-    \ 'autoload': {
-    \    'unite_sources': ['grep/git', 'grep/hg'],
-    \}}
+else
+  NeoBundleLazy 'Shougo/unite.vim' , {
+  \ 'autoload' : {
+  \   'commands' : ['Unite', 'UniteWithBufferDir', 'QuickRun'],
+  \ }
+  \}
 
-NeoBundle 'Shougo/unite-ssh'
-call g:neobundle#config('unite-ssh', {
-      \ 'lazy' : 1,
-      \ 'autoload' : {
-      \   'unite_sources' : 'ssh'},
-      \ })
-NeoBundle 'Shougo/unite-build'
-call g:neobundle#config('unite-build', {
-      \ 'lazy' : 1,
-      \ 'autoload' : {
-      \   'unite_sources' : 'build'},
-      \ })
+  " unite source {{{
+  NeoBundle 'Shougo/neomru.vim'
+  " call g:neobundle#config('neomru.vim', {
+  " \ 'lazy' : 1,
+  " \ 'autoload' : {
+  " \   'unite_sources' : 'file_mru'},
+  " \ })
 
-NeoBundle 'Shougo/unite-outline', '', 'default'
-call g:neobundle#config('unite-outline', {
+  NeoBundleLazy 'lambdalisue/unite-grep-vcs', {
+      \ 'autoload': {
+      \    'unite_sources': ['grep/git', 'grep/hg'],
+      \}}
+
+  NeoBundle 'Shougo/unite-ssh'
+  call g:neobundle#config('unite-ssh', {
+        \ 'lazy' : 1,
+        \ 'autoload' : {
+        \   'unite_sources' : 'ssh'},
+        \ })
+  NeoBundle 'Shougo/unite-build'
+  call g:neobundle#config('unite-build', {
+        \ 'lazy' : 1,
+        \ 'autoload' : {
+        \   'unite_sources' : 'build'},
+        \ })
+
+  NeoBundle 'Shougo/unite-outline', '', 'default'
+  call g:neobundle#config('unite-outline', {
+    \ 'lazy' : 1,
+    \ 'autoload' : {
+    \   'unite_sources' : 'outline'},
+    \ })
+
+  NeoBundle 'ryotakato/unite-outline-objc'
+  call g:neobundle#config('unite-outline', {
+    \ 'lazy' : 1,
+    \ 'autoload' : {
+    \   'unite_sources' : 'outline'},
+    \ })
+  NeoBundle 'tsukkee/unite-tag', '', 'default'
+  call g:neobundle#config('unite-tag', {
   \ 'lazy' : 1,
   \ 'autoload' : {
-  \   'unite_sources' : 'outline'},
+  \   'unite_sources' : 'tag'},
   \ })
 
-NeoBundle 'ryotakato/unite-outline-objc'
-call g:neobundle#config('unite-outline', {
+  NeoBundle 'osyo-manga/unite-quickfix'
+  call g:neobundle#config('unite-quickfix', {
   \ 'lazy' : 1,
   \ 'autoload' : {
-  \   'unite_sources' : 'outline'},
+  \   'unite_sources' : 'quickfix'},
   \ })
-NeoBundle 'tsukkee/unite-tag', '', 'default'
-call g:neobundle#config('unite-tag', {
-\ 'lazy' : 1,
-\ 'autoload' : {
-\   'unite_sources' : 'tag'},
-\ })
+
+  NeoBundleLazy 'hachibeeDI/unite-pypi-classifiers', {
+  \ 'autoload' : {
+  \   'unite_sources' : 'pypiclassifiers'},
+  \ }
+
+  NeoBundle 'rhysd/unite-codic.vim'
+  call g:neobundle#config('unite-codic.vim', {
+  \ 'lazy' : 1,
+  \ 'autoload' : {'unite_sources' : 'codic'},
+  \ })
+
+  NeoBundle 'kmnk/vim-unite-giti'
+  call g:neobundle#config('vim-unite-giti', {
+  \ 'lazy' : 1,
+  \ 'autoload' : {
+  \   'unite_sources' : 'giti'},
+  \ })
+
+  " }}}
+
+endif
+
 
 NeoBundleLazy 'majutsushi/tagbar', {
 \ 'autoload' : {
@@ -194,19 +223,6 @@ NeoBundleLazy 'majutsushi/tagbar', {
 \ }
 \}
 nnoremap <Space>T :<C-u>Tagbar<CR>
-
-NeoBundle 'osyo-manga/unite-quickfix'
-call g:neobundle#config('unite-quickfix', {
-\ 'lazy' : 1,
-\ 'autoload' : {
-\   'unite_sources' : 'quickfix'},
-\ })
-
-NeoBundleLazy 'hachibeeDI/unite-pypi-classifiers', {
-\ 'autoload' : {
-\   'unite_sources' : 'pypiclassifiers'},
-\ }
-" }}}
 
 
 " get and read referece on vim
@@ -361,11 +377,6 @@ NeoBundleLazy 'koron/codic-vim', {
 \   'function_prefix': 'codic',
 \   'mappings' : ['<Plug>(operator-codic)'],
 \ }}
-NeoBundle 'rhysd/unite-codic.vim'
-call g:neobundle#config('unite-codic.vim', {
-\ 'lazy' : 1,
-\ 'autoload' : {'unite_sources' : 'codic'},
-\ })
 NeoBundleLazy 'hachibeeDI/vim-operator-codic', {
 \ 'autoload': {
 \   'mappings' : '<Plug>',

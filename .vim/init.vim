@@ -20,9 +20,106 @@ set viminfo& viminfo+=n~/.vimcache/nviminfo
 
 source ~/.vim/keymap.rc.vim
 source ~/.vim/keymap.unite.vim
+" source ~/.vim/keymap.unite.vim => denite {{{
+
+" " Change file_rec command.
+" call denite#custom#var('file_rec', 'command',
+" \ ['ag', '--follow', '--nocolor', '--nogroup', '-g', ''])
+"
+" " Change mappings.
+" call denite#custom#map('_', "\<C-j>", 'move_to_next_line')
+" call denite#custom#map('_', "\<C-k>", 'move_to_prev_line')
+"
+" " Change matchers.
+" call denite#custom#source(
+" \ 'file_mru', 'matchers', ['matcher_fuzzy', 'matcher_project_files'])
+" call denite#custom#source(
+" \ 'file_mru', 'converters', ['converter_relative_word'])
+" call denite#custom#source(
+" \ 'file_rec', 'matchers', ['matcher_cpsm'])
+"
+" " Add custom menus
+" let s:menus = {}
+"
+" let s:menus.zsh = {
+"         \ 'description': 'Edit your import zsh configuration'
+"         \ }
+" let s:menus.zsh.file_candidates = [
+"         \ ['zshrc', '~/.config/zsh/.zshrc'],
+"         \ ['zshenv', '~/.zshenv'],
+"         \ ]
+"
+" let s:menus.my_commands = {
+"         \ 'description': 'Example commands'
+"         \ }
+" let s:menus.my_commands.command_candidates = [
+"         \ ['Split the window', 'vnew'],
+"         \ ['Open zsh menu', 'Denite menu:zsh'],
+"         \ ]
+"
+" call denite#custom#var('menu', 'menus', s:menus)
+"
+" " " Ack command on grep source
+" " call denite#custom#var('grep', 'command', ['ack'])
+" " call denite#custom#var('grep', 'recursive_opts', [])
+" " call denite#custom#var('grep', 'final_opts', [])
+" " call denite#custom#var('grep', 'separator', [])
+" " call denite#custom#var('grep', 'default_opts',
+" "                 \ ['--ackrc', $HOME.'/.ackrc', '-H',
+" "                 \ '--nopager', '--nocolor', '--nogroup', '--column'])
+" " " Ripgrep command on grep source
+" " call denite#custom#var('grep', 'command', ['rg'])
+" " call denite#custom#var('grep', 'recursive_opts', [])
+" " call denite#custom#var('grep', 'final_opts', [])
+" " call denite#custom#var('grep', 'separator', ['--'])
+" " call denite#custom#var('grep', 'default_opts',
+" "                 \ ['--vimgrep', '--no-heading'])
+" "
+"
+"
+" nnoremap <SID>[Denite] <Nop>
+" nmap ,u <SID>[Denite]
+" nnoremap <SID>[UMenu] <Nop>
+" nmap [Denite]t <SID>[UMenu]
+"
+" nnoremap <silent>[UMenu]g :Denite -silent -start-insert menu:git<CR>
+"
+" " バッファ一覧
+" nnoremap <silent> <SID>[Denite]b :<C-u>Denite buffer<CR>
+"
+" " ファイル一覧
+" nnoremap <silent> <SID>[Denite]f :<C-u>DeniteBufferDir file_rec<CR>
+" " .gitを基準にしたプロジェクト一覧 (ctrlp的な)
+" nnoremap <silent> <SID>[Denite]p :<C-u>Denite file_rec/async:!<CR>
+" nnoremap <silent> <D-p> :<C-u>Denite file_rec/async:!<CR>
+"
+" " レジスタ一覧
+" nnoremap <silent> <SID>[Denite]r :<C-u>Denite -buffer-name=register register<CR>
+" " 最近使用したファイル一覧
+" nnoremap <silent> <SID>[Denite]m :<C-u>Denite file_mru<CR>
+" " 常用セット
+" nnoremap <silent> <SID>[Denite]u :<C-u>Denite buffer file_mru<CR>
+" " タブ一覧
+" nnoremap <silent> <SID>[Denite]t :<C-u>Denite tab<CR>
+" " 全部乗せ
+" nnoremap <silent> <SID>[Denite]a :<C-u>DeniteWithBufferDir -buffer-name=files buffer file_mru bookmark file<CR>
+"
+" " その他
+" nnoremap <silent> <SID>[Denite]` :<C-u>Denite -auto-quit neobundle/update<CR>
+" " Outline
+" nnoremap <silent> <SID>[Denite]o :<C-u>Denite -vertical outline<CR>
+" " grep
+" nnoremap <silent> <SID>[Denite]gg :<C-u>Denite giti<CR>
+" nnoremap <silent> <SID>[Denite]gs :<C-u>Denite giti/status<CR>
+" nnoremap <silent> <SID>[Denite]gb :<C-u>Denite giti/branch<CR>
+" " quickfix
+" nnoremap <silent> <SID>[Denite]q :<C-u>Denite -no-quit -direction=botright quickfix
+" " }}}
 
 if exists('g:nyaovim_version')
   " Write NyaoVim specific code here
   colorscheme hazard
   inoremap <D-v> <C-r>"
+else
+  set background=dark
 endif
