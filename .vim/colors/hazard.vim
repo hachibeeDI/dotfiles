@@ -38,6 +38,10 @@ highlight Visual       gui=none guifg=khaki guibg=olivedrab
 highlight WarningMsg   guifg=salmon
 highlight colorcolumn  guibg=gray30 ctermbg=240
 highlight WildMenu     guifg=gray guibg=gray17 gui=NONE ctermfg=250 ctermbg=235 cterm=NONE
+" e.g. line-break
+highlight NonText      guibg=NONE guifg=DarkGreen
+" e.g. Tab
+highlight SpecialKey   guibg=NONE guifg=#363636
 "hi Menu
 "hi Scrollbar
 "hi Tooltip
@@ -49,7 +53,7 @@ highlight Identifier   gui=none guifg=palegreen
 highlight Function     gui=NONE guifg=skyblue ctermfg=117 cterm=NONE
 highlight Statement    gui=none guifg=khaki
 highlight PreProc      gui=none guifg=indianred
-highlight Type         gui=none guifg=#f0f0f0
+highlight Type         gui=none guifg=#20aab9
 highlight Special      gui=none guifg=navajowhite
 "hi Underlined
 highlight Ignore       guifg=grey40
