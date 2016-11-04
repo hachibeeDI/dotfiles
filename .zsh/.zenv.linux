@@ -33,7 +33,6 @@ export path
 fpath=(
     #自作
     $HOME/.zsh/functions/Completion(N-/)
-    $HOME/.autojump/functions(N-/)
 
     # Linuxでは自分でgit cloneする
     $HOME/src/zsh-completions/src(N-/)

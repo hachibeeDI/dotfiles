@@ -3,8 +3,6 @@
 #
 echo "load cygwin private settings ... ..."
 
-# autojump
-[[ -s ~/.autojump/etc/profile.d/autojump.zsh ]] && source ~/.autojump/etc/profile.d/autojump.zsh
 
 
 echo "done"

@@ -6,9 +6,6 @@ alias firefox="/Applications/Firefox.app/Contents/MacOS/firefox"
 alias safari="/Applications/Safari.app/Contents/MacOS/Safari"
 alias chrome="/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome"
 
-alias j="autojump"
-[[ -f `/usr/local/bin/brew --prefix`/etc/autojump.zsh ]] && . `brew --prefix`/etc/autojump.zsh
-
 
 # 辞書を引く
 function dict {
