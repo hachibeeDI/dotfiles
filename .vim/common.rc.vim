@@ -190,11 +190,8 @@ set titlestring=Vim:\ %f\ %h%r%m
 " ignore white space, show match lines,
 set diffopt=iwhite,filler
 
-set spelllang=en_us
-if v:version >= 704
-  set spelllang+=cjk
-endif
-
+set spelllang=en_us,cjk
+set spell
 
 " ---- search behavior ---- {{{
 set incsearch
