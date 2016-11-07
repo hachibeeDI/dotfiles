@@ -42,9 +42,15 @@ highlight WildMenu     guifg=gray guibg=gray17 gui=NONE ctermfg=250 ctermbg=235 
 highlight NonText      guibg=NONE guifg=DarkGreen
 " e.g. Tab
 highlight SpecialKey   guibg=NONE guifg=#363636
-"hi Menu
-"hi Scrollbar
-"hi Tooltip
+"
+" PmenuSbar	PmenuSbarA
+" PmenuThumb	PmenuThumbA
+highlight TabLine     guifg=#FEFEFE guibg=#545454
+" TabLineSel	TabLineSelA
+" TabLineFill	TabLineFillA
+" CursorColumn	CursorColumnA
+" CursorLine	CursorLineA
+" ColorColumn	ColorColumnA
 
 " syntax highlighting groups
 highlight Comment      gui=none guifg=SkyBlue
