@@ -4,6 +4,25 @@ let g:loaded_netrwPlugin = 1
 let g:netrw_localcopycmd=''
 
 
+" if g:neobundle#tap('deoplete.vim')
+  " Use deoplete.
+  let g:deoplete#enable_at_startup = 1
+  " Use smartcase.
+  let g:deoplete#enable_smart_case = 1
+
+  " <C-h>, <BS>: close popup and delete backword char.
+  inoremap <expr><C-h> deoplete#smart_close_popup()."\<C-h>"
+  inoremap <expr><BS>  deoplete#smart_close_popup()."\<C-h>"
+
+  " <CR>: close popup and save indent.
+  inoremap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
+  function! s:my_cr_function() abort
+    return deoplete#close_popup() . "\<CR>"
+  endfunction
+" endif
+
+  
+
 " completions {{{
 " TODO: neobundle#hooks.on_source = 'dir/to/rcfile' 方式に書き換える
 if g:neobundle#tap('neocomplete.vim')
@@ -124,7 +143,7 @@ if g:neobundle#tap('neocomplete.vim')
   " }}}
 
   call g:neobundle#untap()
-end
+endif
 
 
 if g:neobundle#tap('neocomplete-ios-dictionary')
@@ -132,7 +151,7 @@ if g:neobundle#tap('neocomplete-ios-dictionary')
     call g:neocomplete_ios_dictionary#configure_ios_dict()
   endfunction
   call g:neobundle#untap()
-end
+endif
 
 
 if g:neobundle#tap('clang_complete')
@@ -147,7 +166,7 @@ if g:neobundle#tap('clang_complete')
     let g:clang_library_path = '/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib'
   endif
   call g:neobundle#untap()
-end
+endif
 
 
 if g:neobundle#tap('neosnippet')
@@ -163,7 +182,7 @@ if g:neobundle#tap('neosnippet')
   autocmd MyAutoCmd InsertLeave * :NeoSnippetClearMarkers
 
   call g:neobundle#untap()
-end
+endif
 
 " }}}
 
@@ -192,7 +211,7 @@ if g:neobundle#tap('vimfiler')
   "そして:VimFilerExplorerでいんじゃね感
   nnoremap <silent> ,fe :<C-u>VimFilerExplorer<CR>
   nnoremap <silent> ,fb :<C-u>VimFilerBufferDir<CR>
-end
+endif
 
 
 if g:neobundle#tap('vimshell')
@@ -221,7 +240,7 @@ if g:neobundle#tap('vimshell')
   nnoremap <silent> ,cvp :<C-u>VimShellPop %:p:h<CR>
   nnoremap <silent> ,cvs :<C-u>VimShell %:p:h<CR>
   call g:neobundle#untap()
-end
+endif
 
 
 if g:neobundle#tap('unite.vim')
@@ -283,7 +302,7 @@ if g:neobundle#tap('unite.vim')
     " }}}
   endfunction
   call g:neobundle#untap()
-end
+endif
 
 
 if g:neobundle#tap('vim-quickrun')
@@ -365,7 +384,7 @@ if g:neobundle#tap('vim-quickrun')
       let g:watchdogs_check_BufWritePost_enable = 1
       nnoremap <SID>[Show]w :<C-u>WatchdogsRunSilent<CR><Esc>
       autocmd MyAutoCmd BufWritePost .vimrc,*.vim WatchdogsRunSilent
-    end
+    endif
   endfunction
 
   let g:quickrun_no_default_key_mappings = 1
@@ -373,7 +392,7 @@ if g:neobundle#tap('vim-quickrun')
   nmap <Leader>q <Plug>(quickrun)
   nmap ,q <Plug>(quickrun-op)
   call g:neobundle#untap()
-end
+endif
 
 
 
@@ -382,20 +401,20 @@ if g:neobundle#tap('vim-rooter')
   map <silent> <unique> <Leader>cd <Plug>RooterChangeToRootDirectory
   let g:rooter_patterns = ['.git', '.git/', '_darcs/', '.hg/', '.bzr/', '.svn/', 'Rakefile', 'Gruntfile.js', 'Gruntfile.coffee']
   call g:neobundle#untap()
-end
+endif
 
 
 if g:neobundle#tap('vim-operator-replace')
   map r <Plug>(operator-replace)
   call g:neobundle#untap()
-end
+endif
 
 
 if g:neobundle#tap('vim-operator-comment')
   map M <Plug>(operator-uncomment)
   map m <Plug>(operator-comment)
   call g:neobundle#untap()
-end
+endif
 
 
 if g:neobundle#tap('vim-operator-surround')
@@ -411,13 +430,13 @@ if g:neobundle#tap('vim-operator-surround')
   nmap <silent>sdb <Plug>(operator-surround-delete)<Plug>(textobj-between-a)
   nmap <silent>srb <Plug>(operator-surround-replace)<Plug>(textobj-between-a)
   call g:neobundle#untap()
-end
+endif
 
 
 if g:neobundle#tap('vim-operator-autopep8')
   map ,p <Plug>(operator-autopep8)
   call g:neobundle#untap()
-end
+endif
 
 
 if g:neobundle#tap('vim-textobj-multiblock')
@@ -426,7 +445,7 @@ if g:neobundle#tap('vim-textobj-multiblock')
   omap ib <Plug>(textobj-multiblock-i)
   vmap ib <Plug>(textobj-multiblock-i)
   call g:neobundle#untap()
-end
+endif
 
 
 if g:neobundle#tap('vim-textobj-between')
@@ -435,7 +454,7 @@ if g:neobundle#tap('vim-textobj-between')
   omap i_ <Plug>(textobj-between-i)
   xmap i_ <Plug>(textobj-between-i)
   call g:neobundle#untap()
-end
+endif
 
 
 if g:neobundle#tap('python_hl_lvar.vim')
@@ -450,7 +469,7 @@ if g:neobundle#tap('python_hl_lvar.vim')
   autocmd MyAutoCmd TabEnter     *.py PyHlLVar
   autocmd MyAutoCmd TabLeave     *.py PyHlLVar
   call g:neobundle#untap()
-end
+endif
 
 
 if g:neobundle#tap('vim-quickhl')
@@ -468,7 +487,7 @@ if g:neobundle#tap('vim-quickhl')
   nmap <Space>] <Plug>(quickhl-tag-toggle)
 
   map H <Plug>(operator-quickhl-manual-this-motion)
-end
+endif
 
 
 
@@ -499,7 +518,7 @@ if g:neobundle#tap('vim-go') && executable('go')
   au FileType go nmap <Leader>e <Plug>(go-rename)
 
   call g:neobundle#untap()
-end
+endif
 
 
 if executable('haxe')
@@ -529,12 +548,12 @@ if executable('haxe')
             \ setl autowrite
     endfunction
     call g:neobundle#untap()
-  end
+  endif
 
   " if g:neobundle#tap('unite-vaxe')
   "   call g:neobundle#untap()
-  " end
-end
+  " endif
+endif
 
 
 
@@ -561,7 +580,7 @@ if g:neobundle#tap('jedi-vim')
     let g:jedi#completions_command = '<C-Space>'
   endfunction
   call g:neobundle#untap()
-end
+endif
 
 if g:neobundle#tap('yankround.vim')
   nmap p <Plug>(yankround-p)
@@ -574,7 +593,7 @@ if g:neobundle#tap('yankround.vim')
   nmap <C-n> <Plug>(yankround-next)
   nnoremap <silent> <C-y> :<C-u>Unite yankround<CR>
   call g:neobundle#untap()
-end
+endif
 
 
 
@@ -805,4 +824,4 @@ if g:neobundle#tap('lexima.vim')
   endfunction
   "}}}
   call g:neobundle#untap()
-end
+endif

@@ -1,4 +1,4 @@
-
+let s:is_neovim = has('nvim')
 let s:BUNDLEPATH = expand('~/.neobundle')
 
 " Neobundle {{{
@@ -41,14 +41,23 @@ NeoBundle 'Shougo/vimproc.vim', {
 \   }
 \ }
 
-NeoBundleLazy 'Shougo/neocomplete.vim', {
-\   'autoload' : {
-\     'insert' : 1,
-\ },
-\   'depends' : 'Shougo/context_filetype.vim',
-\   'disabled' : !(has('lua') || has('luajit')),
-\   'vim_version' : '7.3.885'
-\ }
+if s:is_neovim
+  NeoBundleLazy 'Shougo/deoplete.nvim', {
+  \   'autoload' : {
+  \     'insert' : 1,
+  \ },
+  \ }
+else
+  NeoBundleLazy 'Shougo/neocomplete.vim', {
+  \   'autoload' : {
+  \     'insert' : 1,
+  \ },
+  \   'depends' : 'Shougo/context_filetype.vim',
+  \   'disabled' : !(has('lua') || has('luajit')),
+  \   'vim_version' : '7.3.885'
+  \ }
+endif
+
 NeoBundleLazy 'Shougo/neosnippet', {
 \ 'autoload' : {
 \   'mappings' : ['<Plug>(neosnippet_'],
@@ -457,16 +466,24 @@ NeoBundleLazy 'hachibeeDI/rope-vim', {
 \ 'type': 'nosync',
 \}
 
-NeoBundleLazy 'davidhalter/jedi-vim', {
-\ 'autoload' : {
-\   'filetypes' : ['python'],
-\ },
-\ 'disabled' : !has('python'),
-\ }
-NeoBundleLazy 'Glench/Vim-Jinja2-Syntax', {
-\ 'autoload' : {
-\   'filetypes' : ['html', 'jinja'],
-\ }}
+if s:is_neovim
+  NeoBundleLazy 'zchee/deoplete-jedi', {
+  \ 'autoload' : {
+  \   'filetypes' : ['python'],
+  \ },
+  \ }
+else
+  NeoBundleLazy 'davidhalter/jedi-vim', {
+  \ 'autoload' : {
+  \   'filetypes' : ['python'],
+  \ },
+  \ 'disabled' : !has('python'),
+  \ }
+endif
+  NeoBundleLazy 'Glench/Vim-Jinja2-Syntax', {
+  \ 'autoload' : {
+  \   'filetypes' : ['html', 'jinja'],
+  \ }}
 
 NeoBundleLazy 'hachibeeDI/python_hl_lvar.vim', {
 \ 'autoload' : {
@@ -531,15 +548,14 @@ if g:is_mac
   \ 'autoload' : {
   \   'filetypes' : ['objc']},
   \}
-  NeoBundleLazy 'tokorom/neocomplete-ios-dictionary', {
-  \ 'depends' : 'Shougo/neocomplete.vim',
-  \ 'on_source': 'neocomplete.vim',
-  \ }
   NeoBundleLazy 'b4winckler/vim-objc', {
   \ 'autoload' : {
   \   'filetypes' : ['objc']},
   \}
-  NeoBundle 'toyamarinyon/vim-swift'
+  NeoBundleLazy 'toyamarinyon/vim-swift', {
+  \ 'autoload' : {
+  \   'filetypes' : ['swift']},
+  \}
 endif
 " }}}
 "
