@@ -30,5 +30,3 @@ omap <buffer> ic <Plug>(textobj-python-class-i)
 if has_key(g:, 'vimrc_sid')
   call function("<SNR>".g:vimrc_sid."_def_smartchar")()
 endif
-
-setlocal omnifunc=jedi#completions
