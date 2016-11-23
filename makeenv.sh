@@ -21,8 +21,8 @@ mkdir -p ~/.cache/shell
 
 
 ln -s "$dotfile_path"/.vimrc ~/.vimrc
-mkdir -p ~/.config/nvim
-ln -s "$dotfile_path"/nvim ~/.config/nvim
+mkdir -p ~/.config
+ln -s "$dotfile_path"/.vim ~/.config/nvim
 touch ~/.vimrc.local
 ln -s "$dotfile_path"/.gvimrc ~/.gvimrc
 ln -s "$dotfile_path"/.zsh ~/.zsh
