@@ -793,12 +793,9 @@ NeoBundleLazy 'wavded/vim-stylus', {
 " \ }
 
 " === }}}
-NeoBundleLazy 'SQLUtilities', {
-    \ 'depends' :
-    \   ['vim-scripts/Align'],
-    \ 'autoload' : {
-    \   'filetypes' : ['sql', 'sqloracle', 'sqlserver'] }
-    \}
+NeoBundle 'junegunn/vim-easy-align'
+xmap ga <Plug>(EasyAlign)
+nmap ga <Plug>(EasyAlign)
 
 NeoBundleLazy 'timcharper/textile.vim', {
 \ 'autoload' : {
