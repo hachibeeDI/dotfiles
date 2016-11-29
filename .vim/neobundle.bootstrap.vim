@@ -238,11 +238,6 @@ nnoremap <Space>T :<C-u>Tagbar<CR>
 NeoBundleLazy 'thinca/vim-ref', { 'autoload' : {
 \ 'commands' : 'Ref'
 \ }}
-NeoBundleLazy 'thinca/vim-scouter', '', 'same', { 'autoload' : {
-\ 'commands' : 'Scouter'
-\ }}
-
-NeoBundle 'vim-jp/vital.vim'
 
 " ---------- utils for edit {{{
 " vim-operator-user {{{
@@ -578,21 +573,24 @@ NeoBundleLazy 'Quramy/tsuquyomi', {
 \   'filetypes' : ['typescript'] }
 \}
 
-
-" NeoBundleLazy 'pangloss/vim-javascript', {
-" \ 'autoload' : {
-" \   'filetypes' : ['javascript'],
-" \}}
-" let g:javascript_enable_domhtmlcss = 1
-
+" Yet Another syntax. not contains indent
 NeoBundleLazy 'othree/yajs.vim', {
 \ 'autoload': {
 \   'filetypes' : ['javascript', 'jsx', 'javascript.jsx'],
 \}}
+" add proposal syntax e.g. async await
 NeoBundleLazy 'othree/es.next.syntax.vim', {
 \ 'autoload': {
 \   'filetypes' : ['javascript', 'jsx', 'javascript.jsx'],
 \}}
+NeoBundleLazy 'othree/javascript-libraries-syntax.vim', {
+\ 'autoload' : {
+\   'filetypes' : ['html', 'xhtml', 'jinja', 'coffee', 'javascript', 'jsx', 'javascript.jsx', 'typescript'],
+\ }}
+" javascript-libraries-syntax.vim = {{{
+let g:used_javascript_libs = 'jquery,underscore,requirejs,react,flux'
+"}}}
+
 
 
 NeoBundleLazy 'isRuslan/vim-es6', {
@@ -608,19 +606,12 @@ NeoBundleLazy 'isRuslan/vim-es6', {
 NeoBundleLazy 'elzr/vim-json', {'autoload': {'filetypes': ['json']}, }
 let g:vim_json_syntax_conceal = 0
 
-NeoBundleLazy 'othree/javascript-libraries-syntax.vim', {
-\ 'autoload' : {
-\   'filetypes' : ['html', 'xhtml', 'jinja', 'coffee', 'javascript', 'jsx', 'javascript.jsx', 'typescript'],
-\ }}
-" javascript-libraries-syntax.vim = {{{
-let g:used_javascript_libs = 'jquery,underscore,requirejs,react,flux'
-"}}}
-
+" just add jsx syntax so I need base syntax plugin that's yajs
 NeoBundleLazy 'mxw/vim-jsx', {
 \ 'autoload' : {
 \   'filetypes' : ['javascript', 'jsx', 'javascript.jsx', ],
 \ }}
-let g:jsx_ext_required = 0
+let g:jsx_ext_required = 1
 let g:jsx_pragma_required = 0
 
 
@@ -794,11 +785,6 @@ NeoBundleLazy 'wavded/vim-stylus', {
 \ 'autoload' : {
 \   'filetypes' : ['stylus'] }
 \ }
-NeoBundleLazy 'duganchen/vim-soy', {
-\ 'autoload' : {
-\   'filetypes' : ['soy'] }
-\ }
-
 " }}}
 "
 " NeoBundleLazy 'chrisbra/csv.vim', {
