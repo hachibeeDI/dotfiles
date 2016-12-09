@@ -260,3 +260,4 @@ autocmd MyAutoCmd WinEnter *
 \         | quit | endif
 
 
+command! Py2Json :execute '%!python -c "import sys,json,ast;sys.stdout.write(json.dumps(ast.literal_eval(sys.stdin.read()),indent=4,ensure_ascii=False))"'
