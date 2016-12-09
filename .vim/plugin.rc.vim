@@ -675,7 +675,7 @@ if g:neobundle#tap('lexima.vim')
     \   })
 
     call s:add_rule_with_ignores({'at': '=\%#',   'char': '=', 'input': '='}, s:ignore_for_operator)
-    call s:add_rule_with_ignores({'at': ' = \%#', 'char': '=', 'input': '<Left>='}, s:ignore_for_operator)
+    call s:add_rule_with_ignores({'at': ' = \%#', 'char': '=', 'input': '<Left>=<Right>'}, s:ignore_for_operator)
     call s:add_rule_with_ignores({'at': ' = \%#', 'char': '<BS>', 'input': '<BS><Left><BS><Right>'}, s:ignore_for_operator)
 
     call g:lexima#add_rule({
@@ -685,14 +685,13 @@ if g:neobundle#tap('lexima.vim')
     \   })
     call g:lexima#add_rule({
     \   'at'       : '\s==\s\%#',
-    \   'char'     : '<BS>',
-    \   'input'    : '<Left><BS><Right>',
+    \   'char'     : '=',
+    \   'input'    : '<Left>=<Right><Right>',
     \   })
     call g:lexima#add_rule({
-    \   'at'       : 'aa\%#',
-    \   'char'     : 'a',
-    \   'input'    : '<BS> => ',
-    \   'filetype': ['javascript', 'typescript', 'javascript.jsx'],
+    \   'at'       : '\s==\s\%#',
+    \   'char'     : '<BS>',
+    \   'input'    : '<Left><BS><Right>',
     \   })
     call g:lexima#add_rule({
     \   'at'       : '\\\%#',
