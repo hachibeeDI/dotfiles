@@ -139,11 +139,15 @@ let g:rooter_disable_map = 1
 nmap <silent> <unique> <Space>rt <Plug>RooterChangeToRootDirectory
 
 "Unite
-" if has('nvim')
-if 0
+if has('nvim')
+  NeoBundle 'nixprime/cpsm', {
+  \   'build': 'PY3=ON ./install.sh'
+  \ }
   NeoBundle 'Shougo/denite.nvim'
+endif
 
-else
+" use Unite too until I get used to denite
+if 1
   NeoBundleLazy 'Shougo/unite.vim' , {
   \ 'autoload' : {
   \   'commands' : ['Unite', 'UniteWithBufferDir', 'QuickRun'],

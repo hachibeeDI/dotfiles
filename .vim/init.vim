@@ -22,22 +22,21 @@ source ~/.vim/keymap.rc.vim
 source ~/.vim/keymap.unite.vim
 " source ~/.vim/keymap.unite.vim => denite {{{
 
-" " Change file_rec command.
-" call denite#custom#var('file_rec', 'command',
-" \ ['ag', '--follow', '--nocolor', '--nogroup', '-g', ''])
-"
-" " Change mappings.
-" call denite#custom#map('_', "\<C-j>", 'move_to_next_line')
-" call denite#custom#map('_', "\<C-k>", 'move_to_prev_line')
-"
-" " Change matchers.
-" call denite#custom#source(
-" \ 'file_mru', 'matchers', ['matcher_fuzzy', 'matcher_project_files'])
-" call denite#custom#source(
-" \ 'file_mru', 'converters', ['converter_relative_word'])
-" call denite#custom#source(
-" \ 'file_rec', 'matchers', ['matcher_cpsm'])
-"
+" Change file_rec command.
+call denite#custom#var('file_rec', 'command', ['ag', '--follow', '--nocolor', '--nogroup', '-g', ''])
+
+" Change mappings.
+call denite#custom#map('_', "\<C-j>", 'move_to_next_line')
+call denite#custom#map('_', "\<C-k>", 'move_to_prev_line')
+
+" Change matchers.
+call denite#custom#source('file_mru', 'matchers', ['matcher_fuzzy', 'matcher_project_files'])
+call denite#custom#source('file_mru', 'converters', ['converter_relative_word'])
+call denite#custom#source('file_rec', 'matchers', ['matcher_cpsm'])
+
+call denite#custom#alias('source', 'file_rec/git', 'file_rec')
+call denite#custom#var('file_rec/git', 'command', ['git', 'ls-files', '-co', '--exclude-standard'])
+
 " " Add custom menus
 " let s:menus = {}
 "
@@ -77,28 +76,28 @@ source ~/.vim/keymap.unite.vim
 " "
 "
 "
-" nnoremap <SID>[Denite] <Nop>
-" nmap ,u <SID>[Denite]
+nnoremap <SID>[Denite] <Nop>
+nmap ,d <SID>[Denite]
 " nnoremap <SID>[UMenu] <Nop>
 " nmap [Denite]t <SID>[UMenu]
 "
 " nnoremap <silent>[UMenu]g :Denite -silent -start-insert menu:git<CR>
 "
-" " バッファ一覧
-" nnoremap <silent> <SID>[Denite]b :<C-u>Denite buffer<CR>
+" バッファ一覧
+nnoremap <silent> <SID>[Denite]b :<C-u>Denite buffer<CR>
 "
-" " ファイル一覧
-" nnoremap <silent> <SID>[Denite]f :<C-u>DeniteBufferDir file_rec<CR>
-" " .gitを基準にしたプロジェクト一覧 (ctrlp的な)
-" nnoremap <silent> <SID>[Denite]p :<C-u>Denite file_rec/async:!<CR>
-" nnoremap <silent> <D-p> :<C-u>Denite file_rec/async:!<CR>
-"
+" ファイル一覧
+nnoremap <silent> <SID>[Denite]f :<C-u>DeniteBufferDir file_rec<CR>
+" .gitを基準にしたプロジェクト一覧 (ctrlp的な)
+nnoremap <silent> <SID>[Denite]p :<C-u>Denite `finddir('.git', ';') != '' ? 'file_rec/git' : 'file_rec'`<CR>
+nnoremap <silent> <D-p>          :<C-u>Denite `finddir('.git', ';') != '' ? 'file_rec/git' : 'file_rec'`<CR>
+
 " " レジスタ一覧
 " nnoremap <silent> <SID>[Denite]r :<C-u>Denite -buffer-name=register register<CR>
 " " 最近使用したファイル一覧
-" nnoremap <silent> <SID>[Denite]m :<C-u>Denite file_mru<CR>
+nnoremap <silent> <SID>[Denite]m :<C-u>Denite file_mru<CR>
 " " 常用セット
-" nnoremap <silent> <SID>[Denite]u :<C-u>Denite buffer file_mru<CR>
+nnoremap <silent> <SID>[Denite]u :<C-u>Denite buffer file_mru<CR>
 " " タブ一覧
 " nnoremap <silent> <SID>[Denite]t :<C-u>Denite tab<CR>
 " " 全部乗せ
