@@ -22,19 +22,19 @@ source ~/.vim/keymap.rc.vim
 source ~/.vim/keymap.unite.vim
 " source ~/.vim/keymap.unite.vim => denite {{{
 
-" Change file_rec command.
-call denite#custom#var('file_rec', 'command', ['ag', '--follow', '--nocolor', '--nogroup', '-g', ''])
+" " Change file_rec command.
+" call denite#custom#var('file_rec', 'command', ['ag', '--follow', '--nocolor', '--nogroup', '-g', ''])
 
 " Change mappings.
 call denite#custom#map(
   \ 'insert',
-  \ '<C-j>',
+  \ '<C-n>',
   \ '<denite:move_to_next_line>',
   \ 'noremap'
   \)
 call denite#custom#map(
   \ 'insert',
-  \ '<C-k>',
+  \ '<C-p>',
   \ '<denite:move_to_previous_line>',
   \ 'noremap'
   \)
@@ -134,7 +134,9 @@ nnoremap <silent> <SID>[Denite]u :<C-u>Denite buffer file_mru<CR>
 if exists('g:nyaovim_version')
   " Write NyaoVim specific code here
   colorscheme hazard
-  inoremap <D-v> <C-r>"
+  nnoremap <D-v> <C-r>"
+  cnoremap <D-v> <C-r>"
+  nnoremap <D-t> :<C-u>tabnew<CR>
 else
   set background=dark
 endif
