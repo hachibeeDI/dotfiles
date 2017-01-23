@@ -260,4 +260,7 @@ autocmd MyAutoCmd WinEnter *
 \         | quit | endif
 
 
+" Convert Python dictionaly to a JSON format
 command! Py2Json :execute '%!python -c "import sys,json,ast;sys.stdout.write(json.dumps(ast.literal_eval(sys.stdin.read()),indent=4,ensure_ascii=False))"'
+
+command! JqJq :execute "%!jq '.'"
