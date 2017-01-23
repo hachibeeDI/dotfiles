@@ -134,6 +134,7 @@ nnoremap <silent> <SID>[Denite]u :<C-u>Denite buffer file_mru<CR>
 if exists('g:nyaovim_version')
   " Write NyaoVim specific code here
   colorscheme hazard
+  inoremap <D-v> <C-r>"
   nnoremap <D-v> <C-r>"
   cnoremap <D-v> <C-r>"
   nnoremap <D-t> :<C-u>tabnew<CR>
