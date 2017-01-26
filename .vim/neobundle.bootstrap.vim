@@ -187,12 +187,6 @@ if 1
     \   'unite_sources' : 'outline'},
     \ })
 
-  NeoBundle 'ryotakato/unite-outline-objc'
-  call g:neobundle#config('unite-outline', {
-    \ 'lazy' : 1,
-    \ 'autoload' : {
-    \   'unite_sources' : 'outline'},
-    \ })
   NeoBundle 'tsukkee/unite-tag', '', 'default'
   call g:neobundle#config('unite-tag', {
   \ 'lazy' : 1,
@@ -535,21 +529,9 @@ NeoBundleLazy 'Rip-Rip/clang_complete', {
 \}
 " -- Objective-C ==
 if g:is_mac
-  NeoBundleLazy 'tokorom/clang_complete-getopts-ios', {
-  \ 'autoload' : {
-  \   'filetypes' : ['objc']},
-  \}
-  NeoBundleLazy 'tokorom/vim-textobj-objc', {
-  \ 'autoload' : {
-  \   'filetypes' : ['objc']},
-  \}
   NeoBundleLazy 'tokorom/xcode-actions.vim', {
   \ 'autoload' : {
-  \   'filetypes' : ['objc']},
-  \}
-  NeoBundleLazy 'b4winckler/vim-objc', {
-  \ 'autoload' : {
-  \   'filetypes' : ['objc']},
+  \   'filetypes' : ['swift', 'objc']},
   \}
   NeoBundleLazy 'toyamarinyon/vim-swift', {
   \ 'autoload' : {
