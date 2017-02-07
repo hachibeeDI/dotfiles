@@ -19,9 +19,12 @@ let g:netrw_localcopycmd=''
   function! s:my_cr_function() abort
     return deoplete#close_popup() . "\<CR>"
   endfunction
+
+  inoremap <expr><tab> pumvisible() ? "\<C-n>" :
+        \ neosnippet#expandable_or_jumpable() ? "\<Plug>(neosnippet_expand_or_jump)" : "\<tab>"
 " endif
 
-  
+
 
 " completions {{{
 " TODO: neobundle#hooks.on_source = 'dir/to/rcfile' 方式に書き換える
