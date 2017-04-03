@@ -58,6 +58,12 @@ else
   \ }
 endif
 
+NeoBundleLazy 'Shougo/neco-syntax', {
+  \   'autoload' : {
+  \     'insert' : 1,
+  \ },
+  \ }
+
 NeoBundleLazy 'Shougo/neosnippet', {
 \ 'autoload' : {
 \   'mappings' : ['<Plug>(neosnippet_'],
@@ -481,8 +487,8 @@ endif
 NeoBundleLazy 'hachibeeDI/python_hl_lvar.vim', {
 \ 'autoload' : {
 \     'filetypes' : ['python'],
-\ },
-\ }
+\ }}
+
 " \ 'base': expand('~/Dropbox/development/viml/'),
 " \ 'type': 'nosync',
 " \ }

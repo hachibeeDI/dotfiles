@@ -114,6 +114,7 @@ nnoremap <silent> <D-p>          :<C-u>Denite `finddir('.git', ';') != '' ? 'fil
 nnoremap <silent> <SID>[Denite]m :<C-u>Denite file_mru<CR>
 " " 常用セット
 nnoremap <silent> <SID>[Denite]u :<C-u>Denite buffer file_mru<CR>
+nnoremap <silent> <D-m>          :<C-u>Denite buffer file_mru<CR>
 " " タブ一覧
 " nnoremap <silent> <SID>[Denite]t :<C-u>Denite tab<CR>
 " " 全部乗せ
