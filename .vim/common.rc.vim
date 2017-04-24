@@ -83,6 +83,11 @@ set nrformats=alpha,octal,hex
 " a list of deletable
 set backspace=eol,indent,start
 
+set timeout           " for mappings
+set timeoutlen=500    " default value is 1000
+set ttimeout          " for key codes
+set ttimeoutlen=10    " unnoticeable small value
+
 " Disable automatically insert comment.
 autocmd MyAutoCmd FileType * setl formatoptions-=ro | setl formatoptions+=mM
 "autocmd MyAutoCmd InsertEnter,CmdwinEnter * set noimdisable
