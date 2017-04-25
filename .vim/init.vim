@@ -53,6 +53,10 @@ call denite#custom#filter('matcher_ignore_globs', 'ignore_globs',
   \  'node_modules/'
   \ ])
 
+call denite#custom#var('outline', 'ignore_types',
+\ ['i'])
+
+
 " " Add custom menus
 " let s:menus = {}
 "
