@@ -181,9 +181,25 @@ if [ $UID = 0 ]; then
     SAVEHIST = 0
 fi
 
+
+# hook when commands registered to history
+zshaddhistory() {
+  local line=${1%%$'\n'}
+  local cmd=${line%% *}
+
+  [[ ${#line} -ge 5
+      && ${cmd} != (l|l[sal])
+      && ${cmd} != (c|cd)
+      && ${cmd} != (m|man)
+      && ${cmd} != (hub)
+  ]]
+}
+
+
 setopt share_history
 setopt hist_ignore_all_dups # if there are overlaps on histfile, delete the old one
 setopt hist_ignore_dups # disable to save histfile, if its overlaps on just before
+setopt HIST_IGNORE_SPACE
 # ignore `history` command itselfs
 setopt hist_no_store
 setopt hist_reduce_blanks
