@@ -55,6 +55,7 @@ path=(
     /sbin(N-/)
     # MacOS規定のPATHを全てこちらで上書きにする？
     # $PATH
+    /Applications/Docker.app/Contents/Resources/bin(N-/)
     )
 export path
 
