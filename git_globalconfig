@@ -10,7 +10,7 @@
     interactive = auto
     grep = auto
 [core]
-    editor = vim
+    editor = nvim
     excludesfile = ~/.gitignore
     pager = less
     autocrlf = false
