@@ -606,14 +606,16 @@ NeoBundleLazy 'mxw/vim-jsx', {
 let g:jsx_ext_required = 1
 let g:jsx_pragma_required = 0
 
-
-if has('python') && executable('npm')
-  NeoBundleLazy 'marijnh/tern_for_vim', {
-  \ 'build' : 'npm install',
-  \ 'autoload' : {
-  \   'functions': ['tern#Complete', 'tern#Enable'],
-  \   'filetypes' : ['javascript', 'jsx', 'javascript.jsx']
-  \ }}
+if s:is_neovim
+else
+  if has('python') && executable('npm')
+    NeoBundleLazy 'marijnh/tern_for_vim', {
+    \ 'build' : 'npm install',
+    \ 'autoload' : {
+    \   'functions': ['tern#Complete', 'tern#Enable'],
+    \   'filetypes' : ['javascript', 'jsx', 'javascript.jsx']
+    \ }}
+  endif
 endif
 
 NeoBundleLazy 'digitaltoad/vim-jade', {
