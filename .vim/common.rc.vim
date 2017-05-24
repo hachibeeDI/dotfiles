@@ -265,6 +265,19 @@ autocmd MyAutoCmd WinEnter *
 \         | quit | endif
 
 
+let g:is_dvorak = 0
+function! ToggleDvorakMode()
+  if g:is_dvorak
+    let g:is_dvorak = 0
+    set keymap=
+  else
+    let g:is_dvorak = 1
+    set keymap=dvorak
+  endif
+endfunction
+command! ToggleDovorakMode call ToggleDvorakMode()
+
+
 " Convert Python dictionaly to a JSON format
 command! Py2Json :execute '%!python -c "import sys,json,ast;sys.stdout.write(json.dumps(ast.literal_eval(sys.stdin.read()),indent=4,ensure_ascii=False))"'
 
