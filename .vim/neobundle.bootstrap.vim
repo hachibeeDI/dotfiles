@@ -112,14 +112,12 @@ NeoBundleLazy 'thinca/vim-quickrun', {
 \ }}
 
 " Git {{{
-" runtimepathに追加されていない？ 要調査
-NeoBundle 'tpope/vim-fugitive'
-NeoBundleLazy 'gregsexton/gitv' , {
-\ 'depends' : 'tpope/vim-fugitive',
-\ 'autoload' : {
-\   'commands' : ['Gitv', 'Gitv!'],
-\   }
+NeoBundleLazy 'lambdalisue/gina.vim' , {
+\   'autoload' : {
+\     'insert' : 1,
+\ },
 \}
+
 NeoBundle 'rhysd/committia.vim'
 NeoBundleLazy 'rhysd/github-complete.vim', {
 \ 'autoload' : {
