@@ -26,6 +26,11 @@ typeset -U path cdpath fpath manpath
 # -Xと--quit-if-one-screenの組み合わせで、一画面に収まる時はcatのような動きになる
 export LESS='-gj10 --no-init --quit-if-one-screen --RAW-CONTROL-CHARS'
 
+# Go {{{
+export GOPATH=$HOME/.go
+# }}}
+
+
 case "${OSTYPE}" in
 freebsd*|darwin*)
 # homebrew

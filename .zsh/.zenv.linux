@@ -10,8 +10,10 @@ path=(
     $HOME/bin(N-/)
     $HOME/local/bin(N-/)
 
-    $HOME/.nodebrew(N-/)
     $HOME/.nodebrew/current/bin(N-/)
+    $HOME/bin(N-/)
+
+    $HOME/.go/bin(N-/)
 
     # ディストリごとに変わりそうだけどどうしよう
     /usr/local/bin(N-/)
@@ -59,6 +61,7 @@ fi
 ## Cのプリプロセッサフラグ.
 #export CPPFLAGS="-I/usr/local/opt/sqlite/include"
 
+export TERM=xterm-256color
 
 # Python settings for virtualenv {{{
 export VIRTUALENVWRAPPER_PYTHON=/usr/local/bin/python
