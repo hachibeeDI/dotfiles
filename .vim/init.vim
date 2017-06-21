@@ -143,6 +143,7 @@ if exists('g:nyaovim_version')
   nnoremap <D-v> <C-r>"
   cnoremap <D-v> <C-r>"
   nnoremap <D-t> :<C-u>tabnew<CR>
-else
-  set background=dark
 endif
+
+
+source ~/.vimrc.local
