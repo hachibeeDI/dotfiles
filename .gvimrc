@@ -46,9 +46,9 @@ elseif has('win64')
     source $VIMRUNTIME/menu.vim
 elseif has('unix')
     colorscheme desertEx
-    set transparency=5 " 透明度を指定
-    set guifont=Ricty\ Diminished\ Discord\ h20
-    set guifontwide=Ricty\ Diminished\ Discord\ h20
+    " set transparency=5 " 透明度を指定
+    set guifont=Noto\ Sans\ Mono\ CJK\ JP
+    set guifontwide=Noto\ Sans\ Mono\ CJK\ JP
     set background=dark
 endif
 
