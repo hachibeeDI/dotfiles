@@ -389,6 +389,9 @@ fi
 
 hash -d drop=~/Dropbox/
 
+if which direnv > /dev/null; then
+  eval "$(direnv hook zsh)"
+fi
 
 # load alias
 source ~/.zsh/.zrc.alias
