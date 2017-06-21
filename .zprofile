@@ -100,3 +100,13 @@ if which pyenv > /dev/null; then eval "$(pyenv init -)"; fi
 export JAVA_OPTS="-Dswank.encoding=utf-8-unix"
 
 export HAXE_STD_PATH='/usr/lib/haxe/std/'
+
+
+gcloud_sdk_loader="$HOME/gcloud/google-cloud-sdk/path.zsh.inc"
+# The next line updates PATH for the Google Cloud SDK.
+if [ -f $gcloud_sdk_loader ]; then source $gcloud_sdk_loader; fi
+
+gcloud_completion_loader="$HOME/gcloud/google-cloud-sdk/completion.zsh.inc"
+# The next line enables shell command completion for gcloud.
+if [ -f $gcloud_completion_loader ]; then source $gcloud_completion_loader; fi
+
