@@ -57,7 +57,7 @@ set matchtime=0
 " 常にカーソルが真ん中
 set scrolloff=10
 " set default register is unnamed register. (same as OS's clipboard)
-set clipboard=unnamed
+set clipboard=unnamed,unnamedplus
 " mouse surport
 set mouse=a
 " 新しく開く代わりにすでに開いてあるバッファを開く
@@ -116,7 +116,7 @@ set undofile
 " for snippet_complete marker
 " conceal in insert (i), normal (n) and visual (v) modes
 set conceallevel=2 concealcursor=inv
-set colorcolumn=79
+set colorcolumn=119
 
 set relativenumber
 set number

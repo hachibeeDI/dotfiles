@@ -1,8 +1,7 @@
 " NeoVim specific settings
 
-" FIXME: more generic way to set the path
-let g:python_host_prog = '/usr/local/bin/python'
-let g:python3_host_prog = '/usr/local/bin/python3'
+let g:python_host_prog = system('echo -n $(which python2)')
+let g:python3_host_prog = system('echo -n $(which python3)')
 
 source ~/.vim/environments.rc.vim
 
