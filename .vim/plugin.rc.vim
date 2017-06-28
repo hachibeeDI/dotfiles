@@ -4,7 +4,7 @@ let g:loaded_netrwPlugin = 1
 let g:netrw_localcopycmd=''
 
 
-" if g:neobundle#tap('deoplete.vim')
+if g:neobundle#tap('deoplete.nvim')
   " Use deoplete.
   let g:deoplete#enable_at_startup = 1
   " Use smartcase.
@@ -22,7 +22,7 @@ let g:netrw_localcopycmd=''
 
   inoremap <expr><tab> pumvisible() ? "\<C-n>" :
         \ neosnippet#expandable_or_jumpable() ? "\<Plug>(neosnippet_expand_or_jump)" : "\<tab>"
-" endif
+endif
 
 
 
