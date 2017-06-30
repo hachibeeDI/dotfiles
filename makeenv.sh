@@ -42,6 +42,7 @@ touch ~/.gitconfig.local
 
 ln -s "$dotfile_path"/.vim ~/.vim
 ln -s "$dotfile_path"/.peco/ ~/.peco
+ln -s "$dotfile_path"/.tmux ~/.tmux
 
 ln -s "$dotfile_path"/.zsh/modules/LS_COLORS/LS_COLORS ~/.dircolors
 
