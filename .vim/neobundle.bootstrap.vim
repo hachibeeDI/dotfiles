@@ -45,8 +45,7 @@ if s:is_neovim
   NeoBundleLazy 'Shougo/deoplete.nvim', {
   \   'autoload' : {
   \     'insert' : 1,
-  \ },
-  \ }
+  \ }}
 else
   NeoBundleLazy 'Shougo/neocomplete.vim', {
   \   'autoload' : {
@@ -605,12 +604,29 @@ let g:jsx_ext_required = 1
 let g:jsx_pragma_required = 0
 
 if s:is_neovim
-    NeoBundleLazy 'hachibeeDI/deoplete-ternjs', {
-    \ 'rev': 'local-node_modules',
-    \ 'build' : 'npm install',
-    \ 'autoload' : {
-    \   'filetypes' : ['javascript', 'jsx', 'javascript.jsx']
-    \ }}
+  NeoBundleLazy 'hachibeeDI/deoplete-ternjs', {
+  \ 'rev': 'local-node_modules',
+  \ 'build' : 'npm install',
+  \ 'autoload' : {
+  \   'filetypes' : ['javascript', 'jsx', 'javascript.jsx']
+  \ }}
+
+  " LSP completion should be fine than ternjs in idea itselfs. But implementaions are still unstable.
+  " NeoBundle 'autozimu/LanguageClient-neovim'
+  " set hidden
+  "
+  " let g:LanguageClient_serverCommands = {
+  " \ 'javascript': ['/home/ogura/.nodebrew/current/bin/javascript-typescript-stdio'],
+  " \ 'javascript.jsx': ['/home/ogura/.nodebrew/current/bin/javascript-typescript-stdio'],
+  " \ }
+  "
+  " " Automatically start language servers.
+  " let g:LanguageClient_autoStart = 1
+  "
+  " nnoremap <silent> K :call LanguageClient_textDocument_hover()<CR>
+  " nnoremap <silent> gd :call LanguageClient_textDocument_definition()<CR>
+  " nnoremap <silent> <F2> :call LanguageClient_textDocument_rename()<CR>
+
 else
   if has('python') && executable('npm')
     NeoBundleLazy 'marijnh/tern_for_vim', {

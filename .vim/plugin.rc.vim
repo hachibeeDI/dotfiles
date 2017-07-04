@@ -24,6 +24,12 @@ if g:neobundle#tap('deoplete.nvim')
     inoremap <expr><tab> pumvisible() ? "\<C-n>" :
           \ neosnippet#expandable_or_jumpable() ? "\<Plug>(neosnippet_expand_or_jump)" : "\<tab>"
 
+
+    " let g:deoplete#enable_profile = 1
+    " let g:deoplete#enable_debug = 1
+    " call g:deoplete#enable_logging('DEBUG', 'deoplete.log')
+    " " " call deoplete#custom#set('jedi', 'debug_enabled', 1)
+    " call g:deoplete#custom#set('ternjs', 'debug_enabled', 1)
   endfunction
 endif
 
