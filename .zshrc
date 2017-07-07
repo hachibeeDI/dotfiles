@@ -215,6 +215,8 @@ setopt inc_append_history
 # save Begin and End
 setopt EXTENDED_HISTORY
 
+setopt nonomatch
+
 # --- 入力済みの文字列にマッチしたコマンドのヒストリを表示させる ---
 autoload history-search-end
 zle -N history-beginning-search-backward-end history-search-end
