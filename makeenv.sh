@@ -36,6 +36,7 @@ ln -s "$dotfile_path"/.sheets ~/.sheets
 ln -s "$dotfile_path"/.ctags ~/.ctags
 ln -s "$dotfile_path"/.agignore ~/.agignore
 ln -s "$dotfile_path"/.xremap.conf ~/.xremap.conf
+ln -s "$dotfile_path"/alacritty ~/.config/alacritty
 
 ln -s "$dotfile_path"/git_globalconfig ~/.gitconfig
 touch ~/.gitconfig.local
