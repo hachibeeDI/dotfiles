@@ -819,6 +819,7 @@ NeoBundleLazy 'timcharper/textile.vim', {
 NeoBundle 'godlygeek/tabular'
 
 NeoBundle 'vim-scripts/Colour-Sampler-Pack'
+NeoBundle 'dracula/vim'
 NeoBundle 'altercation/vim-colors-solarized'
 NeoBundle 'ujihisa/unite-colorscheme', {'gui': 1}
 NeoBundle 'ujihisa/unite-font', {'gui': 1}
