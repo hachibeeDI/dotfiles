@@ -14,6 +14,8 @@ path=(
     $HOME/bin(N-/)
 
     $HOME/.go/bin(N-/)
+    # Rust
+    $HOME/.cargo/bin(N-/)
 
     # ディストリごとに変わりそうだけどどうしよう
     /usr/local/bin(N-/)

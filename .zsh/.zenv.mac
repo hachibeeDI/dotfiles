@@ -42,6 +42,9 @@ path=(
     # Goの
     $HOME/.go/bin(N-/)
 
+    # Rust
+    $HOME/.cargo/bin(N-/)
+
     /usr/bin(N-/)
     /bin(N-/)
     #sbin
