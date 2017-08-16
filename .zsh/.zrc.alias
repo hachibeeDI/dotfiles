@@ -239,3 +239,4 @@ csalias bundler ra 'bundle exec rake'
 # bundler コンテキストのエイリアスが優先される
 # （my_context_func 内で rake コンテキストの*後*に bundler コンテキストを追加しているため）
 
+alias hout='hub checkout'
