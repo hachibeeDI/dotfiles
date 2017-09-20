@@ -86,6 +86,9 @@ alias gdif='git diff'
 alias gamend='git commit --amend --no-edit'
 alias ggrep='git grep -Hi --heading --break'
 
+alias gmerged-branch='git branch --merged |grep -v "*" | grep -v "develop" | grep -v "master"'
+alias -g @rmbr='| xargs -I % git branch -d %'
+
 compdef g='git'
 
 #}}}
