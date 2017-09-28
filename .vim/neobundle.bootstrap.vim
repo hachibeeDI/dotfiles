@@ -165,24 +165,6 @@ if 1
   " \   'unite_sources' : 'file_mru'},
   " \ })
 
-  NeoBundleLazy 'lambdalisue/unite-grep-vcs', {
-      \ 'autoload': {
-      \    'unite_sources': ['grep/git', 'grep/hg'],
-      \}}
-
-  NeoBundle 'Shougo/unite-ssh'
-  call g:neobundle#config('unite-ssh', {
-        \ 'lazy' : 1,
-        \ 'autoload' : {
-        \   'unite_sources' : 'ssh'},
-        \ })
-  NeoBundle 'Shougo/unite-build'
-  call g:neobundle#config('unite-build', {
-        \ 'lazy' : 1,
-        \ 'autoload' : {
-        \   'unite_sources' : 'build'},
-        \ })
-
   NeoBundle 'Shougo/unite-outline', '', 'default'
   call g:neobundle#config('unite-outline', {
     \ 'lazy' : 1,
@@ -209,12 +191,6 @@ if 1
   \   'unite_sources' : 'pypiclassifiers'},
   \ }
 
-  NeoBundle 'rhysd/unite-codic.vim'
-  call g:neobundle#config('unite-codic.vim', {
-  \ 'lazy' : 1,
-  \ 'autoload' : {'unite_sources' : 'codic'},
-  \ })
-
   NeoBundle 'kmnk/vim-unite-giti'
   call g:neobundle#config('vim-unite-giti', {
   \ 'lazy' : 1,
@@ -234,11 +210,6 @@ NeoBundleLazy 'majutsushi/tagbar', {
 \}
 nnoremap <Space>T :<C-u>Tagbar<CR>
 
-
-" get and read referece on vim
-NeoBundleLazy 'thinca/vim-ref', { 'autoload' : {
-\ 'commands' : 'Ref'
-\ }}
 
 " ---------- utils for edit {{{
 " vim-operator-user {{{
@@ -388,12 +359,6 @@ NeoBundleLazy 'hachibeeDI/vim-operator-codic', {
 \ }}
 map x <Plug>(operator-codic)
 
-NeoBundleLazy 'mattn/excitetranslate-vim', {
-      \ 'depends': 'mattn/webapi-vim',
-      \ 'autoload' : { 'commands': ['ExciteTranslate']}
-      \ }
-xnoremap E :ExciteTranslate<CR>
-
 NeoBundleLazy 'LeafCage/foldCC', {
 \ 'autoload' : {
 \   'functions' : ['FoldCCtext'],
@@ -406,10 +371,6 @@ set foldtext=FoldCCtext()
 " === Language surpport === {{{
 " -- Python {{{
 NeoBundleLazy 'hynek/vim-python-pep8-indent', {
-\ 'autoload' : {
-\   'filetypes' : ['python'],
-\ }}
-NeoBundleLazy 'Crapworks/python_fn.vim', {
 \ 'autoload' : {
 \   'filetypes' : ['python'],
 \ }}
@@ -551,17 +512,6 @@ NeoBundleLazy 'leafgarland/typescript-vim', {
 \   'filetypes' : ['typescript'] }
 \}
 
-" should exec `npm install -g`
-" I dont wanna use 'build' sentence
-" NeoBundleLazy 'clausreinke/typescript-tools', {
-" \ 'autoload' : {
-" \   'filetypes' : ['typescript'] }
-" \}
-NeoBundleLazy 'Quramy/tsuquyomi', {
-\ 'autoload' : {
-\   'filetypes' : ['typescript'] }
-\}
-
 " Yet Another syntax. not contains indent
 NeoBundleLazy 'othree/yajs.vim', {
 \ 'autoload': {
@@ -581,16 +531,10 @@ let g:used_javascript_libs = 'jquery,underscore,requirejs,react,flux'
 "}}}
 
 
-
 NeoBundleLazy 'isRuslan/vim-es6', {
 \ 'autoload' : {
 \   'filetypes' : ['javascript', 'javascript.jsx', 'typescript', 'html'],
 \}}
-" NeoBundleLazy 'jason0x43/vim-js-indent', {
-" \ 'autoload' : {
-" \   'filetypes' : ['javascript', 'typescript', 'html'],
-" \}}
-" let g:js_indent_typescript = 1
 
 NeoBundleLazy 'elzr/vim-json', {'autoload': {'filetypes': ['json']}, }
 let g:vim_json_syntax_conceal = 0
@@ -642,11 +586,6 @@ NeoBundleLazy 'digitaltoad/vim-jade', {
 \ 'autoload': {
 \    'filetypes': ['jade'],
 \ }}
-" coffee
-NeoBundleLazy 'kchmck/vim-coffee-script', {
-    \ 'autoload' : {
-    \   'filetypes' : ['coffee'] }
-    \}
 " -- Scala {{{
 NeoBundleLazy 'yuroyoro/vim-scala', {
     \ 'autoload' : {
@@ -898,10 +837,6 @@ NeoBundleLazy 'kien/rainbow_parentheses.vim', {
 \   'commands': ['RainbowParenthesesToggle', 'RainbowParenthesesLoadRound', 'RainbowParenthesesLoadBraces', 'RainbowParenthesesActivate', ],
 \ }}
 
-NeoBundleLazy 'mattn/gist-vim', {
-    \ 'autoload' : {
-    \   'commands' : [ 'Gist' ]}
-    \}
 NeoBundle 'mattn/webapi-vim'
 NeoBundleLazy 'tyru/open-browser.vim', {
     \ 'autoload' : {
