@@ -89,6 +89,8 @@ alias ggrep='git grep -Hi --heading --break'
 alias gmerged-branch='git branch --merged |grep -v "*" | grep -v "develop" | grep -v "master"'
 alias -g @rmbr='| xargs -I % git branch -d %'
 
+alias hout='hub checkout'
+
 compdef g='git'
 
 #}}}
@@ -241,5 +243,3 @@ csalias bundler ra 'bundle exec rake'
 # ↑カレントディレクトリに Rakefile と Gemfile が両方とも存在する場合、
 # bundler コンテキストのエイリアスが優先される
 # （my_context_func 内で rake コンテキストの*後*に bundler コンテキストを追加しているため）
-
-alias hout='hub checkout'
