@@ -87,8 +87,11 @@ export PYTHONSTARTUP=~/.pythonstartup
 JAVA_HOME=/Library/Java/Home
 export JAVA_HOME
 
-# load pyenv environments
-if which pyenv > /dev/null; then eval "$(pyenv init -)"; fi
+
+if command -v pyenv 1>/dev/null 2>&1; then
+  eval "$(pyenv init -)"
+fi
+
 ## To use Homebrew's directories rather than ~/.pyenv add to your profile:
 #export PYENV_ROOT=/usr/local/opt/pyenv
 
@@ -109,3 +112,6 @@ if [ -f $gcloud_sdk_loader ]; then source $gcloud_sdk_loader; fi
 gcloud_completion_loader="$HOME/gcloud/google-cloud-sdk/completion.zsh.inc"
 # The next line enables shell command completion for gcloud.
 if [ -f $gcloud_completion_loader ]; then source $gcloud_completion_loader; fi
+
+
+

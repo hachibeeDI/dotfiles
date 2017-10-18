@@ -2,8 +2,12 @@
 
 echo 'setting up environment variables as Linux ... ...'
 
+export PYENV_ROOT="$HOME/.pyenv"
+
 # -U : 重複したパスは登録しない
 path=(
+    $PYENV_ROOT/bin(N-/)
+
     # 自分のスクリプトとか、自分でビルドしたやつとか
     $HOME/Dropbox/bin/linux(N-/)
     $HOME/Dropbox/bin(N-/)
