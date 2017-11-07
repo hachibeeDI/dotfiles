@@ -759,6 +759,7 @@ NeoBundle 'godlygeek/tabular'
 
 NeoBundle 'vim-scripts/Colour-Sampler-Pack'
 NeoBundle 'dracula/vim'
+NeoBundle 'lu-ren/SerialExperimentsLain'
 NeoBundle 'altercation/vim-colors-solarized'
 NeoBundle 'ujihisa/unite-colorscheme', {'gui': 1}
 NeoBundle 'ujihisa/unite-font', {'gui': 1}
@@ -905,6 +906,12 @@ let g:vimhelpgenerator_contents = {
 \ }
 
 NeoBundleLazy 'ompugao/uncrustify-vim'
+
+NeoBundleLazy 'heavenshell/vim-misspell', {
+\ 'autoload' : {
+\   'function_prefix': 'misspell',
+\   'commands': ['Misspell']
+\ }}
 
 source ~/.vim/plugin.rc.vim
 

@@ -205,7 +205,7 @@ set smartcase
 set wrapscan
 set hlsearch
 
-set grepprg=git\ grep\ --no-index\ -I\ --line-number  " TODO: consider about --no-color option
+set grepprg=git\ grep\ --no-index\ -I\ --perl-regexp\ --line-number  " TODO: consider about --no-color option
 autocmd MyAutoCmd QuickfixCmdPost vimgrep copen
 autocmd MyAutoCmd QuickfixCmdPost grep copen
 " I prefer to use external grep
