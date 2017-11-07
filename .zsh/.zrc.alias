@@ -52,6 +52,8 @@ linux*)
     alias gvim='gvim --remote-tab-silent'
     alias ap='aptitude'
     alias ack='ack-grep'
+    alias pbpaste='xsel -b'
+    alias -g pbcopy='xsel -bi'
     ;;
 
 cygwin*)
