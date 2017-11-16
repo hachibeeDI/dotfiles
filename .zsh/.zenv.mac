@@ -2,7 +2,7 @@
 
 echo 'setting up environment variables as MacOSX ... ...'
 
-export HOMEBREW_CASK_OPTS=--caskroom=/opt/homebrew-cask/Caskroom
+# export HOMEBREW_CASK_OPTS=--caskroom=/opt/homebrew-cask/Caskroom
 
 BREW_PATH=`/usr/local/bin/brew --prefix`
 export BREW_PATH
