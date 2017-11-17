@@ -57,7 +57,7 @@ call denite#custom#var('file_rec/git', 'command', ['git', 'ls-files', '-co', '--
 
 " Change ignore_globs
 call denite#custom#filter('matcher_ignore_globs', 'ignore_globs',
-  \ ['.git/', '.ropeproject/', '__pycache__/', 'venv/', 'images/', '*.min.*', 'img/', 'fonts/',
+  \ ['.git/', '.ropeproject/', '*.pyc', '__pycache__/', 'venv/', 'images/', '*.min.*', 'img/', 'fonts/',
   \  'node_modules/', '.mypy_cache/'
   \ ])
 
