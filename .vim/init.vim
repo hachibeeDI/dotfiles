@@ -25,7 +25,9 @@ source ~/.vim/common.rc.vim
 set viminfo& viminfo+=n~/.vimcache/nviminfo
 
 source ~/.vim/keymap.rc.vim
-source ~/.vim/keymap.unite.vim
+" I think I no longer needs unite but keep it for old Vim jus in case
+" source ~/.vim/keymap.unite.vim
+"
 " source ~/.vim/keymap.unite.vim => denite {{{
 
 " " Change file_rec command.
