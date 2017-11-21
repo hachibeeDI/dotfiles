@@ -115,7 +115,7 @@ nmap ,d <SID>[Denite]
 nnoremap <silent> <SID>[Denite]b :<C-u>Denite buffer<CR>
 "
 " ファイル一覧
-nnoremap <silent> <SID>[Denite]f :<C-u>DeniteBufferDir file_rec<CR>
+nnoremap <silent> <SID>[Denite]f :<C-u>DeniteBufferDir file<CR>
 " .gitを基準にしたプロジェクト一覧 (ctrlp的な)
 nnoremap <silent> <SID>[Denite]p :<C-u>Denite `finddir('.git', ';') != '' ? 'file_rec/git' : 'file_rec'`<CR>
 nnoremap <silent> <D-p>          :<C-u>Denite `finddir('.git', ';') != '' ? 'file_rec/git' : 'file_rec'`<CR>
