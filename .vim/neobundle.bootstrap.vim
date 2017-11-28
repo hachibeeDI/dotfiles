@@ -197,8 +197,25 @@ else
   \   'unite_sources' : 'giti'},
   \ })
 
-  " }}}
+  NeoBundleLazy 'ujihisa/unite-rake', {
+  \  'autoload' : {
+  \    'filetypes' : ['ruby'] }
+  \ }
 
+  NeoBundleLazy 'basyura/unite-rails', {
+  \  'autoload' : {
+  \    'filetypes' : ['ruby'] }
+  \ }
+
+  " developping
+  NeoBundleLazy 'hachibeeDI/unite-pythonimport', {
+  \ 'autoload' : {
+  \   'filetypes' : ['python'],
+  \   },
+  \ 'stay_same' : 1,
+  \ }
+
+  " }}}
 endif
 
 
@@ -615,15 +632,6 @@ NeoBundleLazy 'tpope/vim-rails', {
 \  'autoload' : {
 \    'filetypes' : ['ruby'] }}
 
-NeoBundleLazy 'ujihisa/unite-rake', {
-\  'autoload' : {
-\    'filetypes' : ['ruby'] }
-\ }
-
-NeoBundleLazy 'basyura/unite-rails', {
-\  'autoload' : {
-\    'filetypes' : ['ruby'] }
-\ }
 "}}}
 
 " -- Lisp {{{
@@ -644,11 +652,6 @@ if executable('lein')
   \ 'autoload' : {
   \   'filetypes' : ['clojure'] }
   \}
-  NeoBundleLazy 'tpope/vim-classpath', {
-  \ 'autoload' : {
-  \   'filetypes' : ['clojure'] }
-  \}
-
 endif
 "}}}
 " -- Haskell {{{
@@ -749,9 +752,6 @@ NeoBundle 'vim-scripts/Colour-Sampler-Pack'
 NeoBundle 'dracula/vim'
 NeoBundle 'lu-ren/SerialExperimentsLain'
 NeoBundle 'altercation/vim-colors-solarized'
-NeoBundle 'ujihisa/unite-colorscheme', {'gui': 1}
-NeoBundle 'ujihisa/unite-font', {'gui': 1}
-
 
 NeoBundle 'sudo.vim'
 NeoBundle 'kana/vim-metarw'
@@ -861,14 +861,6 @@ NeoBundleLazy 'glidenote/memolist.vim', {
 \ }
 \}
 " }}}
-
-" developping
-NeoBundleLazy 'hachibeeDI/unite-pythonimport', {
-\ 'autoload' : {
-\   'filetypes' : ['python'],
-\   },
-\ 'stay_same' : 1,
-\ }
 
 NeoBundleLazy 'LeafCage/yankround.vim', {
 \   'autoload': {
