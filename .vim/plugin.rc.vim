@@ -651,7 +651,7 @@ if g:neobundle#tap('lexima.vim')
 
         " TODO: inputが空の状態でleaveは効かない？ はっきりしたらissueを出そう
         " call s:add_rule_with_ignores({'at': l:begin.'\%#'.l:end, 'char': l:end, 'leave': 1}, s:default_ignore_rule)
-        call s:add_rule_with_ignores({'at':         '\%#'.l:end, 'char': l:end, 'input': '<Right>'}, s:default_ignore_rule)
+        call s:add_rule_with_ignores({'at': '\%#'.l:end, 'char': l:end, 'input': '<Right>'}, s:default_ignore_rule)
 
         call s:add_rule_with_ignores(
         \  {'at': l:begin.'\%#'.l:end, 'char': l:begin, 'input': l:begin, 'input_after': l:end},
@@ -710,6 +710,12 @@ if g:neobundle#tap('lexima.vim')
     \   'char'     : '\',
     \   'input'    : '<BS> => ',
     \   'filetype': ['javascript', 'typescript', 'javascript.jsx'],
+    \   })
+    call g:lexima#add_rule({
+    \   'at'       : '\\\%#',
+    \   'char'     : '\',
+    \   'input'    : '<BS>lambda :<Left>',
+    \   'filetype': ['python'],
     \   })
 
 
@@ -817,7 +823,7 @@ if g:neobundle#tap('lexima.vim')
     " }}}
     "
     " omni rules
-    let s:filetypes_with_omnifunc = ['python', 'typescript', 'javascript', 'go']
+    let s:filetypes_with_omnifunc = ['python', 'typescript', 'javascript', 'javascript.jsx', 'go']
     call s:add_rule_with_ignores({
     \   'at' : '\w\%#',
     \   'char': '.',
