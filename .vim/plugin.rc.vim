@@ -718,7 +718,6 @@ if g:neobundle#tap('lexima.vim')
     \   'filetype': ['python'],
     \   })
 
-
     " smartinputとsmartchrの連携tips
     "  -> [http://ac-mopp.blogspot.jp/2013/07/vim-smart-input.html]
 
@@ -832,13 +831,14 @@ if g:neobundle#tap('lexima.vim')
     \ },
     \ s:default_ignore_rule
     \ )
-
-
-    if g:neobundle#tap('smartinput-patterns')
-      call lexima_patterns#init()
-    endif
-
   endfunction
   "}}}
   call g:neobundle#untap()
+endif
+
+if g:neobundle#tap('smartinput-patterns')
+  let s:bundle = g:neobundle#get('lexima.vim')
+  function! s:bundle.hooks.on_source(bundle)
+    call lexima_patterns#init()
+  endfunction
 endif
