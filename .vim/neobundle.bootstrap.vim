@@ -718,17 +718,6 @@ NeoBundleLazy 'hail2u/vim-css3-syntax', {
 "    \   'filetypes' : ['css', 'less', 'scss', 'sass'] }
 "    \}
 
-NeoBundleLazy 'cakebaker/scss-syntax.vim', {
-\ 'autoload' : {
-\   'filetypes' : ['scss', 'sass'] }
-\ }
-
-" もう少しscssとcompassへの理解を深めてから使う
-"NeoBundleLazy 'AtsushiM/sass-compile.vim', {
-"\ 'autoload' : {
-"\   'filetypes' : ['scss', 'sass'] }
-"\ }
-
 NeoBundleLazy 'groenewege/vim-less', {
 \ 'autoload' : {
 \   'filetypes' : ['less'] }
