@@ -1,0 +1,55 @@
+
+[[plugins]]
+repository = 'Shougo/neocomplete.vim'
+on_i = 1
+depends = 'Shougo/context_filetype.vim'
+disabled = '!(has("lua") || has("luajit"))'
+vim_version = '7.3.885'
+
+[[plugins]]
+repository = 'Shougo/unite.vim'
+on_cmd = ['Unite', 'UniteWithBufferDir', 'QuickRun'],
+
+# unite source {{{
+[[plugins]]
+repository = 'Shougo/unite-outline'
+
+[[plugins]]
+repository = 'tsukkee/unite-tag'
+
+[[plugins]]
+repository = 'osyo-manga/unite-quickfix'
+
+[[plugins]]
+repository = 'hachibeeDI/unite-pypi-classifiers'
+
+[[plugins]]
+repository = 'kmnk/vim-unite-giti'
+
+[[plugins]]
+repository = 'ujihisa/unite-rake'
+on_ft = ['ruby']
+
+[[plugins]]
+repository = 'basyura/unite-rails'
+on_ft = ['ruby']
+
+# developping
+[[plugins]]
+repository = 'hachibeeDI/unite-pythonimport'
+on_ft = ['python']
+stay_same = 1
+# }}}
+
+[[plugins]]
+repository = 'davidhalter/jedi-vim'
+on_ft = ['python']
+disabled = '!has("python")'
+
+[[plugins]]
+repository = 'marijnh/tern_for_vim'
+on_func = ['tern#Complete', 'tern#Enable']
+on_ft = ['javascript', 'jsx', 'javascript.jsx']
+    [plugins.build]
+    mac = 'npm install'
+    unix = 'npm install'

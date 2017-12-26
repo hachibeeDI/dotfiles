@@ -1,0 +1,24 @@
+[[plugins]]
+repository = 'Shougo/deoplete.nvim'
+on_i = 1
+
+[[plugins]]
+repository = 'nixprime/cpsm'
+    [plugins.build]
+    unix = 'PY3=ON ./install.sh'
+    mac = 'PY3=ON ./install.sh'
+
+[[plugins]]
+repository = 'Shougo/denite.nvim'
+
+[[plugins]]
+repository = 'zchee/deoplete-jedi'
+on_ft = 'python'
+
+[[plugins]]
+repository = 'hachibeeDI/deoplete-ternjs'
+rev = 'local-node_modules'
+on_ft = ['javascript', 'jsx', 'javascript.jsx']
+    [plugins.build]
+    unix = 'npm install'
+    mac = 'npm install'
