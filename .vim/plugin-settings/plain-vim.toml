@@ -1,53 +1,74 @@
 
 [[plugins]]
-repository = 'Shougo/neocomplete.vim'
+repo = 'Shougo/neocomplete.vim'
 on_i = 1
 depends = 'Shougo/context_filetype.vim'
 disabled = '!(has("lua") || has("luajit"))'
 vim_version = '7.3.885'
 
 [[plugins]]
-repository = 'Shougo/unite.vim'
+repo = 'Shougo/unite.vim'
 on_cmd = ['Unite', 'UniteWithBufferDir', 'QuickRun'],
 
 # unite source {{{
 [[plugins]]
-repository = 'Shougo/unite-outline'
+repo = 'Shougo/unite-outline'
 
 [[plugins]]
-repository = 'tsukkee/unite-tag'
+repo = 'tsukkee/unite-tag'
 
 [[plugins]]
-repository = 'osyo-manga/unite-quickfix'
+repo = 'osyo-manga/unite-quickfix'
 
 [[plugins]]
-repository = 'hachibeeDI/unite-pypi-classifiers'
+repo = 'hachibeeDI/unite-pypi-classifiers'
 
 [[plugins]]
-repository = 'kmnk/vim-unite-giti'
+repo = 'kmnk/vim-unite-giti'
 
 [[plugins]]
-repository = 'ujihisa/unite-rake'
+repo = 'ujihisa/unite-rake'
 on_ft = ['ruby']
 
 [[plugins]]
-repository = 'basyura/unite-rails'
+repo = 'basyura/unite-rails'
 on_ft = ['ruby']
 
 # developping
 [[plugins]]
-repository = 'hachibeeDI/unite-pythonimport'
+repo = 'hachibeeDI/unite-pythonimport'
 on_ft = ['python']
 stay_same = 1
 # }}}
 
 [[plugins]]
-repository = 'davidhalter/jedi-vim'
+repo = 'davidhalter/jedi-vim'
 on_ft = ['python']
 disabled = '!has("python")'
+hook_add = '''
+    let g:jedi#squelch_py_warning = 1
+
+    " do not allow set some configure auto.
+    let g:jedi#auto_vim_configuration = 0
+
+    let g:jedi#use_tabs_not_buffers = 1
+    " neocomplcacheとコンフリクトを起こすので無効にしておく
+    let g:jedi#completions_enabled = 0
+    let g:jedi#popup_on_dot = 0
+    let g:jedi#popup_select_first = 0
+    let g:jedi#show_call_signatures = '1'
+
+    " command mappings
+    let g:jedi#goto_assignments_command = '<leader>g'
+    let g:jedi#goto_definitions_command = '<leader>d'
+    let g:jedi#documentation_command = 'K'
+    let g:jedi#rename_command = '<leader>r'
+    let g:jedi#usages_command = '<leader>n'
+    let g:jedi#completions_command = '<C-Space>'
+'''
 
 [[plugins]]
-repository = 'marijnh/tern_for_vim'
+repo = 'marijnh/tern_for_vim'
 on_func = ['tern#Complete', 'tern#Enable']
 on_ft = ['javascript', 'jsx', 'javascript.jsx']
     [plugins.build]

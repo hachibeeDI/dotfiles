@@ -1,22 +1,42 @@
 [[plugins]]
-repository = 'Shougo/deoplete.nvim'
+repo = 'Shougo/deoplete.nvim'
 on_i = 1
+on_source = '''
+    " Use deoplete.
+    let g:deoplete#enable_at_startup = 1
+    " Use smartcase.
+    let g:deoplete#enable_smart_case = 1
+
+    " <C-h>, <BS>: close popup and delete backword char.
+    inoremap <expr><C-h> deoplete#smart_close_popup()."\<C-h>"
+    inoremap <expr><BS>  deoplete#smart_close_popup()."\<C-h>"
+
+    " <CR>: close popup and save indent.
+    inoremap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
+    function! s:my_cr_function() abort
+      return deoplete#close_popup() . "\<CR>"
+    endfunction
+
+    inoremap <expr><tab> pumvisible() ? "\<C-n>" :
+          \ neosnippet#expandable_or_jumpable() ? "\<Plug>(neosnippet_expand_or_jump)" : "\<tab>"
+'''
+
 
 [[plugins]]
-repository = 'nixprime/cpsm'
+repo = 'nixprime/cpsm'
     [plugins.build]
-    unix = 'PY3=ON ./install.sh'
-    mac = 'PY3=ON ./install.sh'
+    unix = 'sh -c "PY3=ON ./install.sh"'
+    mac = 'sh -c "PY3=ON ./install.sh"'
 
 [[plugins]]
-repository = 'Shougo/denite.nvim'
+repo = 'Shougo/denite.nvim'
 
 [[plugins]]
-repository = 'zchee/deoplete-jedi'
+repo = 'zchee/deoplete-jedi'
 on_ft = 'python'
 
 [[plugins]]
-repository = 'hachibeeDI/deoplete-ternjs'
+repo = 'hachibeeDI/deoplete-ternjs'
 rev = 'local-node_modules'
 on_ft = ['javascript', 'jsx', 'javascript.jsx']
     [plugins.build]
@@ -24,4 +44,4 @@ on_ft = ['javascript', 'jsx', 'javascript.jsx']
     mac = 'npm install'
 
 [[plugins]]
-repository = 'machakann/vim-highlightedyank'
+repo = 'machakann/vim-highlightedyank'
