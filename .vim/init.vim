@@ -13,6 +13,9 @@ set t_8b=^[[48;2;%lu;%lu;%lum
 
 source ~/.vim/environments.rc.vim
 
+" show substitution interactively
+set inccommand=split
+
 "set autogroup
 augroup MyAutoCmd
   autocmd!

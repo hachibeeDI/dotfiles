@@ -22,3 +22,6 @@ on_ft = ['javascript', 'jsx', 'javascript.jsx']
     [plugins.build]
     unix = 'npm install'
     mac = 'npm install'
+
+[[plugins]]
+repository = 'machakann/vim-highlightedyank'
