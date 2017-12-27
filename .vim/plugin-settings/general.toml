@@ -234,6 +234,9 @@ repository = 'tpope/vim-rails'
 on_ft = ['ruby']
 # }}}
 
+[[plugins]]
+repository = 'fatih/vim-go'
+on_ft = 'go'
 
 # -- markup {{{
 [[plugins]]

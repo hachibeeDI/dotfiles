@@ -27,11 +27,11 @@ let g:neobundle#types#git#enable_submodule = 1
 
 if g:neobundle#load_cache()
 
-  call neobundle#load_toml("~/.vim/plugins.neobundle.toml", {})
+  call neobundle#load_toml("~/.vim/plugin-settings/general.toml", {})
   if s:is_neovim
-    call neobundle#load_toml("~/.vim/plugins.neobundle-nvim.toml", {})
+    call neobundle#load_toml("~/.vim/plugin-settings/nvim.toml", {})
   else
-    call neobundle#load_toml("~/.vim/plugins.neobundle-vim.toml", {})
+    call neobundle#load_toml("~/.vim/plugin-settings/plain-vim.toml", {})
   endif
 
   " NeoBundleLazy 'airblade/vim-rooter', {
@@ -147,15 +147,13 @@ if g:neobundle#load_cache()
 
   " }}}
   " - - golang {{{
-  if executable('go')
-    NeoBundleLazy 'fatih/vim-go', {
-    \   'autoload': {'filetypes': ['go']},
-    \ }
-    au MyAutoCmd FileType go nmap <Leader>s <Plug>(go-implements)
-    au MyAutoCmd FileType go nmap <Leader>i <Plug>(go-info)
-    let g:go_auto_type_info = 1
-    let g:go_fmt_command = 'goimports'
-  endif
+  " NeoBundleLazy 'fatih/vim-go', {
+  " \   'autoload': {'filetypes': ['go']},
+  " \ }
+  au MyAutoCmd FileType go nmap <Leader>s <Plug>(go-implements)
+  au MyAutoCmd FileType go nmap <Leader>i <Plug>(go-info)
+  let g:go_auto_type_info = 1
+  let g:go_fmt_command = 'goimports'
   " }}}
   " -- Haxe {{{
   if executable('haxe')
@@ -201,49 +199,6 @@ if g:neobundle#load_cache()
     " nnoremap <silent> gd :call LanguageClient_textDocument_definition()<CR>
     " nnoremap <silent> <F2> :call LanguageClient_textDocument_rename()<CR>
   " endif
-
-
-  " -- Lisp {{{
-  if executable('lein')
-    " via: http://blog.ieknir.com/blog/beginning-clojure-with-vim/
-    NeoBundleLazy 'guns/vim-clojure-static', {
-    \ 'autoload' : {
-    \   'filetypes' : ['clojure'] }
-    \}
-    NeoBundleLazy 'tpope/vim-fireplace', {
-    \ 'autoload' : {
-    \   'filetypes' : ['clojure'] }
-    \}
-  endif
-  "}}}
-  " -- Haskell {{{
-  if executable('ghc')
-    NeoBundleLazy 'dag/vim2hs', {
-        \ 'autoload' : {
-        \   'filetypes' : ['haskell'] }
-        \}
-    NeoBundleLazy 'pbrisbin/html-template-syntax', {
-        \ 'autoload' : {
-        \   'filetypes' : ['haskell'] }
-        \}
-    " NOTE: require 'ghc-mod'. install from `cabal install ghc-mod`.
-    NeoBundleLazy 'ujihisa/neco-ghc', {
-        \ 'autoload' : {
-        \   'filetypes' : ['haskell'] }
-        \}
-    NeoBundleLazy 'eagletmt/ghcmod-vim', {
-        \ 'autoload' : {
-        \   'filetypes' : ['haskell'] }
-        \}
-
-    "http://vim-users.jp/2011/12/hack241/
-    " NOTE: require 'hoogle'
-    NeoBundleLazy 'ujihisa/unite-haskellimport', {
-        \ 'autoload' : {
-        \   'filetypes' : ['haskell'] }
-        \}
-  endif
-  " }}}
 
   " --- style sheets {{{
   " css_color is too heavy... ...
