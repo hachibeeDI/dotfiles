@@ -272,7 +272,6 @@ on_cmd = [
     'VirtualEnvList',
     'VirtualEnvActivate',
 ]
-disabled = '!has("python")'
 
 [[plugins]]
 repo = 'heavenshell/vim-misspell'
@@ -618,8 +617,12 @@ hook_add = '''
 [[plugins]]
 repo = 'emonkak/vim-operator-comment'
 depends = ['kana/vim-operator-user']
-on_map = ['<Plug>(operator-uncomment)', '<Plug>(operator-comment']
+on_map = ['<Plug>(operator-uncomment)', '<Plug>(operator-comment)']
 hook_add = '''
+  omap M <Plug>(operator-uncomment)
+  omap m <Plug>(operator-comment)
+  vmap M <Plug>(operator-uncomment)
+  vmap m <Plug>(operator-comment)
   nmap M <Plug>(operator-uncomment)
   nmap m <Plug>(operator-comment)
 '''
@@ -646,6 +649,7 @@ hook_add = '''
 repo = 'hachibeeDI/vim-operator-autopep8'
 depends = ['kana/vim-operator-user', 'andviro/flake8-vim']
 on_ft = ['python']
+on_map = '<Plug>(operator-autopep8)'
 hook_add = '''
   map ,p <Plug>(operator-autopep8)
 '''
@@ -661,6 +665,8 @@ repo = 'kana/vim-textobj-indent'
 repo = 'kana/vim-textobj-entire'
 [[plugins]]
 repo = 'kana/vim-textobj-jabraces'
+[[plugins]]
+repo = 'kana/vim-textobj-line'
 
 [[plugins]]
 repo = 'osyo-manga/vim-textobj-multiblock'
