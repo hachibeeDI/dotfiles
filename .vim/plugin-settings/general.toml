@@ -337,7 +337,7 @@ repo = 'othree/yajs.vim'
 on_ft = ['javascript', 'jsx', 'javascript.jsx']
 
 [[plugins]]
-# add proposal syntax e.g. async await
+# This syntax file is for ECMAScript future syntax. Need to work with yajs.vim.
 repo = 'othree/es.next.syntax.vim'
 on_ft = ['javascript', 'jsx', 'javascript.jsx']
 
@@ -347,10 +347,6 @@ on_ft = ['html', 'xhtml', 'jinja', 'coffee', 'javascript', 'jsx', 'javascript.js
 hook_add = '''
     let g:used_javascript_libs = 'jquery,underscore,requirejs,react,flux'
 '''
-
-[[plugins]]
-repo = 'isRuslan/vim-es6'
-on_ft = ['javascript', 'javascript.jsx', 'typescript', 'html']
 
 [[plugins]]
 repo = 'elzr/vim-json'
