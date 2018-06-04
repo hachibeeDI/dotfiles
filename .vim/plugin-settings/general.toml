@@ -226,6 +226,7 @@ repo = 'andviro/flake8-vim'
 on_ft = 'python'
 hook_add = '''
   " Flake8-vim {{{
+  let g:PyFlakeForcePyVersion = 3
   let g:PyFlakeOnWrite = 1
   " 無視する警告の種類
   " E501 => 行ごとの文字数制限, E121 => 次行のインデントはひとつだけ, E303 => 改行の数が多すぎる, E309 => クラスの後は一行あける（コメント書けないじゃん）
@@ -258,6 +259,7 @@ hook_source = '''
   autocmd MyAutoCmd TabLeave     *.py PyHlLVar
 '''
 hook_add = '''
+  let g:py_hl_lvar_force_version = 3
   let g:enable_python_hl_lvar = 1
   let g:python_hl_lvar_highlight_color = 'guifg=palegreen2 gui=NONE ctermfg=110 cterm=NONE'
   "let g:python_hl_lvar_verbose = 1  for debug
