@@ -1,7 +1,7 @@
 [[plugins]]
 repo = 'Shougo/deoplete.nvim'
 on_i = 1
-on_source = '''
+hook_source = '''
     " Use deoplete.
     let g:deoplete#enable_at_startup = 1
     " Use smartcase.
@@ -20,6 +20,9 @@ on_source = '''
     inoremap <expr><tab> pumvisible() ? "\<C-n>" :
           \ neosnippet#expandable_or_jumpable() ? "\<Plug>(neosnippet_expand_or_jump)" : "\<tab>"
 '''
+
+[[plugins]]
+repo = 'roxma/nvim-yarp'
 
 
 [[plugins]]
@@ -45,3 +48,7 @@ on_ft = ['javascript', 'jsx', 'javascript.jsx']
 
 [[plugins]]
 repo = 'machakann/vim-highlightedyank'
+
+[[plugins]]
+repo = 'mhartington/nvim-typescript'
+build = './install.sh'
