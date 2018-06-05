@@ -347,7 +347,7 @@ on_ft = ['javascript', 'jsx', 'javascript.jsx']
 repo = 'othree/javascript-libraries-syntax.vim'
 on_ft = ['html', 'xhtml', 'jinja', 'coffee', 'javascript', 'jsx', 'javascript.jsx', 'typescript']
 hook_add = '''
-    let g:used_javascript_libs = 'jquery,underscore,requirejs,react,flux'
+    let g:used_javascript_libs = 'react,flux'
 '''
 
 [[plugins]]
