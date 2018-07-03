@@ -1,0 +1,8 @@
+# cp to /usr/share/gnome-session/sessions/xmonad.session
+
+[GNOME Session]
+Name=Xmonad session
+RequiredComponents=gnome-panel;gnome-settings-daemon;
+RequiredProviders=windowmanager;notifications;
+DefaultProvider-windowmanager=xmonad
+DefaultProvider-notifications=notification-daemon

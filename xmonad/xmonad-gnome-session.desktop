@@ -1,0 +1,8 @@
+# cp to /usr/share/xsessions/xmonad-gnome-session.desktop
+
+[Desktop Entry]
+Name=Xmonad GNOME
+Comment=Tiling window manager
+TryExec=/usr/bin/gnome-session
+Exec=gnome-session --session=xmonad
+Type=XSession
