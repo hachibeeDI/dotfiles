@@ -60,8 +60,10 @@ on_event = 'InsertEnter'
 repo = 'thinca/vim-quickrun'
 on_cmd = 'QuickRun'
 on_map = ['nxo', '<Plug>(quickrun)', '<Plug>(quickrun-op)']
-hook_source = '''
+hook_add = '''
     let g:quickrun_no_default_key_mappings = 1
+'''
+hook_source = '''
     "nmap <F5> <Plug>(quickrun)
     nmap <Leader>q <Plug>(quickrun)
     nmap ,q <Plug>(quickrun-op)

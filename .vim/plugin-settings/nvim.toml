@@ -1,12 +1,13 @@
 [[plugins]]
 repo = 'Shougo/deoplete.nvim'
 on_i = 1
-hook_source = '''
+hook_add = '''
     " Use deoplete.
     let g:deoplete#enable_at_startup = 1
     " Use smartcase.
     let g:deoplete#enable_smart_case = 1
-
+'''
+hook_source = '''
     " <C-h>, <BS>: close popup and delete backword char.
     inoremap <expr><C-h> deoplete#smart_close_popup()."\<C-h>"
     inoremap <expr><BS>  deoplete#smart_close_popup()."\<C-h>"
@@ -33,6 +34,78 @@ repo = 'nixprime/cpsm'
 
 [[plugins]]
 repo = 'Shougo/denite.nvim'
+hook_add = '''
+    nnoremap <SID>[Denite] <Nop>
+    nmap ,d <SID>[Denite]
+    " nnoremap <SID>[UMenu] <Nop>
+    " nmap [Denite]t <SID>[UMenu]
+    "
+    " nnoremap <silent>[UMenu]g :Denite -silent -start-insert menu:git<CR>
+    "
+    " バッファ一覧
+    nnoremap <silent> <SID>[Denite]b :<C-u>Denite buffer<CR>
+    "
+    " ファイル一覧
+    nnoremap <silent> <SID>[Denite]f :<C-u>DeniteBufferDir file<CR>
+    " .gitを基準にしたプロジェクト一覧 (ctrlp的な)
+    nnoremap <silent> <SID>[Denite]p :<C-u>Denite `finddir('.git', ';') != '' ? 'file_rec/git' : 'file_rec'`<CR>
+    nnoremap <silent> <D-p>          :<C-u>Denite `finddir('.git', ';') != '' ? 'file_rec/git' : 'file_rec'`<CR>
+
+    " " レジスタ一覧
+    " nnoremap <silent> <SID>[Denite]r :<C-u>Denite -buffer-name=register register<CR>
+    " " 最近使用したファイル一覧
+    nnoremap <silent> <SID>[Denite]m :<C-u>Denite file_mru<CR>
+    " " 常用セット
+    nnoremap <silent> <SID>[Denite]u :<C-u>Denite buffer file_mru<CR>
+    nnoremap <silent> <D-m>          :<C-u>Denite buffer file_mru<CR>
+    " " タブ一覧
+    " nnoremap <silent> <SID>[Denite]t :<C-u>Denite tab<CR>
+    " " 全部乗せ
+    " nnoremap <silent> <SID>[Denite]a :<C-u>DeniteWithBufferDir -buffer-name=files buffer file_mru bookmark file<CR>
+    "
+    " " その他
+    " nnoremap <silent> <SID>[Denite]` :<C-u>Denite -auto-quit neobundle/update<CR>
+    " " Outline
+    " nnoremap <silent> <SID>[Denite]o :<C-u>Denite -vertical outline<CR>
+    " " grep
+    " nnoremap <silent> <SID>[Denite]gg :<C-u>Denite giti<CR>
+    " nnoremap <silent> <SID>[Denite]gs :<C-u>Denite giti/status<CR>
+    " nnoremap <silent> <SID>[Denite]gb :<C-u>Denite giti/branch<CR>
+    " " quickfix
+    " nnoremap <silent> <SID>[Denite]q :<C-u>Denite -no-quit -direction=botright quickfix
+    " " }}}
+'''
+hook_source = '''
+    " Change mappings.
+    call denite#custom#map(
+    \ 'insert',
+    \ '<C-n>',
+    \ '<denite:move_to_next_line>',
+    \ 'noremap'
+    \)
+    call denite#custom#map(
+    \ 'insert',
+    \ '<C-p>',
+    \ '<denite:move_to_previous_line>',
+    \ 'noremap'
+    \)
+
+    " Change matchers.
+    call denite#custom#source('file_mru', 'matchers', ['matcher_fuzzy', 'matcher_project_files'])
+    call denite#custom#source('file_mru', 'converters', ['converter_relative_word'])
+    call denite#custom#source('file_rec', 'matchers', ['matcher_cpsm'])
+
+    call denite#custom#alias('source', 'file_rec/git', 'file_rec')
+    call denite#custom#var('file_rec/git', 'command', ['git', 'ls-files', '-co', '--exclude-standard'])
+
+    " Change ignore_globs
+    call denite#custom#filter('matcher_ignore_globs', 'ignore_globs',
+    \ ['.git/', '.ropeproject/', '*.pyc', '__pycache__/', 'venv/', 'images/', '*.min.*', 'img/', 'fonts/',
+    \  'node_modules/', '.mypy_cache/'
+    \ ])
+
+    call denite#custom#var('outline', 'ignore_types', ['i'])
+'''
 
 [[plugins]]
 repo = 'zchee/deoplete-jedi'
@@ -56,7 +129,7 @@ build = './install.sh'
 
 [[plugins]]
 repo = 'w0rp/ale'
-hook_source = '''
+hook_add = '''
     let g:ale_statusline_format = ['E%d', 'W%d', 'OK']
 
     " nmap <silent> <C-w>j <Plug>(ale_next_wrap)
