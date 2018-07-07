@@ -34,6 +34,7 @@ repo = 'nixprime/cpsm'
 
 [[plugins]]
 repo = 'Shougo/denite.nvim'
+on_i = 1
 hook_add = '''
     nnoremap <SID>[Denite] <Nop>
     nmap ,d <SID>[Denite]
@@ -48,8 +49,8 @@ hook_add = '''
     " ファイル一覧
     nnoremap <silent> <SID>[Denite]f :<C-u>DeniteBufferDir file<CR>
     " .gitを基準にしたプロジェクト一覧 (ctrlp的な)
-    nnoremap <silent> <SID>[Denite]p :<C-u>Denite `finddir('.git', ';') != '' ? 'file_rec/git' : 'file_rec'`<CR>
-    nnoremap <silent> <D-p>          :<C-u>Denite `finddir('.git', ';') != '' ? 'file_rec/git' : 'file_rec'`<CR>
+    nnoremap <silent> <SID>[Denite]p :<C-u>Denite `finddir('.git', ';') != '' ? 'file/rec/git' : 'file/rec'`<CR>
+    nnoremap <silent> <D-p>          :<C-u>Denite `finddir('.git', ';') != '' ? 'file/rec/git' : 'file/rec'`<CR>
 
     " " レジスタ一覧
     " nnoremap <silent> <SID>[Denite]r :<C-u>Denite -buffer-name=register register<CR>
@@ -95,8 +96,8 @@ hook_source = '''
     call denite#custom#source('file_mru', 'converters', ['converter_relative_word'])
     call denite#custom#source('file_rec', 'matchers', ['matcher_cpsm'])
 
-    call denite#custom#alias('source', 'file_rec/git', 'file_rec')
-    call denite#custom#var('file_rec/git', 'command', ['git', 'ls-files', '-co', '--exclude-standard'])
+    call denite#custom#alias('source', 'file/rec/git', 'file/rec')
+    call denite#custom#var('file/rec/git', 'command', ['git', 'ls-files', '-co', '--exclude-standard'])
 
     " Change ignore_globs
     call denite#custom#filter('matcher_ignore_globs', 'ignore_globs',
