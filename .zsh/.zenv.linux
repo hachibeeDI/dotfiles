@@ -50,6 +50,10 @@ fpath=(
     $fpath
 )
 export fpath
+if [[ -f /opt/google-cloud-sdk/completion.zsh.inc ]]; then
+  source /opt/google-cloud-sdk/completion.zsh.inc
+  source /opt/google-cloud-sdk/path.zsh.inc
+fi
 
 if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
 export RBENV_ROOT=/usr/local/opt/rbenv
