@@ -727,3 +727,11 @@ hook_add = 'map x <Plug>(operator-codic)'
 repo = 'hachibeeDI/vim-operator-codic'
 depends = ['koron/codic-vim', 'kana/vim-operator-user']
 on_map = '<Plug>(operator-codic)'
+
+
+[[plugins]]
+repo = 'hashivim/vim-terraform'
+hook_add = '''
+let g:terraform_align = 1
+'''
+
