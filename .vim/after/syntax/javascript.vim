@@ -10,6 +10,7 @@ set cpo&vim
 
 
 syn keyword javaScriptSpecialWord constructor
+syn keyword javaScriptSpecialWord !
 
 " hi link javaScriptSpecialMethod  Structure
 hi link javaScriptSpecialWord    Special
