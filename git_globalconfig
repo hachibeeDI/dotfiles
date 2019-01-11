@@ -115,5 +115,5 @@
 
 # plugins
 [ghq]
-    root = ~/.ghq
+    root = ~/.ghq/src
     root = ~/.go/src

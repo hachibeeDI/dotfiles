@@ -5,9 +5,9 @@ if &compatible
   set nocompatible               " Be iMproved
 endif
 
-let s:dein_repo = $HOME.'/.ghq/github.com/Shougo/dein.vim'
+let s:dein_repo = $HOME.'/.ghq/src/github.com/Shougo/dein.vim'
 " Required:
-set runtimepath+=~/.ghq/github.com/Shougo/dein.vim
+set runtimepath+=~/.ghq/src/github.com/Shougo/dein.vim
 
 " Required:
 if dein#load_state('~/.dein/')

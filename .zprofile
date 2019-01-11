@@ -27,7 +27,11 @@ typeset -U path cdpath fpath manpath
 export LESS='-gj10 --no-init --quit-if-one-screen --RAW-CONTROL-CHARS'
 
 # Go {{{
-export GOPATH=$HOME/.go
+GOPATH=(
+    $HOME/.go(N-/)
+    $HOME/.ghq(N-/)
+)
+export GOPATH
 # }}}
 
 
