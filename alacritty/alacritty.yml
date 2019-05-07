@@ -324,11 +324,23 @@ mouse:
 selection:
   semantic_escape_chars: ",│`|:\"' ()[]{}<>"
 
+## For 4K Linux
 # Shell
 #
 # You can set shell.program to the path of your favorite shell, e.g. /bin/fish.
 # Entries in shell.args are passed unmodified as arguments to the shell.
+# shell:
+#  program: /usr/bin/zsh
+#  args:
+#    - --login
+
+
+## For MacOS
+font:
+  size: 14
+
 shell:
- program: /usr/bin/zsh
- args:
-   - --login
+  program: /usr/local/bin/zsh
+  args:
+    - --login
+
