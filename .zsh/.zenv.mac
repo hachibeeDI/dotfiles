@@ -13,6 +13,8 @@ export RBENV_ROOT=/usr/local/var/rbenv
 
 # homebrewとcoreutils優先の設定
 path=(
+    /usr/local/opt/mysql-client/bin(N-/)
+
     #$RBENV_ROOT/shims(N-/) rbenv init -が通してくれてるっぽい
     $RBENV_ROOT/bin(N-/)
     $HOME/.gem/ruby/2.1.0/bin(N-/)
