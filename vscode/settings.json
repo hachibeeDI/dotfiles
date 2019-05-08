@@ -1,3 +1,29 @@
 {
-    "editor.fontFamily": "Ricty Diminished,Menlo, Monaco, 'Courier New', monospace"
+    "editor.fontFamily": "'Ricty Diminished Discord',Menlo, Monaco, 'Courier New', monospace"
+    "editor.fontSize": 12,
+    "terminal.integrated.fontSize": 12,
+
+    "editor.insertSpaces": true,
+    "editor.tabSize": 2,
+    "editor.renderWhitespace": "boundary",
+    "editor.minimap.enabled": false,
+
+    "breadcrumbs.enabled": true,
+
+    "workbench.activityBar.visible": false,
+
+    "search.exclude": {
+        "**/bower_components": true,
+        "**/node_modules": true,
+        "**/img": true,
+        "**/dist": true
+    },
+
+    // Vim
+    "vim.useSystemClipboard":true,
+    "vim.cmdLineInitialColon": true,
+    "vim.hlsearch": true,
+    "vim.easymotion": true,
+    "vim.visualstar": true,
+    "vim.useCtrlKeys": true
 }

@@ -1,0 +1,8 @@
+// Place your key bindings in this file to override the defaultsauto[]
+[
+    {
+        "key": "ctrl+l ctrl+d",
+        "command": "editor.action.goToDeclaration",
+        "when": "editorFocus && vim.mode == 'Normal'"
+    }
+]
