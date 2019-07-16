@@ -76,7 +76,7 @@ hook_add = '''
     " nnoremap <silent> <SID>[Denite]q :<C-u>Denite -no-quit -direction=botright quickfix
     " " }}}
 '''
-hook_source = '''
+hook_post_source = '''
     " Change mappings.
     call denite#custom#map(
     \ 'insert',
@@ -121,20 +121,14 @@ repo = 'zchee/deoplete-jedi'
 on_ft = 'python'
 
 [[plugins]]
-repo = 'hachibeeDI/deoplete-ternjs'
-rev = 'local-node_modules'
-on_ft = ['javascript', 'jsx', 'javascript.jsx']
-    [plugins.build]
-    unix = 'npm install'
-    mac = 'npm install'
-
-[[plugins]]
 repo = 'machakann/vim-highlightedyank'
 
 [[plugins]]
 repo = 'mhartington/nvim-typescript'
 build = './install.sh'
-
+hook_add = '''
+g:nvim_typescript#type_info_on_hold = 1
+'''
 
 [[plugins]]
 repo = 'w0rp/ale'
@@ -146,16 +140,24 @@ hook_add = '''
 
     let g:ale_fixers = {
     \ 'reason': ['refmt'],
-    \ 'typescript': ['prettier', 'tslint'],
-    \ 'javascript': ['prettier', 'eslint'],
-    \ 'javascript.jsx': ['prettier', 'eslint'],
+    \ 'typescript': ['tslint'],
+    \ 'javascript': ['eslint'],
+    \ 'javascript.jsx': ['eslint'],
     \ }
+    let g:ale_typescript_tslint_use_global = 0
+    let g:ale_typescript_tslint_config_path = 0
 
+    set signcolumn=yes
     " ファイル保存時に実行
     let g:ale_fix_on_save = 1
+    let g:ale_sign_column_always = 1
+    let g:ale_lint_on_enter = 0
+    " Write this in your vimrc file
+    let g:ale_lint_on_text_changed = 'never'
+'''
 
-    " ローカルの設定ファイルを考慮する
-    let g:ale_javascript_prettier_use_local_config = 1
+hook_source = '''
+    :set signcolumn=yes
 '''
 
 
