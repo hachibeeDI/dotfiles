@@ -196,7 +196,7 @@ set titlestring=Vim:\ %f\ %h%r%m
 set diffopt=iwhite,filler
 
 set spelllang=en_us,cjk
-set spell
+" set spell
 
 " ---- search behavior ---- {{{
 set incsearch
