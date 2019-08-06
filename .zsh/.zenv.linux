@@ -19,7 +19,7 @@ path=(
     $HOME/.nodebrew/current/bin(N-/)
     $HOME/bin(N-/)
 
-    $HOME/.go/bin(N-/)
+    $HOME/go/bin(N-/)
     # Rust
     $HOME/.cargo/bin(N-/)
 
