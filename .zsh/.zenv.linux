@@ -3,10 +3,12 @@
 echo 'setting up environment variables as Linux ... ...'
 
 export PYENV_ROOT="$HOME/.pyenv"
+export RBENV_ROOT="$HOME/.rbenv"
 
 # -U : 重複したパスは登録しない
 path=(
     $PYENV_ROOT/bin(N-/)
+    $RBENV_ROOT/bin(N-/)
 
     # 自分のスクリプトとか、自分でビルドしたやつとか
     $HOME/Dropbox/bin/linux(N-/)
@@ -56,7 +58,6 @@ if [[ -f /opt/google-cloud-sdk/completion.zsh.inc ]]; then
 fi
 
 if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
-export RBENV_ROOT=/usr/local/opt/rbenv
 
 if which anyenv > /dev/null; then eval "$(anyenv init -)"; fi
 
@@ -74,6 +75,9 @@ fi
 #export LDFLAGS="-L/usr/local/opt/sqlite/lib"
 ## Cのプリプロセッサフラグ.
 #export CPPFLAGS="-I/usr/local/opt/sqlite/include"
+
+# in case you need this option for Linux on WSL. They use US-ASCII in default :<
+export RUBYOPT=-EUTF-8
 
 export TERM=xterm-256color
 
