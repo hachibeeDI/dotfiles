@@ -30,6 +30,8 @@ export LESS='-gj10 --no-init --quit-if-one-screen --RAW-CONTROL-CHARS'
 export GOPATH="$HOME/.go:$HOME/.ghq"
 # }}}
 
+export LANG="ja_JP.UTF-8"
+
 
 case "${OSTYPE}" in
 freebsd*|darwin*)
@@ -87,6 +89,12 @@ export PYTHONSTARTUP=~/.pythonstartup
 JAVA_HOME=/Library/Java/Home
 export JAVA_HOME
 
+if command -v anyenv 1>/dev/null 2>&1; then
+  eval "$(anyenv init -)"
+fi
+if command -v nodenv 1>/dev/null 2>&1; then
+  eval "$(nodenv init -)"
+fi
 
 if command -v pyenv 1>/dev/null 2>&1; then
   eval "$(pyenv init -)"
