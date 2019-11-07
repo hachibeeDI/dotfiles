@@ -34,5 +34,18 @@
     "vim.hlsearch": true,
     "vim.easymotion": true,
     "vim.visualstar": true,
-    "vim.useCtrlKeys": true
+    "vim.useCtrlKeys": true,
+
+
+    "terminal.integrated.shell.windows": "ubuntu1804.exe",
+    "terminal.integrated.shellArgs.windows": ["run", "/usr/bin/bash"],
+    "editor.formatOnSave": false,
+    "editor.formatOnType": true,
+    "editor.formatOnPaste": true,
+    "editor.quickSuggestions": {
+        "other": true,
+        "comments": true,
+        "strings": true
+    },
+    "files.autoSave": "afterDelay"
 }
