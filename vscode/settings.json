@@ -47,5 +47,7 @@
         "comments": true,
         "strings": true
     },
-    "files.autoSave": "afterDelay"
+    "files.autoSave": "afterDelay",
+    "window.zoomLevel": 0,
+    "editor.wordWrap": "on"
 }
