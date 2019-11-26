@@ -35,7 +35,13 @@
     "vim.easymotion": true,
     "vim.visualstar": true,
     "vim.useCtrlKeys": true,
-
+    "vim.cursorStylePerMode.normal": "block",
+    "vim.normalModeKeyBindings": [
+        {
+            "before": [";"],
+            "after": [":"]
+        },
+    ],
 
     "terminal.integrated.shell.windows": "ubuntu1804.exe",
     "terminal.integrated.shellArgs.windows": ["run", "/usr/bin/bash"],
@@ -49,5 +55,5 @@
     },
     "files.autoSave": "afterDelay",
     "window.zoomLevel": 0,
-    "editor.wordWrap": "on"
+    "editor.wordWrap": "on",
 }
