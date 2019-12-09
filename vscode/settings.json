@@ -1,6 +1,6 @@
 {
-    "editor.fontFamily": "'Ricty Diminished Discord',Menlo, Monaco, 'Courier New', monospace",
-    "editor.fontSize": 12,
+    "editor.fontFamily": "'Cica', 'Ricty Diminished Discord',Menlo, Monaco, 'Courier New', monospace",
+    "editor.fontSize": 14,
     "terminal.integrated.fontSize": 12,
 
     "editor.insertSpaces": true,
@@ -11,6 +11,7 @@
     "breadcrumbs.enabled": true,
 
     "workbench.activityBar.visible": false,
+    "workbench.editor.enablePreview": false,
 
     "files.exclude": {
         "/.git": true,
