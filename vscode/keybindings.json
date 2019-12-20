@@ -12,5 +12,14 @@
             "kind": "source.fixAll.tslint",
             "apply": "first"
         }
-    }
+    },
+    {
+        "key": "cmd+h",
+        "command": "editor.action.startFindReplaceAction"
+    },
+    {
+        "key": "[Escape]",
+        "command":"workbench.action.focusActiveEditorGroup",
+        "when": "terminalFocus"
+    },
 ]

@@ -29,19 +29,24 @@
         "/node_modules/": true
     },
 
+    "emmet.showSuggestionsAsSnippets": true,
+    "emmet.triggerExpansionOnTab": true,
+
     // Vim
     "vim.useSystemClipboard":true,
     "vim.cmdLineInitialColon": true,
     "vim.hlsearch": true,
     "vim.easymotion": true,
+    "vim.surround": true,
     "vim.visualstar": true,
     "vim.useCtrlKeys": true,
     "vim.cursorStylePerMode.normal": "block",
     "vim.normalModeKeyBindings": [
-        {
-            "before": [";"],
-            "after": [":"]
-        },
+        {"before": [";"], "after": [":"]},
+        {"before": ["Y"], "after": ["y", "$"]},
+        {"before": ["<C-j>"], "after": ["*"]},
+        {"before": ["<C-k>"], "after": ["#"]},
+        {"before": ["<BS>"], "after": [":", "%", "s", "/"]},
     ],
 
     "terminal.integrated.shell.windows": "ubuntu1804.exe",
@@ -57,4 +62,10 @@
     "files.autoSave": "afterDelay",
     "window.zoomLevel": 0,
     "editor.wordWrap": "on",
+    "[typescriptreact]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "[typescript]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
 }
