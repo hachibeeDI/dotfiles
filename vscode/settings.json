@@ -59,13 +59,16 @@
         "comments": true,
         "strings": true
     },
-    "files.autoSave": "afterDelay",
+    "files.autoSave": "onFocusChange",
     "window.zoomLevel": 0,
     "editor.wordWrap": "on",
     "[typescriptreact]": {
-        "editor.defaultFormatter": "esbenp.prettier-vscode"
+        "editor.defaultFormatter": "dbaeumer.vscode-eslint"
     },
     "[typescript]": {
-        "editor.defaultFormatter": "esbenp.prettier-vscode"
+        "editor.defaultFormatter": "dbaeumer.vscode-eslint"
     },
+    "files.autoSaveDelay": 10000,
+    "eslint.format.enable": true,
+    "eslint.run": "onType",
 }
