@@ -18,6 +18,11 @@
         "command": "editor.action.startFindReplaceAction"
     },
     {
+        "key": "shift+cmd+r",
+        "command": "editor.action.rename",
+        "when": "editorHasRenameProvider && editorTextFocus && !editorReadonly"
+    },
+    {
         "key": "[Escape]",
         "command":"workbench.action.focusActiveEditorGroup",
         "when": "terminalFocus"
