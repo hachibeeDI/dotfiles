@@ -121,3 +121,5 @@ gcloud_completion_loader="$HOME/.gcloud/google-cloud-sdk/completion.zsh.inc"
 # The next line enables shell command completion for gcloud.
 if [ -f $gcloud_completion_loader ]; then source $gcloud_completion_loader; fi
 
+
+export PATH="$HOME/.cargo/bin:$PATH"
