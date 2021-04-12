@@ -37,6 +37,8 @@ path=(
     /usr/local/sbin(N-/)
     /usr/sbin(N-/)
     /sbin(N-/)
+
+    $HOME/.ghq/src/github.com/flutter/flutter/bin(N-/)
     $PATH
     )
 export path
