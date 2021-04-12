@@ -62,16 +62,12 @@
     "files.autoSave": "onFocusChange",
     "window.zoomLevel": 0,
     "editor.wordWrap": "on",
-    "[typescriptreact]": {
-        "editor.defaultFormatter": "dbaeumer.vscode-eslint"
-    },
-    "[typescript]": {
-        "editor.defaultFormatter": "dbaeumer.vscode-eslint"
-    },
+
     "files.autoSaveDelay": 10000,
+
     "eslint.format.enable": true,
     "eslint.run": "onType",
-    "dart.enableMachineLearningCodeCompletion": true,
+
     "[dart]": {
         "editor.formatOnSave": true,
         "editor.formatOnType": true,
@@ -85,6 +81,7 @@
         "editor.wordBasedSuggestions": false,
         "files.insertFinalNewline": true
     },
+    "dart.enableMachineLearningCodeCompletion": true,
     "dart.analyzerAdditionalArgs": [
         "--enable-completion-model"
     ],
