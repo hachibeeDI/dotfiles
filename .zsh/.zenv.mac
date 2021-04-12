@@ -4,7 +4,11 @@ echo 'setting up environment variables as MacOSX ... ...'
 
 # export HOMEBREW_CASK_OPTS=--caskroom=/opt/homebrew-cask/Caskroom
 
-BREW_PATH=`/usr/local/bin/brew --prefix`
+if which /usr/local/bin/brew > /dev/null; then
+  BREW_PATH=`/usr/local/bin/brew --prefix`
+else
+  BREW_PATH=`/opt/homebrew/bin/brew --prefix`
+fi
 export BREW_PATH
 
 # to read `brew info rbenv`
@@ -38,8 +42,8 @@ path=(
     $BREW_PATH/opt/ruby/bin(N-/)
 
     #デフォルトのコマンドをGNUコマンドで
-    /usr/local/opt/coreutils/libexec/gnubin(N-/)
-    /usr/local/opt/gnu-sed/libexec/gnubin(N-/)
+    $BREW_PATH/opt/coreutils/libexec/gnubin(N-/)
+    $BREW_PATH/opt/gnu-sed/libexec/gnubin(N-/)
 
     # Goの
     $HOME/.go/bin(N-/)
@@ -67,18 +71,18 @@ fpath=(
         $HOME/.zsh/functions/Completion(N-/)
 
         #zsh-completions
-        /usr/local/share/zsh-completions(N-/)
-        /usr/local/share/zsh-completions/src(N-/)
+        $BREW_PATH/share/zsh-completions(N-/)
+        $BREW_PATH/share/zsh-completions/src(N-/)
 
         #homebrew
-        /usr/local/share/zsh/functions(N-/)
-        /usr/local/share/zsh/site-functions(N-/)
+        $BREW_PATH/share/zsh/functions(N-/)
+        $BREW_PATH/share/zsh/site-functions(N-/)
         $HOME/.go/src/github.com/mattn/gom/misc/zsh(N-/)
         )
 export fpath
 
 
-MANPATH="$(/usr/local/bin/brew --prefix coreutils)/libexec/gnuman:$MANPATH"
+MANPATH="$($BREW_PATH/bin/brew --prefix coreutils)/libexec/gnuman:$MANPATH"
 export MANPATH
 
 if which rbenv > /dev/null; then
