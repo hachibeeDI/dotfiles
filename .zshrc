@@ -390,5 +390,13 @@ if which direnv > /dev/null; then
   eval "$(direnv hook zsh)"
 fi
 
+# Xserver for WSL2
+if [ -e /mnt/wsl ]; then
+  echo "Detect WSL."
+  export DISPLAY=$(cat /etc/resolv.conf | grep nameserver | awk '{print $2}'):0
+  export LIBGL_ALWAYS_INDIRECT=1
+fi
+
 # load alias
 source ~/.zsh/.zrc.alias
+
