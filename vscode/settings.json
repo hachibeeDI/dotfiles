@@ -34,7 +34,6 @@
 
     // Vim
     "vim.useSystemClipboard":true,
-    "vim.cmdLineInitialColon": true,
     "vim.hlsearch": true,
     "vim.easymotion": true,
     "vim.surround": true,
@@ -61,7 +60,7 @@
     },
     "files.autoSave": "onFocusChange",
     "window.zoomLevel": 0,
-    "editor.wordWrap": "on",
+    "editor.wordWrap": "off",
 
     "files.autoSaveDelay": 10000,
 
@@ -86,4 +85,17 @@
         "--enable-completion-model"
     ],
     "dart.lineLength": 120,
+    "[typescriptreact]": {
+        "editor.defaultFormatter": "dbaeumer.vscode-eslint"
+    },
+    "[typescript]": {
+        "editor.defaultFormatter": "dbaeumer.vscode-eslint"
+    },
+    "editor.cursorStyle": "line",
+    "editor.lineNumbers": "on",
+    "editor.wordSeparators": "/\\()\"':,.;<>~!@#$%^&*|+=[]{}`?-",
+    "[javascript]": {
+        "editor.defaultFormatter": "dbaeumer.vscode-eslint"
+    },
+    "editor.bracketPairColorization.enabled": true,
 }
