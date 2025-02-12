@@ -1,101 +1,141 @@
 {
-    "editor.fontFamily": "'Cica', 'Ricty Diminished Discord',Menlo, Monaco, 'Courier New', monospace",
-    "editor.fontSize": 14,
-    "terminal.integrated.fontSize": 12,
+  "editor.fontFamily": "'Cica', 'Ricty Diminished Discord',Menlo, Monaco, 'Courier New', monospace",
+  "editor.fontSize": 14,
+  "terminal.integrated.fontSize": 12,
 
-    "editor.insertSpaces": true,
-    "editor.tabSize": 2,
-    "editor.renderWhitespace": "boundary",
-    "editor.minimap.enabled": false,
+  "editor.insertSpaces": true,
+  "editor.tabSize": 2,
+  "editor.renderWhitespace": "boundary",
+  "editor.minimap.enabled": false,
 
-    "breadcrumbs.enabled": true,
+  "breadcrumbs.enabled": true,
+  "workbench.editor.enablePreview": false,
+  "workbench.editor.customLabels.patterns": {
+    "**/index.*": "${dirname} .../${dirname(1)}",
+    "**/{page,actions,hooks,components,utils,types,functions}.{js,ts,jsx,tsx}": "${dirname}/${filename}.${extname} .../${dirname(1)}"
+  },
 
-    "workbench.activityBar.visible": false,
-    "workbench.editor.enablePreview": false,
+  "files.exclude": {
+    "/.git": true,
+    "/.DS_Store": true,
+    "/node_modules": true,
+    "/node_modules/": true
+  },
+  "search.exclude": {
+    "**/bower_components": true,
+    "**/node_modules": true,
+    "**/img": true,
+    "**/dist": true
+  },
+  "files.watcherExclude": {
+    "/node_modules/": true
+  },
 
-    "files.exclude": {
-        "/.git": true,
-        "/.DS_Store": true,
-        "/node_modules": true,
-        "/node_modules/": true
-    },
-    "search.exclude": {
-        "**/bower_components": true,
-        "**/node_modules": true,
-        "**/img": true,
-        "**/dist": true
-    },
-    "files.watcherExclude": {
-        "/node_modules/": true
-    },
+  "emmet.showSuggestionsAsSnippets": true,
+  "emmet.triggerExpansionOnTab": true,
 
-    "emmet.showSuggestionsAsSnippets": true,
-    "emmet.triggerExpansionOnTab": true,
+  // Vim
+  "vim.useSystemClipboard": true,
+  "vim.hlsearch": true,
+  "vim.easymotion": true,
+  "vim.surround": true,
+  "vim.visualstar": true,
+  "vim.useCtrlKeys": true,
+  "vim.cursorStylePerMode.normal": "block",
+  "vim.normalModeKeyBindings": [
+    { "before": [";"], "after": [":"] },
+    { "before": ["Y"], "after": ["y", "$"] },
+    { "before": ["<C-j>"], "after": ["*"] },
+    { "before": ["<C-k>"], "after": ["#"] },
+    { "before": ["<BS>"], "after": [":", "%", "s", "/"] }
+  ],
 
-    // Vim
-    "vim.useSystemClipboard":true,
-    "vim.hlsearch": true,
-    "vim.easymotion": true,
-    "vim.surround": true,
-    "vim.visualstar": true,
-    "vim.useCtrlKeys": true,
-    "vim.cursorStylePerMode.normal": "block",
-    "vim.normalModeKeyBindings": [
-        {"before": [";"], "after": [":"]},
-        {"before": ["Y"], "after": ["y", "$"]},
-        {"before": ["<C-j>"], "after": ["*"]},
-        {"before": ["<C-k>"], "after": ["#"]},
-        {"before": ["<BS>"], "after": [":", "%", "s", "/"]},
-    ],
+  "terminal.integrated.shell.windows": "ubuntu1804.exe",
+  "terminal.integrated.shellArgs.windows": ["run", "/usr/bin/bash"],
+  "editor.quickSuggestions": {
+    "other": true,
+    "comments": true,
+    "strings": true
+  },
 
-    "terminal.integrated.shell.windows": "ubuntu1804.exe",
-    "terminal.integrated.shellArgs.windows": ["run", "/usr/bin/bash"],
-    "editor.formatOnSave": false,
+  "editor.codeActionsOnSave": [
+    "source.formatDocument" // Extension: Format Code Action
+  ],
+  "editor.formatOnSave": false, // Enabled via codeActionsOnSave (known order)
+  "editor.formatOnPaste": true,
+  // "eslint.format.enable": false, // Do not mess with this!!
+
+  "files.autoSave": "onFocusChange",
+  "editor.wordWrap": "off",
+
+  "files.autoSaveDelay": 10000,
+
+  "[dart]": {
+    "editor.formatOnSave": true,
     "editor.formatOnType": true,
-    "editor.formatOnPaste": true,
-    "editor.quickSuggestions": {
-        "other": true,
-        "comments": true,
-        "strings": true
-    },
-    "files.autoSave": "onFocusChange",
-    "window.zoomLevel": 0,
-    "editor.wordWrap": "off",
+    "editor.rulers": [120],
+    "editor.selectionHighlight": false,
+    "editor.suggest.snippetsPreventQuickSuggestions": false,
+    "editor.suggestSelection": "first",
+    "editor.tabCompletion": "onlySnippets",
+    "editor.wordBasedSuggestions": "off",
+    "files.insertFinalNewline": true
+  },
+  "dart.enableMachineLearningCodeCompletion": true,
+  "dart.analyzerAdditionalArgs": ["--enable-completion-model"],
+  "dart.lineLength": 120,
+  "eslint.format.enable": true,
+  // "editor.defaultFormatter": "biomejs.biome",
+  "[javascript]": {
+    // "editor.formatOnSave": true,
+    // "editor.codeActionsOnSave": {
+    //   "source.organizeImports.biome": "explicit"
+    // }
+  },
+  "[javascriptreact]": {
+    // "editor.formatOnSave": true,
+    // "editor.codeActionsOnSave": {
+    //   "source.organizeImports.biome": "explicit"
+    // }
+  },
+  "[typescript]": {
+    // ///   "editor.formatOnSave": true,
+    // ///   "editor.codeActionsOnSave": {
+    // ///     "source.organizeImports.biome": "explicit"
+    // ///   }
+  },
+  "[typescriptreact]": {
+    // ///   "editor.formatOnSave": true,
+    // ///   "editor.codeActionsOnSave": {
+    // ///     "source.organizeImports.biome": "explicit"
+    // ///   }
+  },
 
-    "files.autoSaveDelay": 10000,
+  "editor.cursorStyle": "line",
+  "editor.lineNumbers": "on",
+  "editor.wordSeparators": "/\\()\"':,.;<>~!@#$%^&*|+=[]{}`?-",
+  "editor.bracketPairColorization.enabled": true,
+  "typescript.inlayHints.parameterNames.enabled": "all",
 
-    "eslint.format.enable": true,
-    "eslint.run": "onType",
+  "colorize.languages": ["javascript", "typescript", "typescriptreact"],
+  "vim.cursorStylePerMode.insert": "line-thin",
+  "vim.cursorStylePerMode.replace": "underline",
+  "javascript.preferences.importModuleSpecifier": "non-relative",
+  "javascript.suggest.autoImports": false,
+  "typescript.preferences.importModuleSpecifier": "non-relative",
+  "typescript.suggest.autoImports": false,
 
-    "[dart]": {
-        "editor.formatOnSave": true,
-        "editor.formatOnType": true,
-        "editor.rulers": [
-            120
-        ],
-        "editor.selectionHighlight": false,
-        "editor.suggest.snippetsPreventQuickSuggestions": false,
-        "editor.suggestSelection": "first",
-        "editor.tabCompletion": "onlySnippets",
-        "editor.wordBasedSuggestions": false,
-        "files.insertFinalNewline": true
-    },
-    "dart.enableMachineLearningCodeCompletion": true,
-    "dart.analyzerAdditionalArgs": [
-        "--enable-completion-model"
-    ],
-    "dart.lineLength": 120,
-    "[typescriptreact]": {
-        "editor.defaultFormatter": "dbaeumer.vscode-eslint"
-    },
-    "[typescript]": {
-        "editor.defaultFormatter": "dbaeumer.vscode-eslint"
-    },
-    "editor.cursorStyle": "line",
-    "editor.lineNumbers": "on",
-    "editor.wordSeparators": "/\\()\"':,.;<>~!@#$%^&*|+=[]{}`?-",
-    "[javascript]": {
-        "editor.defaultFormatter": "dbaeumer.vscode-eslint"
-    },
-    "editor.bracketPairColorization.enabled": true,
+  // stylelint
+  "css.validate": false,
+  "less.validate": false,
+  "scss.validate": false,
+  "stylelint.enable": true,
+  "stylelint.validate": ["css", "scss", "jsx", "tsx"],
+  "[json]": {
+    "editor.defaultFormatter": "vscode.json-language-features"
+  },
+  "git.autorefresh": false,
+  "git.enabled": false,
+  "workbench.activityBar.location": "hidden",
+  "prisma.showPrismaDataPlatformNotification": false
 }
