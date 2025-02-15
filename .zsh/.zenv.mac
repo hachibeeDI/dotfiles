@@ -44,6 +44,7 @@ path=(
     #デフォルトのコマンドをGNUコマンドで
     $BREW_PATH/opt/coreutils/libexec/gnubin(N-/)
     $BREW_PATH/opt/gnu-sed/libexec/gnubin(N-/)
+    $BREW_PATH/opt/gawk/libexec/gnubin(N-/)
 
     # Goの
     $HOME/.go/bin(N-/)
