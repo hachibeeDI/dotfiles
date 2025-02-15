@@ -257,7 +257,7 @@ bindkey "^[r" redo
 
 # ------------------- load plugins ---------------- {{{
 # -- zsh syntax highlight ---
-source ~/.zsh/modules/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+source $BREW_PATH/opt/zsh-fast-syntax-highlighting/share/zsh-fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh
 
 # -- zaw.zsh -------- (pecoが入んない環境のみ)
 if which peco > /dev/null; then
