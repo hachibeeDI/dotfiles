@@ -87,28 +87,37 @@
   "eslint.format.enable": true,
   // "editor.defaultFormatter": "biomejs.biome",
   "[javascript]": {
+    "editor.codeActionsOnSave": {
+      "source.organizeImports.biome": "explicit"
+    },
+    "editor.defaultFormatter": "biomejs.biome"
     // "editor.formatOnSave": true,
     // "editor.codeActionsOnSave": {
     //   "source.organizeImports.biome": "explicit"
     // }
   },
   "[javascriptreact]": {
+    "editor.codeActionsOnSave": {
+      "source.organizeImports.biome": "explicit"
+    },
+    "editor.defaultFormatter": "biomejs.biome"
     // "editor.formatOnSave": true,
     // "editor.codeActionsOnSave": {
     //   "source.organizeImports.biome": "explicit"
     // }
   },
   "[typescript]": {
-    // ///   "editor.formatOnSave": true,
-    // ///   "editor.codeActionsOnSave": {
-    // ///     "source.organizeImports.biome": "explicit"
-    // ///   }
+    "editor.codeActionsOnSave": {
+      "source.organizeImports.biome": "explicit"
+    },
+    "editor.defaultFormatter": "biomejs.biome"
   },
   "[typescriptreact]": {
+    "editor.codeActionsOnSave": {
+      "source.organizeImports.biome": "explicit"
+    },
+    "editor.defaultFormatter": "biomejs.biome"
     // ///   "editor.formatOnSave": true,
-    // ///   "editor.codeActionsOnSave": {
-    // ///     "source.organizeImports.biome": "explicit"
-    // ///   }
   },
 
   "editor.cursorStyle": "line",
