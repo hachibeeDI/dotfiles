@@ -1,3 +1,21 @@
+function peco-gitworktree-cd() {
+  local selected
+  selected=$(
+    git worktree list \
+      | awk '{
+          path = $1
+          branch = $3
+          gsub(/[\[\]]/, "", branch)
+          printf "%-50s %s\n", path, branch
+        }' \
+      | peco --prompt="worktree> " \
+      | awk '{print $1}'
+  )
+  [[ -n "$selected" ]] && cd "$selected"
+}
+
+zle -N peco-gitworktree-cd
+bindkey '^gwt' peco-gitworktree-cd
 
 function peco-select-history() {
     local tac
