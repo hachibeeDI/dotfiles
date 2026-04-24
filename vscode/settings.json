@@ -88,7 +88,7 @@
   // "editor.defaultFormatter": "biomejs.biome",
   "[javascript]": {
     "editor.codeActionsOnSave": {
-      "source.organizeImports.biome": "explicit"
+      // "source.organizeImports.biome": "explicit"
     },
     "editor.defaultFormatter": "biomejs.biome"
     // "editor.formatOnSave": true,
@@ -98,7 +98,7 @@
   },
   "[javascriptreact]": {
     "editor.codeActionsOnSave": {
-      "source.organizeImports.biome": "explicit"
+      // "source.organizeImports.biome": "explicit"
     },
     "editor.defaultFormatter": "biomejs.biome"
     // "editor.formatOnSave": true,
@@ -108,13 +108,13 @@
   },
   "[typescript]": {
     "editor.codeActionsOnSave": {
-      "source.organizeImports.biome": "explicit"
+      // "source.organizeImports.biome": "explicit"
     },
     "editor.defaultFormatter": "biomejs.biome"
   },
   "[typescriptreact]": {
     "editor.codeActionsOnSave": {
-      "source.organizeImports.biome": "explicit"
+      // "source.organizeImports.biome": "explicit"
     },
     "editor.defaultFormatter": "biomejs.biome"
     // ///   "editor.formatOnSave": true,
@@ -146,5 +146,16 @@
   "git.autorefresh": false,
   "git.enabled": false,
   "workbench.activityBar.location": "hidden",
-  "prisma.showPrismaDataPlatformNotification": false
+  "prisma.showPrismaDataPlatformNotification": false,
+  "extensions.ignoreRecommendations": true,
+  "json.schemaDownload.trustedDomains": {
+    "https://schemastore.azurewebsites.net/": true,
+    "https://raw.githubusercontent.com/microsoft/vscode/": true,
+    "https://raw.githubusercontent.com/devcontainers/spec/": true,
+    "https://www.schemastore.org/": true,
+    "https://json.schemastore.org/": true,
+    "https://json-schema.org/": true,
+    "https://developer.microsoft.com/json-schemas/": true,
+    "https://biomejs.dev": true
+  }
 }

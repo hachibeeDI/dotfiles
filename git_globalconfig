@@ -49,7 +49,7 @@
     # checkout
     co = "!f () {\
       if [ $# -eq 0 ]; then\
-        git checkout `git branch | peco`;\
+        git checkout `git branch | fzf`;\
       elif [ $# -ge 1 ]; then\
         git checkout ${@};\
       fi;\
@@ -110,7 +110,7 @@
     info = config --list
     hist = log --pretty=format:\"%C(yellow)%h %C(White)%ad | %C(White)%s%C(Green)%d %C(Red)[%an]\" --graph --date=short --decorate=full
     chspace = diff --check
-    chbr = !git checkout $(git branch | peco)
+    chbr = !git checkout $(git branch | fzf)
     edit = "!f () { mvim $1; }; f"
 
 # plugins
@@ -119,3 +119,6 @@
     root = ~/.go/src
 [init]
 	defaultBranch = main
+[user]
+	name = Ogura Daiki
+	email = 8hachibee125@gmail.com

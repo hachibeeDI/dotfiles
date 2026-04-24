@@ -259,19 +259,14 @@ bindkey "^[r" redo
 # -- zsh syntax highlight ---
 source $BREW_PATH/opt/zsh-fast-syntax-highlighting/share/zsh-fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh
 
-# -- zaw.zsh -------- (pecoが入んない環境のみ)
-if which peco > /dev/null; then
-    echo 'use peco'
-    source ~/.zsh/.zrc.peco.zsh
-    function _insert_pecopipe() {
-        LBUFFER=${LBUFFER}" | peco"
+if which fzf > /dev/null; then
+    export FZF_DEFAULT_OPTS='--height=40% --layout=reverse --border --tmux --marker="▏" --pointer="▌" --info=inline-right'
+    source ~/.zsh/.zrc.fzf.zsh
+    function _insert_fzfpipe() {
+        LBUFFER=${LBUFFER}" | fzf"
     }
-    zle -N _insert_pecopipe
-    bindkey '^[p' _insert_pecopipe
-else
-    echo 'use zaw'
-    source ~/.zsh/modules/zaw/zaw.zsh
-    source ~/.zsh/.zrc.zaw.zsh
+    zle -N _insert_fzfpipe
+    bindkey '^[p' _insert_fzfpipe
 fi
 
 # -- notify if command takes long time
