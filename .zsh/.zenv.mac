@@ -63,6 +63,8 @@ path=(
     /Applications/Docker.app/Contents/Resources/bin(N-/)
 
     $HOME/.ghq/src/github.com/flutter/flutter/bin(N-/)
+    $HOME/.nodenv/shims/(N-/
+    $HOME/.local/bin(N-/)
     )
 export path
 
