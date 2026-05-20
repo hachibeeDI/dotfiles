@@ -1,0 +1,17 @@
+#!/bin/bash
+# Change detection — re-run when any file under shared_claude/ changes:
+{{- range $file := (glob (joinPath .chezmoi.sourceDir "shared_claude/**/*")) }}
+{{- $info := stat $file }}
+{{- if and $info (not $info.isDir) }}
+# {{ trimPrefix $.chezmoi.sourceDir $file }}: {{ include $file | sha256sum }}
+{{- end }}
+{{- end }}
+
+set -euo pipefail
+
+SHARED="{{ .chezmoi.sourceDir }}/shared_claude"
+
+for dest in "$HOME/.claude-work" "$HOME/.claude"; do
+  mkdir -p "$dest"
+  cp -R "$SHARED/." "$dest/"
+done

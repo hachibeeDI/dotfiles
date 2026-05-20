@@ -1,0 +1,19 @@
+# makeenv.sh が管理する dotfiles と chezmoi 管理対象 (dot_claude-work,
+# run_onchange_distribute-shared-claude.sh.tmpl) 以外は適用しない。
+
+# makeenv.sh の対象外ファイル
+Gemfile
+README.md
+colors
+iterm
+karabiner
+makeenv.sh
+nyaovim
+setup
+tune
+vscode
+xmonad
+
+# run_onchange_distribute-shared-claude.sh.tmpl のソース。
+# スクリプトが $HOME/.claude(-work) へ配布するので、ホーム直下には不要。
+shared_claude
