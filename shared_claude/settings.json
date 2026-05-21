@@ -1,0 +1,61 @@
+{
+  "remoteControlAtStartup": true,
+  "inputNeededNotifEnabled": true,
+  "agentPushNotifEnabled": true,
+  "statusLine": {
+    "type": "command",
+    "command": "./statusline.sh"
+  },
+  "permissions": {
+    "allow": [
+      "Bash(git status)",
+      "Bash(git status:*)",
+      "Bash(git diff:*)",
+      "Bash(git log:*)",
+      "Bash(git show:*)",
+      "Bash(git branch)",
+      "Bash(git branch --list:*)",
+      "Bash(git fetch:*)",
+      "Bash(git remote -v)",
+      "Bash(git rev-parse:*)",
+      "Bash(git ls-files:*)",
+      "Bash(ls:*)",
+      "Bash(rg:*)",
+      "Bash(grep:*)",
+      "Bash(find:*)",
+      "Bash(gh issue view:*)",
+      "Bash(gh issue list:*)",
+      "Bash(gh repo view:*)",
+      "Bash(pnpm gen)",
+      "Bash(pnpm gen:clean)",
+      "Bash(pnpm gen:rebuild)",
+      "Bash(pnpm pregen)",
+      "Bash(pnpm check:style)",
+      "Bash(pnpm test:unit:verbose)",
+      "Bash(pnpm test:coverage)",
+      "Bash(pnpm fix:lint)",
+      "Bash(pnpm fix:style)",
+      "Bash(pnpm fix-all)",
+      "Bash(pnpm dev-server)",
+      "Bash(pnpm dev-server:with-proxy)",
+      "Bash(pnpm install)",
+      "Bash(pnpm install:*)"
+    ],
+    "deny": [
+      "Bash(sudo:*)",
+      "Bash(rm -rf /:*)",
+      "Bash(rm -rf ~:*)",
+      "Bash(rm -rf ~/*)",
+      "Bash(git push --force:*)",
+      "Bash(git push -f:*)",
+      "Read(./.env)",
+      "Read(./.env.*)",
+      "Read(./secrets/**)",
+      "Read(**/id_rsa)",
+      "Read(**/id_ed25519)"
+    ]
+  },
+  "enabledPlugins": {
+    "typescript-lsp@claude-plugins-official": true
+  }
+}
