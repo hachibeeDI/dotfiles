@@ -4,7 +4,7 @@
   "agentPushNotifEnabled": true,
   "statusLine": {
     "type": "command",
-    "command": "./statusline.sh"
+    "command": "{{ env "DEST" }}/statusline.sh"
   },
   "permissions": {
     "allow": [

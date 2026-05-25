@@ -10,8 +10,15 @@
 set -euo pipefail
 
 SHARED="{{ .chezmoi.sourceDir }}/shared_claude"
+CHEZMOI="{{ .chezmoi.executable }}"
 
 for dest in "$HOME/.claude-work" "$HOME/.claude"; do
   mkdir -p "$dest"
   cp -R "$SHARED/." "$dest/"
+  # Render any *.tmpl files via chezmoi's template engine, then drop the suffix.
+  # DEST is exposed so templates can branch on the distribution target.
+  find "$dest" -type f -name '*.tmpl' | while read -r tmpl; do
+    DEST="$dest" "$CHEZMOI" execute-template < "$tmpl" > "${tmpl%.tmpl}"
+    rm "$tmpl"
+  done
 done
