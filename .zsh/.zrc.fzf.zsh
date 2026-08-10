@@ -21,26 +21,51 @@ function fzf-gitworktree-clean() {
   local repo_root
   repo_root="$(git rev-parse --show-toplevel)" || return 1
 
-  # .claude/worktrees/ 配下のものだけを候補にする
+  # デフォルトブランチを特定
+  local main_branch
+  main_branch="$(git -C "$repo_root" symbolic-ref --quiet --short refs/remotes/origin/HEAD 2>/dev/null)"
+  main_branch="${main_branch#origin/}"
+  [ -z "$main_branch" ] && main_branch="master"
+
+  # マージ済みブランチ集合
+  local merged
+  merged="$(git -C "$repo_root" branch --merged "$main_branch" 2>/dev/null \
+    | sed 's/^[* ] *//')"
+
+  # .claude/worktrees/ 配下かつマージ済みのものだけを候補にする
   local selected
   selected="$(git -C "$repo_root" worktree list \
     | grep "/.claude/worktrees/" \
-    | fzf --prompt "worktree to remove >")"
+    | while IFS= read -r line; do
+        local br
+        br="$(echo "$line" | sed -n 's/.*\[\(.*\)\].*/\1/p')"
+        [ -z "$br" ] && continue
+        echo "$merged" | grep -qx "$br" && echo "$line"
+      done \
+    | fzf --multi --prompt "worktree to remove (merged) >")"
   [ -z "$selected" ] && { echo "cancelled"; return 0; }
 
-  # 1カラム目がworktreeのフルパス
-  local wt_path
-  wt_path="$(echo "$selected" | awk '{print $1}')"
-  local wt_name
-  wt_name="$(basename "$wt_path")"
-  local proj_key
-  proj_key="$(echo "$wt_path" | sed 's|/|-|g')"
+  # 選択された各行を処理（Tab/Shift-Tabで複数選択）
+  echo "$selected" | while IFS= read -r line; do
+    [ -z "$line" ] && continue
 
-  echo "removing: $wt_path"
-  git -C "$repo_root" worktree remove "$wt_path" --force || return 1
-  git -C "$repo_root" branch -D "worktree-$wt_name" 2>/dev/null
-  rm -rf "$HOME/.claude/projects/$proj_key"
-  echo "removed worktree and sessions for: $wt_name"
+    # 1カラム目がworktreeのフルパス
+    local wt_path
+    wt_path="$(echo "$line" | awk '{print $1}')"
+    local wt_name
+    wt_name="$(basename "$wt_path")"
+    local proj_key
+    proj_key="$(echo "$wt_path" | sed 's|/|-|g')"
+
+    echo "removing: $wt_path"
+    if ! git -C "$repo_root" worktree remove "$wt_path" --force; then
+      echo "failed to remove: $wt_path" >&2
+      continue
+    fi
+    git -C "$repo_root" branch -D "worktree-$wt_name" 2>/dev/null
+    rm -rf "$HOME/.claude/projects/$proj_key"
+    echo "removed worktree and sessions for: $wt_name"
+  done
 }
 
 zle -N fzf-gitworktree-clean
